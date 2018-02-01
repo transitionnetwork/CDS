@@ -1,0 +1,22 @@
+# ignore all files starting with .
+.*
+
+# track this file .gitignore (i.e. do NOT ignore it)
+!.gitignore
+!.gitkeep
+!.travis.yml
+!.gitattributes
+!.eslintrc.yml
+!.stylelintrc.yml
+!.npmrc
+!.hound.yml
+!.bitbucket-pipelines.yml
+
+# ignore node/grunt dependency directories
+node_modules/
+
+# ignore composer dependency directories
+/vendor/
+
+# ignore dist directories
+dist/
