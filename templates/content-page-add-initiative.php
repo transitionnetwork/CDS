@@ -16,6 +16,7 @@ acf_form_head();
         'post_type'		=> 'initiatives',
         'post_status'	=> 'publish'
       )
-    ));?>
+    ));
+    echo '<div class="button-block"><a class="btn btn-secondary" href="javascript:history.go(-1)">Cancel</a></div>'; ?>
   </div>
 </main>

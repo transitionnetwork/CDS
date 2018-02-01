@@ -114,6 +114,18 @@ function create_posttypes() {
       'supports' => array('title', 'thumbnail')
     )
   );
+  register_post_type( 'maps',
+    array(
+      'labels' => array(
+        'name' => __( 'Maps' ),
+        'singular_name' => __( 'Map' )
+      ),
+      'public' => true,
+      'has_archive' => false,
+      'rewrite' => array('slug' => 'map'),
+      'supports' => array('title')
+    )
+  );
 }
 
 function custom_query_vars_filter($vars) {

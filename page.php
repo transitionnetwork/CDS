@@ -14,9 +14,9 @@
 
 use \Tofino\Helpers as h;
 
-get_header();
-
 $template = h\get_page_name();
+
+get_header();
 
 if (locate_template('templates/content-page-' . $template . '.php') != '') {
   get_template_part('templates/content-page', $template); // e.g. templates/content-page-members.php

@@ -1,3 +1,5 @@
+<?php acf_form_head(); ?>
+
 <main>
   <div class="container">
     <h1><?php echo \Tofino\Helpers\title(); ?></h1>
@@ -40,12 +42,40 @@
       <?php endif; ?>
 
       <div class="button-block"><a href="/add-initiative" class="btn btn-primary">Add new Initiative</a></div>
-      <div class="button-block"><a href="#" class="btn btn-primary disabled">Create iframe map</a></div>
     </section>
 
     <section>
       <h2>Map of Initiatives</h2>
-      Coming Soon
+      <?php
+      $args = array(
+        'posts_per_page' => -1,
+        'author' => $user_id,
+        'post_type' => 'maps'
+      );
+      $posts = get_posts($args);
+
+      if($posts) :
+        foreach($posts as $post) :
+          $iframe_url = ($post->guid); ?>
+          <p>Copy and paste the HTML below:</p>
+          <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $iframe_url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;600px&quot;&gt;</pre>
+
+          <a class="btn btn-danger" href="<?php echo get_delete_post_link( get_the_ID() ); ?>">Delete Map iframe</a>
+
+        <?php endforeach; ?>
+      <?php else :
+        acf_form(array(
+          'post_id'		=> 'new_post',
+          'post_title'	=> false,
+          'post_content'	=> false,
+          'submit_value' => 'Create Map iframe',
+          'updated_message' => false,
+          'new_post'		=> array(
+            'post_type'		=> 'maps',
+            'post_status'	=> 'publish'
+          )
+        ));
+      endif; ?>
     </section>
   </div>
 </main>

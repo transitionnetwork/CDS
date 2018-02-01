@@ -16,7 +16,7 @@
 
           <?php if((get_the_author_meta('ID') == get_current_user_id()) || (current_user_can( 'manage_options' ))) : ?>
             <?php $params = array('edit_post' => get_the_ID()); ?>
-            <a class="btn btn-primary" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit this initiative</a>
+            <a class="btn btn-warning" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit this initiative</a>
           <?php endif; ?>
 
         <?php endwhile; ?>
