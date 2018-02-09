@@ -89,3 +89,23 @@ pre {
   color: $red;
   padding: 0.25rem;
 }
+
+.tag {
+  border-radius: 5px;
+  padding: 0.25rem;
+  line-height: 1;
+  margin: 0 0.1rem;
+  display: inline-block;
+
+  &.role {
+    background-color: $purple;
+    border: 1px solid $gray-700;
+    color: $white;
+  }
+
+  &.hub {
+    background-color: $red;
+    border: 1px solid $gray-700;
+    color: $white;
+  }
+}

@@ -1,5 +1,6 @@
 <?php 
 acf_form_head();
+include('user-variables.php');
 ?>
 
 <main>

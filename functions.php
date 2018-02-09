@@ -133,3 +133,31 @@ function custom_query_vars_filter($vars) {
   return $vars;
 }
 add_filter( 'query_vars', 'custom_query_vars_filter' );
+
+function create_user_taxonomies() {
+  register_taxonomy('hub', 'user', array(
+    'public'       => true,
+    'single_value' => false,
+    'show_admin_column' => true,
+    'labels'        =>array(
+        'name'                      =>'Hubs',
+        'singular_name'             =>'Hub',
+        'menu_name'                 =>'Hubs',
+        'search_items'              =>'Search Hubs',
+        'popular_items'             =>'Popular Hubs',
+        'all_items'                 =>'All Hubs',
+        'edit_item'                 =>'Edit Hub',
+        'update_item'               =>'Update Hub',
+        'add_new_item'              =>'Add New Hub',
+        'new_item_name'             =>'New Hub Name',
+        'separate_items_with_commas'=>'Separate hubs with commas',
+        'add_or_remove_items'       =>'Add or remove hubs',
+        'choose_from_most_used'     =>'Choose from the most popular hubs',
+    ),
+    'rewrite'       =>array(
+        'with_front'                =>true,
+        'slug'                      =>'author/hub',
+    )
+  ));
+}
+add_action( 'init', 'create_user_taxonomies' );
