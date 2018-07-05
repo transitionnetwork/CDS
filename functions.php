@@ -111,7 +111,21 @@ function create_posttypes() {
       'public' => true,
       'has_archive' => false,
       'rewrite' => array('slug' => 'initiative'),
-      'supports' => array('title', 'thumbnail')
+      'supports' => array('title', 'editor', 'author'),
+      'capabilities' => array(
+        'edit_posts' => 'Edit',
+        'edit_others_posts' => 'Edit Others Posts',
+        'publish_posts' => 'Publish Posts',
+        'read_private_posts' => 'Read Private Posts',
+        'read_posts' => 'Read',
+        'delete_posts' => 'Delete Posts',
+        'delete_private_posts' => 'Delete Private Posts',
+        'delete_published_posts' => 'Delete Published Posts',
+        'delete_others_posts' => 'Delete Others Posts',
+        'edit_private_posts' => 'Edit Private Posts',
+        'edit_published_posts' => 'Edit Published Posts'
+      ),
+      'map_meta_cap' => true
     )
   );
   register_post_type( 'maps',
@@ -123,7 +137,21 @@ function create_posttypes() {
       'public' => true,
       'has_archive' => false,
       'rewrite' => array('slug' => 'map'),
-      'supports' => array('title')
+      'supports' => array('title', 'author'),
+      'capabilities' => array(
+        'edit_posts' => 'Edit',
+        'edit_others_posts' => 'Edit Others Posts',
+        'publish_posts' => 'Publish Posts',
+        'read_private_posts' => 'Read Private Posts',
+        'read_posts' => 'Read',
+        'delete_posts' => 'Delete Posts',
+        'delete_private_posts' => 'Delete Private Posts',
+        'delete_published_posts' => 'Delete Published Posts',
+        'delete_others_posts' => 'Delete Others Posts',
+        'edit_private_posts' => 'Edit Private Posts',
+        'edit_published_posts' => 'Edit Published Posts'
+      ),
+      'map_meta_cap' => true
     )
   );
 }
@@ -139,25 +167,50 @@ function create_user_taxonomies() {
     'public'       => true,
     'single_value' => false,
     'show_admin_column' => true,
-    'labels'        =>array(
-        'name'                      =>'Hubs',
-        'singular_name'             =>'Hub',
-        'menu_name'                 =>'Hubs',
-        'search_items'              =>'Search Hubs',
-        'popular_items'             =>'Popular Hubs',
-        'all_items'                 =>'All Hubs',
-        'edit_item'                 =>'Edit Hub',
-        'update_item'               =>'Update Hub',
-        'add_new_item'              =>'Add New Hub',
-        'new_item_name'             =>'New Hub Name',
-        'separate_items_with_commas'=>'Separate hubs with commas',
-        'add_or_remove_items'       =>'Add or remove hubs',
-        'choose_from_most_used'     =>'Choose from the most popular hubs',
+    'labels' => array(
+      'name'                      =>'Hubs',
+      'singular_name'             =>'Hub',
+      'menu_name'                 =>'Hubs',
+      'search_items'              =>'Search Hubs',
+      'popular_items'             =>'Popular Hubs',
+      'all_items'                 =>'All Hubs',
+      'edit_item'                 =>'Edit Hub',
+      'update_item'               =>'Update Hub',
+      'add_new_item'              =>'Add New Hub',
+      'new_item_name'             =>'New Hub Name',
+      'separate_items_with_commas'=>'Separate hubs with commas',
+      'add_or_remove_items'       =>'Add or remove hubs',
+      'choose_from_most_used'     =>'Choose from the most popular hubs',
     ),
-    'rewrite'       =>array(
-        'with_front'                =>true,
-        'slug'                      =>'author/hub',
-    )
+  ));
+
+  register_taxonomy('country', 'initiatives', array(
+    'public'       => true,
+    'single_value' => false,
+    'show_admin_column' => true,
+    'labels' => array(
+      'name'                      =>'Countries',
+      'singular_name'             =>'Country',
+      'menu_name'                 =>'Countries',
+      'search_items'              =>'Search Countries',
+      'popular_items'             =>'Popular Countries',
+      'all_items'                 =>'All Countries',
+      'edit_item'                 =>'Edit Country',
+      'update_item'               =>'Update Country',
+      'add_new_item'              =>'Add New Country',
+      'new_item_name'             =>'New Country Name',
+      'separate_items_with_commas'=>'Separate countries with commas',
+      'add_or_remove_items'       =>'Add or remove countries',
+      'choose_from_most_used'     =>'Choose from the most popular countries',
+    ),
   ));
 }
 add_action( 'init', 'create_user_taxonomies' );
+
+add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
+function wpse132196_redirect_after_trashing() {
+  if(!is_admin()) {
+    exit;
+    wp_redirect(home_url('/account'));
+  }
+}

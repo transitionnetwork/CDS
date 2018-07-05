@@ -1,11 +1,12 @@
 <?php
-acf_form_head();
 $current_user = wp_get_current_user();
 $user_role = $current_user->roles[0];
 $user_human_role = ucwords(str_replace('_', ' ', $user_role));
-$user_hub = get_the_terms($current_user->ID, 'hub');
+$user_hub = get_the_terms($current_user, 'hub');
 $user_hub_name = $user_hub[0]->name;
-$user_hub_id = $user_hub[0]->id; ?>
+$user_hub_id = ($user_hub[0]->term_id);
+
+acf_form_head(); ?>
 
 <main>
   <div class="container">
@@ -32,14 +33,7 @@ $user_hub_id = $user_hub[0]->id; ?>
     <section>
       <h2>My Initiatives</h2>
       <?php if($posts && is_user_logged_in()) : ?>
-        <?php foreach($posts as $post) : ?>
-          <?php setup_postdata($post); ?>
-          <div class="post-summary">
-            <?php $params = array('edit_post' => get_the_ID()); ?>
-            <a href="<?php the_permalink(); ?>" class="title"><?php the_title(); ?></a>
-            <div><a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>">View</a> <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit</a></div>
-          </div>
-        <?php endforeach; ?>
+        <?php include('partials/list-initiatives.php'); ?>
       <?php else : ?>
         You haven't added any initiatives yet
       <?php endif; ?>
@@ -48,28 +42,53 @@ $user_hub_id = $user_hub[0]->id; ?>
     </section>
 
     <section>
-      <h2>Map of Initiatives</h2>
-      <pre>GENERATED MAP PLACEHOLDER</pre>
-
-      <?php if(($role =='super_hub') || ($role =='administrator')) : ?>
+      <?php if($user_role != 'administrator') : ?>
+        <h2>Map of Initiatives</h2>
         <?php
         $args = array(
           'posts_per_page' => -1,
-          'author' => $user_id,
-          'post_type' => 'maps'
+          'post_type' => 'maps',
+          'post_status' => 'publish'
         );
+
         $posts = get_posts($args);
 
         if($posts) :
           foreach($posts as $post) :
-            $iframe_url = ($post->guid); ?>
-            <p>Copy and paste the HTML below:</p>
-            <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $iframe_url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;600px&quot;&gt;</pre>
+            setup_postdata( $post );
+            
+            $author_object = get_user_by('id', get_the_author_id());
+            $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
+            $author_hub_id = get_the_terms($author_object, 'hub')[0]->term_id;
 
-            <a class="btn btn-danger" href="<?php echo get_delete_post_link( get_the_ID() ); ?>">Delete Map iframe</a>
-
+            if($user_hub_id == $author_hub_id) :
+              //If you're a member of the hub, show the iframe post
+              $iframe_url = ($post->guid); ?>
+              <p>Copy and paste the HTML below:</p>
+              <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $iframe_url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;600px&quot;&gt;</pre>
+              
+              <?php if ($user_hub_id == $author_hub_id) :
+                $map_exists = TRUE;
+              endif; ?>
+            <?php endif; ?>
+              
+            <?php if(($user_role == 'super_hub') && ($user_hub_id == $author_hub_id)) :
+              //If you're a member of the hub and a super hub guy ?>
+              <a class="btn btn-danger" href="<?php echo get_delete_post_link( get_the_ID() ); ?>">Delete Map iframe</a>
+            <?php endif; ?>
           <?php endforeach; ?>
-        <?php else :
+          <?php wp_reset_postdata(); ?>
+
+        <?php endif; ?>
+
+        <?php if(!$map_exists) {
+          echo '<p>No map has been created for your hub.</p>';
+          if($user_role != 'super_hub') {
+            echo '<p>Please ask your super hub user to create one.</p>';
+          }
+        } ?>
+        
+        <?php if (($user_role === 'super_hub') && (!$map_exists)) :
           acf_form(array(
             'post_id'		=> 'new_post',
             'post_title'	=> false,
@@ -82,6 +101,9 @@ $user_hub_id = $user_hub[0]->id; ?>
             )
           ));
         endif;
+      else :
+        echo '<h2>No hub map is associated with admin accounts</h2>';
+        echo '<p>Please log in with a non admin account to use maps</p>';
       endif; ?>
     </section>
   </div>

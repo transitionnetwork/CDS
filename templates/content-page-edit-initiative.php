@@ -23,6 +23,7 @@ $current_author = ((string)get_current_user_id()); ?>
 						'post_status'	=> 'publish'
 					)
 				));
+				echo '<div class="button-block"><a class="btn btn-danger" href="' . get_delete_post_link($edit_post_id) . '">Delete this initiative</a></div>';
 				echo '<div class="button-block"><a class="btn btn-secondary" href="javascript:history.go(-1)">Cancel</a></div>';
 			else :
 				echo 'You don\'t have the permission to edit this post';
