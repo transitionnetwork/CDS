@@ -10,7 +10,6 @@
           
           <?php if((get_the_author_meta('ID') == get_current_user_id()) || (current_user_can( 'manage_options' ))) : ?>
             <h2>Email and Health Check Results Information <span style="color: red;">(private)</span></h2>
-            <?php the_field('private_field'); ?>
           <?php else : ?>
             <strong style="color: red;">(Email and Health Check Results are hidden)</strong>
           <?php endif; ?>
