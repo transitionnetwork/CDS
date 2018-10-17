@@ -11,7 +11,7 @@ include('user-variables.php');
       'post_id'		=> 'new_post',
       'post_title'	=> true,
       'post_content'	=> false,
-      'return' => 'thank-you-for-your-submission',
+      'return' => 'thank-you-for-your-submission?added_post',
       'submit_value' => 'Create Initiative',
       'new_post'		=> array(
         'post_type'		=> 'initiatives',

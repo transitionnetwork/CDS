@@ -66,6 +66,7 @@ acf_form_head(); ?>
               $iframe_url = ($post->guid); ?>
               <p>Copy and paste the HTML below:</p>
               <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $iframe_url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;600px&quot;&gt;</pre>
+              <a href="<?php echo $iframe_url; ?>">map</a>
               
               <?php if ($user_hub_id == $author_hub_id) :
                 $map_exists = TRUE;

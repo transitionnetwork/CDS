@@ -1,8 +1,9 @@
+<?php get_header('map'); ?>
+
 <?php while (have_posts()) : the_post();
   $author_object = get_user_by('id', get_the_author_id());
   $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
   $author_hub_id = get_the_terms($author_object, 'hub')[0]->term_id;
-  echo 'Hub: ' . $author_hub_name;
 
   $users = get_objects_in_term($author_hub_id, 'hub');
 
@@ -12,12 +13,23 @@
     'posts_per_page' => -1
   );
 
-  $posts = get_posts($args);
+  $posts = get_posts($args); ?>
   
-  foreach ($posts as $post) :
-    setup_postdata( $post );
-    echo '<pre>';
-    echo 'build the map here';
-    echo '</pre>';
-  endforeach;
-endwhile;
+  <ul id="dom-target" style="display:none;">
+    <?php foreach ($posts as $post) :
+      setup_postdata( $post ); ?>
+      <?php if($i == 0) {
+        $cheat_load = get_field('map');
+      } ?>
+      
+      <?php $map = get_field('map', get_the_ID(), false); ?>
+      <li class="point" data-lat="<?php echo htmlspecialchars($map['center_lat']); ?>" data-lng="<?php echo htmlspecialchars($map['center_lng']); ?>" data-title="<?php echo get_the_title(); ?>" data-link="<?php the_permalink(); ?>"></li>
+      <?php $i ++; ?>
+    <?php endforeach; ?>
+    </ul>
+<?php endwhile; ?>
+
+<div id="iframe_map"></div>
+<?php echo 'Region: ' . $author_hub_name; ?>
+
+<?php get_footer('map'); ?>

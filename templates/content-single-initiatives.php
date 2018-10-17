@@ -5,7 +5,8 @@
         <?php while (have_posts()) : the_post(); ?>
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
           <h2>General Information <span style="color: green;">(public)</span></h2>
-          <?php the_field('public_field'); ?>
+          <?php $map_array = get_field('map', get_the_ID(), false); ?>
+          <?php echo get_field('map'); ?>
           
           <?php if((get_the_author_meta('ID') == get_current_user_id()) || (current_user_can( 'manage_options' ))) : ?>
             <h2>Email and Health Check Results Information <span style="color: red;">(private)</span></h2>

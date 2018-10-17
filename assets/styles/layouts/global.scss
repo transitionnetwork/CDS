@@ -109,3 +109,13 @@ pre {
     color: $white;
   }
 }
+
+.button-group {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 1rem;
+  }
+}

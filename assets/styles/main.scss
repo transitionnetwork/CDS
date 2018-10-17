@@ -3,6 +3,6 @@
 
 @import 'base/main'; // Tofino base styles
 
-@import 'layouts/global'; // Tofino base styles
-// Uncomment for  bare bones woocommerce styles
-// @import 'woocommerce/reboot'
+@import 'layouts/global';
+
+@import 'components/maps';

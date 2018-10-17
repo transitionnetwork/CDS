@@ -16,5 +16,8 @@ $args = array(
     else : ?>
     There aren't any initatives yet
     <?php endif; ?>
+    <ul class="button-group">
+      <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>">Add new initiative</a></li>
+    </ul>
   </div>
 </main>

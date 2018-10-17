@@ -20,7 +20,7 @@
       <?php if((get_the_author_meta('ID') == get_current_user_id()) || (current_user_can( 'manage_options' ))) : ?>
         <?php $params = array('edit_post' => get_the_ID()); ?>
         <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit</a>
-        <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link( get_the_ID() ); ?>">Delete</a>
+        <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link( get_the_ID() ); ?>" onclick="return confirm('Are you sure you want to remove this hub?')">Delete</a>
       <?php endif; ?>
     </div>
   </div>

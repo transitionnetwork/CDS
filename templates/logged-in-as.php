@@ -6,9 +6,9 @@ $user_hub = get_the_terms($current_user, 'hub');
 $user_hub_name = $user_hub[0]->name;
 
 if(is_user_logged_in()) : ?>
-  I am logged in as <?php echo $current_user->user_login; ?>
+  Logged in as <?php echo $current_user->user_login; ?>
 <?php else : ?>
-  I am not logged in
+  Not logged in | <a href="<?php the_permalink(20); ?>">Login</a>
 <?php endif; ?>
 
 <?php if($user_role) : ?>
