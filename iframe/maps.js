@@ -17,7 +17,7 @@ for (i = 0; i < points.length; i++) {
   title = points[i].getAttribute('data-title');
   link = points[i].getAttribute('data-link');
   marker = L.marker([lat, lng]).addTo(map);
-  marker.bindPopup(title + '<br/><a href=' + link + '>Link</a>');
+  marker.bindPopup(title + '<br/><a href=' + link + '>&raquo;View initiative</a>');
   markers.push([lat, lng]);
 }
 

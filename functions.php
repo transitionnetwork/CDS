@@ -184,27 +184,6 @@ function create_user_taxonomies() {
       'choose_from_most_used'     =>'Choose from the most popular hubs',
     ),
   ));
-
-  register_taxonomy('country', 'initiatives', array(
-    'public'       => true,
-    'single_value' => false,
-    'show_admin_column' => true,
-    'labels' => array(
-      'name'                      =>'Countries',
-      'singular_name'             =>'Country',
-      'menu_name'                 =>'Countries',
-      'search_items'              =>'Search Countries',
-      'popular_items'             =>'Popular Countries',
-      'all_items'                 =>'All Countries',
-      'edit_item'                 =>'Edit Country',
-      'update_item'               =>'Update Country',
-      'add_new_item'              =>'Add New Country',
-      'new_item_name'             =>'New Country Name',
-      'separate_items_with_commas'=>'Separate countries with commas',
-      'add_or_remove_items'       =>'Add or remove countries',
-      'choose_from_most_used'     =>'Choose from the most popular countries',
-    ),
-  ));
 }
 add_action( 'init', 'create_user_taxonomies' );
 
@@ -280,3 +259,18 @@ function my_acf_prepare_field($field) {
   return $field;
 }
 add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');
+
+// find out whether user is superhub and of the same hub as the author (accepts author ID)
+function get_super_hub_perms($author) {
+  $author_object = get_user_by('id', $author);
+  $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
+  $user_hub = get_the_terms(wp_get_current_user(), 'hub');
+  $user_hub_name = $user_hub[0]->name;
+  $user_role = wp_get_current_user()->roles[0];
+
+  if (($user_role == 'super_hub') && ($user_hub_name == $author_hub_name)) {
+    return TRUE;
+  } else {
+    return FALSE;
+  }
+}

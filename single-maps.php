@@ -13,7 +13,8 @@
     'posts_per_page' => -1
   );
 
-  $posts = get_posts($args); ?>
+  $posts = get_posts($args);
+  $i = 0; ?>
   
   <ul id="dom-target" style="display:none;">
     <?php foreach ($posts as $post) :
@@ -30,6 +31,6 @@
 <?php endwhile; ?>
 
 <div id="iframe_map"></div>
-<?php echo 'Region: ' . $author_hub_name; ?>
+<small><?php echo 'Region: ' . $author_hub_name; ?></small>
 
 <?php get_footer('map'); ?>
