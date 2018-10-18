@@ -7,6 +7,10 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: 'pk.eyJ1IjoieGluYyIsImEiOiJjam5lbDVnYm4wdjk2M3FzZm4xZDloMWw0In0.YhMrHlc_Yc_otwG_5hrVGw'
 }).addTo(map);
 
+map.scrollWheelZoom.disable();
+map.on('focus', function () { map.scrollWheelZoom.enable(); });
+map.on('blur', function () { map.scrollWheelZoom.disable(); });
+
 var marker, lat, lng, title, link;
 var markers = [];
 

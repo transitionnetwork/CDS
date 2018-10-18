@@ -207,7 +207,7 @@ function create_initiative_taxonomies() {
   $args = array(
     'hierarchical' => true,
     'labels' => $labels,
-    'show_ui' => false,
+    'show_ui' => true,
     'show_admin_column' => true,
     'query_var' => true,
     'rewrite' => array('slug' => 'topic', 'with_front' => false),
@@ -215,32 +215,30 @@ function create_initiative_taxonomies() {
 
   register_taxonomy('topic', array('initiatives'), $args);
 
-  function create_country_taxonomies() {
-    $labels = array(
-      'name' => _x('Countries', 'taxonomy general name'),
-      'singular_name' => _x('Country', 'taxonomy singular name'),
-      'search_items' => __('Search Countries'),
-      'all_items' => __('All Countries'),
-      'parent_item' => __('Parent Country'),
-      'parent_item_colon' => __('Parent Country:'),
-      'edit_item' => __('Edit Country'),
-      'update_item' => __('Update Country'),
-      'add_new_item' => __('Add New Country'),
-      'new_item_name' => __('New Country Name'),
-      'menu_name' => __('Country'),
-    );
+  $labels = array(
+    'name' => _x('Countries', 'taxonomy general name'),
+    'singular_name' => _x('Country', 'taxonomy singular name'),
+    'search_items' => __('Search Countries'),
+    'all_items' => __('All Countries'),
+    'parent_item' => __('Parent Country'),
+    'parent_item_colon' => __('Parent Country:'),
+    'edit_item' => __('Edit Country'),
+    'update_item' => __('Update Country'),
+    'add_new_item' => __('Add New Country'),
+    'new_item_name' => __('New Country Name'),
+    'menu_name' => __('Country'),
+  );
 
-    $args = array(
-      'hierarchical' => true,
-      'labels' => $labels,
-      'show_ui' => false,
-      'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => array('slug' => 'country', 'with_front' => false),
-    );
+  $args = array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'country', 'with_front' => false),
+  );
 
-    register_taxonomy('country', array('initiatives'), $args);
-  }
+  register_taxonomy('country', array('initiatives'), $args);
 }
 add_action('init', 'create_initiative_taxonomies');
 
@@ -274,3 +272,14 @@ function get_super_hub_perms($author) {
     return FALSE;
   }
 }
+
+//Logout link with nonce
+function add_logout_link($nav, $args) {
+  $logoutlink = '<li class="nav-item menu-logout"><a class="nav-link" href="' . wp_logout_url(home_url()) . '">Logout</a></li>';
+  if ($args->theme_location == 'primary_navigation_loggedin') {
+    return $nav . $logoutlink;
+  } else {
+    return $nav;
+  }
+}
+add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
