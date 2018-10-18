@@ -131,7 +131,7 @@ acf_form_head(); ?>
         endif;
       else :
         echo '<h2>No hub map is associated with admin accounts</h2>';
-        echo '<p>Please log in with a non admin account to use maps</p>';
+        echo '<p>Please log in with a non-admin account to use maps. A map must be associated with a hub.</p>';
       endif; ?>
     </section>
   </div>

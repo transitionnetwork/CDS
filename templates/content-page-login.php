@@ -1,6 +1,6 @@
 <?php
 $args = array(
-  'redirect' => $_SERVER['HTTP_HOST']
+  'redirect' => get_permalink(24)
 ); ?>
 
 <main>
