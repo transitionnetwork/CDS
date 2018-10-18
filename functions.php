@@ -162,6 +162,7 @@ function custom_query_vars_filter($vars) {
 }
 add_filter( 'query_vars', 'custom_query_vars_filter' );
 
+// Create user taxonomies
 function create_user_taxonomies() {
   register_taxonomy('hub', 'user', array(
     'public'       => true,
@@ -207,10 +208,75 @@ function create_user_taxonomies() {
 }
 add_action( 'init', 'create_user_taxonomies' );
 
-add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
+// Create custom taxonomies
+function create_initiative_taxonomies() {
+// Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name' => _x('Topics', 'taxonomy general name'),
+    'singular_name' => _x('Topic', 'taxonomy singular name'),
+    'search_items' => __('Search Topics'),
+    'all_items' => __('All Topics'),
+    'parent_item' => __('Parent Topic'),
+    'parent_item_colon' => __('Parent Topic:'),
+    'edit_item' => __('Edit Topic'),
+    'update_item' => __('Update Topic'),
+    'add_new_item' => __('Add New Topic'),
+    'new_item_name' => __('New Topic Name'),
+    'menu_name' => __('Topic'),
+  );
+
+  $args = array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => false,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'topic', 'with_front' => false),
+  );
+
+  register_taxonomy('topic', array('initiatives'), $args);
+
+  function create_country_taxonomies() {
+    $labels = array(
+      'name' => _x('Countries', 'taxonomy general name'),
+      'singular_name' => _x('Country', 'taxonomy singular name'),
+      'search_items' => __('Search Countries'),
+      'all_items' => __('All Countries'),
+      'parent_item' => __('Parent Country'),
+      'parent_item_colon' => __('Parent Country:'),
+      'edit_item' => __('Edit Country'),
+      'update_item' => __('Update Country'),
+      'add_new_item' => __('Add New Country'),
+      'new_item_name' => __('New Country Name'),
+      'menu_name' => __('Country'),
+    );
+
+    $args = array(
+      'hierarchical' => true,
+      'labels' => $labels,
+      'show_ui' => false,
+      'show_admin_column' => true,
+      'query_var' => true,
+      'rewrite' => array('slug' => 'country', 'with_front' => false),
+    );
+
+    register_taxonomy('country', array('initiatives'), $args);
+  }
+}
+add_action('init', 'create_initiative_taxonomies');
+
+//Redirect after post deletion
 function wpse132196_redirect_after_trashing() {
   if(!is_admin()) {
     exit;
     wp_redirect(home_url('/account'));
   }
 }
+add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
+
+//Change label of Content Editor in acf_form()
+function my_acf_prepare_field($field) {
+  $field['label'] = "Description";
+  return $field;
+}
+add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');

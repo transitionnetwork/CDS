@@ -1,0 +1,21 @@
+
+#acf-form {
+  .acf-input-wrap > input[type="text"] {
+    padding: 1rem 0.5rem;
+    border: 1px solid $gray-400;
+    border-radius: 3px;
+  }
+
+  .acf-form-submit {
+    margin-top: 1rem;
+  }
+}
+
+.leaflet-control-geocoder {
+  border: 1px solid $gray-400;
+  margin-bottom: 1rem;
+}
+
+.leaflet-control-layers {
+  display: none;
+}
