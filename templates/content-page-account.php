@@ -154,7 +154,8 @@ $hub_user_ids = array_diff($hub_user_ids, array(wp_get_current_user()->ID)); ?>
             'updated_message' => false,
             'new_post'		=> array(
               'post_type'		=> 'maps',
-              'post_status'	=> 'publish'
+              'post_status'	=> 'publish',
+              'post_title' => $user_hub_name
             )
           ));
         endif;
