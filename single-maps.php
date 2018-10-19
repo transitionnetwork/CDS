@@ -27,6 +27,5 @@
 <?php endwhile; ?>
 
 <div id="iframe_map"></div>
-<small><?php echo 'Region: ' . $author_hub_name; ?></small>
 
 <?php get_footer('map'); ?>

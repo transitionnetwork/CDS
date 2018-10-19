@@ -149,6 +149,7 @@ pre {
 
     &.col-c {
       text-align: right;
+      
 
       .btn {
         margin: 0.25rem 0;
@@ -156,23 +157,6 @@ pre {
 
       form {
         display: inline;
-      }
-    }
-
-    @include media-breakpoint-down(sm) {
-      display: block;
-      padding: 0.25rem 0;
-
-      &:first-of-type {
-        padding-top: 1rem;
-      }
-
-      &:last-of-type {
-        padding-bottom: 1rem;
-      }
-
-      &.buttons {
-        text-align: left;
       }
     }
   }
