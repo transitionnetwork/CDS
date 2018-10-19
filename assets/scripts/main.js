@@ -4,6 +4,8 @@ import Router from './router';
 // Import local deps
 import common from './routes/common';
 import contact from './routes/contact';
+import all_initiatives from './routes/maps';
+import single_maps from './routes/maps';
 
 // Import ajaxForm
 import './ajax-form';
@@ -17,10 +19,10 @@ import 'bootstrap/dist/js/bootstrap.js'; // All of Bootstrap JS
 // and creating the js file in the routes directory. Remember to import the
 // file as per the common example near the top of this file.
 const routes = {
-  // All pages
   common,
-  // Contact page
   contact,
+  all_initiatives,
+  single_maps
 };
 
 // Load Events

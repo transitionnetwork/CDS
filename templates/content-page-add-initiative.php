@@ -2,7 +2,16 @@
   wp_redirect(home_url()); exit;
 } else { ?>
 
-  <?php acf_form_head(); ?>  
+  <?php acf_form_head(); ?>
+
+  <?php
+  // if normal user then pending status. if other then published
+  $user_role = wp_get_current_user()->roles[0];
+  if(($user_role == 'administrator') || ($user_role == 'super_hub')) {
+    $post_status = 'publish';
+  } else {
+    $post_status = 'pending';
+  } ?>
   <main>
     <div class="container">
       <div class="row justify-content-center">	
@@ -16,7 +25,7 @@
             'submit_value' => 'Create Initiative',
             'new_post'		=> array(
               'post_type'		=> 'initiatives',
-              'post_status'	=> 'publish'
+              'post_status'	=> $post_status
             ),
             'fields' => array ('logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic')
           ));

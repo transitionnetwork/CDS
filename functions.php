@@ -28,6 +28,7 @@ $tofino_includes = [
   "src/lib/assets.php",
   "src/lib/helpers.php",
   "src/lib/pagination.php",
+  "src/lib/list.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",
@@ -259,7 +260,7 @@ function my_acf_prepare_field($field) {
 add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');
 
 // find out whether user is superhub and of the same hub as the author (accepts author ID)
-function get_super_hub_perms($author) {
+function is_super_hub_author_for_post($author) {
   $author_object = get_user_by('id', $author);
   $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
   $user_hub = get_the_terms(wp_get_current_user(), 'hub');
@@ -283,3 +284,26 @@ function add_logout_link($nav, $args) {
   }
 }
 add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
+
+// Publish posts
+function show_publish_button($post_id) {
+  global $post;
+  echo '<form name="front_end_publish" method="POST" action="">
+    <input type="hidden" name="pid" id="pid" value="' . $post_id . '">
+    <input type="hidden" name="FE_PUBLISH" id="FE_PUBLISH" value="FE_PUBLISH">
+    <input type="submit" name="submit" id="submit" value="Approve Post" class="btn btn-success btn-sm">
+  </form>';
+}
+
+//function to update post status
+function change_post_status($post_id, $status) {
+  $current_post = get_post($post_id, 'ARRAY_A');
+  $current_post['post_status'] = $status;
+  wp_update_post($current_post);
+}
+
+if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
+  if (isset($_POST['pid']) && !empty($_POST['pid'])) {
+    change_post_status((int)$_POST['pid'], 'publish');
+  }
+}

@@ -15,13 +15,13 @@ $user_hub = get_the_terms(wp_get_current_user(), 'hub'); ?>
         <div class="col-12 col-md-10 col-lg-8">
 					<h1><?php echo \Tofino\Helpers\title(); ?></h1>
 
-					<?php if(get_super_hub_perms($post_author) || current_user_can('manage_options')) {
+					<?php if(is_super_hub_author_for_post($post_author) || current_user_can('manage_options')) {
 						$field_args = array('logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic', 'private_email', 'healthcheck');
 					} else {
 						$field_args = array('logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic');
 					} ?>
 					
-					<?php if(($post_author == $current_author) || (current_user_can( 'manage_options' )) || get_super_hub_perms($post_author)) : 
+					<?php if(($post_author == $current_author) || (current_user_can( 'manage_options' )) || is_super_hub_author_for_post($post_author)) : 
 						acf_form(array(
 							'post_id'		=> $edit_post_id,
 							'post_title'	=> true,

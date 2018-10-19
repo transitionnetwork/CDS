@@ -1,11 +1,21 @@
 <?php
+acf_form_head();
+
+if (!is_user_logged_in()) :
+  wp_redirect(home_url());
+  exit;
+endif;
+
 $user_role = wp_get_current_user()->roles[0];
 $user_human_role = ucwords(str_replace('_', ' ', $user_role));
 $user_hub = get_the_terms(wp_get_current_user(), 'hub');
 $user_hub_name = $user_hub[0]->name;
 $user_hub_id = ($user_hub[0]->term_id);
 
-acf_form_head(); ?>
+// get all users that belong to this hub
+$hub_user_ids = get_objects_in_term ($user_hub_id, 'hub');
+// remove logged in user
+$hub_user_ids = array_diff($hub_user_ids, array(wp_get_current_user()->ID)); ?>
 
 <main>
   <div class="container">
@@ -18,47 +28,66 @@ acf_form_head(); ?>
         echo '<strong>Email:</strong> ' . wp_get_current_user()->user_email . '<br />';
       ?>
       </div>
-      <div class="button-block"><a href="#" class="btn btn-primary disabled">Edit Account</a></div>
+      <ul class="button-group">
+        <li><a href="#" class="btn btn-primary disabled">Edit Account</a></li>
+        <?php if ($user_role == 'super_hub') : ?>
+          <li><a href="<?php the_permalink(270); ?>" class="btn btn-primary">View Hub Users</a></li>
+        <?php endif; ?>
+      </ul>
     </section>
+
+    <?php if($user_role == 'super_hub') {
+      
+      $args = array(
+        'post_type' => 'initiatives',
+        'posts_per_page' => -1,
+        'author__in' => $hub_user_ids,
+        'post_status' => 'pending'
+      );
+      $posts = get_posts($args); ?>
+      <section>
+        <h2>Initiatives pending approval</h2>
+        <?php if ($posts) :
+          list_initiatives(true);
+        else : ?>
+          There aren't any initiatives pending approval for the <?php echo $user_hub_name; ?> hub.
+        <?php endif; ?>
+      </section>
+    <?php } ?>
 
     <?php $args = array(
       'post_type' => 'initiatives',
       'author' => wp_get_current_user()->ID,
-      'posts_per_page' => -1
+      'posts_per_page' => -1,
+      'post_status' => array('publish', 'pending')
     );
     $posts = get_posts($args); ?>
 
     <section>
       <h2>Initiatives created by me</h2>
-      <?php if($posts) : ?>
-        <?php include('partials/list-initiatives.php'); ?>
-      <?php else : ?>
+      <?php if($posts) :
+        list_initiatives(true);
+      else : ?>
         You haven't added any initiatives yet
       <?php endif; ?>
 
       <div class="button-block"><a href="/add-initiative" class="btn btn-primary">Add new Initiative</a></div>
     </section>
 
-    <?php // get all users that belong to this hub
-    $hub_authors = get_objects_in_term($user_hub_id, 'hub');
-    // remove logged in user
-    $hub_authors = array_diff($hub_authors, array(wp_get_current_user()->ID));
-    ?>
-
     <?php if (!current_user_can('manage_options')) : ?>
       <?php $args = array(
         'post_type' => 'initiatives',
         'posts_per_page' => -1,
-        'author__in' => $hub_authors
+        'author__in' => $hub_user_ids
       );
       $posts = get_posts($args); ?>
 
       <section>
         <h2>Initatives created by others in <?php echo $user_hub_name; ?></h2>
-        <?php if ($posts) : ?>
-          <?php include('partials/list-initiatives.php'); ?>
-        <?php else : ?>
-          You haven't added any initiatives yet
+        <?php if ($posts) :
+          list_initiatives();
+        else : ?>
+          Other hub users haven't added any initiatives yet
         <?php endif; ?>
       </section>
     <?php endif; ?>
