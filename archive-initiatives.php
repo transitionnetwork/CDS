@@ -1,22 +1,15 @@
-<?php
-$page_title = \Tofino\Helpers\title();
-$args = array(
-  'posts_per_page' => -1,
-  'post_type' => 'initiatives',
-  'orderby' => 'title',
-  'order' => 'ASC',
-);
+<?php use \Tofino\Helpers as h;
 
-$posts = get_posts($args); ?>
+$template = h\get_page_name();
+
+get_header(); ?>
 <ul id="dom-target" style="display:none;">
   <?php foreach ($posts as $post) :
     $map = get_field('map', get_the_ID(), false); ?>
     <li class="point" data-lat="<?php echo htmlspecialchars($map['center_lat']); ?>" data-lng="<?php echo htmlspecialchars($map['center_lng']); ?>" data-title="<?php echo get_the_title(); ?>" data-link="<?php the_permalink(); ?>"></li>
   <?php endforeach; ?>
 </ul>
-
 <div id="iframe_map"></div>
-
 <main>
   <div class="container">
     <h1><?php echo $page_title ?></h1>
@@ -26,3 +19,5 @@ $posts = get_posts($args); ?>
     </ul>
   </div>
 </main>
+
+<?php get_footer(); ?>

@@ -4,7 +4,7 @@ import Router from './router';
 // Import local deps
 import common from './routes/common';
 import contact from './routes/contact';
-import all_initiatives from './routes/maps';
+import post_type_archive_initiatives from './routes/maps';
 import single_maps from './routes/maps';
 
 // Import ajaxForm
@@ -21,7 +21,7 @@ import 'bootstrap/dist/js/bootstrap.js'; // All of Bootstrap JS
 const routes = {
   common,
   contact,
-  all_initiatives,
+  post_type_archive_initiatives,
   single_maps
 };
 

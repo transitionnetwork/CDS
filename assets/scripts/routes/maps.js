@@ -1,10 +1,12 @@
 import L from 'leaflet';
 
+
 export default {
   init() {
     // JavaScript to be fired on contact page page
   },
   loaded() {
+    console.log('archive');
     // Javascript to be fired on page once fully loaded
     var map = L.map('iframe_map').setView([51.505, -0.09], 13);
 

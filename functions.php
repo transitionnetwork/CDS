@@ -110,23 +110,8 @@ function create_posttypes() {
         'singular_name' => __( 'Initiative' )
       ),
       'public' => true,
-      'has_archive' => false,
-      'rewrite' => array('slug' => 'initiative'),
-      'supports' => array('title', 'editor', 'author'),
-      'capabilities' => array(
-        'edit_posts' => 'Edit',
-        'edit_others_posts' => 'Edit Others Posts',
-        'publish_posts' => 'Publish Posts',
-        'read_private_posts' => 'Read Private Posts',
-        'read_posts' => 'Read',
-        'delete_posts' => 'Delete Posts',
-        'delete_private_posts' => 'Delete Private Posts',
-        'delete_published_posts' => 'Delete Published Posts',
-        'delete_others_posts' => 'Delete Others Posts',
-        'edit_private_posts' => 'Edit Private Posts',
-        'edit_published_posts' => 'Edit Published Posts'
-      ),
-      'map_meta_cap' => true
+      'has_archive' => true,
+      'supports' => array('title', 'editor', 'author')
     )
   );
   register_post_type( 'maps',
@@ -137,31 +122,11 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => false,
-      'rewrite' => array('slug' => 'map'),
-      'supports' => array('title', 'author'),
-      'capabilities' => array(
-        'edit_posts' => 'Edit',
-        'edit_others_posts' => 'Edit Others Posts',
-        'publish_posts' => 'Publish Posts',
-        'read_private_posts' => 'Read Private Posts',
-        'read_posts' => 'Read',
-        'delete_posts' => 'Delete Posts',
-        'delete_private_posts' => 'Delete Private Posts',
-        'delete_published_posts' => 'Delete Published Posts',
-        'delete_others_posts' => 'Delete Others Posts',
-        'edit_private_posts' => 'Edit Private Posts',
-        'edit_published_posts' => 'Edit Published Posts'
-      ),
-      'map_meta_cap' => true
+      'supports' => array('title', 'author')
     )
   );
 }
 
-function custom_query_vars_filter($vars) {
-  $vars[] = 'edit_post';
-  return $vars;
-}
-add_filter( 'query_vars', 'custom_query_vars_filter' );
 
 // Create user taxonomies
 function create_user_taxonomies() {
@@ -242,6 +207,13 @@ function create_initiative_taxonomies() {
   register_taxonomy('country', array('initiatives'), $args);
 }
 add_action('init', 'create_initiative_taxonomies');
+
+function custom_query_vars_filter($vars)
+{
+  $vars[] = 'edit_post';
+  return $vars;
+}
+add_filter('query_vars', 'custom_query_vars_filter');
 
 //Redirect after post deletion
 function wpse132196_redirect_after_trashing() {
