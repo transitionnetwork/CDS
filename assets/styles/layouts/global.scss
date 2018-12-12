@@ -54,9 +54,13 @@ body.login {
 section {
   background-color: $gray-100;
   border: 1px solid $gray-200;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 5px;
   margin-bottom: 2rem;
+}
+
+.panel {
+  @extend section;
 }
 
 #message {
@@ -129,7 +133,7 @@ pre {
 
   td,
   th {
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
 
     .status {
       margin-left: 0.5rem;
@@ -139,25 +143,12 @@ pre {
       }
     }
 
-    &.col-a,
-    &.col-c {
-      width: 40%;
+    .btn {
+      margin: 0.25rem 0;
     }
 
-    &.col-b {
-      width: 20%;
-    }
-
-    &.col-c {
-      text-align: right;
-
-      .btn {
-        margin: 0.25rem 0;
-      }
-
-      form {
-        display: inline;
-      }
+    form {
+      display: inline;
     }
   }
 }

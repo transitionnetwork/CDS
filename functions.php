@@ -293,6 +293,34 @@ function change_post_status($post_id, $status) {
   wp_update_post($current_post);
 }
 
+//more custom functions
+function get_latest_healthcheck($id) {
+  $args = array(
+    'post_type' => 'healthchecks',
+    'title' => $id,
+    'posts_per_page' => 1,
+    'orderby' => 'post_date',
+    'order' => 'DESC'
+  );
+  $posts = get_posts($args);
+  if($posts) {
+    return date('l jS F Y - H:i', strtotime($posts[0]->post_date)); 
+  } else {
+    return 'Never';
+  }
+  var_dump($posts);
+}
+
+function get_hub_filter() {
+  // Get all hubs that have users
+  $terms = get_terms(array(
+    'taxonomy' => 'hub',
+    'hide_empty' => true,
+  ));
+
+  var_dump($terms);
+}
+
 if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
   if (isset($_POST['pid']) && !empty($_POST['pid'])) {
     change_post_status((int)$_POST['pid'], 'publish');

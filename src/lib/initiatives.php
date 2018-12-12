@@ -12,6 +12,7 @@ function list_initiatives($show_status = false) {
         <tr>
           <th class="col-a">Initiative</th>
           <th class="col-b">Hub</th>
+          <th class="col-b">Last Healthcheck</th>
           <th class="col-c"></th>
         </tr>
         
@@ -20,7 +21,7 @@ function list_initiatives($show_status = false) {
           $author_object = get_user_by('id', get_the_author_meta('ID'));
           $author_hub_name = get_the_terms($author_object, 'hub')[0]->name; ?>
           <tr>
-            <td class="col-a">
+            <td>
               <a href="<?php the_permalink($post->ID); ?>"><?php echo get_the_title($post->ID); ?></a>
               <?php if ($show_status) { ?>
                 <span class="status">
@@ -28,10 +29,13 @@ function list_initiatives($show_status = false) {
                 </span>
               <?php } ?>
             </td>
-            <td class="col-b">
+            <td>
                 <?php echo (!empty($author_hub_name)) ? $author_hub_name : '-'; ?>
             </td>
-            <td class="col-c">
+            <td>
+              <?php echo get_latest_healthcheck($post->ID); ?>
+            </td>
+            <td class="text-right">
               <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>">View</a>
 
               <?php if ((get_the_author_meta('ID') == get_current_user_id()) || (current_user_can('manage_options') || (is_super_hub_author_for_post(get_the_author_meta('ID'))))) : ?>

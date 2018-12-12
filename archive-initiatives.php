@@ -3,6 +3,8 @@
 $template = h\get_page_name();
 
 get_header(); ?>
+<?php get_hub_filter(); ?>
+
 <ul id="dom-target" style="display:none;">
   <?php foreach ($posts as $post) :
     $map = get_field('map', get_the_ID(), false); ?>
