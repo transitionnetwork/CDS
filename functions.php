@@ -28,7 +28,8 @@ $tofino_includes = [
   "src/lib/assets.php",
   "src/lib/helpers.php",
   "src/lib/pagination.php",
-  "src/lib/list.php",
+  "src/lib/initiatives.php",
+  "src/lib/healthchecks.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",
@@ -125,6 +126,17 @@ function create_posttypes() {
       'supports' => array('title', 'author')
     )
   );
+  register_post_type( 'healthchecks',
+    array(
+      'labels' => array(
+        'name' => __( 'Healthchecks' ),
+        'singular_name' => __( 'Healthcheck' )
+      ),
+      'public' => true,
+      'has_archive' => false,
+      'supports' => array('title', 'author')
+    )
+  );
 }
 
 
@@ -208,9 +220,16 @@ function create_initiative_taxonomies() {
 }
 add_action('init', 'create_initiative_taxonomies');
 
+// disable for posts
+add_filter('use_block_editor_for_post', '__return_false', 10);
+
+// disable for post types
+add_filter('use_block_editor_for_post_type', '__return_false', 10);
+
 function custom_query_vars_filter($vars)
 {
   $vars[] = 'edit_post';
+  $vars[] = 'initiative_id';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
@@ -279,3 +298,22 @@ if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
     change_post_status((int)$_POST['pid'], 'publish');
   }
 }
+
+function acf_custom_save($post_id) {
+  if (get_post_type($post_id) == 'healthchecks') {
+    $my_post = array();
+    $my_post['ID'] = $post_id;
+    
+    $post = get_post($post_id);
+
+    //check for new post 
+    if ($post->post_modified_gmt == $post->post_date_gmt) {
+      $my_post['post_title'] = get_query_var('initiative_id');
+    } else {
+      $my_post['post_title'] = get_the_title($post_id);
+    }
+
+    wp_update_post($my_post);
+  }
+}
+add_filter('acf/save_post', 'acf_custom_save', 20);

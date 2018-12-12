@@ -29,7 +29,7 @@ $hub_user_ids = array_diff($hub_user_ids, array(wp_get_current_user()->ID)); ?>
       ?>
       </div>
       <ul class="button-group">
-        <li><a href="<?php echo get_permalink(289); ?>" class="btn btn-primary">Edit Account</a></li>
+        <li><a href="<?php echo get_permalink(285); ?>" class="btn btn-primary">Edit Account</a></li>
         <?php if ($user_role == 'super_hub') : ?>
           <li><a href="<?php the_permalink(270); ?>" class="btn btn-primary">View Hub Users</a></li>
         <?php endif; ?>
@@ -50,7 +50,7 @@ $hub_user_ids = array_diff($hub_user_ids, array(wp_get_current_user()->ID)); ?>
         <?php if ($posts) :
           list_initiatives(true);
         else : ?>
-          There aren't any initiatives pending approval for the <?php echo $user_hub_name; ?> hub.
+        There aren't any initiatives pending approval for the <?php echo $user_hub_name; ?> hub.
         <?php endif; ?>
       </section>
     <?php } ?>

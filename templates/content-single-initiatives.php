@@ -5,6 +5,21 @@
         <?php while (have_posts()) : the_post(); ?>
           <?php $post_author = get_the_author_meta('ID'); ?>
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
+          <?php $params = array('initiative_id' => get_the_ID()); ?>
+          <?php var_dump('TODO: PERMS: Healthcheck view'); ?>
+          <h3>Healthchecks</h3>
+          <?php
+          $args = array(
+            'post_type' => 'healthchecks',
+            'posts_per_page' => -1,
+            'title' => get_the_ID()
+          );
+          $healthchecks = get_posts($args);
+          list_healthchecks($healthchecks);
+          ?>
+          
+          <a class="btn btn-primary" href="<?php echo add_query_arg($params, get_the_permalink(422)); ?>">Add Healthcheck</a>
+
           <?php var_dump('logo'); ?>
           <?php echo get_field('map'); ?>
           <?php var_dump('address_line_1'); ?>
