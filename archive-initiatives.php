@@ -3,7 +3,6 @@
 $template = h\get_page_name();
 
 get_header(); ?>
-<?php get_hub_filter(); ?>
 
 <ul id="dom-target" style="display:none;">
   <?php foreach ($posts as $post) :
@@ -12,6 +11,9 @@ get_header(); ?>
   <?php endforeach; ?>
 </ul>
 <div id="iframe_map"></div>
+<div class="container">
+  <?php get_hub_filter(); ?>
+</div>
 <main>
   <div class="container">
     <h1><?php echo $page_title ?></h1>

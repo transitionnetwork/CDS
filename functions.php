@@ -250,20 +250,6 @@ function my_acf_prepare_field($field) {
 }
 add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');
 
-// find out whether user is superhub and of the same hub as the author (accepts author ID)
-function is_super_hub_author_for_post($author) {
-  $author_object = get_user_by('id', $author);
-  $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
-  $user_hub = get_the_terms(wp_get_current_user(), 'hub');
-  $user_hub_name = $user_hub[0]->name;
-  $user_role = wp_get_current_user()->roles[0];
-
-  if (($user_role == 'super_hub') && ($user_hub_name == $author_hub_name)) {
-    return TRUE;
-  } else {
-    return FALSE;
-  }
-}
 
 //Logout link with nonce
 function add_logout_link($nav, $args) {
@@ -311,15 +297,57 @@ function get_latest_healthcheck($id) {
   var_dump($posts);
 }
 
+// find out whether user is superhub and of the same hub as the author(accepts author ID)
+function is_super_hub_author_for_post($author) {
+  $author_object = get_user_by('id', $author);
+  $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
+  $user_hub = get_the_terms(wp_get_current_user(), 'hub');
+  $user_hub_name = $user_hub[0]->name;
+  $user_role = wp_get_current_user()->roles[0];
+
+  if (($user_role == 'super_hub') && ($user_hub_name == $author_hub_name)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function get_hub_users($hub_id) {
+  $users = get_objects_in_term($hub_id, 'hub');
+  return $users;
+}
+
 function get_hub_filter() {
   // Get all hubs that have users
   $terms = get_terms(array(
     'taxonomy' => 'hub',
     'hide_empty' => true,
-  ));
+  )); ?>
 
-  var_dump($terms);
-}
+  <form action="" method="GET">
+    <select name="term" id="term">
+      <option value="">All</option>
+      <?php foreach($terms as $term) { ?>
+        <?php $users = get_hub_users($term->term_id);
+        $args = array (
+          'post_type' => 'initiatives',
+          'author__in' => $users
+        );
+        $posts = get_posts($args);
+        $count = count($posts);?>
+        <?php if(get_query_var('term') == $term->term_id) {
+          $selected = 'selected';
+        } else {
+          $selected = '';
+        } ?>
+        <?php if($count > 0) { ?>
+          <option value="<?php echo $term->term_id; ?>" <?php echo $selected; ?>><?php echo $term->name; ?> (<?php echo $count; ?>)</option>
+        <?php } ?>
+      <?php } ?>
+    </select>
+    <input type="Submit" value="Submit">
+  </form>
+<?php }
 
 if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
   if (isset($_POST['pid']) && !empty($_POST['pid'])) {
@@ -345,3 +373,13 @@ function acf_custom_save($post_id) {
   }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
+
+function archive_search($query) {
+  if (!is_admin() && $query->is_main_query()) {
+    if(get_query_var('term')) {
+      $users = get_hub_users(get_query_var('term'));
+      $query->set('author__in', $users);
+    }
+  }
+}
+add_action('pre_get_posts', 'archive_search');
