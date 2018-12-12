@@ -20,29 +20,27 @@ body.single {
       color: white;
       padding: 0.25rem;
       border-radius: 3px;
-      border: 1px solid $gray-700;
     }
 
     &.choice- {
       &1 span {
-        background-color: red;
+        background-color: lighten($red, 0);
       }
 
       &2 span {
-        background-color: orange;
+        background-color: lighten($red, 15);
       }
 
       &3 span {
-        background-color: yellow;
-        color: $gray-700;
+        background-color: lighten($yellow, 0);
       }
 
       &4 span {
-        background-color: blue;
+        background-color: lighten($green, 15);
       }
 
       &5 span {
-        background-color: green;
+        background-color: lighten($green, 0);
       }
     }
   }

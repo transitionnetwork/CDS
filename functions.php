@@ -376,6 +376,8 @@ add_filter('acf/save_post', 'acf_custom_save', 20);
 
 function archive_search($query) {
   if (!is_admin() && $query->is_main_query()) {
+    $query->set('orderby', 'post_title');
+    $query->set('order', 'ASC');
     if(get_query_var('term')) {
       $users = get_hub_users(get_query_var('term'));
       $query->set('author__in', $users);
