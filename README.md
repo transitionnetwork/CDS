@@ -7,10 +7,23 @@ Users are able to login and view / add initiative data
 
 ## On site user permissions overview ##
 
-Users can login to the CDS site as one of the following user types:
-- Initiative User (add initiatives)
-- Hub User (moderate hub initiatives)
-- Superhub User (approve / set hub users & moderate all initiatives)
+Users can engage with the CDS site as one of the following users:
+
+### Not Logged In ###
+- `Initiatives` - View All
+- `Healthchecks & Private Data` - No Permissions
+
+### Initiative User ###
+- `Initiatives` - View All. Create (un-approved)
+- `Healthchecks & Private Data` - View, Create, Edit data associated with own initiatives
+
+### Hub User ###
+- `Initiatives` - View All. Create. Approve, Edit, Delete initiatives in hub
+- `Healthchecks & Private Data` - View, Create, Edit data associated with hub initiatives
+
+### Super Hub User & Administrator ###
+- `Initiatives` - View All. Create. Approve, Edit, Delete All.
+- `Healthchecks & Private Data` - View, Create, Edit All.
 
 ## Healthcheck ##
 Hubs are able to healthcheck all initiatives within their area. Superhubs can healthcheck all initiatives.
