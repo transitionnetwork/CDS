@@ -40,26 +40,6 @@ form[name="front_end_publish"] input[type="submit"] {
   @extend .btn-sm;
 }
 
-body.login {
-  main {
-    text-align: center;
-
-    label {
-      display: block;
-    }
-
-    input {
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      border: 1px solid $gray-400;
-
-      &.button {
-        @extend .btn-primary;
-      }
-    }
-  }
-}
-
 section {
   background-color: $gray-100;
   border: 1px solid $gray-200;
@@ -102,13 +82,11 @@ pre {
 
   &.role {
     background-color: $purple;
-    border: 1px solid $gray-700;
     color: $white;
   }
 
   &.hub {
     background-color: $red;
-    border: 1px solid $gray-700;
     color: $white;
   }
 }

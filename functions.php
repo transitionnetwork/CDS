@@ -252,7 +252,6 @@ function my_acf_prepare_field($field) {
 }
 add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');
 
-
 //Logout link with nonce
 function add_logout_link($nav, $args) {
   $logoutlink = '<li class="nav-item menu-logout"><a class="nav-link" href="' . wp_logout_url(home_url()) . '">Logout</a></li>';
@@ -265,7 +264,7 @@ function add_logout_link($nav, $args) {
 add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
 
 
-//more custom functions
+//Healthcheck
 function get_latest_healthcheck($id) {
   $args = array(
     'post_type' => 'healthchecks',
@@ -280,22 +279,10 @@ function get_latest_healthcheck($id) {
   } else {
     return 'Never';
   }
-  var_dump($posts);
 }
 
-// find out whether user is superhub and of the same hub as the author(accepts author ID)
-function is_super_hub_author_for_post($author) {
-  $author_object = get_user_by('id', $author);
-  $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
-  $user_hub = get_the_terms(wp_get_current_user(), 'hub');
-  $user_hub_name = $user_hub[0]->name;
-  $user_role = wp_get_current_user()->roles[0];
-
-  if (($user_role == 'super_hub') && ($user_hub_name == $author_hub_name)) {
-    return true;
-  } else {
-    return false;
-  }
+function get_user_hub_id() {
+  return get_the_terms(wp_get_current_user(), 'hub')[0]->term_id;
 }
 
 function get_hub_users($hub_id) {

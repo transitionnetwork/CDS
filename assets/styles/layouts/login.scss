@@ -1,0 +1,17 @@
+main.login {
+  text-align: center;
+
+  label {
+    display: block;
+  }
+
+  input {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid $gray-400;
+
+    &.button {
+      @extend .btn-primary;
+    }
+  }
+}
