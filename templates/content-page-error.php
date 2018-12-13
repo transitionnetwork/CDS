@@ -1,8 +1,8 @@
 <main>
   <div class="container">
-    <?php $error = get_query_var('error');
+    <?php $error = get_query_var('error_code');
     switch($error) {
-      case 1:
+      case '1':
         $message = 'You do not have the correct permissions';
         break;
       default:

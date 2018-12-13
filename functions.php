@@ -30,6 +30,7 @@ $tofino_includes = [
   "src/lib/pagination.php",
   "src/lib/initiatives.php",
   "src/lib/healthchecks.php",
+  "src/lib/permissions.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",
@@ -230,6 +231,7 @@ function custom_query_vars_filter($vars)
 {
   $vars[] = 'edit_post';
   $vars[] = 'initiative_id';
+  $vars[] = 'error_code';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
@@ -262,22 +264,6 @@ function add_logout_link($nav, $args) {
 }
 add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
 
-// Publish posts
-function show_publish_button($post_id) {
-  global $post;
-  echo '<form name="front_end_publish" method="POST" action="">
-    <input type="hidden" name="pid" id="pid" value="' . $post_id . '">
-    <input type="hidden" name="FE_PUBLISH" id="FE_PUBLISH" value="FE_PUBLISH">
-    <input type="submit" name="submit" id="submit" value="Approve Post" class="btn btn-success btn-sm">
-  </form>';
-}
-
-//function to update post status
-function change_post_status($post_id, $status) {
-  $current_post = get_post($post_id, 'ARRAY_A');
-  $current_post['post_status'] = $status;
-  wp_update_post($current_post);
-}
 
 //more custom functions
 function get_latest_healthcheck($id) {
@@ -379,6 +365,11 @@ function archive_search($query) {
   if (!is_admin() && $query->is_main_query()) {
     $query->set('orderby', 'post_title');
     $query->set('order', 'ASC');
+    
+    if (is_user_role('administrator') || is_user_role('super_hub')) {
+      $query->set('post_status', array('pending', 'publish'));
+    }
+    
     if(get_query_var('term')) {
       $users = get_hub_users(get_query_var('term'));
       $query->set('author__in', $users);

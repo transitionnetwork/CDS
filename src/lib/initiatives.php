@@ -1,5 +1,5 @@
 <?php
-function list_initiatives($show_status = false) {
+function list_initiatives() {
   global $posts;
   $user_role = wp_get_current_user()->roles[0];
   $user_human_role = ucwords(str_replace('_', ' ', $user_role));
@@ -12,7 +12,9 @@ function list_initiatives($show_status = false) {
         <tr>
           <th class="col-a">Initiative</th>
           <th class="col-b">Hub</th>
-          <th class="col-b">Last Healthcheck</th>
+          <?php if(can_view_any_healthcheck()) { ?>
+            <th class="col-b">Last Healthcheck</th>
+          <?php } ?>
           <th class="col-c"></th>
         </tr>
         
@@ -23,30 +25,29 @@ function list_initiatives($show_status = false) {
           <tr>
             <td>
               <a href="<?php the_permalink($post->ID); ?>"><?php echo get_the_title($post->ID); ?></a>
-              <?php if ($show_status) { ?>
-                <span class="status">
-                  <?php echo ($post->post_status == 'publish') ? '<span class="btn-sm btn-success">Published</span>' : '<span class="btn-sm btn-dark">Pending approval</span>'; ?>
-                </span>
-              <?php } ?>
+              <span class="status">
+                <?php echo ($post->post_status == 'publish') ? '' : '<span class="btn-sm btn-dark">Pending approval</span>'; ?>
+              </span>
             </td>
             <td>
                 <?php echo (!empty($author_hub_name)) ? $author_hub_name : '-'; ?>
             </td>
             <td>
-              <?php echo get_latest_healthcheck($post->ID); ?>
+              <?php if(can_view_healthcheck($post)) {
+                echo get_latest_healthcheck($post->ID);
+              } ?>
             </td>
             <td class="text-right">
               <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>">View</a>
-
-              <?php if ((get_the_author_meta('ID') == get_current_user_id()) || (current_user_can('manage_options') || (is_super_hub_author_for_post(get_the_author_meta('ID'))))) : ?>
+              
+              <?php if(can_write_initiative($post)) { ?>
                 <?php $params = array('edit_post' => get_the_ID()); ?>
                 <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit</a>
-                <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>" onclick="return confirm('Are you sure you want to remove this hub?')">Delete</a>
-              <?php endif; ?>
-
-              <?php if(($user_role == 'super_hub') && ((get_post_status($post->ID) == 'pending'))) : ?>
-                <?php show_publish_button($post->ID); ?>
-              <?php endif; ?>
+                <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')">Delete</a>
+              <?php } ?>
+              <?php if(can_publish_initiative($post) && !is_post_published($post)) {
+                show_publish_button($post->ID);
+              } ?>
             </td>
           </tr>
         <?php endforeach; ?>

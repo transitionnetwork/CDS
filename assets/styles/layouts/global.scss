@@ -35,6 +35,11 @@ form#hub-filter input[type="submit"] {
   @extend .btn-sm;
 }
 
+form[name="front_end_publish"] input[type="submit"] {
+  @extend .btn-success;
+  @extend .btn-sm;
+}
+
 body.login {
   main {
     text-align: center;

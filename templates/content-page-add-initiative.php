@@ -1,16 +1,16 @@
 <?php if (!is_user_logged_in()) {
-  wp_redirect(home_url()); exit;
+  wp_redirect (esc_url (add_query_arg ('error_code', '1', '/error')));
+  exit;
 } else { ?>
 
   <?php acf_form_head(); ?>
 
   <?php
-  // if normal user then pending status. if other then published
-  $user_role = wp_get_current_user()->roles[0];
-  if(($user_role == 'administrator') || ($user_role == 'super_hub')) {
-    $post_status = 'publish';
-  } else {
+  // Ensure initiative level posts are set to pending
+  if(is_user_role('initiative')) {
     $post_status = 'pending';
+  } else {
+    $post_status = 'publish';
   } ?>
   <main>
     <div class="container">

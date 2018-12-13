@@ -1,17 +1,14 @@
-<?php
+<?php while (have_posts()) : the_post(); ?>
+<?php 
 $initative_id = get_query_var('initiative_id');
+$post = get_post($initiative_id);
+setup_postdata($post);
 
-if (!is_user_logged_in()) {
-  wp_redirect(home_url()); exit;
+if (!is_user_logged_in() || (!can_view_healthcheck($post))) {
+  wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
+  exit;
 } else { ?>
-  <?php
-  // if normal user then pending status. if other then published
-  if(current_user_can('administrator') || current_user_can('super_hub')) {
-    $post_status = 'publish';
-  } else {
-    $post_status = 'pending';
-  } ?>
-  <?php while (have_posts()) : the_post(); ?>
+  <?php wp_reset_postdata(); ?>
     <main>
       <div class="container">
         <div class="row justify-content-center">	
@@ -29,12 +26,12 @@ if (!is_user_logged_in()) {
               'submit_value' => 'Create Healthcheck',
               'new_post'		=> array(
                 'post_type'		=> 'healthchecks',
-                'post_status'	=> $post_status
+                'post_status'	=> 'publish'
               )
             )); ?>
           </div>
         </div>
       </div>
     </main>
-  <?php endwhile; ?>
-<?php } ?>
+  <?php } ?>
+<?php endwhile; ?>
