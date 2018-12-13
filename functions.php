@@ -280,6 +280,12 @@ function get_hub_users($hub_id) {
   return $users;
 }
 
+function get_hub_by_post($post) {
+  $author = get_userdata(get_the_author_id($post));
+  $author_hub = get_the_terms($author, 'hub')[0];
+  return $author_hub;
+}
+
 function get_hub_filter() {
   // Get all hubs that have users
   $terms = get_terms(array(

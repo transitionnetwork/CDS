@@ -7,7 +7,6 @@
 		wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
 		exit;
 	} else { ?>
-		<?php wp_reset_postdata(); ?>
 		<main>
 			<div class="container">
 				<div class="row justify-content-center">	
