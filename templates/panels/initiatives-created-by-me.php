@@ -9,7 +9,7 @@ $posts = get_posts($args); ?>
 <section>
   <h2>Initiatives created by me</h2>
   <?php if ($posts) :
-    list_initiatives();
+    list_initiatives($posts);
   else : ?>
     You haven't added any initiatives yet
   <?php endif; ?>

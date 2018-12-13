@@ -343,9 +343,10 @@ function archive_search($query) {
     $query->set('orderby', 'post_title');
     $query->set('order', 'ASC');
     
-    if (is_user_role('administrator') || is_user_role('super_hub')) {
-      $query->set('post_status', array('pending', 'publish'));
-    }
+    // Lets only show published posts on this page for now
+    // if (is_user_role('administrator') || is_user_role('super_hub')) {
+    //   $query->set('post_status', array('pending', 'publish'));
+    // }
     
     if(get_query_var('term')) {
       $users = get_hub_users(get_query_var('term'));

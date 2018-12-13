@@ -11,7 +11,7 @@ $posts = get_posts($args); ?>
 <section>
   <h2>All initatives created in <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?></h2>
   <?php if ($posts) :
-    list_initiatives();
+    list_initiatives($posts);
   else : ?>
     Other hub users haven't added any initiatives yet
   <?php endif; ?>

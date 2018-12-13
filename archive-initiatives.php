@@ -1,7 +1,4 @@
 <?php use \Tofino\Helpers as h;
-
-$template = h\get_page_name();
-
 get_header(); ?>
 
 <ul id="dom-target" style="display:none;">
@@ -17,7 +14,7 @@ get_header(); ?>
 <main>
   <div class="container">
     <h1><?php echo $page_title ?></h1>
-    <?php list_initiatives(); ?>
+    <?php list_initiatives($posts); ?>
     <ul class="button-group">
       <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>">Add new initiative</a></li>
     </ul>

@@ -10,7 +10,7 @@ $posts = get_posts($args); ?>
 <section>
   <h2>Initiatives pending approval in <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?></h2>
   <?php if ($posts) :
-    list_initiatives(true);
+    list_initiatives($posts);
   else : ?>
   There aren't any initiatives pending approval for the  <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?> hub.
   <?php endif; ?>

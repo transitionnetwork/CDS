@@ -16,6 +16,7 @@
             <table class="item-list">
               <tr>
                 <th>Display Name</th>
+                <th>Role</th>
                 <th>Email</th>
               </tr>
               <?php foreach($other_hub_user_ids as $user_id) :
@@ -24,6 +25,9 @@
                   <tr>
                     <td>
                       <a href="#"><?php echo $user->data->display_name; ?></a>
+                    </td>
+                    <td>
+                      <?php echo ucwords(str_replace('_', ' ', $user->roles[0])); ?>
                     </td>
                     <td>
                       <?php echo $user->data->user_email; ?>

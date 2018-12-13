@@ -1,12 +1,5 @@
 <?php
-function list_initiatives() {
-  global $posts;
-  $user_role = wp_get_current_user()->roles[0];
-  $user_human_role = ucwords(str_replace('_', ' ', $user_role));
-  $user_hub = get_the_terms(wp_get_current_user(), 'hub');
-  $user_hub_name = $user_hub[0]->name;
-  $current_page = sanitize_post($GLOBALS['wp_the_query']->get_queried_object());
-
+function list_initiatives($posts) {
   if ($posts) { ?>
     <table class="item-list">
         <tr>
@@ -41,7 +34,7 @@ function list_initiatives() {
               <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>">View</a>
               
               <?php if(can_write_initiative($post)) { ?>
-                <?php $params = array('edit_post' => get_the_ID()); ?>
+                <?php $params = array('edit_post' => $post->ID); ?>
                 <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit</a>
                 <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')">Delete</a>
               <?php } ?>
