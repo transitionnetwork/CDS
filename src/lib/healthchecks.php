@@ -12,11 +12,6 @@ function list_healthchecks($healthchecks) {
           <td><a class="btn btn-sm btn-primary" href="<?php echo get_the_permalink($healthcheck->ID); ?>">View</td>
         </tr>
       <?php endforeach; ?>
-      <tr>
-        <td><span class="total">
-          <?php echo count($healthchecks); ?> items
-        </span></td>
-      </tr>
     </table>
   <?php } else { ?>
     There aren't any healhtchecks yet
