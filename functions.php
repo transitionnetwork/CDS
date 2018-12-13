@@ -116,17 +116,6 @@ function create_posttypes() {
       'supports' => array('title', 'editor', 'author')
     )
   );
-  register_post_type( 'maps',
-    array(
-      'labels' => array(
-        'name' => __( 'Maps' ),
-        'singular_name' => __( 'Map' )
-      ),
-      'public' => true,
-      'has_archive' => false,
-      'supports' => array('title', 'author')
-    )
-  );
   register_post_type( 'healthchecks',
     array(
       'labels' => array(
@@ -232,6 +221,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'edit_post';
   $vars[] = 'initiative_id';
   $vars[] = 'error_code';
+  $vars[] = 'hub_id';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');

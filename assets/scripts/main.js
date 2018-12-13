@@ -5,7 +5,7 @@ import Router from './router';
 import common from './routes/common';
 import contact from './routes/contact';
 import post_type_archive_initiatives from './routes/maps';
-import single_maps from './routes/maps';
+import map from './routes/maps';
 
 // Import ajaxForm
 import './ajax-form';
@@ -22,7 +22,7 @@ const routes = {
   common,
   contact,
   post_type_archive_initiatives,
-  single_maps
+  map
 };
 
 // Load Events

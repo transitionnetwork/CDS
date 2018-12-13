@@ -1,3 +1,8 @@
+<?php if(!is_user_logged_in() || (!is_user_role('super_hub'))) {
+  wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
+  exit;
+} ?>
+
 <main>
   <div class="container">
     <div class="row">

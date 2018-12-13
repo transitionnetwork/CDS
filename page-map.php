@@ -1,16 +1,14 @@
 <?php get_header('map'); ?>
 
 <?php while (have_posts()) : the_post();
-  $author_object = get_user_by('id', get_the_author_id());
-  $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
-  $author_hub_id = get_the_terms($author_object, 'hub')[0]->term_id;
 
-  $users = get_objects_in_term($author_hub_id, 'hub');
+  $hub_id = get_query_var('hub_id');
+  $authors = get_hub_users($hub_id);
 
   $args = array(
     'post_type' => 'initiatives',
-    'author__in' => $users,
-    'posts_per_page' => -1
+    'posts_per_page' => -1,
+    'author__in' => $authors
   );
 
   $posts = get_posts($args);

@@ -9,7 +9,7 @@ $args = array(
 $posts = get_posts($args); ?>
 
 <section>
-  <h2>Initatives created by others in <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?></h2>
+  <h2>All initatives created in <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?></h2>
   <?php if ($posts) :
     list_initiatives();
   else : ?>
