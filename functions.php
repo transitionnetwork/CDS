@@ -324,7 +324,8 @@ function get_hub_filter() {
     'hide_empty' => true,
   )); ?>
 
-  <form action="" method="GET">
+  <form action="" method="GET" id="hub-filter">
+    <?php _e('Filter by hub:'); ?>
     <select name="term" id="term">
       <option value="">All</option>
       <?php foreach($terms as $term) { ?>
@@ -345,7 +346,7 @@ function get_hub_filter() {
         <?php } ?>
       <?php } ?>
     </select>
-    <input type="Submit" value="Submit">
+    <input type="submit" value="Go">
   </form>
 <?php }
 
