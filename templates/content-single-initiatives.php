@@ -72,7 +72,7 @@
                 $healthchecks = get_posts($args);
                 list_healthchecks($healthchecks);
                 ?>
-              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg($params, get_the_permalink(422)); ?>">Add Healthcheck</a></p>
+              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), get_the_permalink(422)); ?>">Add Healthcheck</a></p>
             </div>
           <?php } ?>
         </div>

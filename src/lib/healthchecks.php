@@ -14,6 +14,6 @@ function list_healthchecks($healthchecks) {
       <?php endforeach; ?>
     </table>
   <?php } else { ?>
-    There aren't any healhtchecks yet
+    <p>There aren't any healhtchecks yet</p>
   <?php  }
 }
