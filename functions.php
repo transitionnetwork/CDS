@@ -296,7 +296,7 @@ function get_hub_filter() {
   <form action="" method="GET" id="hub-filter">
     <?php _e('Filter by hub:'); ?>
     <select name="term" id="term">
-      <option value="">All</option>
+      <option value="all">All</option>
       <?php foreach($terms as $term) { ?>
         <?php $users = get_hub_users($term->term_id);
         $args = array (

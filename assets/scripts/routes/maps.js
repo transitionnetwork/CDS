@@ -6,7 +6,6 @@ export default {
     // JavaScript to be fired on contact page page
   },
   loaded() {
-    console.log('archive');
     // Javascript to be fired on page once fully loaded
     var map = L.map('iframe_map').setView([51.505, -0.09], 13);
 
@@ -23,6 +22,12 @@ export default {
 
     var marker, lat, lng, title, link, i;
     var markers = [];
+    var templateUrl = document.getElementById("template-url").getAttribute("url");
+    console.log(templateUrl); 
+
+    var markerIcon = L.icon({
+      iconUrl: templateUrl + '/dist/img/icons/marker-icon.png',
+    });
 
     var points = document.getElementsByClassName("point");
     for (i = 0; i < points.length; i++) {
@@ -30,7 +35,7 @@ export default {
       lng = points[i].getAttribute('data-lng');
       title = points[i].getAttribute('data-title');
       link = points[i].getAttribute('data-link');
-      marker = L.marker([lat, lng]).addTo(map);
+      marker = L.marker([lat, lng], {icon: markerIcon}).addTo(map);
       marker.bindPopup(title + '<br/><a href=' + link + '>&raquo;View initiative</a>');
       markers.push([lat, lng]);
     }

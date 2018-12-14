@@ -10,7 +10,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-
+<div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>
 
 <!--[if lte IE 9]>
