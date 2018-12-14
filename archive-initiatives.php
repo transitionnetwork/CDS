@@ -1,11 +1,11 @@
 <?php use \Tofino\Helpers as h;
 get_header(); ?>
+<?php while (have_posts()) : the_post(); ?>
 
 <ul id="dom-target" style="display:none;">
   <?php foreach ($posts as $post) :
-    $map = get_field('map', get_the_ID(), false); ?>
-    <li class="point" data-lat="<?php echo htmlspecialchars($map['center_lat']); ?>" data-lng="<?php echo htmlspecialchars($map['center_lng']); ?>" data-title="<?php echo get_the_title(); ?>" data-link="<?php the_permalink(); ?>"></li>
-  <?php endforeach; ?>
+    generate_map($post);
+  endforeach; ?>
 </ul>
 <div id="iframe_map"></div>
 <div class="container">
@@ -21,4 +21,5 @@ get_header(); ?>
   </div>
 </main>
 
+<?php endwhile; ?>
 <?php get_footer(); ?>

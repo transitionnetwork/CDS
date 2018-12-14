@@ -20,7 +20,7 @@ export default {
     map.on('focus', function () { map.scrollWheelZoom.enable(); });
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
-    var marker, lat, lng, title, link, i;
+    var marker, lat, lng, title, link, excerpt, i;
     var markers = [];
     var templateUrl = document.getElementById("template-url").getAttribute("url");
     console.log(templateUrl); 
@@ -42,8 +42,9 @@ export default {
       lng = points[i].getAttribute('data-lng');
       title = points[i].getAttribute('data-title');
       link = points[i].getAttribute('data-link');
+      excerpt = points[i].getAttribute('data-excerpt');
       marker = L.marker([lat, lng], {icon: markerIcon}).addTo(map);
-      marker.bindPopup(title + '<br/><a href=' + link + '>&raquo;View initiative</a>');
+      marker.bindPopup('<h5>' + title + '</h5><div><a href=' + link + '>&raquo;View initiative</a></div>');
       markers.push([lat, lng]);
     }
 

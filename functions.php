@@ -398,3 +398,9 @@ function map_taxonomy($user_id, $config, $entry, $user_pass)
 
 }
 add_action("gform_user_registered", "map_taxonomy", 10, 4);
+
+
+function generate_map($post) {
+  $map = get_field('map', get_the_ID($post), false); ?>
+  <li class="point" data-lat="<?php echo htmlspecialchars($map['center_lat']); ?>" data-lng="<?php echo htmlspecialchars($map['center_lng']); ?>" data-title="<?php echo get_the_title($post); ?>" data-link="<?php the_permalink($post); ?>" data-excerpt="<?php echo get_the_excerpt($post); ?>"></li>
+<?php }

@@ -14,5 +14,5 @@ $posts = get_posts($args); ?>
     You haven't added any initiatives yet
   <?php endif; ?>
 
-  <div class="button-block"><a href="/add-initiative" class="btn btn-primary">Add new Initiative</a></div>
+  <div class="button-block"><a href="/add-initiative" class="btn btn-primary btn-sm">Add new Initiative</a></div>
 </section>
