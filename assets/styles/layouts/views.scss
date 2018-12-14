@@ -4,12 +4,15 @@ body.single {
   }
 
   h4 {
-    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   label {
     display: block;
     font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 1rem;
   }
 
   .item {
@@ -47,5 +50,53 @@ body.single {
 
   .leaflet-container {
     border-radius: 4px;
+    margin-bottom: 2rem;
+  }
+
+  .meta {
+    padding-left: 1rem;
+  }
+
+  .links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    li {
+      display: inline;
+      margin: 0 0.25rem;
+    }
+  }
+
+  section {
+    margin: 1rem 0;
+  }
+}
+
+body.single-healthchecks {
+  .header {
+    margin-bottom: 2rem;
+    //@extend section;
+
+    h1 {
+      margin-top: 0;
+    }
+
+    h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
   }
 }

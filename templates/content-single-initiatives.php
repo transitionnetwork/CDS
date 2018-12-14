@@ -7,36 +7,54 @@
       <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
             <?php $hub = get_hub_by_post($post); ?>
-            <p><strong>Hub:</strong> <a href="<?php echo add_query_arg(array('term' => $hub->term_id), '/initiatives'); ?>"><?php echo $hub->name; ?></a></p>
-            <p><?php var_dump('topic'); ?></p>
+            <?php $topics = get_the_terms($post, 'topic');
+            $topic_names = [];
+            foreach ($topics as $topic) {
+              $topic_names[] = $topic->name;
+            } ?>
+
+            <ul class="meta">
+              <li><strong>Hub:</strong> <a href="<?php echo add_query_arg(array('term' => $hub->term_id), '/initiatives'); ?>"><?php echo $hub->name; ?></a></li>
+              <li><strong>Topics:</strong> <?php echo implode(', ', $topic_names); ?></li>
+            </ul>
 
             <?php the_content(); ?>
 
-            <?php if (get_field('website')) { ?>
-              <label>Website:</label>
-              <a href="<?php echo get_field('website'); ?>"><?php echo get_field('website'); ?></a>
-            <?php } ?>
-            <?php if (get_field('twitter')) { ?>
-              <label>Twitter:</label>
-              <a href="<?php echo get_field('twitter'); ?>"><?php echo get_field('twitter'); ?></a>
-            <?php } ?>
-            <?php if (get_field('facebook')) { ?>
-              <label>Facebook:</label>
-              <a href="<?php echo get_field('facebook'); ?>"><?php echo get_field('facebook'); ?></a>
-            <?php } ?>
-            <?php if (get_field('instagram')) { ?>
-              <label>Instagram:</label>
-              <a href="<?php echo get_field('instagram'); ?>"><?php echo get_field('instagram'); ?></a>
-            <?php } ?>
-            <?php if (get_field('youtube')) { ?>
-              <label>YouTube:</label>
-              <a href="<?php echo get_field('youtube'); ?>"><?php echo get_field('youtube'); ?></a>
+            <?php if(get_field('website') || get_field('facebook') || get_field('instagram') || get_field('twitter') || get_field('youtube')) { ?>
+              <section>
+                <h4>Links</h4>
+                <ul class="links">
+                  <?php if (get_field('website')) { ?>
+                    <li><a href="<?php echo get_field('website'); ?>" target="_blank">Web</a></li>
+                  <?php } ?>
+                  <?php if (get_field('twitter')) { ?>
+                    <li><a href="<?php echo get_field('twitter'); ?>" target="_blank"><?php echo svg('twitter'); ?></a></li>
+                  <?php } ?>
+                  <?php if (get_field('facebook')) { ?>
+                    <li><a href="<?php echo get_field('facebook'); ?>" target="_blank"><?php echo svg('facebook'); ?></a></li>
+                  <?php } ?>
+                  <?php if (get_field('instagram')) { ?>
+                    <li><a href="<?php echo get_field('instagram'); ?>" target="_blank"><?php echo svg('instagram'); ?></a></li>
+                  <?php } ?>
+                  <?php if (get_field('youtube')) { ?>
+                    <li><a href="<?php echo get_field('youtube'); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
+                  <?php } ?>
+                </ul>
+              </section>
             <?php } ?>
 
+            <?php $additional = get_field('additional_web_addresses'); 
+            if($additional) { ?>
+              <section>
+                <h4>More Links</h4>
+                <ul>
+                  <?php foreach($additional as $item) { ?>
+                    <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
+                  <?php } ?>
+                </ul>
+              </section>
+            <?php } ?>
 
-            <?php var_dump('additional_web_addresses'); ?>
-            
-            
             <?php if (can_view_healthcheck($post)) { ?>
               <div class="panel">
                 <h3>Healthchecks</h3>
@@ -58,7 +76,7 @@
         <div class="col-12 col-lg-4">
           <?php echo get_field('map'); ?>
 
-          <img src="<?php echo get_field('logo')['url']; ?>">
+          <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
 
           <?php if (get_field('address_line_1')) { ?>
               <label>Address:</label>
