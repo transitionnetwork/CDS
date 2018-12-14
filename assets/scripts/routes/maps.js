@@ -27,6 +27,13 @@ export default {
 
     var markerIcon = L.icon({
       iconUrl: templateUrl + '/dist/img/icons/marker-icon.png',
+      iconRetinaUrl: templateUrl + '/dist/img/icons/marker-icon-2x.png',
+      shadowUrl: templateUrl + '/dist/img/icons/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
     });
 
     var points = document.getElementsByClassName("point");
