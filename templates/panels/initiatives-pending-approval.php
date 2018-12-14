@@ -10,7 +10,7 @@ $posts = get_posts($args); ?>
   <?php if ($posts) :
     list_initiatives($posts);
   else : ?>
-  There aren't any initiatives pending approval for the <?php echo $user_hub_name; ?> hub.
+  There aren't any initiatives pending approval.
   <?php endif; ?>
 </section>
 

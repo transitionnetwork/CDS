@@ -7,6 +7,7 @@
 		wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
 		exit;
 	} else { ?>
+		<?php wp_reset_postdata(); ?>
 		<main>
 			<div class="container">
 				<div class="row justify-content-center">	
@@ -16,7 +17,8 @@
 						if(can_write_healthcheck($post)) {
 							$field_args[] = 'private_email';
 						}
-						acf_form_head ();
+						acf_form_head();
+						var_dump($edit_post_id);
 						acf_form(array(
 							'post_id'		=> $edit_post_id,
 							'post_title'	=> true,

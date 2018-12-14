@@ -3,19 +3,22 @@
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
       <h1><?php echo \Tofino\Helpers\title(); ?></h1>
-      <?php $params = array('initiative_id' => get_the_ID()); ?>
       <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
             <?php $hub = get_hub_by_post($post); ?>
             <?php $topics = get_the_terms($post, 'topic');
             $topic_names = [];
-            foreach ($topics as $topic) {
-              $topic_names[] = $topic->name;
+            if($topics) {
+              foreach ($topics as $topic) {
+                $topic_names[] = $topic->name;
+              } 
             } ?>
 
             <ul class="meta">
               <li><strong>Hub:</strong> <a href="<?php echo add_query_arg(array('term' => $hub->term_id), '/initiatives'); ?>"><?php echo $hub->name; ?></a></li>
-              <li><strong>Topics:</strong> <?php echo implode(', ', $topic_names); ?></li>
+              <?php if($topics) { ?>
+                <li><strong>Topics:</strong> <?php echo implode(', ', $topic_names); ?></li>
+              <?php } ?>
             </ul>
 
             <?php the_content(); ?>
@@ -105,7 +108,7 @@
         show_publish_button($post->ID);
       } ?>
       <?php //Check for initiative write ?>
-      <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit this initiative</a></div>
+      <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>">Edit this initiative</a></div>
       <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>">Delete this initiative</a></div>
     </div>
   </main>

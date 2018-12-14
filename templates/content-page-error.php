@@ -6,7 +6,7 @@
         $message = 'You do not have the correct permissions';
         break;
       case '2':
-        $message = 'Administrators can\'t add initiatives as they aren\'t associated with a hub';
+        $message = 'Administrators can\'t add initiatives as their accounts aren\'t associated with a hub';
         break;
       default:
         $message = 'Unkown error';

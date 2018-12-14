@@ -361,3 +361,40 @@ function archive_search($query) {
   }
 }
 add_action('pre_get_posts', 'archive_search');
+
+
+// Hook Gravity Forms user registration -> Map taxomomy
+
+function map_taxonomy($user_id, $config, $entry, $user_pass)
+{
+
+  global $wpdb;
+
+	// Get all taxonomies
+  $taxs = get_taxonomies();
+
+	// Get all user meta
+  $all_meta_for_user = get_user_meta($user_id);
+
+	// Loop through meta data and map to taxonomies with same name as user meta key
+  foreach ($all_meta_for_user as $taxonomy => $value) {
+
+    if (in_array($taxonomy, $taxs)) {			// Check if there is a Taxonomy with the same name as the Custom user meta key
+
+			// Get term id
+      $term_id = get_user_meta($user_id, $taxonomy, true);
+      if (is_numeric($term_id)) {				// Check if Custom user meta is an ID
+
+        $taxonomy . '=' . $term_id . '<br>';
+
+				// Add user to taxomomy term
+        $term = get_term($term_id, $taxonomy);
+        $termslug = $term->slug;
+        wp_set_object_terms($user_id, array($termslug), $taxonomy, false);
+
+      }
+    }
+  }
+
+}
+add_action("gform_user_registered", "map_taxonomy", 10, 4);
