@@ -1,6 +1,5 @@
 <?php use \Tofino\Helpers as h;
 get_header(); ?>
-<?php while (have_posts()) : the_post(); ?>
 
 <ul id="dom-target" style="display:none;">
   <?php foreach ($posts as $post) :
@@ -21,5 +20,4 @@ get_header(); ?>
   </div>
 </main>
 
-<?php endwhile; ?>
 <?php get_footer(); ?>

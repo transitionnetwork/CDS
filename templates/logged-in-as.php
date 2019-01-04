@@ -10,9 +10,9 @@ if(is_user_logged_in()) : ?>
 <?php endif; ?>
 
 <?php if($user_role) : ?>
-  <div class="tag role">User Role: <?php echo $user_human_role; ?></div>
+  <div class="tag role"><?php echo $user_human_role; ?></div>
 <?php endif; ?>
 
 <?php if($user_hub) : ?>
-  <div class="tag hub">Regional Hub: <?php echo $user_hub; ?></div>
+  <div class="tag hub"><?php echo $user_hub; ?></div>
 <?php endif; ?>

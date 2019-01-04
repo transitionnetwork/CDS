@@ -99,3 +99,12 @@ function change_post_status($post_id, $status)
   $current_post['post_status'] = $status;
   wp_update_post($current_post);
 }
+
+function check_publish_argument() {
+  if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
+    if (isset($_POST['pid']) && !empty($_POST['pid'])) {
+      change_post_status((int)$_POST['pid'], 'publish');
+    }
+  }
+}
+add_action('init', 'check_publish_argument');

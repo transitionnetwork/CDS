@@ -18,7 +18,6 @@
 							$field_args[] = 'private_email';
 						}
 						acf_form_head();
-						var_dump($edit_post_id);
 						acf_form(array(
 							'post_id'		=> $edit_post_id,
 							'post_title'	=> true,

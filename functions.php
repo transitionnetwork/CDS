@@ -113,6 +113,7 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => true,
+      'show_in_rest' => true,
       'supports' => array('title', 'editor', 'author')
     )
   );
@@ -319,12 +320,6 @@ function get_hub_filter() {
   </form>
 <?php }
 
-if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
-  if (isset($_POST['pid']) && !empty($_POST['pid'])) {
-    change_post_status((int)$_POST['pid'], 'publish');
-  }
-}
-
 function acf_custom_save($post_id) {
   if (get_post_type($post_id) == 'healthchecks') {
     $my_post = array();
@@ -395,10 +390,8 @@ function map_taxonomy($user_id, $config, $entry, $user_pass)
       }
     }
   }
-
 }
 add_action("gform_user_registered", "map_taxonomy", 10, 4);
-
 
 function generate_map($post) {
   $map = get_field('map', get_the_ID($post), false); ?>
