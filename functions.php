@@ -99,6 +99,11 @@ function missing_dist_error_notice() {
   </div><?php
 }
 
+function dd($string)
+{
+  die(var_dump($string));
+}
+
 // Custom image sizes
 add_image_size( 'event', 600, 400, true );
 
@@ -339,6 +344,14 @@ function acf_custom_save($post_id) {
 
     wp_update_post($my_post);
   }
+
+  if (get_post_type($post_id) == 'initiatives') {
+    $post = get_post($post_id);
+    $author = get_userdata($post->post_author);
+    if(in_array('initiative', $author->roles)) {
+      // EMAIL HUB, SUPERHUB, ADMIN
+    };
+  }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
 
@@ -424,6 +437,3 @@ function add_column_content($column, $post_id)
   }
 } 
 add_action('manage_initiatives_posts_custom_column', 'add_column_content', 10, 2);
-
-
-//EMAIL ALL USERS!
