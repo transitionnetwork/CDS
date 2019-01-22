@@ -3,10 +3,8 @@
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
       <h1><?php echo \Tofino\Helpers\title(); ?></h1>
-      <?php var_dump(get_field_object('map')); ?>
       <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
-          <?php $hub = get_hub_by_post($post); ?>
           <?php $topics = get_the_terms($post, 'topic');
           $topic_names = [];
           if($topics) {
@@ -16,7 +14,7 @@
           } ?>
 
           <ul class="meta">
-            <li><strong>Hub:</strong> <a href="<?php echo add_query_arg(array('term' => $hub->term_id), '/initiatives'); ?>"><?php echo $hub->name; ?></a></li>
+            <li><strong>Hub:</strong> <a href="<?php echo get_post_type_archive_link('initiatives') . '?term=' . get_field('hub_tax') ?>"><?php echo get_term(get_field('hub_tax'), 'hub')->name; ?></a></li>
             <?php if($topics) { ?>
               <li><strong>Topics:</strong> <?php echo implode(', ', $topic_names); ?></li>
             <?php } ?>

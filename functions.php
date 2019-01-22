@@ -114,7 +114,7 @@ function create_posttypes() {
       'public' => true,
       'has_archive' => true,
       'show_in_rest' => true,
-      'supports' => array('title', 'editor', 'author')
+      'supports' => array('title', 'editor')
     )
   );
   register_post_type( 'healthchecks',
@@ -125,7 +125,7 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => false,
-      'supports' => array('title', 'author')
+      'supports' => array('title')
     )
   );
 }
@@ -133,7 +133,7 @@ function create_posttypes() {
 
 // Create user taxonomies
 function create_user_taxonomies() {
-  register_taxonomy('hub', 'user', array(
+  register_taxonomy('hub', array('user'), array(
     'public'       => true,
     'single_value' => false,
     'show_admin_column' => true,
@@ -281,28 +281,31 @@ function get_hub_users($hub_id) {
   return $users;
 }
 
-function get_hub_by_post($post) {
-  $author = get_userdata(get_the_author_id($post));
-  $author_hub = get_the_terms($author, 'hub')[0];
-  return $author_hub;
+function get_hub_by_id($id) {
+  return get_term($id, 'hub')->name;
 }
 
 function get_hub_filter() {
   // Get all hubs that have users
   $terms = get_terms(array(
-    'taxonomy' => 'hub',
-    'hide_empty' => true,
-  )); ?>
+    'taxonomy' => 'hub'
+  ));
+  ?>
 
   <form action="" method="GET" id="hub-filter">
     <?php _e('Filter by hub:'); ?>
     <select name="term" id="term">
       <option value="all">All</option>
       <?php foreach($terms as $term) { ?>
-        <?php $users = get_hub_users($term->term_id);
-        $args = array (
+        <?php $args = array (
           'post_type' => 'initiatives',
-          'author__in' => $users
+          'tax_query' => array(
+            array(
+              'taxonomy' => 'hub',
+              'field' => 'slug',
+              'terms' => $term->slug
+            ),
+          )
         );
         $posts = get_posts($args);
         $count = count($posts);?>
@@ -350,8 +353,13 @@ function archive_search($query) {
     // }
     
     if(get_query_var('term')) {
-      $users = get_hub_users(get_query_var('term'));
-      $query->set('author__in', $users);
+      $query->set('tax_query', array(
+        array(
+          'taxonomy' => 'hub',
+          'field' => 'id',
+          'terms' => get_query_var('term')
+        ),
+      ));
     }
   }
 }
@@ -397,3 +405,25 @@ function generate_map($post) {
   $map = get_field('map', get_the_ID($post), false); ?>
   <li class="point" data-lat="<?php echo htmlspecialchars($map['center_lat']); ?>" data-lng="<?php echo htmlspecialchars($map['center_lng']); ?>" data-title="<?php echo get_the_title($post); ?>" data-link="<?php the_permalink($post); ?>" data-excerpt="<?php echo get_the_excerpt($post); ?>"></li>
 <?php }
+
+function add_columns($columns)
+{
+  return array_merge($columns, array(
+    'hub' => __('Hub'),
+  ));
+}
+add_filter('manage_initiatives_posts_columns', 'add_columns');
+
+function add_column_content($column, $post_id)
+{
+  switch ($column) {
+    case 'hub':
+      $hub_id = get_field('hub_tax', $post_id);
+      echo get_hub_by_id($hub_id);
+      break;    
+  }
+} 
+add_action('manage_initiatives_posts_custom_column', 'add_column_content', 10, 2);
+
+
+//EMAIL ALL USERS!

@@ -13,7 +13,7 @@
 				<div class="row justify-content-center">	
 					<div class="col-12 col-md-10 col-lg-8">
 						<h1><?php echo \Tofino\Helpers\title(); ?></h1>
-						<?php $field_args = array('logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic');
+						<?php $field_args = array('hub_tax', 'logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic');
 						if(can_write_healthcheck($post)) {
 							$field_args[] = 'private_email';
 						}

@@ -23,7 +23,7 @@ function list_initiatives($posts) {
               </span>
             </td>
             <td>
-                <?php echo (!empty($author_hub_name)) ? $author_hub_name : '-'; ?>
+              <a href="<?php echo get_post_type_archive_link('initiatives') . '?term=' . get_field('hub_tax', $post->ID); ?>"><?php echo get_hub_by_id(get_field('hub_tax', $post->ID)); ?></a>
             </td>
             <td>
               <?php if(can_view_healthcheck($post)) {

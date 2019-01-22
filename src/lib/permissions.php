@@ -1,25 +1,25 @@
 <?php
-function is_post_in_user_hub($post) {
-  $user_hub_id = get_the_terms(wp_get_current_user(), 'hub')[0]->term_id;
-  $author = get_userdata(get_the_author_id($post));
-  $author_hub_id = get_the_terms($author, 'hub')[0]->term_id;
-  if($user_hub_id == $author_hub_id) {
+function is_user_role($queried_role)
+{
+  $user_roles = wp_get_current_user()->roles;
+  if (in_array($queried_role, $user_roles)) {
     return true;
+  }
+}
+
+function is_post_in_user_hub($post) {
+  $post_hub_id = (get_field('hub_tax', $post->ID));
+  $user_hub_ids = get_the_terms(wp_get_current_user(), 'hub');
+  foreach($user_hub_ids as $user_hub_id) {
+    if($post_hub_id == $user_hub_id->term_id) {
+      return true;
+    }
   }
   return false;
 }
 
 function is_user_post_author($post) {
   if(get_current_user_id() == get_the_author_id($post)) {
-    return true;
-  }
-}
-
-//
-function is_user_role($queried_role)
-{
-  $user_roles = wp_get_current_user()->roles;
-  if (in_array($queried_role, $user_roles)) {
     return true;
   }
 }

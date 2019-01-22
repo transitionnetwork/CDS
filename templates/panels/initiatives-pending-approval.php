@@ -6,7 +6,7 @@ $args = array(
 );
 $posts = get_posts($args); ?>
 <section>
-  <h2>Initiatives pending approval</h2>
+  <h2>All Initiatives pending approval</h2>
   <?php if ($posts) :
     list_initiatives($posts);
   else : ?>
