@@ -3,10 +3,6 @@
   exit;
 } ?>
 
-<?php if(is_user_role('administrator')) {
-  wp_redirect (esc_url (add_query_arg ('error_code', '2', '/error')));
-} ?>
-
 <?php acf_form_head(); ?>
 
 <?php

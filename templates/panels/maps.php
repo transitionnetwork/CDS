@@ -1,5 +1,5 @@
 <section>
-  <?php if(is_user_role('administrator')) {
+  <?php if(is_user_role('administrator') || is_user_role('super_hub')) {
     $terms = get_terms(array(
       'taxonomy' => 'hub'
     ));
