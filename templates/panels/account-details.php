@@ -7,7 +7,7 @@
   ?>
   </div>
   <ul class="button-group">
-    <li><a href="<?php echo get_permalink(285); ?>" class="btn btn-primary btn-sm">Edit Account Details</a></li>
+    <li><a href="<?php echo home_url('member-edit-account'); ?>" class="btn btn-primary btn-sm">Edit Account Details</a></li>
     <?php if (is_user_role('super_hub')) : ?>
       <li><a href="<?php the_permalink(270); ?>" class="btn btn-primary btn-sm">View All Hub Users</a></li>
     <?php endif; ?>
