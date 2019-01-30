@@ -1,12 +1,13 @@
-body.member-login,
-body.member-register {
-  h1 {
-    text-align: center;
-  }
-}
+.xinc-login {
+  border: 1px solid $gray-400;
+  padding: 3rem;
+  border-radius: $border-radius;
+  margin-top: 3rem;
 
-.xinc-form-container {
-  text-align: center;
+  h1 {
+    text-align: left;
+    margin-top: 0;
+  }
 
   label {
     display: block;
@@ -16,6 +17,11 @@ body.member-register {
     padding: 0.5rem 1rem;
     border-radius: 5px;
     border: 1px solid $gray-400;
+
+    &[type="text"],
+    &[type="password"] {
+      width: 100%;
+    }
 
     &.button {
       @extend .btn-primary;
@@ -29,6 +35,21 @@ body.member-register {
 
   ul {
     margin: 0;
+    padding: 0;
     list-style-type: none;
   }
+
+  &.top {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  &.bottom {
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+}
+
+.alert {
+  border-radius: $border-radius;
 }
