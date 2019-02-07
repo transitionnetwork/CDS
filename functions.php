@@ -31,6 +31,7 @@ $tofino_includes = [
   "src/lib/initiatives.php",
   "src/lib/healthchecks.php",
   "src/lib/permissions.php",
+  "src/lib/hub-filter.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",
@@ -228,6 +229,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'initiative_id';
   $vars[] = 'error_code';
   $vars[] = 'hub_id';
+  $vars[] = 'hub_name';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
@@ -290,44 +292,6 @@ function get_hub_by_id($id) {
   return get_term($id, 'hub')->name;
 }
 
-function get_hub_filter() {
-  // Get all hubs that have users
-  $terms = get_terms(array(
-    'taxonomy' => 'hub'
-  ));
-  ?>
-
-  <form action="" method="GET" id="hub-filter">
-    <?php _e('Filter by hub:'); ?>
-    <select name="term" id="term">
-      <option value="all">All</option>
-      <?php foreach($terms as $term) { ?>
-        <?php $args = array (
-          'post_type' => 'initiatives',
-          'tax_query' => array(
-            array(
-              'taxonomy' => 'hub',
-              'field' => 'slug',
-              'terms' => $term->slug
-            ),
-          )
-        );
-        $posts = get_posts($args);
-        $count = count($posts);?>
-        <?php if(get_query_var('term') == $term->term_id) {
-          $selected = 'selected';
-        } else {
-          $selected = '';
-        } ?>
-        <?php if($count > 0) { ?>
-          <option value="<?php echo $term->term_id; ?>" <?php echo $selected; ?>><?php echo $term->name; ?> (<?php echo $count; ?>)</option>
-        <?php } ?>
-      <?php } ?>
-    </select>
-    <input type="submit" value="Go">
-  </form>
-<?php }
-
 function acf_custom_save($post_id) {
   if (get_post_type($post_id) == 'healthchecks') {
     $my_post = array();
@@ -337,6 +301,7 @@ function acf_custom_save($post_id) {
 
     //check for new post 
     if ($post->post_modified_gmt == $post->post_date_gmt) {
+      // EMAIL INITIATIVE, HUB, ADMIN (with the full data)
       $my_post['post_title'] = get_query_var('initiative_id');
     } else {
       $my_post['post_title'] = get_the_title($post_id);
@@ -349,7 +314,7 @@ function acf_custom_save($post_id) {
     $post = get_post($post_id);
     $author = get_userdata($post->post_author);
     if(in_array('initiative', $author->roles)) {
-      // EMAIL HUB, SUPERHUB, ADMIN
+      // EMAIL HUB, ADMIN
     };
   }
 }
@@ -359,18 +324,14 @@ function archive_search($query) {
   if (!is_admin() && $query->is_main_query()) {
     $query->set('orderby', 'post_title');
     $query->set('order', 'ASC');
+    $query->set('post_status', 'publish');
     
-    // Lets only show published posts on this page for now
-    // if (is_user_role('administrator') || is_user_role('super_hub')) {
-    //   $query->set('post_status', array('pending', 'publish'));
-    // }
-    
-    if(get_query_var('term')) {
+    if(get_query_var('hub_name')) {
       $query->set('tax_query', array(
         array(
           'taxonomy' => 'hub',
-          'field' => 'id',
-          'terms' => get_query_var('term')
+          'field' => 'slug',
+          'terms' => get_query_var('hub_name')
         ),
       ));
     }

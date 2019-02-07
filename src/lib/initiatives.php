@@ -23,7 +23,8 @@ function list_initiatives($posts) {
               </span>
             </td>
             <td>
-              <a href="<?php echo get_post_type_archive_link('initiatives') . '?term=' . get_field('hub_tax', $post->ID); ?>"><?php echo get_hub_by_id(get_field('hub_tax', $post->ID)); ?></a>
+              <?php $hub_slug = get_term_by('id', get_field('hub_tax', $post->ID), 'hub')->slug; ?>
+              <a href="<?php echo add_query_arg('hub_name', $hub_slug,  get_post_type_archive_link('initiatives')); ?>"><?php echo get_hub_by_id(get_field('hub_tax', $post->ID)); ?></a>
             </td>
             <td>
               <?php if(can_view_healthcheck($post)) {
