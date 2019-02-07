@@ -1,6 +1,14 @@
 <?php while (have_posts()) : the_post(); ?>
   <?php if (!is_user_logged_in()) { ?>
-    <?php wp_redirect('/member-login'); ?>
+    <div class="container">
+      <h1><?php echo \Tofino\Helpers\title(); ?></h1>
+      <?php the_content(); ?>
+      <ul class="btn-list">
+        <li><a href="<?php echo home_url('member-register'); ?>" class="btn btn-primary">Register</a></li>
+        <li><a href="<?php echo home_url('member-login'); ?>" class="btn btn-secondary">Sign In</a></li>
+      </ul>
+      <p></p>
+    </div>
   <?php } else { ?>
     <main>
       <div class="container">
