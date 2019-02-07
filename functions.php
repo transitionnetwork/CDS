@@ -273,7 +273,7 @@ function get_latest_healthcheck($id) {
   );
   $posts = get_posts($args);
   if($posts) {
-    return date('l jS F Y - H:i', strtotime($posts[0]->post_date)); 
+    return '<a href="' . get_permalink($posts[0]->ID) . '">' . date('l jS F Y - H:i', strtotime($posts[0]->post_date)) . '</a>';
   } else {
     return 'Never';
   }
@@ -398,3 +398,14 @@ function add_column_content($column, $post_id)
   }
 } 
 add_action('manage_initiatives_posts_custom_column', 'add_column_content', 10, 2);
+
+
+
+function wpse23007_redirect()
+{
+  if (is_admin() && !defined('DOING_AJAX') && (current_user_can('initiative') || current_user_can('hub'))) {
+    wp_redirect(home_url());
+    exit;
+  }
+}
+add_action('init', 'wpse23007_redirect');

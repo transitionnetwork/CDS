@@ -35,8 +35,7 @@ function list_initiatives($posts) {
               <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>">View</a>
               
               <?php if(can_write_initiative($post)) { ?>
-                <?php $params = array('edit_post' => $post->ID); ?>
-                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg($params, '/edit-initiative'); ?>">Edit</a>
+                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, home_url('edit-initiative')); ?>">Edit</a>
                 <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')">Delete</a>
               <?php } ?>
               <?php if(can_publish_initiative($post) && !is_post_published($post)) {
