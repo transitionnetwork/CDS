@@ -13,14 +13,14 @@ export default {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
       id: 'mapbox.streets',
-      accessToken: 'pk.eyJ1IjoieGluYyIsImEiOiJjam5lbDVnYm4wdjk2M3FzZm4xZDloMWw0In0.YhMrHlc_Yc_otwG_5hrVGw'
+      accessToken: 'pk.eyJ1IjoieGluYyIsImEiOiJjanJ1dnZlYXkwOG94M3lwZXljdW8zeHY3In0.FhtWLsR6oEf5A0CMQOgTAw'
     }).addTo(map);
 
     map.scrollWheelZoom.disable();
     map.on('focus', function () { map.scrollWheelZoom.enable(); });
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
-    var marker, lat, lng, title, link, excerpt, i;
+    var marker, lat, lng, title, link, i;
     var markers = [];
     var templateUrl = document.getElementById("template-url").getAttribute("url");
     console.log(templateUrl); 
@@ -42,7 +42,7 @@ export default {
       lng = points[i].getAttribute('data-lng');
       title = points[i].getAttribute('data-title');
       link = points[i].getAttribute('data-link');
-      excerpt = points[i].getAttribute('data-excerpt');
+      //excerpt = points[i].getAttribute('data-excerpt');
       marker = L.marker([lat, lng], {icon: markerIcon}).addTo(map);
       marker.bindPopup('<h5>' + title + '</h5><div><a href=' + link + '>&raquo;View initiative</a></div>');
       markers.push([lat, lng]);

@@ -8,7 +8,7 @@ get_header(); ?>
 </ul>
 <div id="iframe_map"></div>
 <div class="container">
-  <?php hub_filter(); ?>
+  <?php render_hub_filter(); ?>
 </div>
 <main>
   <div class="container">

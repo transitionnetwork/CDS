@@ -1,8 +1,7 @@
 <?php
-function hub_filter() {
-  //TODO: Cache this filter generation script. Also add counts?
+function get_hub_terms() {
   $term_slugs = wp_cache_get('term_slugs');
-  if(false === $term_slugs) {
+  if (false === $term_slugs) {
     $args = array(
       'post_type' => 'initiatives',
       'post_status' => 'publish',
@@ -20,7 +19,13 @@ function hub_filter() {
     sort($term_slugs);
     wp_cache_set('term_slugs', $term_slugs);
   }
-  ?>
+
+  return $term_slugs;
+}
+function render_hub_filter() {
+  //TODO: Cache this filter generation script. Also add counts?
+  $term_slugs = get_hub_terms();
+?>
   
   <form action="" method="GET" id="hub-filter">
     <?php _e('Filter by hub:'); ?>

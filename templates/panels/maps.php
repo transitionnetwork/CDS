@@ -1,8 +1,9 @@
 <section>
   <?php if(is_user_role('administrator') || is_user_role('super_hub')) {
-    $terms = get_terms(array(
-      'taxonomy' => 'hub'
-    ));
+    $term_slugs = get_hub_terms();
+    foreach($term_slugs as $term_slug) {
+      $terms[] = get_term_by('slug', $term_slug, 'hub');
+    }
   } else {
     $terms = get_the_terms(wp_get_current_user(), 'hub');
   } ?>
