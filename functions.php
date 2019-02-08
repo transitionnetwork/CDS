@@ -139,7 +139,7 @@ function create_posttypes() {
 
 // Create user taxonomies
 function create_user_taxonomies() {
-  register_taxonomy('hub', array('user'), array(
+  register_taxonomy('hub', array('initiatives'), array(
     'public'       => true,
     'single_value' => false,
     'show_admin_column' => true,
@@ -381,27 +381,6 @@ function generate_map($post) {
   $map = get_field('map', get_the_ID($post), false); ?>
   <li class="point" data-lat="<?php echo htmlspecialchars($map['center_lat']); ?>" data-lng="<?php echo htmlspecialchars($map['center_lng']); ?>" data-title="<?php echo get_the_title($post); ?>" data-link="<?php the_permalink($post); ?>" data-excerpt="<?php echo get_the_excerpt($post); ?>"></li>
 <?php }
-
-function add_columns($columns)
-{
-  return array_merge($columns, array(
-    'hub' => __('Hub'),
-  ));
-}
-add_filter('manage_initiatives_posts_columns', 'add_columns');
-
-function add_column_content($column, $post_id)
-{
-  switch ($column) {
-    case 'hub':
-      $hub_id = get_field('hub_tax', $post_id);
-      echo get_hub_by_id($hub_id);
-      break;    
-  }
-} 
-add_action('manage_initiatives_posts_custom_column', 'add_column_content', 10, 2);
-
-
 
 function wpse23007_redirect()
 {
