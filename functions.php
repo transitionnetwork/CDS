@@ -53,7 +53,7 @@ $tofino_includes = [
 
 foreach ($tofino_includes as $file) {
   if (!$filepath = locate_template($file)) {
-    trigger_error(sprintf(__('Error locating %s for inclusion', 'tofino'), $file), E_USER_ERROR);
+    trigger_error(sprintf(__('Error locating %s for inclusion', 'tofino-nt'), $file), E_USER_ERROR);
   }
   require_once $filepath;
 }
@@ -73,7 +73,7 @@ if (file_exists(get_template_directory() . '/vendor/autoload.php')) { // Check c
   if (is_admin()) {
     add_action('admin_notices', 'composer_error_notice');
   } else {
-    wp_die(composer_error_notice(), __('An error occured.', 'tofino'));
+    wp_die(composer_error_notice(), __('An error occured.', 'tofino-nt'));
   }
 }
 
@@ -82,21 +82,21 @@ if (!is_dir(get_template_directory() . '/dist')) {
   if (is_admin()) {
     add_action('admin_notices', 'missing_dist_error_notice');
   } else {
-    wp_die(missing_dist_error_notice(), __('An error occured.', 'tofino'));
+    wp_die(missing_dist_error_notice(), __('An error occured.', 'tofino-nt'));
   }
 }
 
 // Admin notice for missing composer autoload.
 function composer_error_notice() {
 ?><div class="error notice">
-    <p><?php _e('Composer autoload file not found. Run composer install on the command line.', 'tofino'); ?></p>
+    <p><?php _e('Composer autoload file not found. Run composer install on the command line.', 'tofino-nt'); ?></p>
   </div><?php
 }
 
 // Admin notice for missing dist directory.
 function missing_dist_error_notice() {
 ?><div class="error notice">
-    <p><?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino'); ?></p>
+    <p><?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino-nt'); ?></p>
   </div><?php
 }
 

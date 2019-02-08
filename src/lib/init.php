@@ -18,7 +18,7 @@ namespace Tofino\Init;
 function php_version_check() {
   $php_version = phpversion();
   if (version_compare($php_version, '5.5.9', '<')) {
-    wp_die('<div class="error notice"><p>' . __('PHP version >= 5.5.9 is required for this theme to work correctly.', 'tofino') . '</p></div>', 'An error occured.');
+    wp_die('<div class="error notice"><p>' . __('PHP version >= 5.5.9 is required for this theme to work correctly.', 'tofino-nt') . '</p></div>', 'An error occured.');
   }
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\php_version_check');
@@ -36,8 +36,8 @@ function setup() {
 
   // Register wp_nav_menu() menus
   register_nav_menus([
-    'primary_navigation_loggedin' => __('Primary Navigation Logged In', 'tofino'),
-    'primary_navigation_loggedout' => __('Primary Navigation Logged Out', 'tofino')
+    'primary_navigation_loggedin' => __('Primary Navigation Logged In', 'tofino-nt'),
+    'primary_navigation_loggedout' => __('Primary Navigation Logged Out', 'tofino-nt')
   ]);
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');

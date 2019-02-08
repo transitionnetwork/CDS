@@ -22,7 +22,7 @@ use \Respect\Validation\Exceptions\NestedValidationExceptionInterface;
  */
 function contact_form_settings($wp_customize) {
   $wp_customize->add_section('tofino_contact_form_settings', [
-    'title' => __('Contact Form', 'tofino'),
+    'title' => __('Contact Form', 'tofino-nt'),
     'priority' => 200
 
   ]);
@@ -30,8 +30,8 @@ function contact_form_settings($wp_customize) {
   $wp_customize->add_setting('contact_form_to_address', ['default' => '']);
 
   $wp_customize->add_control('contact_form_to_address', [
-    'label'       => __('To', 'tofino'),
-    'description' => __('Email address used in the TO field. Leave blank to use the email address defined in Client Data settings.', 'tofino'),
+    'label'       => __('To', 'tofino-nt'),
+    'description' => __('Email address used in the TO field. Leave blank to use the email address defined in Client Data settings.', 'tofino-nt'),
     'section'     => 'tofino_contact_form_settings',
     'type'        => 'text'
   ]);
@@ -39,8 +39,8 @@ function contact_form_settings($wp_customize) {
   $wp_customize->add_setting('contact_form_cc_address', ['default' => '']);
 
   $wp_customize->add_control('contact_form_cc_address', [
-    'label'       => __('CC', 'tofino'),
-    'description' => __('Add CC email address, seperate with a comma and a space (", ") to use multiple addresses.', 'tofino'),
+    'label'       => __('CC', 'tofino-nt'),
+    'description' => __('Add CC email address, seperate with a comma and a space (", ") to use multiple addresses.', 'tofino-nt'),
     'section'     => 'tofino_contact_form_settings',
     'type'        => 'text'
   ]);
@@ -48,8 +48,8 @@ function contact_form_settings($wp_customize) {
   $wp_customize->add_setting('contact_form_from_address', ['default' => '']);
 
   $wp_customize->add_control('contact_form_from_address', [
-    'label'       => __('From', 'tofino'),
-    'description' => __('Email address used in the FROM field. Leave blank for server default.', 'tofino'),
+    'label'       => __('From', 'tofino-nt'),
+    'description' => __('Email address used in the FROM field. Leave blank for server default.', 'tofino-nt'),
     'section'     => 'tofino_contact_form_settings',
     'type'        => 'text'
   ]);
@@ -57,19 +57,19 @@ function contact_form_settings($wp_customize) {
   $wp_customize->add_setting('contact_form_subject', ['default' => '']);
 
   $wp_customize->add_control('contact_form_subject', [
-    'label'       => __('Subject', 'tofino'),
-    'description' => __('The subject field. Leave blank for "Form submission from SERVER_NAME".', 'tofino'),
+    'label'       => __('Subject', 'tofino-nt'),
+    'description' => __('The subject field. Leave blank for "Form submission from SERVER_NAME".', 'tofino-nt'),
     'section'     => 'tofino_contact_form_settings',
     'type'        => 'text'
   ]);
 
   $wp_customize->add_setting('contact_form_success_message', [
-    'default' => __("Thanks, we'll be in touch soon.", 'tofino')
+    'default' => __("Thanks, we'll be in touch soon.", 'tofino-nt')
   ]);
 
   $wp_customize->add_control('contact_form_success_message', [
-    'label'       => __('Success Message', 'tofino'),
-    'description' => __('Message displayed to use after form action is successful.', 'tofino'),
+    'label'       => __('Success Message', 'tofino-nt'),
+    'description' => __('Message displayed to use after form action is successful.', 'tofino-nt'),
     'section'     => 'tofino_contact_form_settings',
     'type'        => 'text'
   ]);
@@ -77,8 +77,8 @@ function contact_form_settings($wp_customize) {
   $wp_customize->add_setting('contact_form_captcha', ['default' => '']);
 
   $wp_customize->add_control('contact_form_captcha', [
-    'label'       => __('Enable reCAPTCHA', 'tofino'),
-    'description' => __('Enable Google reCAPTCHA "I am not a robot".', 'tofino'),
+    'label'       => __('Enable reCAPTCHA', 'tofino-nt'),
+    'description' => __('Enable Google reCAPTCHA "I am not a robot".', 'tofino-nt'),
     'section'     => 'tofino_contact_form_settings',
     'type'        => 'checkbox'
   ]);
@@ -126,7 +126,7 @@ function ajax_contact_form() {
   $save_success = $form->saveData($post_id, 'contact_form'); // Optional  Save the data as post_meta
 
   if (!$save_success) {
-    $form->respond(false, __('Unable to save data.', 'tofino'));
+    $form->respond(false, __('Unable to save data.', 'tofino-nt'));
   }
 
   $user_email_address = $data['email'];
@@ -149,21 +149,21 @@ function ajax_contact_form() {
 
   $user_email_success = $form->sendEmail([ // Optional
     'to'                 => $user_email_address,
-    'subject'            => __('Thanks for contacting us!', 'tofino'),
-    'message'            => __('We will be in touch with you in the next 48hrs.', 'tofino'),
+    'subject'            => __('Thanks for contacting us!', 'tofino-nt'),
+    'message'            => __('We will be in touch with you in the next 48hrs.', 'tofino-nt'),
     'remove_submit_data' => true,
     'user_email'         => true,
     'template'           => 'default-form.html',
     'replace_variables'  => [
-      'website_name' => __('Test company name', 'tofino'),
-      'department'   => __('Department A', 'tofino')
+      'website_name' => __('Test company name', 'tofino-nt'),
+      'department'   => __('Department A', 'tofino-nt')
     ]
   ]);
 
   if (!$admin_email_success || !$user_email_success) {
     $form->respond(
       false,
-      __('Unable to complete request due to a system error. Send mail failed.', 'tofino')
+      __('Unable to complete request due to a system error. Send mail failed.', 'tofino-nt')
     );
   }
 
@@ -171,7 +171,7 @@ function ajax_contact_form() {
     true,
     get_theme_mod(
       'contact_form_success_message', // From theme options
-      __("Thanks, we'll be in touch soon.", 'tofino') // Default
+      __("Thanks, we'll be in touch soon.", 'tofino-nt') // Default
     )
   ); // Required
 }

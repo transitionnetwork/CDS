@@ -17,7 +17,7 @@ namespace Tofino\ThemeOptions\Notifications;
  */
 function notification_settings($wp_customize) {
   $wp_customize->add_section('tofino_notification_settings', [
-    'title'    => __('Notification', 'tofino'),
+    'title'    => __('Notification', 'tofino-nt'),
     'priority' => 120
   ]);
 
@@ -28,8 +28,8 @@ function notification_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('notification_text', [
-    'label'       => __('Notification Text', 'tofino'),
-    'description' => __('Notification is shown until dismissed (at which point a cookie is set).', 'tofino'),
+    'label'       => __('Notification Text', 'tofino-nt'),
+    'description' => __('Notification is shown until dismissed (at which point a cookie is set).', 'tofino-nt'),
     'section'     => 'tofino_notification_settings',
     'type'        => 'textarea'
   ]);
@@ -41,8 +41,8 @@ function notification_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('notification_expires', [
-    'label'       => __('Notification Expires', 'tofino'),
-    'description' => __('Number of days until the notification expires. Set via a cookie.', 'tofino'),
+    'label'       => __('Notification Expires', 'tofino-nt'),
+    'description' => __('Number of days until the notification expires. Set via a cookie.', 'tofino-nt'),
     'section'     => 'tofino_notification_settings',
     'type'        => 'text'
   ]);
@@ -54,8 +54,8 @@ function notification_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('notification_position', [
-    'label'       => __('Notification Position', 'tofino'),
-    'description' => __('Notification position. Bottom = Fixed over footer. Top = Fixed above top menu.', 'tofino'),
+    'label'       => __('Notification Position', 'tofino-nt'),
+    'description' => __('Notification position. Bottom = Fixed over footer. Top = Fixed above top menu.', 'tofino-nt'),
     'section'     => 'tofino_notification_settings',
     'type'        => 'select',
     'choices'     => [
@@ -67,8 +67,8 @@ function notification_settings($wp_customize) {
   $wp_customize->add_setting('notification_use_js', ['default' => '']);
 
   $wp_customize->add_control('notification_use_js', [
-    'label'       => __('Display Notifications using Javascript', 'tofino'),
-    'description' => __('Work around for when the website has a static cache.', 'tofino'),
+    'label'       => __('Display Notifications using Javascript', 'tofino-nt'),
+    'description' => __('Work around for when the website has a static cache.', 'tofino-nt'),
     'section'     => 'tofino_notification_settings',
     'type'        => 'checkbox'
   ]);
@@ -95,7 +95,7 @@ function notification($position) {
             <div class="col-xs-12">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><?php echo svg('icon-close'); ?></span>
-                <span class="sr-only"><?php _e('Close', 'tofino'); ?></span>
+                <span class="sr-only"><?php _e('Close', 'tofino-nt'); ?></span>
               </button>
               <p><?php echo nl2br(get_theme_mod('notification_text')); ?></p>
             </div>

@@ -6,11 +6,11 @@ $args = array(
 );
 $posts = get_posts($args); ?>
 <section>
-  <h2>All Initiatives pending approval</h2>
+  <h2><?php _e('All Initiatives pending approval', 'tofino'); ?></h2>
   <?php if ($posts) :
     list_initiatives($posts);
   else : ?>
-  There aren't any initiatives pending approval.
+  <?php _e('There aren\'t any initiatives pending approval', 'tofino'); ?>
   <?php endif; ?>
 </section>
 

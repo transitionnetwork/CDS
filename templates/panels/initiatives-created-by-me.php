@@ -7,12 +7,12 @@
 $posts = get_posts($args); ?>
 
 <section>
-  <h2>Initiatives created by me</h2>
+  <h2><?php _e('Initiatives created by me', 'tofino'); ?></h2>
   <?php if ($posts) :
     list_initiatives($posts);
   else : ?>
-    You haven't added any initiatives yet
+    <?php _e('You haven\'t added any initiatives yet', 'tofino'); ?>
   <?php endif; ?>
 
-  <div class="button-block"><a href="/add-initiative" class="btn btn-primary btn-sm">Add new Initiative</a></div>
+  <div class="button-block"><a href="/add-initiative" class="btn btn-primary btn-sm"><?php _e('Add new Initiative', 'tofino'); ?></a></div>
 </section>

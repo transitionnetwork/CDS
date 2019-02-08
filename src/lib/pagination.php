@@ -8,8 +8,8 @@ function wp_bootstrap_pagination($args = []) {
   $defaults = [
     'range'           => 4,
     'custom_query'    => false,
-    'previous_string' => '<span aria-hidden="true">&laquo;</span> ' . __('Previous Page', 'tofino'),
-    'next_string'     => __('Next Page', 'tofino') . ' <span aria-hidden="true">&raquo;</span>',
+    'previous_string' => '<span aria-hidden="true">&laquo;</span> ' . __('Previous Page', 'tofino-nt'),
+    'next_string'     => __('Next Page', 'tofino-nt') . ' <span aria-hidden="true">&raquo;</span>',
     'before_output'   => '<ul class="pagination">',
     'after_output'    => '</ul>'
   ];
@@ -62,7 +62,7 @@ function wp_bootstrap_pagination($args = []) {
   // }
 
   if ($previous && (1 != $page)) {
-    $echo .= '<li class="page-item"><a href="' . $previous . '" title="' . __('Previous', 'tofino') . '" class="page-link">' . $args['previous_string'] . '</a></li>';
+    $echo .= '<li class="page-item"><a href="' . $previous . '" title="' . __('Previous', 'tofino-nt') . '" class="page-link">' . $args['previous_string'] . '</a></li>';
   }
 
   if (!empty($min) && !empty($max)) {
@@ -79,7 +79,7 @@ function wp_bootstrap_pagination($args = []) {
   $next = esc_attr(get_pagenum_link($next));
 
   if ($next && ($count != $page)) {
-    $echo .= '<li class="page-item"><a href="' . $next . '" title="' . __('next', 'tofino') . '" class="page-link">' . $args['next_string'] . '</a></li>';
+    $echo .= '<li class="page-item"><a href="' . $next . '" title="' . __('next', 'tofino-nt') . '" class="page-link">' . $args['next_string'] . '</a></li>';
   }
 
   // $lastpage = esc_attr(get_pagenum_link($count));

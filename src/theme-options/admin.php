@@ -17,14 +17,14 @@ namespace Tofino\ThemeOptions\Admin;
  */
 function admin_settings($wp_customize) {
   $wp_customize->add_section('tofino_admin_settings', [
-    'title'    => __('Admin', 'tofino'),
+    'title'    => __('Admin', 'tofino-nt'),
     'priority' => 160
   ]);
 
   $wp_customize->add_setting('admin_logo', ['default' => '']);
 
   $wp_customize->add_control(new \WP_Customize_Image_Control($wp_customize, 'admin_logo', [
-    'label'       => __('Admin Login Logo', 'tofino'),
+    'label'       => __('Admin Login Logo', 'tofino-nt'),
     'description' => __('You might need to add some additional css to tweak the logo size / position. Add your CSS in to the file assets/styles/base/wp-admin.scss.'),
     'section'     => 'tofino_admin_settings',
     'settings'    => 'admin_logo'

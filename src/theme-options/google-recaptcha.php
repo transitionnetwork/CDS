@@ -19,7 +19,7 @@ namespace Tofino\ThemeOptions\GoogleRecaptcha;
  */
 function google_recaptcha_settings($wp_customize) {
   $wp_customize->add_section('tofino_google_recaptcha', [
-    'title'    => __('Google reCAPTCHA', 'tofino'),
+    'title'    => __('Google reCAPTCHA', 'tofino-nt'),
     'priority' => 135
   ]);
 
@@ -30,7 +30,7 @@ function google_recaptcha_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('captcha_site_key', [
-    'label'       => __('reCAPTCHA Site Key', 'tofino'),
+    'label'       => __('reCAPTCHA Site Key', 'tofino-nt'),
     'section'     => 'tofino_google_recaptcha',
     'type'        => 'text'
   ]);
@@ -42,7 +42,7 @@ function google_recaptcha_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('captcha_secret', [
-    'label'       => __('reCAPTCHA Secret Key', 'tofino'),
+    'label'       => __('reCAPTCHA Secret Key', 'tofino-nt'),
     'section'     => 'tofino_google_recaptcha',
     'type'        => 'text'
   ]);

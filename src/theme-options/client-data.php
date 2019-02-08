@@ -19,7 +19,7 @@ namespace Tofino\ThemeOptions\ClientData;
  */
 function client_data_settings($wp_customize) {
   $wp_customize->add_section('tofino_client_data_settings', [
-    'title'    => __('Client Data', 'tofino'),
+    'title'    => __('Client Data', 'tofino-nt'),
     'priority' => 125
   ]);
 
@@ -30,7 +30,7 @@ function client_data_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('telephone_number', [
-    'label'   => __('Telephone Number', 'tofino'),
+    'label'   => __('Telephone Number', 'tofino-nt'),
     'section' => 'tofino_client_data_settings',
     'type'    => 'text'
   ]);
@@ -42,7 +42,7 @@ function client_data_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('email_address', [
-    'label'   => __('Email address', 'tofino'),
+    'label'   => __('Email address', 'tofino-nt'),
     'section' => 'tofino_client_data_settings',
     'type'    => 'text'
   ]);
@@ -54,7 +54,7 @@ function client_data_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('address', [
-    'label'   => __('Address', 'tofino'),
+    'label'   => __('Address', 'tofino-nt'),
     'section' => 'tofino_client_data_settings',
     'type'    => 'textarea'
   ]);
@@ -66,7 +66,7 @@ function client_data_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('company_number', [
-    'label'   => __('Company number', 'tofino'),
+    'label'   => __('Company number', 'tofino-nt'),
     'section' => 'tofino_client_data_settings',
     'type'    => 'text'
   ]);

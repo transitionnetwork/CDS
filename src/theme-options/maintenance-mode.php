@@ -17,24 +17,24 @@ namespace Tofino\ThemeOptions\Maintenance;
  */
 function maintenance_settings($wp_customize) {
   $wp_customize->add_section('tofino_maintenance_settings', [
-    'title'    => __('Maintenance Mode', 'tofino'),
+    'title'    => __('Maintenance Mode', 'tofino-nt'),
     'priority' => 155
   ]);
 
   $wp_customize->add_setting('maintenance_mode', ['default' => '']);
 
   $wp_customize->add_control('maintenance_mode', [
-    'label'       => __('Maintenance Mode', 'tofino'),
-    'description' => __('Enabling maintenance mode shows a message on each page in the admin area.', 'tofino'),
+    'label'       => __('Maintenance Mode', 'tofino-nt'),
+    'description' => __('Enabling maintenance mode shows a message on each page in the admin area.', 'tofino-nt'),
     'section'     => 'tofino_maintenance_settings',
     'type'        => 'checkbox'
   ]);
 
-  $wp_customize->add_setting('maintenance_mode_text', ['default' => __('This site is currently in maintenance mode. Any changes you make may be overwritten or removed.', 'tofino')]);
+  $wp_customize->add_setting('maintenance_mode_text', ['default' => __('This site is currently in maintenance mode. Any changes you make may be overwritten or removed.', 'tofino-nt')]);
 
   $wp_customize->add_control('maintenance_mode_text', [
-    'label'       => __('Maintenance Mode Text', 'tofino'),
-    'description' => __('Notification is shown until dismissed (at which point a cookie is set).', 'tofino'),
+    'label'       => __('Maintenance Mode Text', 'tofino-nt'),
+    'description' => __('Notification is shown until dismissed (at which point a cookie is set).', 'tofino-nt'),
     'section'     => 'tofino_maintenance_settings',
     'type'        => 'textarea'
   ]);
@@ -55,11 +55,11 @@ add_action('customize_register', __NAMESPACE__ . '\\maintenance_settings');
 function show_maintenance_message() {
   if (get_theme_mod('maintenance_mode') === true) {?>
     <div class="error notice">
-      <p><strong><?php echo __('Maintenance Mode', 'tofino') . '</strong> - ' . get_theme_mod('maintenance_mode_text', __('This site is currently in maintenance mode. Any changes you make may be overwritten or removed.', 'tofino')); ?></p>
+      <p><strong><?php echo __('Maintenance Mode', 'tofino-nt') . '</strong> - ' . get_theme_mod('maintenance_mode_text', __('This site is currently in maintenance mode. Any changes you make may be overwritten or removed.', 'tofino-nt')); ?></p>
     </div><?php
 
     if (!isset($_COOKIE['tofino_maintenance_alert_dismissed'])) {
-      echo '<div class="maintenance-mode-alert"><h1>' . __('Maintenance Mode', 'tofino') . '</h1><p>' . get_theme_mod('maintenance_mode_text', __('This site is currently in maintenance mode. Any changes you make may be overwritten or removed.', 'tofino')) . '</p><button>' . __('I understand', 'tofino') . '</button></div>';
+      echo '<div class="maintenance-mode-alert"><h1>' . __('Maintenance Mode', 'tofino-nt') . '</h1><p>' . get_theme_mod('maintenance_mode_text', __('This site is currently in maintenance mode. Any changes you make may be overwritten or removed.', 'tofino-nt')) . '</p><button>' . __('I understand', 'tofino-nt') . '</button></div>';
     }
   }
 }

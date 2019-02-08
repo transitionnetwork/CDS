@@ -72,7 +72,7 @@ class AjaxForm
   private function isValidNonce($nonce)
   {
     if (!wp_verify_nonce($nonce, 'next_nonce')) { // Compare Nonce from POST request to server generated nonce
-      $this->response['message'] = __('Security check failed.', 'tofino');
+      $this->response['message'] = __('Security check failed.', 'tofino-nt');
       return false;
     } else {
       return true;
@@ -92,7 +92,7 @@ class AjaxForm
     if (get_theme_mod('captcha_secret') && get_theme_mod('captcha_site_key')) {
       return true;
     } else {
-      $this->response['message'] = __('reCaptcha sitekey and/or secret not found. Set this up in the theme options.', 'tofino');
+      $this->response['message'] = __('reCaptcha sitekey and/or secret not found. Set this up in the theme options.', 'tofino-nt');
       return false;
     }
     //} else {
@@ -117,7 +117,7 @@ class AjaxForm
     $resp      = $recaptcha->verify($captcha_repsonse, $_SERVER['REMOTE_ADDR']);
     if (!$resp->isSuccess()) {
       // $errors = $resp->getErrorCodes(); // Should we send some real error codes back to the user?
-      $this->response['message'] = __('Captcha failed.', 'tofino');
+      $this->response['message'] = __('Captcha failed.', 'tofino-nt');
       return false;
     } else {
       return true;
@@ -143,7 +143,7 @@ class AjaxForm
     } elseif (get_theme_mod('email_address')) { // Email address from general options
       $recipient = get_theme_mod('email_address');
     } else {
-      $this->response['message'] = __('No recipient email address.', 'tofino');
+      $this->response['message'] = __('No recipient email address.', 'tofino-nt');
       return wp_send_json($this->response);
     }
     return $recipient;
@@ -237,8 +237,8 @@ class AjaxForm
 
     $message = str_replace('%form_content%', $form_content, $message);
     $message = str_replace('%message%', $settings['message'], $message);
-    $message = str_replace('%ip_address%', (!$settings['user_email'] ? __('Client IP Address: ', 'tofino') . $_SERVER['REMOTE_ADDR'] : ''), $message);
-    $message = str_replace('%referrer%', (!$settings['user_email'] ? __('Referrer: ', 'tofino') . $_SERVER['HTTP_REFERER'] : ''), $message);
+    $message = str_replace('%ip_address%', (!$settings['user_email'] ? __('Client IP Address: ', 'tofino-nt') . $_SERVER['REMOTE_ADDR'] : ''), $message);
+    $message = str_replace('%referrer%', (!$settings['user_email'] ? __('Referrer: ', 'tofino-nt') . $_SERVER['HTTP_REFERER'] : ''), $message);
 
     return $message;
   }
@@ -278,7 +278,7 @@ class AjaxForm
     $email_body = $this->buildEmailBody($settings);
 
     if (empty($settings['subject'])) {
-      $settings['subject'] = __('Form submission from ', 'tofino') . $_SERVER['SERVER_NAME'];
+      $settings['subject'] = __('Form submission from ', 'tofino-nt') . $_SERVER['SERVER_NAME'];
     }
 
     $mail = wp_mail($settings['to'], $settings['subject'], $email_body, $headers);
@@ -341,7 +341,7 @@ class AjaxForm
     }
 
     if ($errors) {
-      $this->response['message'] = __('Validation failed.', 'tofino');
+      $this->response['message'] = __('Validation failed.', 'tofino-nt');
       $this->response['type']    = 'validation';
       $this->response['extra']   = json_encode($errors);
       wp_send_json($this->response);

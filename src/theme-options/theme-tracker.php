@@ -19,28 +19,28 @@ namespace Tofino\ThemeOptions\ThemeTracker;
  */
 function theme_tracker_settings($wp_customize) {
   $wp_customize->add_section('tofino_theme_tracker_settings', [
-    'title' => __('Theme Tracker', 'tofino'),
+    'title' => __('Theme Tracker', 'tofino-nt'),
     'priority' => 165
   ]);
 
   $wp_customize->add_setting('theme_tracker_enabled', ['default' => 'disabled']);
 
   $wp_customize->add_control('theme_tracker_enabled', [
-    'label'       => __('Theme Tracker', 'tofino'),
-    'description' => __('Send theme name, theme version, site url, ip address and WP version to the tracker API every 7 days. This data is used to plan future updates.', 'tofino'),
+    'label'       => __('Theme Tracker', 'tofino-nt'),
+    'description' => __('Send theme name, theme version, site url, ip address and WP version to the tracker API every 7 days. This data is used to plan future updates.', 'tofino-nt'),
     'section'     => 'tofino_theme_tracker_settings',
     'type'        => 'select',
     'choices'     => [
-      'enabled'  => __('Enabled', 'tofino'),
-      'disabled' => __('Disabled', 'tofino')
+      'enabled'  => __('Enabled', 'tofino-nt'),
+      'disabled' => __('Disabled', 'tofino-nt')
     ]
   ]);
 
   $wp_customize->add_setting('theme_tracker_api_key', ['default' => '']);
 
   $wp_customize->add_control('theme_tracker_api_key', [
-    'label'       => __('Theme Tracker API Key', 'tofino'),
-    'description' => __('API key required to connect to the tracker.', 'tofino'),
+    'label'       => __('Theme Tracker API Key', 'tofino-nt'),
+    'description' => __('API key required to connect to the tracker.', 'tofino-nt'),
     'section'     => 'tofino_theme_tracker_settings',
     'type'        => 'text'
   ]);
@@ -48,8 +48,8 @@ function theme_tracker_settings($wp_customize) {
   $wp_customize->add_setting('theme_tracker_api_url', ['default' => 'http://tracker.lambdacreatives.com/api/v1/theme']);
 
   $wp_customize->add_control('theme_tracker_api_url', [
-    'label'       => __('Theme Tracker API Url', 'tofino'),
-    'description' => __('The API endpoint to send the theme data.', 'tofino'),
+    'label'       => __('Theme Tracker API Url', 'tofino-nt'),
+    'description' => __('The API endpoint to send the theme data.', 'tofino-nt'),
     'section'     => 'tofino_theme_tracker_settings',
     'type'        => 'url'
   ]);
@@ -57,8 +57,8 @@ function theme_tracker_settings($wp_customize) {
   $wp_customize->add_setting('theme_tracker_debug', ['default' => '']);
 
   $wp_customize->add_control('theme_tracker_debug', [
-    'label'       => __('Theme Tracker Debug Mode', 'tofino'),
-    'description' => __('Send data continuously. Ignore transient time.', 'tofino'),
+    'label'       => __('Theme Tracker Debug Mode', 'tofino-nt'),
+    'description' => __('Send data continuously. Ignore transient time.', 'tofino-nt'),
     'section'     => 'tofino_theme_tracker_settings',
     'type'        => 'checkbox'
   ]);
@@ -78,7 +78,7 @@ add_action('customize_register', __NAMESPACE__ . '\\theme_tracker_settings');
 function missing_apikey_notice() {
   if (get_theme_mod('theme_tracker_enabled') == 'enabled' && !get_theme_mod('theme_tracker_api_key')) { ?>
     <div class="error notice">
-      <p><?php _e('Theme tracking is enabled but is missing the API Key.', 'tofino'); ?></p>
+      <p><?php _e('Theme tracking is enabled but is missing the API Key.', 'tofino-nt'); ?></p>
     </div><?php
   }
 }
@@ -146,7 +146,7 @@ function theme_tracker() {
 
       if (is_wp_error($response)) { // Request error occured.
         $error_message = $response->get_error_message();
-        error_log('[' . __('Theme Tracker API Error', 'tofino') . '] ' . $error_message); // Log error in webservers errorlog
+        error_log('[' . __('Theme Tracker API Error', 'tofino-nt') . '] ' . $error_message); // Log error in webservers errorlog
         $result = false;
         set_transient('theme_tracking', $result, 60*60*2); // Set the transient to try again in 2 hours
       } else {
@@ -156,11 +156,11 @@ function theme_tracker() {
           if ($json_response->error == false) {
             $result = true;
           } else { // Valid JSON, with error.
-            error_log('[' . __('Theme Tracker API Error', 'tofino') . '] ' . $json_response->message); // Log error in webservers errorlog
+            error_log('[' . __('Theme Tracker API Error', 'tofino-nt') . '] ' . $json_response->message); // Log error in webservers errorlog
             $result = false;
           }
         } else { // Invlid response received
-          error_log('[' . __('Theme Tracker API Error', 'tofino') . '] ' . __('Invalid resposne (not JSON) received from the API endpoint.', 'tofino')); // Log error in webservers errorlog
+          error_log('[' . __('Theme Tracker API Error', 'tofino-nt') . '] ' . __('Invalid resposne (not JSON) received from the API endpoint.', 'tofino-nt')); // Log error in webservers errorlog
           $result = false;
         }
 

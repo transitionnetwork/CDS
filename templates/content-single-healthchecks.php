@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-12">
               <div class="header">
-                <h1>Healthcheck: <?php echo get_the_title($initiative_id); ?></h1>
+                <h1><?php _e('Healthcheck', 'tofino'); ?>: <?php echo get_the_title($initiative_id); ?></h1>
                 <h4><?php echo date('l jS F Y'); ?></h4>
               </div>
 

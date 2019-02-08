@@ -19,7 +19,7 @@ namespace Tofino\ThemeOptions\SocialNetworks;
  */
 function social_settings($wp_customize) {
   $wp_customize->add_section('tofino_social_settings', [
-    'title'       => __('Social Networks', 'tofino'),
+    'title'       => __('Social Networks', 'tofino-nt'),
     'description' => 'Links to various social networks. Remember to add the SVG icon for any new networks you add.',
     'priority'    => 140
   ]);
@@ -27,7 +27,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[facebook]', ['default' => '']);
 
   $wp_customize->add_control('social[facebook]', [
-    'label'   => __('Facebook', 'tofino'),
+    'label'   => __('Facebook', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -35,7 +35,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[twitter]', ['default' => '']);
 
   $wp_customize->add_control('social[twitter]', [
-    'label'   => __('Twitter', 'tofino'),
+    'label'   => __('Twitter', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -43,7 +43,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[instagram]', ['default' => '']);
 
   $wp_customize->add_control('social[instagram]', [
-    'label'   => __('Instagram', 'tofino'),
+    'label'   => __('Instagram', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -51,7 +51,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[googleplus]', ['default' => '']);
 
   $wp_customize->add_control('social[googleplus]', [
-    'label'   => __('GooglePlus', 'tofino'),
+    'label'   => __('GooglePlus', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -59,7 +59,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[linkedin]', ['default' => '']);
 
   $wp_customize->add_control('social[linkedin]', [
-    'label'   => __('LinkedIn', 'tofino'),
+    'label'   => __('LinkedIn', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -67,7 +67,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[pinterest]', ['default' => '']);
 
   $wp_customize->add_control('social[pinterest]', [
-    'label'   => __('Pinterest', 'tofino'),
+    'label'   => __('Pinterest', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -75,7 +75,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[youtube]', ['default' => '']);
 
   $wp_customize->add_control('social[youtube]', [
-    'label'   => __('YouTube', 'tofino'),
+    'label'   => __('YouTube', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -83,7 +83,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[vimeo]', ['default' => '']);
 
   $wp_customize->add_control('social[vimeo]', [
-    'label'   => __('Vimeo', 'tofino'),
+    'label'   => __('Vimeo', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);
@@ -91,7 +91,7 @@ function social_settings($wp_customize) {
   $wp_customize->add_setting('social[soundcloud]', ['default' => '']);
 
   $wp_customize->add_control('social[soundcloud]', [
-    'label'   => __('Soundcloud', 'tofino'),
+    'label'   => __('Soundcloud', 'tofino-nt'),
     'section' => 'tofino_social_settings',
     'type'    => 'url'
   ]);

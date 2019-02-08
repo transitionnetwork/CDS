@@ -43,7 +43,7 @@ add_action('wp_footer', __NAMESPACE__ . '\\google_analytics');
  */
 function google_analytics_settings($wp_customize) {
   $wp_customize->add_section('tofino_google_analytics_settings', [
-    'title'    => __('Google Analytics', 'tofino'),
+    'title'    => __('Google Analytics', 'tofino-nt'),
     'priority' => 130
   ]);
 
@@ -54,8 +54,8 @@ function google_analytics_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('google_analytics', [
-    'label'       => __('Google Analytics UA Code', 'tofino'),
-    'description' => __('Only runs GA Script when WP_DEBUG is false.', 'tofino'),
+    'label'       => __('Google Analytics UA Code', 'tofino-nt'),
+    'description' => __('Only runs GA Script when WP_DEBUG is false.', 'tofino-nt'),
     'section'     => 'tofino_google_analytics_settings',
     'type'        => 'text'
   ]);

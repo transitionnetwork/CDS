@@ -17,7 +17,7 @@ namespace Tofino\ThemeOptions\Menu;
  */
 function menu_settings($wp_customize) {
   $wp_customize->add_section('tofino_menu_settings', [
-    'title'    => __('Menu Options', 'tofino'),
+    'title'    => __('Menu Options', 'tofino-nt'),
     'priority' => 100
   ]);
 
@@ -27,13 +27,13 @@ function menu_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('menu_sticky', [
-    'label'       => __('Sticky Menu', 'tofino'),
+    'label'       => __('Sticky Menu', 'tofino-nt'),
     'description' => '',
     'section'     => 'tofino_menu_settings',
     'type'        => 'select',
     'choices'     => [
-      'enabled'  => __('Enabled', 'tofino'),
-      'disabled' => __('Disabled', 'tofino')
+      'enabled'  => __('Enabled', 'tofino-nt'),
+      'disabled' => __('Disabled', 'tofino-nt')
     ]
   ]);
 
@@ -43,13 +43,13 @@ function menu_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('menu_headroom', [
-    'label'       => __('Headroom Menu', 'tofino'),
+    'label'       => __('Headroom Menu', 'tofino-nt'),
     'description' => 'Hide Menu on Scroll Down. Show menu on scroll up.',
     'section'     => 'tofino_menu_settings',
     'type'        => 'select',
     'choices'     => [
-      'enabled'  => __('Enabled', 'tofino'),
-      'disabled' => __('Disabled', 'tofino')
+      'enabled'  => __('Enabled', 'tofino-nt'),
+      'disabled' => __('Disabled', 'tofino-nt')
     ]
   ]);
 
@@ -59,14 +59,14 @@ function menu_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('menu_position', [
-    'label'       => __('Menu Position', 'tofino'),
+    'label'       => __('Menu Position', 'tofino-nt'),
     'description' => '',
     'section'     => 'tofino_menu_settings',
     'type'        => 'select',
     'choices'     => [
-      'left'   => __('Left', 'tofino'),
-      'center' => __('Center', 'tofino'),
-      'right'  => __('Right', 'tofino')
+      'left'   => __('Left', 'tofino-nt'),
+      'center' => __('Center', 'tofino-nt'),
+      'right'  => __('Right', 'tofino-nt')
     ]
   ]);
 }

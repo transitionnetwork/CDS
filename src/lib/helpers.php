@@ -20,7 +20,7 @@ function title() {
     if ($home = get_option('page_for_posts', true)) {
       return get_the_title($home);
     }
-    return __('Latest Posts', 'tofino');
+    return __('Latest Posts', 'tofino-nt');
   }
 
   if (is_archive()) {
@@ -28,11 +28,11 @@ function title() {
   }
 
   if (is_search()) {
-    return sprintf(__('Search Results for %s', 'tofino'), get_search_query());
+    return sprintf(__('Search Results for %s', 'tofino-nt'), get_search_query());
   }
 
   if (is_404()) {
-    return __('Not Found', 'tofino');
+    return __('Not Found', 'tofino-nt');
   }
   return get_the_title();
 }

@@ -19,15 +19,15 @@ namespace Tofino\ThemeOptions\Advanced;
  */
 function advanced_settings($wp_customize) {
   $wp_customize->add_section('tofino_advanced_settings', [
-    'title'    => __('Advanced', 'tofino'),
+    'title'    => __('Advanced', 'tofino-nt'),
     'priority' => 150
   ]);
 
   $wp_customize->add_setting('no_fout', ['default' => '']);
 
   $wp_customize->add_control('no_fout', [
-    'label'       => __('No FOUT', 'tofino'),
-    'description' => __('Enable the body class to remove the FOUT (Flash of unstyled text).', 'tofino'),
+    'label'       => __('No FOUT', 'tofino-nt'),
+    'description' => __('Enable the body class to remove the FOUT (Flash of unstyled text).', 'tofino-nt'),
     'section'     => 'tofino_advanced_settings',
     'type'        => 'checkbox'
   ]);
@@ -35,8 +35,8 @@ function advanced_settings($wp_customize) {
   $wp_customize->add_setting('critical_css', ['default' => '']);
 
   $wp_customize->add_control('critical_css', [
-    'label'       => __('Enable Critical CSS', 'tofino'),
-    'description' => __('Inject the critical.css file as inline styles in the head tag. Defer the main CSS file in to loadCSS in the footer. Remember to run the styles:critical gulp task.', 'tofino'),
+    'label'       => __('Enable Critical CSS', 'tofino-nt'),
+    'description' => __('Inject the critical.css file as inline styles in the head tag. Defer the main CSS file in to loadCSS in the footer. Remember to run the styles:critical gulp task.', 'tofino-nt'),
     'section'     => 'tofino_advanced_settings',
     'type'        => 'checkbox'
   ]);
@@ -44,8 +44,8 @@ function advanced_settings($wp_customize) {
   $wp_customize->add_setting('jquery_footer', ['default' => '']);
 
   $wp_customize->add_control('jquery_footer', [
-    'label'       => __('Move jQuery to Footer', 'tofino'),
-    'description' => __('Move jQuery to the footer. Uncheck if you have compatibility issues with plugins.', 'tofino'),
+    'label'       => __('Move jQuery to Footer', 'tofino-nt'),
+    'description' => __('Move jQuery to the footer. Uncheck if you have compatibility issues with plugins.', 'tofino-nt'),
     'section'     => 'tofino_advanced_settings',
     'type'        => 'checkbox'
   ]);

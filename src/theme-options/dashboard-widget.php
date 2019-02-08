@@ -17,7 +17,7 @@ namespace Tofino\ThemeOptions\DashboardWidgets;
  */
 function widget_settings($wp_customize) {
   $wp_customize->add_section('tofino_dash_widget_settings', [
-    'title'    => __('Dashboard Widget', 'tofino'),
+    'title'    => __('Dashboard Widget', 'tofino-nt'),
     'priority' => 160
   ]);
 
@@ -27,7 +27,7 @@ function widget_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('dash_widget_title', [
-    'label'   => __('Widget Title', 'tofino'),
+    'label'   => __('Widget Title', 'tofino-nt'),
     'section' => 'tofino_dash_widget_settings',
     'type'    => 'text'
   ]);
@@ -38,7 +38,7 @@ function widget_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('dash_widget_text', [
-    'label'   => __('Widget Text', 'tofino'),
+    'label'   => __('Widget Text', 'tofino-nt'),
     'section' => 'tofino_dash_widget_settings',
     'type'    => 'textarea'
   ]);
@@ -59,7 +59,7 @@ function dashboard_widgets() {
   // Add the widget
   wp_add_dashboard_widget(
     $widget_id,
-    get_theme_mod('dash_widget_title', __('Theme Support', 'tofino')),
+    get_theme_mod('dash_widget_title', __('Theme Support', 'tofino-nt')),
     __NAMESPACE__ . '\\get_widget_content'
   );
 
@@ -78,5 +78,5 @@ add_action('wp_dashboard_setup', __NAMESPACE__ . '\\dashboard_widgets');
  * @return The widget content from the theme option or default text.
  */
 function get_widget_content() {
-  echo get_theme_mod('dash_widget_text', __('<a href ="https://github.com/lambdacreatives/tofino">Tofino</a> theme by <a href ="https://github.com/mrchimp">MrChimp</a> and <a href ="https://github.com/danimalweb">Danimalweb</a>.', 'tofino'));
+  echo get_theme_mod('dash_widget_text', __('<a href ="https://github.com/lambdacreatives/tofino">Tofino</a> theme by <a href ="https://github.com/mrchimp">MrChimp</a> and <a href ="https://github.com/danimalweb">Danimalweb</a>.', 'tofino-nt'));
 }

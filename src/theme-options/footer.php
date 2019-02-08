@@ -17,7 +17,7 @@ namespace Tofino\ThemeOptions\Footer;
  */
 function footer_settings($wp_customize) {
   $wp_customize->add_section('tofino_footer_settings', [
-    'title'    => __('Footer', 'tofino'),
+    'title'    => __('Footer', 'tofino-nt'),
     'priority' => 145
   ]);
 
@@ -27,23 +27,23 @@ function footer_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('footer_sticky', [
-    'label'       => __('Sticky Footer', 'tofino'),
+    'label'       => __('Sticky Footer', 'tofino-nt'),
     'description' => '',
     'section'     => 'tofino_footer_settings',
     'type'        => 'select',
     'choices'     => [
-      'enabled'  => __('Enabled', 'tofino'),
-      'disabled' => __('Disabled', 'tofino')
+      'enabled'  => __('Enabled', 'tofino-nt'),
+      'disabled' => __('Disabled', 'tofino-nt')
     ]
   ]);
 
   $wp_customize->add_setting('footer_text', [
-    'default'           => __('<a href ="https://github.com/lambdacreatives/tofino">Tofino</a> theme by <a href ="https://github.com/mrchimp">MrChimp</a> and <a href ="https://github.com/danimalweb">Danimalweb</a>.', 'tofino'),
+    'default'           => __('<a href ="https://github.com/lambdacreatives/tofino">Tofino</a> theme by <a href ="https://github.com/mrchimp">MrChimp</a> and <a href ="https://github.com/danimalweb">Danimalweb</a>.', 'tofino-nt'),
     'sanitize_callback' => 'sanitize_text_field',
   ]);
 
   $wp_customize->add_control('footer_text', [
-    'label'   => __('Footer Text', 'tofino'),
+    'label'   => __('Footer Text', 'tofino-nt'),
     'section' => 'tofino_footer_settings',
     'type'    => 'textarea'
   ]);

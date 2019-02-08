@@ -46,7 +46,7 @@ add_action('wp_footer', __NAMESPACE__ . '\\hotjar_tracking');
  */
 function hotjar_tracking_settings($wp_customize) {
   $wp_customize->add_section('tofino_hotjar_tracking_settings', [
-    'title'    => __('Hotjar Tracking', 'tofino'),
+    'title'    => __('Hotjar Tracking', 'tofino-nt'),
     'priority' => 135
   ]);
 
@@ -57,8 +57,8 @@ function hotjar_tracking_settings($wp_customize) {
   ]);
 
   $wp_customize->add_control('hotjar_site_id', [
-    'label'       => __('Hotjar Tracking Site ID', 'tofino'),
-    'description' => __('Only runs Hotjar Script when WP_DEBUG is false.', 'tofino'),
+    'label'       => __('Hotjar Tracking Site ID', 'tofino-nt'),
+    'description' => __('Only runs Hotjar Script when WP_DEBUG is false.', 'tofino-nt'),
     'section'     => 'tofino_hotjar_tracking_settings',
     'type'        => 'text'
   ]);
