@@ -30,6 +30,14 @@ h3,
   font-size: 1.5rem;
 }
 
+a {
+  color: $brand-primary;
+
+  &:hover {
+    color: darken($brand-primary, 10);
+  }
+}
+
 .btn-primary {
   background-color: $brand-primary;
   border-color: $brand-primary;

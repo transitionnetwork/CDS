@@ -230,6 +230,8 @@ function custom_query_vars_filter($vars)
   $vars[] = 'error_code';
   $vars[] = 'hub_id';
   $vars[] = 'hub_name';
+  $vars[] = 'edited_post';
+  $vars[] = 'added_post';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
