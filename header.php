@@ -25,9 +25,9 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light <?php echo m\menu_headroom(); ?> <?php echo m\menu_sticky(); ?> <?php echo m\menu_position(); ?>">
+<nav class="navbar navbar-expand-lg <?php echo m\menu_headroom(); ?> <?php echo m\menu_sticky(); ?> <?php echo m\menu_position(); ?>">
   <div class="container">
-    <a class="navbar-brand" href="<?php echo home_url(); ?>" title="<?php echo esc_attr(bloginfo('name')); ?>"><?php echo bloginfo('name'); ?></a>
+    <a class="navbar-brand" href="<?php echo home_url(); ?>" title="<?php echo esc_attr(bloginfo('name')); ?>"><?php echo svg('tn-logo'); ?></a>
 
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="bar-wrapper">

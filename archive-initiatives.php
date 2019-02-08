@@ -15,7 +15,7 @@ get_header(); ?>
     <h1><?php echo $page_title ?></h1>
     <?php list_initiatives($posts); ?>
     <ul class="button-group">
-      <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>"><?php _e('Add new initiative', 'tofino'); ?></a></li>
+      <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>"><?php _e('Add New Initiative', 'tofino'); ?></a></li>
     </ul>
   </div>
 </main>

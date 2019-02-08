@@ -1,0 +1,19 @@
+.navbar {
+  padding: 0.25rem 1rem;
+}
+
+.navbar-brand {
+  svg {
+    width: 160px;
+    height: 52px;
+    fill: $brand-primary;
+  }
+}
+
+#main-menu {
+  justify-content: flex-end;
+}
+
+a {
+  color: $brand-primary;
+}
