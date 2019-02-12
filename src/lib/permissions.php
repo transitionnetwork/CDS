@@ -8,10 +8,10 @@ function is_user_role($queried_role)
 }
 
 function is_post_in_user_hub($post) {
-  $post_hub_id = (get_field('hub_tax', $post->ID));
-  $user_hub_ids = get_the_terms(wp_get_current_user(), 'hub');
+  $post_hub_id = get_the_terms($post, 'hub')[0]->term_id;
+  $user_hub_ids = get_user_meta(wp_get_current_user()->ID, 'hub_user');
   foreach($user_hub_ids as $user_hub_id) {
-    if($post_hub_id == $user_hub_id->term_id) {
+    if($post_hub_id == $user_hub_id) {
       return true;
     }
   }
@@ -82,14 +82,17 @@ function is_post_published($post) {
 }
 
 // Publish
-function show_publish_button($post_id)
+function render_publish_button($post_id)
 {
-  global $post;
-  echo '<form name="front_end_publish" method="POST" action="">
-    <input type="hidden" name="pid" id="pid" value="' . $post_id . '">
+  ?>
+  <form name="front_end_publish" method="POST" action="">
+    <input type="hidden" name="pid" id="pid" value="<?php echo $post_id; ?>">
     <input type="hidden" name="FE_PUBLISH" id="FE_PUBLISH" value="FE_PUBLISH">
-    <input type="submit" name="submit" id="submit" value="Approve Post">
-  </form>';
+    <label class="submit"><input type="submit" name="submit" id="submit" value="">
+      <?php echo svg('check'); ?> Approve Post
+    </label>
+  </form>
+  <?php 
 }
 
 //function to update post status

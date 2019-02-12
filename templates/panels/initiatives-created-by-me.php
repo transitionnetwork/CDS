@@ -14,5 +14,5 @@ $posts = get_posts($args); ?>
     <?php _e('You haven\'t added any initiatives yet', 'tofino'); ?>
   <?php endif; ?>
 
-  <div class="button-block"><a href="/add-initiative" class="btn btn-primary btn-sm"><?php _e('Add New Initiative', 'tofino'); ?></a></div>
+  <div class="button-block"><a href="/add-initiative" class="btn btn-primary btn-sm"><?php echo svg('plus'); ?><?php _e('Add New Initiative', 'tofino'); ?></a></div>
 </section>

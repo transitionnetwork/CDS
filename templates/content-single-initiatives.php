@@ -103,7 +103,7 @@
       </div>
     
       <?php if (can_publish_initiative($post) && !is_post_published($post)) {
-        show_publish_button($post->ID);
+        render_publish_button($post->ID);
       } ?>
       <?php if(can_write_initiative($post)) { ?>
         <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php _e('Edit this initiative', 'tofino'); ?></a></div>

@@ -20,7 +20,7 @@ function list_initiatives($posts) {
               <a href="<?php the_permalink($post->ID); ?>"><?php echo get_the_title($post->ID); ?></a>
               <span class="status">
                 <?php $pending_message = __('Pending approval', 'tofino'); ?>
-                <?php echo ($post->post_status == 'publish') ? '' : '<span class="btn-sm btn-dark">' . $pending_message . '</span>'; ?>
+                <?php echo ($post->post_status == 'publish') ? '' : '<span class="btn btn-sm btn-dark btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
               </span>
             </td>
             <td>
@@ -33,14 +33,14 @@ function list_initiatives($posts) {
               } ?>
             </td>
             <td class="text-right">
-              <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>"><?php _e('View', 'tofino'); ?></a>
+              <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
               
               <?php if(can_write_initiative($post)) { ?>
-                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, home_url('edit-initiative')); ?>"><?php _e('Edit', 'tofino'); ?></a>
-                <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')"><?php _e('Delete', 'tofino'); ?></a>
+                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, home_url('edit-initiative')); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
+                <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
               <?php } ?>
               <?php if(can_publish_initiative($post) && !is_post_published($post)) {
-                show_publish_button($post->ID);
+                render_publish_button($post->ID);
               } ?>
             </td>
           </tr>

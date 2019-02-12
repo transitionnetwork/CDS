@@ -1,6 +1,11 @@
 <section>
-    <?php foreach(get_the_terms(wp_get_current_user(), 'hub') as $term) { ?>
-      <h2><?php _e('Initiatives pending approval for', 'tofino'); ?> <a href="<?php echo get_post_type_archive_link('initiatives') . '?term=' . $term->term_id; ?>"><?php echo $term->name; ?></a></h2>
+    <?php $hub_users = get_user_meta(wp_get_current_user()->ID, 'hub_user');
+    foreach ($hub_users as $hub_user) {
+      $terms[] = get_term_by('term_id', $hub_user, 'hub');
+    }
+    
+    foreach($terms as $term) { ?>
+      <h2><?php _e('Initiatives pending approval for', 'tofino'); ?> <a href="<?php echo add_query_arg('hub_name', $term->slug, get_post_type_archive_link('initiatives')); ?>"><?php echo $term->name; ?></a></h2>
       <?php
       $args = array(
         'post_type' => 'initiatives',
@@ -14,11 +19,11 @@
           ),
         )
       );
-      $posts = get_posts($args); ?>
-    <?php if ($posts) :
+      $posts = get_posts($args);
+    if ($posts) :
       list_initiatives($posts);
     else : ?>
-      <?php _e('There aren\'t any initiatives pending approval for', 'tofino'); ?> <?php echo $term; ?>.
+      <?php _e('There aren\'t any initiatives pending approval for', 'tofino'); ?> <?php echo $term->name; ?>.
     <?php endif; ?>
   <?php } ?>
 </section>

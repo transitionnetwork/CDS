@@ -38,6 +38,34 @@ a {
   }
 }
 
+@mixin button-svg {
+  vertical-align: text-top;
+  width: 15px;
+  height: 15px;
+  margin-right: 4px;
+}
+
+a,
+span {
+  &.btn {
+    svg {
+      @include button-svg;
+    }
+  }
+
+  &.btn-danger,
+  &.btn-primary,
+  &.btn-dark {
+    svg {
+      fill: $white;
+    }
+  }
+
+  &.btn-disabled {
+    pointer-events: none;
+  }
+}
+
 .btn-primary {
   background-color: $brand-primary;
   border-color: $brand-primary;
@@ -70,7 +98,7 @@ main {
   border-radius: 3px;
 }
 
-.acf-button,
+.acf-form,
 input[type="submit"] {
   @extend .btn;
   @extend .btn-primary;
@@ -80,9 +108,23 @@ form#hub-filter input[type="submit"] {
   @extend .btn-sm;
 }
 
-form[name="front_end_publish"] input[type="submit"] {
+form[name="front_end_publish"] label.submit {
+  cursor: pointer;
   @extend .btn-success;
   @extend .btn-sm;
+
+  svg {
+    fill: $white;
+    @include button-svg;
+  }
+
+  input[type="submit"] {
+    display: none;
+
+    svg {
+      color: $white;
+    }
+  }
 }
 
 section,
