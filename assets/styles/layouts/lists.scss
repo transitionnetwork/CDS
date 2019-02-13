@@ -28,6 +28,10 @@
     form {
       display: inline;
     }
+
+    .btn-group {
+      white-space: nowrap;
+    }
   }
 }
 
@@ -41,5 +45,30 @@ ul.account-details {
     font-weight: bold;
     margin: 0;
     margin-right: 0.25rem;
+  }
+}
+
+nav.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+nav .page-numbers {
+  border-radius: 0;
+  @extend .pagination;
+
+  li a,
+  li span {
+    color: $brand-primary;
+    @extend .page-link;
+
+    &.current {
+      background-color: $brand-primary;
+      color: $white;
+    }
+
+    &:hover {
+      color: $brand-primary;
+    }
   }
 }

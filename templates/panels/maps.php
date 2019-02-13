@@ -1,9 +1,6 @@
 <section>
   <?php if(is_user_role('administrator') || is_user_role('super_hub')) {
-    $term_slugs = get_hub_terms();
-    foreach($term_slugs as $term_slug) {
-      $terms[] = get_term_by('slug', $term_slug, 'hub');
-    }
+    $terms = get_terms('hub');
   } else {
     $user_hub_ids = get_user_meta(wp_get_current_user()->ID, 'hub_user');
     foreach($user_hub_ids as $id) {

@@ -2,14 +2,15 @@
   'post_type' => 'initiatives',
   'author' => wp_get_current_user()->ID,
   'posts_per_page' => -1,
-  'post_status' => array('publish', 'pending')
+  'post_status' => array('publish', 'pending'),
+  'fields' => 'ids'
 );
-$posts = get_posts($args); ?>
+$post_ids = get_posts($args); ?>
 
 <section>
   <h2><?php _e('Initiatives created by me', 'tofino'); ?></h2>
-  <?php if ($posts) :
-    list_initiatives($posts);
+  <?php if ($post_ids) :
+    list_initiatives($post_ids);
   else : ?>
     <?php _e('You haven\'t added any initiatives yet', 'tofino'); ?>
   <?php endif; ?>
