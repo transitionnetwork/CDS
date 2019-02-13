@@ -14,7 +14,8 @@
           } ?>
 
           <ul class="meta">
-            <li><strong><?php echo get_field_object('hub_tax')['label']; ?>: </strong> <a href="<?php echo get_post_type_archive_link('initiatives') . '?term=' . get_field('hub_tax') ?>"><?php echo get_term(get_field('hub_tax'), 'hub')->name; ?></a></li>
+            <?php $hub = wp_get_post_terms($post->ID, 'hub')[0]; ?>
+            <li><strong>Hub: </strong> <a href="<?php echo add_query_arg('hub_name', $hub->slug, home_url('list-initiatives')); ?>"><?php echo $hub->name; ?></a></li>
             <?php if($topics) { ?>
               <li><strong><?php echo get_taxonomy('topic')->label; ?>:</strong> <?php echo implode(', ', $topic_names); ?></li>
             <?php } ?>

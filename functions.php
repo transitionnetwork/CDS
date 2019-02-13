@@ -317,7 +317,8 @@ function acf_custom_save($post_id) {
     $post = get_post($post_id);
     $author = get_userdata($post->post_author);
     //clear transient
-    delete_transient('init_ids');
+    delete_transient('map_query');
+    delete_transient('map_points');
     if(in_array('initiative', $author->roles)) {
       // EMAIL HUB, ADMIN
     };
