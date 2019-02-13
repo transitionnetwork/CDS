@@ -71,7 +71,7 @@
               $healthchecks = get_posts($args);
               list_healthchecks($healthchecks);
               ?>
-              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), get_the_permalink(422)); ?>"><?php _e('Add Healthcheck', 'tofino'); ?></a></p>
+              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), get_the_permalink(422)); ?>"><?php echo svg('plus'); ?><?php _e('Add Healthcheck', 'tofino'); ?></a></p>
             </div>
           <?php } ?>
         </div>
@@ -106,8 +106,8 @@
         render_publish_button($post->ID);
       } ?>
       <?php if(can_write_initiative($post)) { ?>
-        <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php _e('Edit this initiative', 'tofino'); ?></a></div>
-        <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>"><?php _e('Delete this initiative', 'tofino'); ?></a></div>
+        <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
+        <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>"><?php echo svg('trashcan'); ?><?php _e('Delete this initiative', 'tofino'); ?></a></div>
       <?php } ?>
     </div>
   </main>
