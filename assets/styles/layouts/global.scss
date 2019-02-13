@@ -98,8 +98,8 @@ main {
   border-radius: 3px;
 }
 
-.acf-form,
-input[type="submit"] {
+.acf-form input[type="submit"] {
+  line-height: 1.6;
   @extend .btn;
   @extend .btn-primary;
 }

@@ -25,6 +25,9 @@ function list_initiatives($post_ids) {
                 <?php $pending_message = __('Pending approval', 'tofino'); ?>
                 <?php echo ($post->post_status == 'publish') ? '' : '<span class="btn btn-sm btn-dark btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
               </span>
+              <?php if (can_publish_initiative($post) && !is_post_published($post)) {
+                render_publish_button($post->ID);
+              } ?>
             </td>
             <td>
               <?php $hub_slug = get_term_by('id', get_field('hub_tax', $post->ID), 'hub')->slug; ?>
@@ -43,9 +46,6 @@ function list_initiatives($post_ids) {
                   <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, home_url('edit-initiative')); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
                   <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
                 <?php } ?>
-                <?php if(can_publish_initiative($post) && !is_post_published($post)) {
-                  render_publish_button($post->ID);
-                } ?>
               </div>
             </td>
           </tr>
