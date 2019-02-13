@@ -118,11 +118,12 @@ function create_posttypes() {
         'singular_name' => __( 'Initiative' )
       ),
       'public' => true,
-      'has_archive' => true,
+      'has_archive' => false,
       'show_in_rest' => true,
-      'supports' => array('title', 'editor')
+      'supports' => array('title', 'editor', 'author')
     )
   );
+  
   register_post_type( 'healthchecks',
     array(
       'labels' => array(
@@ -315,6 +316,8 @@ function acf_custom_save($post_id) {
   if (get_post_type($post_id) == 'initiatives') {
     $post = get_post($post_id);
     $author = get_userdata($post->post_author);
+    //clear transient
+    delete_transient('init_ids');
     if(in_array('initiative', $author->roles)) {
       // EMAIL HUB, ADMIN
     };
@@ -324,10 +327,13 @@ add_filter('acf/save_post', 'acf_custom_save', 20);
 
 function archive_search($query) {
   if (!is_admin() && $query->is_main_query()) {
-    $query->set('orderby', 'post_title');
-    $query->set('order', 'ASC');
-    $query->set('post_status', 'publish');
-    
+    if(false === ($init_query = get_transient('init_query'))) {
+      $query->set('orderby', 'post_title');
+      $query->set('order', 'ASC');
+      $query->set('post_status', 'publish');
+      $query->set('posts_per_page', -1);
+      set_transient('init_query', $init_query, 60 * 60 * 4);
+    }
     if(get_query_var('hub_name')) {
       $query->set('tax_query', array(
         array(
@@ -377,10 +383,10 @@ function map_taxonomy($user_id, $config, $entry, $user_pass)
 }
 add_action("gform_user_registered", "map_taxonomy", 10, 4);
 
-function generate_map($post) {
-  $map = get_field('map', get_the_ID($post), false); ?>
-  <li class="point" data-lat="<?php echo htmlspecialchars($map['center_lat']); ?>" data-lng="<?php echo htmlspecialchars($map['center_lng']); ?>" data-title="<?php echo get_the_title($post); ?>" data-link="<?php the_permalink($post); ?>" data-excerpt="<?php echo get_the_excerpt($post); ?>"></li>
-<?php }
+function generate_map($post_id) {
+  $map = get_field('map', $post_id, false);
+  return '<li class="point" data-lat="' . htmlspecialchars($map['center_lat']) . '" data-lng="' .htmlspecialchars($map['center_lng']) . '" data-title="' . get_the_title($post_id) . '" data-link="' . get_the_permalink($post_id) . '" data-excerpt="' . get_the_excerpt($post_id) . '"></li>';
+}
 
 function wpse23007_redirect()
 {
@@ -390,3 +396,11 @@ function wpse23007_redirect()
   }
 }
 add_action('init', 'wpse23007_redirect');
+
+// This function will prevent rewrite on page number
+// function wpa66273_disable_canonical_redirect($query)
+// {
+//   if ('initiatives' == $query->query_vars['pagename'])
+//     remove_filter('template_redirect', 'redirect_canonical');
+// }
+// add_action('parse_query', 'wpa66273_disable_canonical_redirect');

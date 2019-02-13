@@ -84,8 +84,8 @@
               <?php echo get_field('address_line_1'); ?><br/>
               <?php echo get_field('city'); ?><br/>
               <?php echo get_field('province'); ?><br/>
-              <?php echo get_field('postal_code'); ?>
-              <?php echo get_field('country'); ?><br/>
+              <?php echo get_field('postal_code'); ?><br/>
+              <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
           <?php } ?>
 
           <?php if (get_field('email')) { ?>

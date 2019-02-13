@@ -1,6 +1,6 @@
 <?php
-function list_initiatives($posts) {
-  if ($posts) { ?>
+function list_initiatives($post_ids) {
+  if ($post_ids) { ?>
     <table class="item-list">
         <tr>
           <th class="col-a"><?php _e('Initiative', 'tofino'); ?></th>
@@ -8,11 +8,14 @@ function list_initiatives($posts) {
           <?php if(can_view_any_healthcheck()) { ?>
             <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
           <?php } ?>
-          <th class="col-c"></th>
+          <th></th>
         </tr>
         
-        <?php foreach ($posts as $post) : ?>
-          <?php setup_postdata($post);
+        <?php foreach ($post_ids as $post_id) : ?>
+          
+          <?php
+          $post = get_post($post_id);
+          setup_postdata($post);
           $author_object = get_user_by('id', get_the_author_meta('ID'));
           $author_hub_name = get_the_terms($author_object, 'hub')[0]->name; ?>
           <tr>
@@ -33,28 +36,30 @@ function list_initiatives($posts) {
               } ?>
             </td>
             <td class="text-right">
-              <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
-              
-              <?php if(can_write_initiative($post)) { ?>
-                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, home_url('edit-initiative')); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
-                <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
-              <?php } ?>
-              <?php if(can_publish_initiative($post) && !is_post_published($post)) {
-                render_publish_button($post->ID);
-              } ?>
+              <div class="btn-group">
+                <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
+                
+                <?php if(can_write_initiative($post)) { ?>
+                  <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, home_url('edit-initiative')); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
+                  <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('Are you sure you want to remove this hub?')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
+                <?php } ?>
+                <?php if(can_publish_initiative($post) && !is_post_published($post)) {
+                  render_publish_button($post->ID);
+                } ?>
+              </div>
             </td>
           </tr>
         <?php endforeach; ?>
         <tr>
           <td><span class="total">
-            <?php echo count($posts); ?> items
+            <?php //echo count($post_ids) . 'items'; ?>
           </span></td>
         </tr>
     </table>
   <?php 
   } ?>
 
-  <?php if (!$posts) { ?>
+  <?php if (!$post_ids) { ?>
     <?php _e('There aren\'t any initiatives', 'tofino'); ?>
   <?php  }
   wp_reset_postdata();
