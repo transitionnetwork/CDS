@@ -69,7 +69,7 @@ $post_ids = get_posts($args); ?>
       <?php if(is_user_logged_in()) { ?>
         <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Initiative', 'tofino'); ?></a></li>
         <?php } else { ?>
-          <li><a class="btn btn-primary" href="<?php echo get_permalink(560); ?>"><?php echo svg('key'); ?><?php _e('Register to add an initiative', 'tofino'); ?></a></li>
+          <li><a class="btn btn-primary" href="<?php echo get_permalink(460); ?>"><?php echo svg('key'); ?><?php _e('Register to add an initiative', 'tofino'); ?></a></li>
         <?php } ?>
     </ul>
     
