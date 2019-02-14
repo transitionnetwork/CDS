@@ -6,7 +6,7 @@ $user_hub = get_the_terms(wp_get_current_user(), 'hub')[0]->name;
 if(is_user_logged_in()) : ?>
   <?php _e('Logged in as', 'tofino'); ?> <?php echo wp_get_current_user()->user_login; ?>
 <?php else : ?>
-  <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php home_url('member-login'); ?>"><?php _e('Login', 'tofino'); ?></a>
+  <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php echo home_url('member-login'); ?>"><?php _e('Login', 'tofino'); ?></a>
 <?php endif; ?>
 
 <?php if($user_role) : ?>
