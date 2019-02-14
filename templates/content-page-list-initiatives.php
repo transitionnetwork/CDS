@@ -27,7 +27,7 @@ if(false == get_transient('map_query') || get_query_var('hub_name')) {
 }
 
 $per_page = 20;
-$total_pages = count($post_ids) / $per_page;
+$total_pages = ceil(count($post_ids) / $per_page);
 
 delete_transient('map_points');
 if(false == get_transient('map_points')) {

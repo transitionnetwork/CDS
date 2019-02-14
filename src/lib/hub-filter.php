@@ -26,8 +26,7 @@
 function render_hub_filter() {
   //TODO: Cache this filter generation script. Also add counts?
   $terms = get_terms('hub'); ?>
-  
-  <form action="" method="GET" id="hub-filter">
+  <form action="<?php echo home_url('list-initiatives'); ?>" method="GET" id="hub-filter">
     <?php _e('Filter by hub:'); ?>
     <select name="hub_name" id="term">
       <option value="">All</option>

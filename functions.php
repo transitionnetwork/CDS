@@ -401,7 +401,7 @@ function wpse23007_redirect()
 }
 add_action('init', 'wpse23007_redirect');
 
-// This function will prevent rewrite on page number
+// //This function will prevent rewrite on page number
 // function wpa66273_disable_canonical_redirect($query)
 // {
 //   if ('initiatives' == $query->query_vars['pagename'])
