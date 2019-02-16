@@ -316,38 +316,18 @@ function acf_custom_save($post_id) {
   if (get_post_type($post_id) == 'initiatives') {
     $post = get_post($post_id);
     $author = get_userdata($post->post_author);
-    //clear transient
+    
+    //purge transients
     delete_transient('map_query');
     delete_transient('map_points');
+    delete_transient('initiative_list_item_', $post_id);
+
     if(in_array('initiative', $author->roles)) {
       // EMAIL HUB, ADMIN
     };
   }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
-
-function archive_search($query) {
-  if (!is_admin() && $query->is_main_query()) {
-    if(false === ($init_query = get_transient('init_query'))) {
-      $query->set('orderby', 'post_title');
-      $query->set('order', 'ASC');
-      $query->set('post_status', 'publish');
-      $query->set('posts_per_page', -1);
-      set_transient('init_query', $init_query, 60 * 60 * 4);
-    }
-    if(get_query_var('hub_name')) {
-      $query->set('tax_query', array(
-        array(
-          'taxonomy' => 'hub',
-          'field' => 'slug',
-          'terms' => get_query_var('hub_name')
-        ),
-      ));
-    }
-  }
-}
-add_action('pre_get_posts', 'archive_search');
-
 
 // Hook Gravity Forms user registration -> Map taxomomy
 
