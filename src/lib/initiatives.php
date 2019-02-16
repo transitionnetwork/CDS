@@ -1,4 +1,24 @@
 <?php
+function get_initiative_by_id($post_id) {
+  if(false === get_transient('initiative_list_item_' . $post_id)) {
+    $author_object = get_user_by('id', get_the_author_meta('ID'));
+    $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
+    $hub_object = wp_get_post_terms($post_id, 'hub')[0];
+    $data = array(
+      'link' => get_the_permalink($post_id),
+      'title' => get_the_title($post_id),
+      'status' => get_post_status($post_id),
+      'hub_slug' => $hub_object->slug,
+      'hub_name' => $hub_object->name,
+      'latest_healthcheck' => get_latest_healthcheck($post_id)
+    );
+    set_transient('initaitve_list_item_' . $post_id, 60 * 60 * 72);
+  } else {
+    $data = get_transient('initiative_list_item_' . $post_id);
+  }
+  return $data;
+}
+
 function list_initiatives($post_ids) {
   if ($post_ids) { ?>
     <table class="item-list">
@@ -11,36 +31,31 @@ function list_initiatives($post_ids) {
           <th></th>
         </tr>
         
-        <?php foreach ($post_ids as $post_id) : ?>
-          
-          <?php
-          $post = get_post($post_id);
-          setup_postdata($post);
-          $author_object = get_user_by('id', get_the_author_meta('ID'));
-          $author_hub_name = get_the_terms($author_object, 'hub')[0]->name; ?>
+        <?php foreach ($post_ids as $post_id) :
+          $data = get_initiative_by_id($post_id);
+          $post = get_post($post_id); ?>
           <tr>
             <td>
-              <a href="<?php the_permalink($post->ID); ?>"><?php echo get_the_title($post->ID); ?></a>
+              <a href="<?php echo $data['link']; ?>"><?php echo $data['title'] ?></a>
               <span class="status">
                 <?php $pending_message = __('Pending approval', 'tofino'); ?>
-                <?php echo ($post->post_status == 'publish') ? '' : '<span class="btn btn-sm btn-dark btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
+                <?php echo ($data['status'] == 'publish') ? '' : '<span class="btn btn-sm btn-dark btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
               </span>
               <?php if (can_publish_initiative($post) && !is_post_published($post)) {
                 render_publish_button($post->ID);
               } ?>
             </td>
             <td>
-              <?php $hub_slug = get_term_by('id', get_field('hub_tax', $post->ID), 'hub')->slug; ?>
-              <a href="<?php echo add_query_arg('hub_name', $hub_slug,  get_post_type_archive_link('initiatives')); ?>"><?php echo get_hub_by_id(get_field('hub_tax', $post->ID)); ?></a>
+              <a href="<?php echo add_query_arg('hub_name', $data['hub_slug'], get_the_permalink()) ?>"><?php echo $data['hub_name']; ?></a>
             </td>
             <td>
               <?php if(can_view_healthcheck($post)) {
-                echo get_latest_healthcheck($post->ID);
+                echo $data['latest_healthcheck'];
               } ?>
             </td>
             <td class="text-right">
               <div class="btn-group">
-                <a class="btn btn-primary btn-sm" href="<?php the_permalink($post->ID); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
+                <a class="btn btn-primary btn-sm" href="<?php echo $data['link']; ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
                 
                 <?php if(can_write_initiative($post)) { ?>
                   <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
