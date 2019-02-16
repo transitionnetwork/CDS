@@ -64,7 +64,6 @@ $post_ids = get_posts($args); ?>
     endif; ?>
 
     <h1><?php echo $page_title ?></h1>
-    <?php list_initiatives($post_ids); ?>
     <ul class="button-group">
       <?php if(is_user_logged_in()) { ?>
         <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Initiative', 'tofino'); ?></a></li>
@@ -72,6 +71,7 @@ $post_ids = get_posts($args); ?>
           <li><a class="btn btn-primary" href="<?php echo get_permalink(460); ?>"><?php echo svg('key'); ?><?php _e('Register to add an initiative', 'tofino'); ?></a></li>
         <?php } ?>
     </ul>
+    <?php list_initiatives($post_ids); ?>
     
     <nav class="pagination" aria-label="contact-navigation">
       <?php echo paginate_links(array(
