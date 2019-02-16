@@ -20,7 +20,7 @@ if(get_query_var('hub_name')) {
 if(false == get_transient('map_query') || get_query_var('hub_name')) {
   $post_ids = get_posts($args);
   if(!get_query_var('hub_name')) {
-    set_transient('map_query', $post_ids, 60 * 60 * 24 * 7);
+    set_transient('map_query', $post_ids, 7 * DAY_IN_SECONDS);
   }
 } else {
   $post_ids = get_transient('map_query');
@@ -34,7 +34,7 @@ if(false == get_transient('map_points')) {
   foreach ($post_ids as $post_id) :
     $map_list_items[] = generate_map($post_id);
   endforeach;
-  set_transient('map_points', $map_list_items, 60 * 60 * 24 * 7);
+  set_transient('map_points', $map_list_items, 7 * DAY_IN_SECONDS);
 } else {
   $map_list_items = get_transient('map_points');
 } ?>

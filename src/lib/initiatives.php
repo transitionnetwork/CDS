@@ -12,7 +12,7 @@ function get_initiative_by_id($post_id) {
       'hub_name' => $hub_object->name,
       'latest_healthcheck' => get_latest_healthcheck($post_id)
     );
-    set_transient('initaitve_list_item_' . $post_id, 60 * 60 * 72);
+    set_transient('initaitve_list_item_' . $post_id, 7 * DAY_IN_SECONDS);
   } else {
     $data = get_transient('initiative_list_item_' . $post_id);
   }
