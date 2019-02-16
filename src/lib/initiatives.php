@@ -55,6 +55,10 @@ function list_initiatives($post_ids) {
             </td>
             <td class="text-right">
               <div class="btn-group">
+                <?php if (can_view_healthcheck($post)) { ?>
+                  <a href="<?php echo add_query_arg(array('initiative_id' => $post_id), get_the_permalink(422)); ?>" class="btn btn-success btn-sm"><?php echo svg('plus'); ?> Add Healthcheck</a>
+                <?php } ?>
+
                 <a class="btn btn-primary btn-sm" href="<?php echo $data['link']; ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
                 
                 <?php if(can_write_initiative($post)) { ?>
