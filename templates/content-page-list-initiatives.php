@@ -20,7 +20,7 @@ if(get_query_var('hub_name')) {
 if(false == get_transient('map_query') || get_query_var('hub_name')) {
   $post_ids = get_posts($args);
   if(!get_query_var('hub_name')) {
-    set_transient('map_query', $post_ids, 60 * 60 * 24 * 7);
+    set_transient('map_query', $post_ids, 7 * DAY_IN_SECONDS);
   }
 } else {
   $post_ids = get_transient('map_query');
@@ -34,7 +34,7 @@ if(false == get_transient('map_points')) {
   foreach ($post_ids as $post_id) :
     $map_list_items[] = generate_map($post_id);
   endforeach;
-  set_transient('map_points', $map_list_items, 60 * 60 * 24 * 7);
+  set_transient('map_points', $map_list_items, 7 * DAY_IN_SECONDS);
 } else {
   $map_list_items = get_transient('map_points');
 } ?>
@@ -64,7 +64,6 @@ $post_ids = get_posts($args); ?>
     endif; ?>
 
     <h1><?php echo $page_title ?></h1>
-    <?php list_initiatives($post_ids); ?>
     <ul class="button-group">
       <?php if(is_user_logged_in()) { ?>
         <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Initiative', 'tofino'); ?></a></li>
@@ -72,6 +71,7 @@ $post_ids = get_posts($args); ?>
           <li><a class="btn btn-primary" href="<?php echo get_permalink(460); ?>"><?php echo svg('key'); ?><?php _e('Register to add an initiative', 'tofino'); ?></a></li>
         <?php } ?>
     </ul>
+    <?php list_initiatives($post_ids); ?>
     
     <nav class="pagination" aria-label="contact-navigation">
       <?php echo paginate_links(array(
