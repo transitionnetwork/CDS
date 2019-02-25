@@ -87,17 +87,29 @@ if (!is_dir(get_template_directory() . '/dist')) {
 }
 
 // Admin notice for missing composer autoload.
-function composer_error_notice() {
-?><div class="error notice">
-    <p><?php _e('Composer autoload file not found. Run composer install on the command line.', 'tofino-nt'); ?></p>
-  </div><?php
+function composer_error_notice()
+{
+  ?>
+<div class="error notice">
+    <p>
+        <?php _e('Composer autoload file not found. Run composer install on the command line.', 'tofino-nt'); ?>
+    </p>
+</div>
+<?php
+
 }
 
 // Admin notice for missing dist directory.
-function missing_dist_error_notice() {
-?><div class="error notice">
-    <p><?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino-nt'); ?></p>
-  </div><?php
+function missing_dist_error_notice()
+{
+  ?>
+<div class="error notice">
+    <p>
+        <?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino-nt'); ?>
+    </p>
+</div>
+<?php
+
 }
 
 function dd($string)
@@ -106,16 +118,18 @@ function dd($string)
 }
 
 // Custom image sizes
-add_image_size( 'event', 600, 400, true );
+add_image_size('event', 600, 400, true);
 
 //Custom Post Types
-add_action( 'init', 'create_posttypes' );
-function create_posttypes() {
-  register_post_type( 'initiatives',
+add_action('init', 'create_posttypes');
+function create_posttypes()
+{
+  register_post_type(
+    'initiatives',
     array(
       'labels' => array(
-        'name' => __( 'Initiatives' ),
-        'singular_name' => __( 'Initiative' )
+        'name' => __('Initiatives'),
+        'singular_name' => __('Initiative')
       ),
       'public' => true,
       'has_archive' => false,
@@ -123,12 +137,13 @@ function create_posttypes() {
       'supports' => array('title', 'editor', 'author')
     )
   );
-  
-  register_post_type( 'healthchecks',
+
+  register_post_type(
+    'healthchecks',
     array(
       'labels' => array(
-        'name' => __( 'Healthchecks' ),
-        'singular_name' => __( 'Healthcheck' )
+        'name' => __('Healthchecks'),
+        'singular_name' => __('Healthcheck')
       ),
       'public' => true,
       'has_archive' => false,
@@ -139,33 +154,35 @@ function create_posttypes() {
 
 
 // Create user taxonomies
-function create_user_taxonomies() {
+function create_user_taxonomies()
+{
   register_taxonomy('hub', array('initiatives'), array(
     'public'       => true,
     'single_value' => false,
     'show_admin_column' => true,
     'labels' => array(
-      'name'                      =>'Hubs',
-      'singular_name'             =>'Hub',
-      'menu_name'                 =>'Hubs',
-      'search_items'              =>'Search Hubs',
-      'popular_items'             =>'Popular Hubs',
-      'all_items'                 =>'All Hubs',
-      'edit_item'                 =>'Edit Hub',
-      'update_item'               =>'Update Hub',
-      'add_new_item'              =>'Add New Hub',
-      'new_item_name'             =>'New Hub Name',
-      'separate_items_with_commas'=>'Separate hubs with commas',
-      'add_or_remove_items'       =>'Add or remove hubs',
-      'choose_from_most_used'     =>'Choose from the most popular hubs',
+      'name'                      => 'Hubs',
+      'singular_name'             => 'Hub',
+      'menu_name'                 => 'Hubs',
+      'search_items'              => 'Search Hubs',
+      'popular_items'             => 'Popular Hubs',
+      'all_items'                 => 'All Hubs',
+      'edit_item'                 => 'Edit Hub',
+      'update_item'               => 'Update Hub',
+      'add_new_item'              => 'Add New Hub',
+      'new_item_name'             => 'New Hub Name',
+      'separate_items_with_commas' => 'Separate hubs with commas',
+      'add_or_remove_items'       => 'Add or remove hubs',
+      'choose_from_most_used'     => 'Choose from the most popular hubs',
     ),
   ));
 }
-add_action( 'init', 'create_user_taxonomies' );
+add_action('init', 'create_user_taxonomies');
 
 // Create custom taxonomies
-function create_initiative_taxonomies() {
-// Add new taxonomy, make it hierarchical (like categories)
+function create_initiative_taxonomies()
+{
+  // Add new taxonomy, make it hierarchical (like categories)
   $labels = array(
     'name' => _x('Topics', 'taxonomy general name'),
     'singular_name' => _x('Topic', 'taxonomy singular name'),
@@ -238,8 +255,9 @@ function custom_query_vars_filter($vars)
 add_filter('query_vars', 'custom_query_vars_filter');
 
 //Redirect after post deletion
-function wpse132196_redirect_after_trashing() {
-  if(!is_admin()) {
+function wpse132196_redirect_after_trashing()
+{
+  if (!is_admin()) {
     exit;
     wp_redirect(home_url('/account'));
   }
@@ -247,14 +265,16 @@ function wpse132196_redirect_after_trashing() {
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
 
 //Change label of Content Editor in acf_form()
-function my_acf_prepare_field($field) {
+function my_acf_prepare_field($field)
+{
   $field['label'] = "Description";
   return $field;
 }
 add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');
 
 //Logout link with nonce
-function add_logout_link($nav, $args) {
+function add_logout_link($nav, $args)
+{
   $logoutlink = '<li class="nav-item menu-logout"><a class="nav-link" href="' . wp_logout_url(home_url()) . '">Logout</a></li>';
   if ($args->theme_location == 'primary_navigation_loggedin') {
     return $nav . $logoutlink;
@@ -266,7 +286,8 @@ add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
 
 
 //Healthcheck
-function get_latest_healthcheck($id) {
+function get_latest_healthcheck($id)
+{
   $args = array(
     'post_type' => 'healthchecks',
     'title' => $id,
@@ -275,31 +296,35 @@ function get_latest_healthcheck($id) {
     'order' => 'DESC'
   );
   $posts = get_posts($args);
-  if($posts) {
+  if ($posts) {
     return '<a href="' . get_permalink($posts[0]->ID) . '">' . date('l jS F Y - H:i', strtotime($posts[0]->post_date)) . '</a>';
   } else {
     return 'Never';
   }
 }
 
-function get_user_hub_id() {
+function get_user_hub_id()
+{
   return get_the_terms(wp_get_current_user(), 'hub')[0]->term_id;
 }
 
-function get_hub_users($hub_id) {
+function get_hub_users($hub_id)
+{
   $users = get_objects_in_term($hub_id, 'hub');
   return $users;
 }
 
-function get_hub_by_id($id) {
+function get_hub_by_id($id)
+{
   return get_term($id, 'hub')->name;
 }
 
-function acf_custom_save($post_id) {
+function acf_custom_save($post_id)
+{
   if (get_post_type($post_id) == 'healthchecks') {
     $my_post = array();
     $my_post['ID'] = $post_id;
-    
+
     $post = get_post($post_id);
 
     //check for new post 
@@ -319,23 +344,24 @@ function acf_custom_save($post_id) {
     //clear transient
     delete_transient('map_query');
     delete_transient('map_points');
-    if(in_array('initiative', $author->roles)) {
+    if (in_array('initiative', $author->roles)) {
       // EMAIL HUB, ADMIN
     };
   }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
 
-function archive_search($query) {
+function archive_search($query)
+{
   if (!is_admin() && $query->is_main_query()) {
-    if(false === ($init_query = get_transient('init_query'))) {
+    if (false === ($init_query = get_transient('init_query'))) {
       $query->set('orderby', 'post_title');
       $query->set('order', 'ASC');
       $query->set('post_status', 'publish');
       $query->set('posts_per_page', -1);
       set_transient('init_query', $init_query, 60 * 60 * 4);
     }
-    if(get_query_var('hub_name')) {
+    if (get_query_var('hub_name')) {
       $query->set('tax_query', array(
         array(
           'taxonomy' => 'hub',
@@ -356,38 +382,38 @@ function map_taxonomy($user_id, $config, $entry, $user_pass)
 
   global $wpdb;
 
-	// Get all taxonomies
+  // Get all taxonomies
   $taxs = get_taxonomies();
 
-	// Get all user meta
+  // Get all user meta
   $all_meta_for_user = get_user_meta($user_id);
 
-	// Loop through meta data and map to taxonomies with same name as user meta key
+  // Loop through meta data and map to taxonomies with same name as user meta key
   foreach ($all_meta_for_user as $taxonomy => $value) {
 
-    if (in_array($taxonomy, $taxs)) {			// Check if there is a Taxonomy with the same name as the Custom user meta key
+    if (in_array($taxonomy, $taxs)) {      // Check if there is a Taxonomy with the same name as the Custom user meta key
 
-			// Get term id
+      // Get term id
       $term_id = get_user_meta($user_id, $taxonomy, true);
-      if (is_numeric($term_id)) {				// Check if Custom user meta is an ID
+      if (is_numeric($term_id)) {        // Check if Custom user meta is an ID
 
         $taxonomy . '=' . $term_id . '<br>';
 
-				// Add user to taxomomy term
+        // Add user to taxomomy term
         $term = get_term($term_id, $taxonomy);
         $termslug = $term->slug;
         wp_set_object_terms($user_id, array($termslug), $taxonomy, false);
-
       }
     }
   }
 }
 add_action("gform_user_registered", "map_taxonomy", 10, 4);
 
-function generate_map($post_id) {
+function generate_map($post_id)
+{
   $map = get_field('map', $post_id, false);
-  if($map['center_lat']) {
-    return '<li class="point" data-lat="' . htmlspecialchars($map['center_lat']) . '" data-lng="' .htmlspecialchars($map['center_lng']) . '" data-title="' . get_the_title($post_id) . '" data-link="' . get_the_permalink($post_id) . '" data-excerpt="' . get_the_excerpt($post_id) . '"></li>';
+  if ($map['center_lat']) {
+    return '<li class="point" data-lat="' . htmlspecialchars($map['center_lat']) . '" data-lng="' . htmlspecialchars($map['center_lng']) . '" data-title="' . get_the_title($post_id) . '" data-link="' . get_the_permalink($post_id) . '" data-excerpt="' . get_the_excerpt($post_id) . '"></li>';
   }
   return false;
 }
@@ -401,10 +427,14 @@ function wpse23007_redirect()
 }
 add_action('init', 'wpse23007_redirect');
 
+if (function_exists('acf_add_options_page')) {
+  acf_add_options_page();
+}
+
 // //This function will prevent rewrite on page number
 // function wpa66273_disable_canonical_redirect($query)
 // {
 //   if ('initiatives' == $query->query_vars['pagename'])
 //     remove_filter('template_redirect', 'redirect_canonical');
 // }
-// add_action('parse_query', 'wpa66273_disable_canonical_redirect');
+
