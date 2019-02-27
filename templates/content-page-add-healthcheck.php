@@ -12,7 +12,7 @@ if (!is_user_logged_in() || (!can_view_healthcheck($post))) {
     <main>
       <div class="container">
         <div class="row justify-content-center">	
-          <div class="col-12 col-md-10 col-lg-8">
+          <div class="col-12 col-xl-10">
             <h1><?php echo \Tofino\Helpers\title(); ?></h1>
             <?php the_content(); ?>
             <h2><a href="<?php echo get_the_permalink($initiative_id); ?>"><?php echo get_the_title($initiative_id); ?></a></h2>

@@ -130,6 +130,18 @@ form[name="front_end_publish"] label.submit {
   }
 }
 
+.acf-button-group {
+  width: 100%;
+
+  label {
+    white-space: normal !important;
+    display: flex !important;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+}
+
 section,
 .panel {
   background-color: $gray-100;
