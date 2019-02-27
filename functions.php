@@ -341,13 +341,13 @@ function acf_custom_save($post_id)
   if (get_post_type($post_id) == 'initiatives') {
     $post = get_post($post_id);
     $author = get_userdata($post->post_author);
-    
+
     //purge transients
     delete_transient('map_query');
     delete_transient('map_points');
     delete_transient('initiative_list_item_', $post_id);
 
-    if(in_array('initiative', $author->roles)) {
+    if (in_array('initiative', $author->roles)) {
       // EMAIL HUB, ADMIN
     };
   }
@@ -391,6 +391,7 @@ add_action("gform_user_registered", "map_taxonomy", 10, 4);
 function generate_map($post_id)
 {
   $map = get_field('map', $post_id, false);
+  $map = maybe_unserialize($map);
   if ($map['center_lat']) {
     return '<li class="point" data-lat="' . htmlspecialchars($map['center_lat']) . '" data-lng="' . htmlspecialchars($map['center_lng']) . '" data-title="' . get_the_title($post_id) . '" data-link="' . get_the_permalink($post_id) . '" data-excerpt="' . get_the_excerpt($post_id) . '"></li>';
   }
@@ -414,6 +415,4 @@ if (function_exists('acf_add_options_page')) {
 // function wpa66273_disable_canonical_redirect($query)
 // {
 //   if ('initiatives' == $query->query_vars['pagename'])
-//     remove_filter('template_redirect', 'redirect_canonical');
-// }
 
