@@ -410,9 +410,3 @@ add_action('init', 'wpse23007_redirect');
 if (function_exists('acf_add_options_page')) {
   acf_add_options_page();
 }
-
-// //This function will prevent rewrite on page number
-// function wpa66273_disable_canonical_redirect($query)
-// {
-//   if ('initiatives' == $query->query_vars['pagename'])
-
