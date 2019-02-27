@@ -4,6 +4,25 @@
       <div class="col-12">
         <?php while (have_posts()) : the_post();
 
+        //CLEAN UP SERIALIZATION ISSUES:
+        $args = array(
+          'post_type' => 'initiatives',
+          'posts_per_page' => -1,
+          'order' => 'ASC'
+        );
+
+        $posts = get_posts($args);
+
+        foreach ($posts as $post) {
+          $raw_data = maybe_unserialize(get_field('map', $post->ID, false));
+          if($raw_data) {
+            //$serial_data = serialize($raw_data);
+            update_post_meta($post->ID, '_map', 'field_5bc735b6d792b');
+            update_post_meta($post->ID, 'map', $raw_data);
+            var_dump('done');
+          }
+        }
+
         // HUB MIGRATION:
         // $args = array(
         //   'post_type' => 'initiatives',
