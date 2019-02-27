@@ -32,6 +32,7 @@ $tofino_includes = [
   "src/lib/healthchecks.php",
   "src/lib/permissions.php",
   "src/lib/hub-filter.php",
+  "src/lib/emails.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",

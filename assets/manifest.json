@@ -28,7 +28,7 @@
     "styles": "assets/styles/"
   },
   "config": {
-    "devUrl": "http://cds.loc",
+    "devUrl": "https://cds.loc",
     "stagingUrl": "http://tofino.lambdacreatives.com"
   }
 }
