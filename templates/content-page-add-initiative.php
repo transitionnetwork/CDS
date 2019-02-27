@@ -21,7 +21,7 @@ if(is_user_role('initiative')) {
           'post_id'		=> 'new_post',
           'post_title'	=> true,
           'post_content'	=> true,
-          'return' => add_query_arg('added_post', true, home_url('thank-you-for-your-submission')),
+          'return' => '%post_url%',
           'submit_value' => 'Create Initiative',
           'new_post'		=> array(
             'post_type'		=> 'initiatives',
