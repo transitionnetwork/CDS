@@ -2,4 +2,18 @@
   width: 100%;
   height: 500px;
   border: 0;
+
+  @include media-breakpoint-down(xs) {
+    height: 230px;
+  }
+
+  @include media-breakpoint-down(md) {
+    height: 400px;
+  }
+
+  .leaflet-popup-content {
+    a {
+      color: $white;
+    }
+  }
 }
