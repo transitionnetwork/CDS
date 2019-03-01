@@ -28,7 +28,7 @@ function render_hub_filter() {
   $terms = get_terms('hub'); ?>
   <form action="<?php echo home_url('list-initiatives'); ?>" method="GET" id="hub-filter">
     <?php _e('Filter by hub:'); ?>
-    <select name="hub_name" id="term" onchange="if(this.value != 0) { this.form.submit(); }">
+    <select name="hub_name" id="term" onchange="this.form.submit();">
       <option value="">All</option>
       <?php foreach ($terms as $term) { ?>
         <?php if (get_query_var('hub_name') == $term->slug) {
