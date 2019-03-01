@@ -42,7 +42,7 @@ export default {
       link = points[i].getAttribute('data-link');
       //excerpt = points[i].getAttribute('data-excerpt');
       marker = L.marker([lat, lng], {icon: markerIcon}).addTo(map);
-      marker.bindPopup('<h5>' + title + '</h5><div><a href="' + link + '" target="_top">&raquo;View initiative</a></div>');
+      marker.bindPopup('<h5>' + title + '</h5><div><a href="' + link + '" target="_top" class="btn btn-sm btn-primary">View</a></div>');
       markers.push([lat, lng]);
     }
 
