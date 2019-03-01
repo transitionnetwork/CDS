@@ -411,3 +411,13 @@ add_action('init', 'wpse23007_redirect');
 if (function_exists('acf_add_options_page')) {
   acf_add_options_page();
 }
+
+// set default hub value to no-hub when adding initiative
+function set_tax_default($field) {
+  global $post;
+  if($post->post_name == 'add-initiative') {
+    $field['value'] = 285;
+  }
+  return $field;
+}
+add_filter('acf/load_field/key=field_5c473dfca1fd3', 'set_tax_default');
