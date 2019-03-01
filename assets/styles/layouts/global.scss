@@ -83,6 +83,11 @@ span {
   width: 100%;
   font-size: 0.875em;
   padding: 0.25rem 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 img {
@@ -178,15 +183,18 @@ pre {
   line-height: 1;
   margin: 0 0.1rem;
   display: inline-block;
+  color: $white;
 
   &.role {
     background-color: $purple;
-    color: $white;
   }
 
   &.hub {
     background-color: $red;
-    color: $white;
+  }
+
+  &.beta {
+    background-color: $brand-primary;
   }
 }
 
