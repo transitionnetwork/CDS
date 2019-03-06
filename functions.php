@@ -421,3 +421,18 @@ function set_tax_default($field) {
   return $field;
 }
 add_filter('acf/load_field/key=field_5c473dfca1fd3', 'set_tax_default');
+
+function redirects() {
+  if ('POST' == $_SERVER['REQUEST_METHOD']) {
+    var_dump($_POST);
+    if($_POST['accepted'] == 'true') {
+      update_user_meta(get_current_user_id(), '_gdpr_accepted', 'field_5c51aba1d7642');
+      update_user_meta(get_current_user_id(), 'gdpr_accepted', true);
+      wp_safe_redirect('account');
+    }
+  }
+}
+
+if (is_user_logged_in() && !is_admin()) {
+  add_action('template_redirect', 'redirects');
+}
