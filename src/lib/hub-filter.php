@@ -1,6 +1,5 @@
 <?php
 function render_hub_filter() {
-  //TODO: Cache this filter generation script. Also add counts?
   $terms = get_terms('hub'); ?>
   <form action="<?php echo home_url('list-initiatives'); ?>" method="GET" id="hub-filter">
     <?php _e('Filter by hub:'); ?>
