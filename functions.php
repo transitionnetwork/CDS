@@ -338,6 +338,10 @@ function acf_custom_save($post_id)
     }
 
     wp_update_post($my_post);
+
+    //ensure that hc data is stored in initiative
+    update_post_meta( $my_post['post_title'], 'recent_hc', $post_id);
+    update_post_meta( $my_post['post_title'], 'last_hc_date', get_the_date('Y-m-d H:i:s', $post_id) );
   }
 
   if (get_post_type($post_id) == 'initiatives') {
@@ -352,6 +356,8 @@ function acf_custom_save($post_id)
     if (in_array('initiative', $author->roles)) {
       // EMAIL HUB, ADMIN
     };
+
+    //update 
   }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
