@@ -3,33 +3,41 @@
  * Template Name: Export - Healthcheck
  */
 
- get_header(); ?>
+$args = array(
+  'post_type' => 'healthchecks',
+  'posts_per_page' => -1,
+  'orderby' => 'ID',
+  'order' => 'DESC'
+);
 
-<?php while (have_posts()) : the_post(); ?>
-<div class="container">
-  <h1><?php echo \Tofino\Helpers\title(); ?></h1>
-  <?php the_content(); ?>
-  <ul class="btn-list">
-    <?php if(get_query_var('edited_post')) { ?>
-      <li><a class="btn btn-primary" href="<?php echo get_the_permalink(get_query_var('edited_post')); ?>">&raquo <?php _e('View edited initiative', 'tofino'); ?></a></li>
-    <?php } ?>
-    <?php if(get_query_var('added_post')) { ?>
-      <?php
-      $args = array(
-        'post_type' => 'initiatives',
-        'posts_per_page' => 1,
-        'orderby' => 'post_date',
-        'order' => 'DESC',
-        'post_status' => array('publish', 'pending')
-      );
+$posts = get_posts($args);
 
-      $posts = get_posts($args);
-      $post_url = $posts[0]->guid; ?>
-      <li><a class="btn btn-primary" href="<?php echo $post_url ?>">&raquo <?php _e('View added initiative', 'tofino'); ?></a></li>
-    <?php } ?>
-    <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>">&raquo <?php _e('Add another initiative', 'tofino'); ?></a></li>
-  </ul>
-</div>
-<?php endwhile; ?>
+$answers = array();
+$healthcheck_ids = array();
 
-<?php get_footer();
+$i = 0;
+foreach($posts as $post) {
+  // only display the first ID;
+  if(!in_array($post->post_title, $healthcheck_ids)) {
+    $healthcheck_ids[] = $post->post_title;
+    $question_groups = get_fields($post->ID);
+    foreach($question_groups as $key => $group) {
+      foreach ($group as $label => $response) {
+        // add question the first time
+        if($i == 0) {
+          $full_question = get_field_object($key . '_' . $label)['label'];
+          $questions[] = $full_question;
+        }
+        $answers[$i][] = $response;
+      }
+    }
+  }
+  $i++;
+}
+
+$export_data[] = $questions;
+foreach($answers as $answer_set) {
+  $export_data[] = $answer_set;
+}
+
+outputCsv(date('Ymd') . '_healthcheck_responses.csv', $export_data); ?>
