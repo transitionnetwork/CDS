@@ -7,19 +7,38 @@ $args = array(
   'orderby' => 'post_title',
   'order' => 'ASC'
 );
+
 if(get_query_var('hub_name')) {
+  $hub_query = array (
+    'taxonomy' => 'hub',
+    'field' => 'slug',
+    'terms' => get_query_var('hub_name')
+  );
+} else {
+  $hub_query = '';
+}
+
+if(get_query_var('country')) {
+  $country_query =  array (
+    'taxonomy' => 'country',
+    'field' => 'slug',
+    'terms' => get_query_var('country')
+  );
+} else {
+  $country_query = '';
+}
+
+if(get_query_var('country') || get_query_var('hub_name')) {
   $args['tax_query'] = array(
-    array (
-      'taxonomy' => 'hub',
-      'field' => 'slug',
-      'terms' => get_query_var('hub_name')
-    )
+    'relation' => 'AND',
+    $hub_query,
+    $country_query
   );
 }
 
-if(false == get_transient('map_query') || get_query_var('hub_name')) {
+if(false == get_transient('map_query') || (get_query_var('hub_name') && get_query_var('country'))) {
   $post_ids = get_posts($args);
-  if(!get_query_var('hub_name')) {
+  if(!get_query_var('hub_name') && !get_query_var('country')) {
     set_transient('map_query', $post_ids, 7 * DAY_IN_SECONDS);
   }
 } else {

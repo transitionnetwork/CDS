@@ -4,12 +4,15 @@ function get_initiative_by_id($post_id) {
     $author_object = get_user_by('id', get_the_author_meta('ID'));
     $author_hub_name = get_the_terms($author_object, 'hub')[0]->name;
     $hub_object = wp_get_post_terms($post_id, 'hub')[0];
+    $country_object = wp_get_post_terms($post_id, 'country')[0];
     $data = array(
       'link' => get_the_permalink($post_id),
       'title' => get_the_title($post_id),
       'status' => get_post_status($post_id),
       'hub_slug' => $hub_object->slug,
       'hub_name' => $hub_object->name,
+      'country_slug' => $country_object->slug,
+      'country_name' => $country_object->name,
       'latest_healthcheck' => get_latest_healthcheck($post_id)
     );
     set_transient('initaitve_list_item_' . $post_id, 7 * DAY_IN_SECONDS);
@@ -25,6 +28,7 @@ function list_initiatives($post_ids) {
         <tr>
           <th class="col-a"><?php _e('Initiative', 'tofino'); ?></th>
           <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
+          <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
           <?php if(can_view_any_healthcheck()) { ?>
             <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
           <?php } ?>
@@ -47,6 +51,9 @@ function list_initiatives($post_ids) {
             </td>
             <td>
               <a href="<?php echo add_query_arg('hub_name', $data['hub_slug'], get_the_permalink()) ?>"><?php echo $data['hub_name']; ?></a>
+            </td>
+            <td>
+              <a href="<?php echo add_query_arg('country_name', $data['country_slug'], get_the_permalink()) ?>"><?php echo $data['country_name']; ?></a>
             </td>
             <td>
               <?php if(can_view_healthcheck($post)) {

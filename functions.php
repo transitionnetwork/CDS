@@ -250,6 +250,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'error_code';
   $vars[] = 'hub_id';
   $vars[] = 'hub_name';
+  $vars[] = 'country';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
   return $vars;

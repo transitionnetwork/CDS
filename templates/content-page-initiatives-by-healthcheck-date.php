@@ -10,9 +10,12 @@
     $args = array(
       'post_type' => 'initiatives',
       'fields' => 'ids',
-      'order' => 'ASC',
       'paged' => $paged,
-      'posts_per_page' => $per_page
+      'posts_per_page' => $per_page,
+      'meta_key' => 'last_hc_date',
+      'orderby' => 'meta_value',
+      'order' => 'DESC',
+      'posts_per_page' => -1
     );
     
     $post_ids = get_posts($args);
