@@ -89,7 +89,7 @@ function render_publish_button($post_id)
     <input type="hidden" name="pid" id="pid" value="<?php echo $post_id; ?>">
     <input type="hidden" name="FE_PUBLISH" id="FE_PUBLISH" value="FE_PUBLISH">
     <label class="submit"><input type="submit" name="submit" id="submit" value="">
-      <?php echo svg('check'); ?> Approve Post
+      <?php echo svg('check'); ?> Approve
     </label>
   </form>
   <?php 
