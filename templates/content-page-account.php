@@ -15,6 +15,10 @@
         <?php acf_form_head(); ?>
         <h1><?php _e('Dashboard') ?></h1>
         <?php get_template_part('/templates/panels/account-details'); ?>
+        <?php if(is_user_role('administrator')) { ?>
+          <?php get_template_part('/templates/panels/reporting'); ?>
+        <?php } ?>
+        
         <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
         
         <?php if (is_user_role('administrator') || is_user_role('super_hub')) {
@@ -25,7 +29,7 @@
           get_template_part('/templates/panels/hub-initiatives-pending-approval');
         } ?>
         
-        <?php if(!is_user_role('initiative')) {
+        <?php if(!is_user_role('initiative') && (!is_user_role('administrator'))) {
           get_template_part('/templates/panels/maps');
         } ?>
       </div>

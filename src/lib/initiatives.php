@@ -37,10 +37,10 @@ function list_initiatives($post_ids) {
           <tr>
             <td>
               <a href="<?php echo $data['link']; ?>"><?php echo $data['title'] ?></a>
-              <span class="status">
-                <?php $pending_message = __('Pending approval', 'tofino'); ?>
+              <div class="status">
+                <?php $pending_message = __('Pending', 'tofino'); ?>
                 <?php echo ($data['status'] == 'publish') ? '' : '<span class="btn btn-sm btn-dark btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
-              </span>
+              </div>
               <?php if (can_publish_initiative($post) && !is_post_published($post)) {
                 render_publish_button($post->ID);
               } ?>
