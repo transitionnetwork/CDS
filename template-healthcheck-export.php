@@ -25,7 +25,7 @@ foreach($posts as $post) {
     $initiative_title = get_post($post->post_title);
     
     if($question_groups) {
-      $questions[0] = 'Hub';
+      $questions[0] = 'Initiative';
       $answers[$i][0] = $initiative_title->post_title;
       foreach($question_groups as $key => $group) {
         foreach ($group as $label => $response) {
