@@ -253,6 +253,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'country';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
+  $vars[] = 'search';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
@@ -443,4 +444,27 @@ function redirects() {
 
 if (is_user_logged_in() && !is_admin()) {
   add_action('template_redirect', 'redirects');
+}
+
+function render_result_totals($wp_query) {
+  $paged = $wp_query->query['paged'];
+  $max_num_pages = $wp_query->max_num_pages;
+  $per_page = $wp_query->query['posts_per_page'];
+  $total_results = $wp_query->found_posts;
+
+  if($paged == 1) {
+    $from = 1;
+  } else {
+    $from = $per_page * ($paged - 1) + 1;
+  }
+
+  if($paged < $max_num_pages) {
+    $to = $per_page * $paged;
+  } else {
+    $to = $total_results;
+  }
+  
+  $label = get_post_type_object($wp_query->query['post_type'])->label;
+  
+  return '<p><em>Displaying ' . $from . '-' . $to . ' of ' . $total_results . ' queried Initiatives</em></p>';
 }
