@@ -34,6 +34,7 @@ $tofino_includes = [
   "src/lib/hub-filter.php",
   "src/lib/emails.php",
   "src/lib/output-csv.php",
+  "src/lib/ajax-requests.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",

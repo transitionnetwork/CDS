@@ -4,8 +4,9 @@ import Router from './router';
 // Import local deps
 import common from './routes/common';
 import contact from './routes/contact';
-import page_template_default from './routes/maps';
+// import page_template_default from './routes/maps';
 import map from './routes/maps';
+import list_initiatives from './routes/maps_main';
 
 // Import ajaxForm
 import './ajax-form';
@@ -21,8 +22,8 @@ import 'bootstrap/dist/js/bootstrap.js'; // All of Bootstrap JS
 const routes = {
   common,
   contact,
-  page_template_default,
-  map
+  map,
+  list_initiatives
 };
 
 // Load Events

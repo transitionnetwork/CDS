@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-6">
       <form action="<?php the_permalink() ?>" method="GET" class="filter">
         <div class="search-wrap">
-          <input type="text" name="search" placeholder="Initiative Name" value="<?php echo get_query_var('search'); ?>">
+          <input type="text" name="search" placeholder="Initiative..." value="<?php echo get_query_var('search'); ?>">
           <input type="submit" value="Search" class="btn btn-sm btn-primary">
         </div>
       </form>
@@ -11,7 +11,7 @@
     <div class="col-12 col-lg-6 d-lg-flex flex-lg-column align-items-lg-end">
       <form action="<?php the_permalink() ?>" method="GET" class="filter">
         <?php $terms = get_terms('hub'); ?>
-        <label for="hub_name"><?php _e('Filter by hub:', 'tofino'); ?></label>
+        <label for="hub_name"><?php _e('Hub:', 'tofino'); ?></label>
         <select name="hub_name" onchange="this.form.submit();">
           <option value="">All</option>
           <?php foreach ($terms as $term) { ?>
@@ -27,7 +27,7 @@
       <form action="<?php the_permalink() ?>" method="GET" class="filter">
         <?php $terms = get_terms('country'); ?>
         <div class="select-wrap">
-          <label for="country"><?php _e('Filter by country:', 'tofino'); ?></label>
+          <label for="country"><?php _e('Country:', 'tofino'); ?></label>
           <select name="country" onchange="this.form.submit();">
             <option value="">All</option>
             <?php foreach ($terms as $term) { ?>
