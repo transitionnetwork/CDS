@@ -48,3 +48,4 @@ function return_map_markers() {
 }
 
 add_action('wp_ajax_nopriv_getMapMarkers', 'return_map_markers');
+add_action('wp_ajax_getMapMarkers', 'return_map_markers');
