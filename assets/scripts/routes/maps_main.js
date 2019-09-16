@@ -1,9 +1,10 @@
 var $ = window.jQuery;
 import L from 'leaflet';
+import 'leaflet.markercluster';
 
 export default {
   loaded() {
-    var map = L.map('iframe_map').setView([0, 0], 2);
+    var map = L.map('iframe_map').setView([16.5, 11], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
@@ -26,19 +27,23 @@ export default {
         shadowSize: [41, 41]
       });
 
-      var lat, lng, title, link, marker;
-      var markers = [];
+      var marker;
+      var range = [];
+      var markers = L.markerClusterGroup();
 
       for (var i = 0; i < response.length; i++) {
         if (response[i].center_lat && response[i].center_lng) {
-          marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon }).addTo(map);
+          marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
           marker.bindPopup('<h5>' + response[i].title + '</h5><div><a href="' + response[i].permalink + '" target="_top" class="btn btn-sm btn-primary">View</a></div>');
-          markers.push([response[i].center_lat, response[i].center_lng]);
+          markers.addLayer(marker);
+          
+          range.push([response[i].center_lat, response[i].center_lng]);
         }
       }
 
-      var bounds = L.latLngBounds(markers);
+      var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
+      map.addLayer(markers);
     }
 
     $.ajax({
