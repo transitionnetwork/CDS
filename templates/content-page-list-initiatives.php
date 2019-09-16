@@ -1,11 +1,14 @@
 <?php
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$per_page = 20;
 
 $args = array(
   'post_type' => 'initiatives',
-  'posts_per_page' => -1,
   'fields' => 'ids',
   'orderby' => 'post_title',
-  'order' => 'ASC'
+  'order' => 'ASC',
+  'paged' => $paged,
+  'posts_per_page' => $per_page
 );
 
 if(get_query_var('hub_name')) {
@@ -40,44 +43,12 @@ if(get_query_var('search')) {
   $args['s'] = get_query_var('search');
 }
 
-if(false == get_transient('map_query') || (get_query_var('hub_name') && get_query_var('country'))) {
-  $post_ids = get_posts($args);
-  if(!get_query_var('hub_name') && !get_query_var('country')) {
-    set_transient('map_query', $post_ids, 7 * DAY_IN_SECONDS);
-  }
-} else {
-  $post_ids = get_transient('map_query');
-}
-
-
-delete_transient('map_points');
-if(false == get_transient('map_points')) {
-  foreach ($post_ids as $post_id) :
-    $map_list_items[] = generate_map($post_id);
-  endforeach;
-  set_transient('map_points', $map_list_items, 7 * DAY_IN_SECONDS);
-} else {
-  $map_list_items = get_transient('map_points');
-} ?>
-
-<?php
-// listed results
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-$per_page = 20;
-
-$args['paged'] = $paged;
-$args['posts_per_page'] = $per_page;
 $initiative_query = new WP_Query($args);
 ?>
 
-<ul id="dom-target" style="display: none;">
-  <?php
-  foreach($map_list_items as $map_list_item) {
-    echo $map_list_item;
-  } ?>
-</ul>
-<div id="iframe_map"></div>
+<div id="iframe_map" data-hub="<?php echo get_query_var('hub_name'); ?>" data-country="<?php echo get_query_var('country'); ?>" data-search="<?php echo get_query_var('search'); ?>">
+<div id="map-loading"><div class="lds-dual-ring"></div></div>
+</div>
 
 <main>
   <div class="container">
@@ -104,7 +75,7 @@ $initiative_query = new WP_Query($args);
         'base' => @add_query_arg('paged', '%#%'),
         'format' => '?paged=%#%',
         'current' => $initiative_query->query['paged'],
-        'total' => $wp_query->max_num_pages,
+        'total' => $initiative_query->max_num_pages,
         'prev_text' => 'initiative_query',
         'next_text' => 'Next',
         'type' => 'list',

@@ -2,6 +2,7 @@
   width: 100%;
   height: 500px;
   border: 0;
+  position: relative;
 
   @include media-breakpoint-down(md) {
     height: 400px;
@@ -15,5 +16,41 @@
     a {
       color: $white;
     }
+  }
+}
+
+#map-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-dual-ring::after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid $brand-primary;
+  border-color: $brand-primary transparent $brand-primary transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
