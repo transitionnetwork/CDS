@@ -32,8 +32,6 @@ export default {
       var range = [];
       var clusterMarkers = L.markerClusterGroup();
 
-      console.log(response);
-      
       for (var i = 0; i < response.length; i++) {
         if (response[i].center_lat && response[i].center_lng) {
           marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
@@ -43,8 +41,6 @@ export default {
           range.push([response[i].center_lat, response[i].center_lng]);
         }
       }
-
-      console.log(range);
 
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
@@ -63,9 +59,9 @@ export default {
         }
       },
       dataType: 'json',
+      async: false,
       success: function (response) {
         $('.map-loading').hide();
-        console.log(response);
         displayMap(response, map);
       },
       error: function (jqxhr, status, exception) {
