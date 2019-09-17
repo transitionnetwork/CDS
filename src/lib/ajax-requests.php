@@ -41,7 +41,7 @@ function return_map_markers() {
       $markers[$key]['center_lng'] = $map['lng'];
       $markers[$key]['permalink'] = get_the_permalink($post->ID);
       $markers[$key]['title'] = get_the_title($post->ID);
-      $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
+      // $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
     }
 	// Put the results in a transient. Expire after 12 hours.
   set_transient($hash, $markers, 12 * HOUR_IN_SECONDS );

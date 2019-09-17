@@ -62,8 +62,6 @@ export default {
       dataType: 'json',
       success: function (response) {
         $('.map-loading').hide();
-        console.log(response);
-        console.log(map);
         displayMap(response, map);
       },
       error: function (jqxhr, status, exception) {
