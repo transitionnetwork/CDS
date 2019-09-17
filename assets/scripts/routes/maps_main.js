@@ -17,10 +17,6 @@ export default {
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
     function displayMap(response, map) {
-      var locations = response;
-      console.log(response);
-      console.log(map);
-      
       var markerIcon = L.icon({
         iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
         iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
@@ -36,10 +32,6 @@ export default {
       var range = [];
       var clusterMarkers = L.markerClusterGroup();
 
-      console.log(response);
-      console.log(locations);
-      console.log(map);
-
       for (var i = 0; i < response.length; i++) {
         if (response[i].center_lat && response[i].center_lng) {
           marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
@@ -49,8 +41,6 @@ export default {
           range.push([response[i].center_lat, response[i].center_lng]);
         }
       }
-
-      console.log(range);
 
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
