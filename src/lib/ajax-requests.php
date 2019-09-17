@@ -37,8 +37,8 @@ function return_map_markers() {
   if ( false === ( $markers = get_transient($hash))) {
     foreach($posts as $key => $post) {
       $map = get_field('map', $post->ID, false);
-      $markers[$key]['center_lat'] = $map['center_lat'];
-      $markers[$key]['center_lng'] = $map['center_lng'];
+      $markers[$key]['center_lat'] = $map['lat'];
+      $markers[$key]['center_lng'] = $map['lng'];
       $markers[$key]['permalink'] = get_the_permalink($post->ID);
       $markers[$key]['title'] = get_the_title($post->ID);
       $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
