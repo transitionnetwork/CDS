@@ -56,11 +56,15 @@
     }
   }
 
-  svg.logo {
+  svg.logo,
+  button.my-location {
     position: absolute;
     z-index: 9999;
     right: 1rem;
     top: 1rem;
+  }
+
+  svg.logo {
     width: 150px;
     height: 48px;
     background-color: rgba($white, 0.8);

@@ -73,5 +73,9 @@ export default {
     $('#iframe_map button.close').on('click', function(){
       $(this).closest('.key').hide();
     })
+
+    $('#iframe_map button.my-location').on('click', function(){
+      map.locate({ setView: true, maxZoom: 12 });
+    })
   }
 };
