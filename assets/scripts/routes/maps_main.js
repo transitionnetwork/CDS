@@ -68,5 +68,9 @@ export default {
         console.log('Exception:', exception);
       }
     })
+
+    $('#iframe_map button.close').on('click', function(){
+      $(this).closest('.key').hide();
+    })
   }
 };

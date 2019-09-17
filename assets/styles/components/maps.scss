@@ -17,6 +17,43 @@
       color: $white;
     }
   }
+
+  .key {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background-color: rgba($white, 0.9);
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    z-index: 9999;
+    border-radius: $border-radius;
+    margin: 0;
+    list-style: none;
+    font-family: $font-body;
+
+    img {
+      max-width: 25px;
+      height: auto;
+      margin-right: 0.5rem;
+    }
+
+    li + li {
+      margin-top: 0.5rem;
+    }
+
+    button {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      line-height: 0.5;
+      padding: 0;
+
+      svg {
+        width: 13px;
+        height: 13px;
+        fill: red;
+      }
+    }
+  }
 }
 
 #map-loading {
@@ -24,7 +61,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 99999;
 }
 
 .lds-dual-ring {
