@@ -249,6 +249,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'edit_post';
   $vars[] = 'initiative_id';
   $vars[] = 'error_code';
+  $vars[] = 'updated';
   $vars[] = 'hub_id';
   $vars[] = 'hub_name';
   $vars[] = 'country';

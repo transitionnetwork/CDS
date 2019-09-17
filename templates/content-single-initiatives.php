@@ -1,3 +1,11 @@
+<?php if(get_query_var('updated') == 'healthcheck') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+     <?php echo get_post_field('post_content', 45); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php while (have_posts()) : the_post(); ?>
   <main>
     <div class="container">
