@@ -23,9 +23,57 @@
 
           <?php the_content(); ?>
 
-          <?php if(get_field('website') || get_field('facebook') || get_field('instagram') || get_field('twitter') || get_field('youtube')) { ?>
+          <?php $additional = get_field('additional_web_addresses'); 
+          if($additional) { ?>
             <section>
-              <h4><?php _e('Links', 'tofino'); ?></h4>
+              <h4><?php _e('More Links', 'tofino'); ?></h4>
+              <ul>
+                <?php foreach($additional as $item) { ?>
+                  <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
+                <?php } ?>
+              </ul>
+            </section>
+          <?php } ?>
+
+          <?php if (can_view_healthcheck($post)) { ?>
+            <div class="panel healthchecks">
+              <h3><?php _e('Healthchecks', 'tofino'); ?></h3>
+              <?php
+              $args = array(
+                'post_type' => 'healthchecks',
+                'posts_per_page' => -1,
+                'title' => get_the_ID(),
+                'orderby' => 'post_date',
+                'order' => 'DESC'
+              );
+              $healthchecks = get_posts($args);
+              list_healthchecks($healthchecks);
+              ?>
+              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), get_the_permalink(422)); ?>"><?php echo svg('plus'); ?><?php _e('Add Healthcheck', 'tofino'); ?></a></p>
+            </div>
+          <?php } ?>
+        </div>
+        <div class="col-12 col-lg-4">
+          <aside>
+            <?php echo get_field('map'); ?>
+            <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
+  
+            <?php if (get_field('address_line_1')) { ?>
+                <label><?php _e('Address', 'tofino'); ?></label>
+                <?php echo get_field('address_line_1'); ?><br/>
+                <?php echo get_field('city'); ?><br/>
+                <?php echo get_field('province'); ?><br/>
+                <?php echo get_field('postal_code'); ?><br/>
+                <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
+            <?php } ?>
+  
+            <?php if (get_field('email')) { ?>
+              <label><?php echo get_field_object('email')['label']; ?> :</label>
+              <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
+            <?php } ?>
+
+            <?php if(get_field('website') || get_field('facebook') || get_field('instagram') || get_field('twitter') || get_field('youtube')) { ?>
+              <label><?php _e('Links', 'tofino'); ?></label>
               <ul class="links">
                 <?php if (get_field('website')) { ?>
                   <li><a href="<?php echo get_field('website'); ?>" target="_blank">Web</a></li>
@@ -45,61 +93,14 @@
               </ul>
             </section>
           <?php } ?>
-
-          <?php $additional = get_field('additional_web_addresses'); 
-          if($additional) { ?>
-            <section>
-              <h4><?php _e('More Links', 'tofino'); ?></h4>
-              <ul>
-                <?php foreach($additional as $item) { ?>
-                  <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
-                <?php } ?>
-              </ul>
-            </section>
-          <?php } ?>
-
-          <?php if (can_view_healthcheck($post)) { ?>
-            <div class="panel">
-              <h3><?php _e('Healthchecks', 'tofino'); ?></h3>
-              <?php
-              $args = array(
-                'post_type' => 'healthchecks',
-                'posts_per_page' => -1,
-                'title' => get_the_ID(),
-                'orderby' => 'post_date',
-                'order' => 'DESC'
-              );
-              $healthchecks = get_posts($args);
-              list_healthchecks($healthchecks);
-              ?>
-              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), get_the_permalink(422)); ?>"><?php echo svg('plus'); ?><?php _e('Add Healthcheck', 'tofino'); ?></a></p>
-            </div>
-          <?php } ?>
-        </div>
-        <div class="col-12 col-lg-4">
-          <?php echo get_field('map'); ?>
-          <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
-
-          <?php if (get_field('address_line_1')) { ?>
-              <label><?php _e('Address', 'tofino'); ?></label>
-              <?php echo get_field('address_line_1'); ?><br/>
-              <?php echo get_field('city'); ?><br/>
-              <?php echo get_field('province'); ?><br/>
-              <?php echo get_field('postal_code'); ?><br/>
-              <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
-          <?php } ?>
-
-          <?php if (get_field('email')) { ?>
-            <label><?php echo get_field_object('email')['label']; ?> :</label>
-            <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
-          <?php } ?>
-
-          <?php if (can_view_healthcheck($post)) { ?>
-            <?php if(get_field('private_email')) { ?>
-              <label><?php echo get_field_object('private_email')['label']; ?>:</label>
-              <a href="mailto:<?php echo get_field('private_email'); ?>"><?php echo get_field('private_email'); ?></a>
+  
+            <?php if (can_view_healthcheck($post)) { ?>
+              <?php if(get_field('private_email')) { ?>
+                <label><?php echo get_field_object('private_email')['label']; ?>:</label>
+                <a href="mailto:<?php echo get_field('private_email'); ?>"><?php echo get_field('private_email'); ?></a>
+              <?php } ?>
             <?php } ?>
-          <?php } ?>
+          </aside>
         </div>
       </div>
     

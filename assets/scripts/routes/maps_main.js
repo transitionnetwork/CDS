@@ -4,7 +4,9 @@ import 'leaflet.markercluster';
 
 export default {
   loaded() {
-    var map = L.map('iframe_map').setView([0, 0], 1);
+    console.log('asdsad');
+    
+    var map = L.map('iframe_map').setView([0, 0], 3);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',

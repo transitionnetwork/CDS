@@ -5,7 +5,7 @@ import Router from './router';
 import common from './routes/common';
 import contact from './routes/contact';
 // import page_template_default from './routes/maps';
-import map from './routes/maps';
+import map from './routes/maps_main';
 import list_initiatives from './routes/maps_main';
 
 // Import ajaxForm
