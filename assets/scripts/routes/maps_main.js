@@ -42,6 +42,8 @@ export default {
         }
       }
 
+      console.log(range);
+
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
       map.addLayer(clusterMarkers);
