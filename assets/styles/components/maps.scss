@@ -54,3 +54,36 @@
     transform: rotate(360deg);
   }
 }
+
+//markers
+.marker-cluster {
+  div {
+    font-family: $font-body;
+    color: $white;
+    font-weight: bold;
+  }
+}
+
+.marker-cluster-large {
+  background-color: rgba($brand-primary, 0.75);
+
+  div {
+    background-color: darken($brand-primary, 5);
+  }
+}
+
+.marker-cluster-medium {
+  background-color: rgba(lighten($brand-primary, 5), 0.75);
+
+  div {
+    background-color: $brand-primary;
+  }
+}
+
+.marker-cluster-small {
+  background-color: rgba(lighten($brand-primary, 10), 0.75);
+
+  div {
+    background-color: lighten($brand-primary, 5);
+  }
+}
