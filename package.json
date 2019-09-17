@@ -83,6 +83,7 @@
     "leaflet": "^1.5.1",
     "leaflet.markercluster": "^1.4.1",
     "popper.js": "^1.15.0",
+    "select2": "^4.0.10",
     "stickyfill-web-module": "^1.1.11",
     "svg4everybody": "^2.1.4",
     "tether": "^1.4.7",

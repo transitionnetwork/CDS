@@ -435,16 +435,24 @@ add_filter('acf/load_field/key=field_5c473dfca1fd3', 'set_tax_default');
 
 function redirects() {
   if ('POST' == $_SERVER['REQUEST_METHOD']) {
-    var_dump($_POST);
     if($_POST['accepted'] == 'true') {
       update_user_meta(get_current_user_id(), '_gdpr_accepted', 'field_5c51aba1d7642');
       update_user_meta(get_current_user_id(), 'gdpr_accepted', true);
       wp_safe_redirect('account');
     }
+
+    if(array_key_exists('authors', $_POST)) {
+      $args = array(
+        'ID' => $_POST['post_id'],
+        'post_author' => $_POST['authors']
+      );
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'author', get_the_permalink($_POST['post_id'])));
+    }
   }
 }
 
-if (is_user_logged_in() && !is_admin()) {
+if (is_user_logged_in()) {
   add_action('template_redirect', 'redirects');
 }
 
