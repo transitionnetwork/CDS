@@ -12,7 +12,6 @@
   <?php } else { ?>
     <main>
       <div class="container">
-        <?php acf_form_head(); ?>
         <h1><?php _e('Dashboard') ?></h1>
         <?php get_template_part('/templates/panels/account-details'); ?>
         <?php if(is_user_role('administrator')) { ?>
@@ -29,7 +28,7 @@
           get_template_part('/templates/panels/hub-initiatives-pending-approval');
         } ?>
         
-        <?php if(!is_user_role('initiative') && (!is_user_role('administrator'))) {
+        <?php if(!is_user_role('initiative')) {
           get_template_part('/templates/panels/maps');
         } ?>
       </div>
