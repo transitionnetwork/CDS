@@ -46,7 +46,8 @@ a {
 }
 
 a,
-span {
+span,
+button {
   &.btn {
     svg {
       @include button-svg;
