@@ -3,10 +3,10 @@ import Router from './router';
 
 // Import local deps
 import common from './routes/common';
-import contact from './routes/contact';
-// import page_template_default from './routes/maps';
-import map from './routes/maps';
+import account from './routes/maps_main';
+import map from './routes/maps_main';
 import list_initiatives from './routes/maps_main';
+import single from './routes/select2';
 
 // Import ajaxForm
 import './ajax-form';
@@ -21,9 +21,10 @@ import 'bootstrap/dist/js/bootstrap.js'; // All of Bootstrap JS
 // file as per the common example near the top of this file.
 const routes = {
   common,
-  contact,
+  account,
   map,
-  list_initiatives
+  list_initiatives,
+  single,
 };
 
 // Load Events
