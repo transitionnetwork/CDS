@@ -43,7 +43,6 @@ export default {
       }
 
       var bounds = L.latLngBounds(range);
-      console.log(bounds);
       map.fitBounds(bounds);
       map.addLayer(clusterMarkers);
     }
@@ -62,6 +61,7 @@ export default {
       dataType: 'json',
       success: function (response) {
         $('.map-loading').hide();
+        console.log(response);
         displayMap(response, map);
       },
       error: function (jqxhr, status, exception) {
