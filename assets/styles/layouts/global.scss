@@ -46,7 +46,8 @@ a {
 }
 
 a,
-span {
+span,
+button {
   &.btn {
     svg {
       @include button-svg;
@@ -112,7 +113,8 @@ main {
   border-radius: 3px;
 }
 
-.acf-form input[type="submit"] {
+.acf-form input[type="submit"],
+input[type="submit"] {
   line-height: 1.6;
   @extend .btn;
   @extend .btn-primary;
@@ -162,10 +164,19 @@ form[name="front_end_publish"] label.submit {
 section,
 .panel {
   background-color: $gray-100;
-  border: 1px solid $gray-300;
+  // border: 1px solid $gray-300;
   padding: 1.5rem;
   border-radius: 5px;
   margin-bottom: 2rem;
+
+  & > h2:first-of-type {
+    margin-top: 0;
+  }
+
+  .panel {
+    background-color: $white;
+    border: 1px solid $gray-300;
+  }
 }
 
 #message {

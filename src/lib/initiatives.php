@@ -50,7 +50,7 @@ function list_initiatives($post_ids) {
               } ?>
             </td>
             <td>
-              <a href="<?php echo add_query_arg('hub_name', $data['hub_slug'], get_the_permalink()) ?>"><?php echo $data['hub_name']; ?></a>
+              <a href="<?php echo add_query_arg('hub_name', $data['hub_slug'], home_url('list-initiatives')) ?>"><?php echo $data['hub_name']; ?></a>
             </td>
             <td>
               <a href="<?php echo add_query_arg('country_name', $data['country_slug'], get_the_permalink()) ?>"><?php echo $data['country_name']; ?></a>

@@ -22,7 +22,8 @@ if (!is_user_logged_in() || (!can_view_healthcheck($post))) {
               'post_id'		=> 'new_post',
               'post_title'	=> false,
               'post_content'	=> false,
-              'return' => get_permalink($initiative_id),
+              'return' => add_query_arg('updated', 'healthcheck', get_permalink($initiative_id)),
+              'fields' => array('group_1'),
               'submit_value' => 'Create Healthcheck',
               'new_post'		=> array(
                 'post_type'		=> 'healthchecks',
