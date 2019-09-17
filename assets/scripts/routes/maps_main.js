@@ -32,6 +32,8 @@ export default {
       var range = [];
       var clusterMarkers = L.markerClusterGroup();
 
+      console.log(response);
+      
       for (var i = 0; i < response.length; i++) {
         if (response[i].center_lat && response[i].center_lng) {
           marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
