@@ -48,7 +48,7 @@ $initiative_query = new WP_Query($args);
 
 <div id="iframe_map" data-hub="<?php echo get_query_var('hub_name'); ?>" data-country="<?php echo get_query_var('country'); ?>" data-search="<?php echo get_query_var('search'); ?>">
   <?php get_template_part('templates/partials/key'); ?>
-  <div id="map-loading"><div class="lds-dual-ring"></div></div>
+  <div class="map-loading"><div class="lds-dual-ring"></div></div>
 </div>
 
 <main>

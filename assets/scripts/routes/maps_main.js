@@ -4,8 +4,7 @@ import 'leaflet.markercluster';
 
 export default {
   loaded() {
-    console.log('asdsad');
-    
+
     var map = L.map('iframe_map').setView([0, 0], 3);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -31,13 +30,13 @@ export default {
 
       var marker;
       var range = [];
-      var markers = L.markerClusterGroup();
+      var clusterMarkers = L.markerClusterGroup();
 
       for (var i = 0; i < response.length; i++) {
         if (response[i].center_lat && response[i].center_lng) {
           marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
           marker.bindPopup('<h5>' + response[i].title + '</h5><div><a href="' + response[i].permalink + '" target="_top" class="btn btn-sm btn-primary">View</a></div>');
-          markers.addLayer(marker);
+          clusterMarkers.addLayer(marker);
           
           range.push([response[i].center_lat, response[i].center_lng]);
         }
@@ -45,7 +44,7 @@ export default {
 
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
-      map.addLayer(markers);
+      map.addLayer(clusterMarkers);
     }
 
     $.ajax({
@@ -61,7 +60,7 @@ export default {
       },
       dataType: 'json',
       success: function (response) {
-        $('#map-loading').hide();
+        $('.map-loading').hide();
         displayMap(response, map);
       },
       error: function (jqxhr, status, exception) {
