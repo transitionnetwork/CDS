@@ -6,6 +6,7 @@ import common from './routes/common';
 import account from './routes/maps_main';
 import map from './routes/maps_main';
 import list_initiatives from './routes/maps_main';
+import single from './routes/select2';
 
 // Import ajaxForm
 import './ajax-form';
@@ -22,7 +23,8 @@ const routes = {
   common,
   account,
   map,
-  list_initiatives
+  list_initiatives,
+  single,
 };
 
 // Load Events

@@ -1,3 +1,5 @@
+<?php acf_form_head(); ?>
+
 <?php if(get_query_var('updated') == 'healthcheck') { ?>
   <div class="container">
     <div class="alert top alert-success">
@@ -6,13 +8,21 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('updated') == 'author') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('The author of this initiative has been updated'); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php while (have_posts()) : the_post(); ?>
   <main>
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
-      <h1><?php echo \Tofino\Helpers\title(); ?></h1>
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-8">
+      <div class="row justify-content-between">
+        <div class="col-12 col-lg-7">
+          <h1><?php echo \Tofino\Helpers\title(); ?></h1>
           <?php $topics = get_the_terms($post, 'topic');
           $topic_names = [];
           if($topics) {
@@ -64,7 +74,10 @@
         <div class="col-12 col-lg-4">
           <aside>
             <?php echo get_field('map'); ?>
-            <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
+            
+            <?php if(get_field('logo')) { ?>
+              <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
+            <?php } ?>
   
             <?php if (get_field('address_line_1')) { ?>
                 <label><?php _e('Address', 'tofino'); ?></label>
@@ -99,8 +112,26 @@
                   <li><a href="<?php echo get_field('youtube'); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
                 <?php } ?>
               </ul>
-            </section>
-          <?php } ?>
+            <?php } ?>
+
+            <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
+              <?php $post_author_id = get_the_author_meta('ID'); ?>
+              <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
+                <label for="authors">Change author</label>
+                <?php $users = get_users(); ?>
+                <p>
+                  <select name="authors">
+                    <?php foreach($users as $user) { ?>
+                      <option value="<?php echo $user->ID; ?>" <?php echo ($user->ID === $post_author_id) ? 'selected' : ''; ?>><?php echo $user->user_email; ?></option>
+                    <?php } ?>
+                  </select>
+                  <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
+                </p>
+                <p>
+                  <input type="submit" value="Change">
+                </p>
+              </form>
+            <?php } ?>
   
             <?php if (can_view_healthcheck($post)) { ?>
               <?php if(get_field('private_email')) { ?>
