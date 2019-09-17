@@ -30,7 +30,7 @@ function return_map_markers() {
   }
 
   $query_string = serialize($args);
-  $hash = md5($query_string);
+  $hash = 'map_' . md5($query_string);
 
   $posts = get_posts($args);
 
