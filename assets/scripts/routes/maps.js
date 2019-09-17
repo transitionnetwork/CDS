@@ -21,7 +21,6 @@ export default {
     var marker, lat, lng, title, link, i;
     var markers = [];
     var templateUrl = document.getElementById("template-url").getAttribute("url");
-    console.log(templateUrl); 
 
     var markerIcon = L.icon({
       iconUrl: templateUrl + '/dist/img/icons/marker-icon.png',
