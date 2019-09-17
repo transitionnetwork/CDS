@@ -17,6 +17,8 @@ export default {
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
     function displayMap(response, map) {
+      console.log(response);
+      console.log(map);
       var markerIcon = L.icon({
         iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
         iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
@@ -50,6 +52,7 @@ export default {
     $.ajax({
       url: tofinoJS.ajaxUrl,
       type: 'POST',
+      cache: false,
       data: {
         action: 'getMapMarkers',
         value: {
@@ -59,9 +62,10 @@ export default {
         }
       },
       dataType: 'json',
-      async: false,
       success: function (response) {
         $('.map-loading').hide();
+        console.log(response);
+        console.log(map);
         displayMap(response, map);
       },
       error: function (jqxhr, status, exception) {
