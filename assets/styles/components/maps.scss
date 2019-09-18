@@ -30,15 +30,17 @@
     margin: 0;
     list-style: none;
     font-family: $font-body;
-
-    img {
-      max-width: 25px;
-      height: auto;
-      margin-right: 0.5rem;
-    }
+    font-weight: 300;
+    display: flex;
 
     li + li {
-      margin-top: 0.5rem;
+      margin-left: 1rem;
+    }
+
+    img {
+      max-width: 20px;
+      height: auto;
+      margin-right: 0.5rem;
     }
 
     button {
@@ -49,9 +51,8 @@
       padding: 0;
 
       svg {
-        width: 13px;
-        height: 13px;
-        fill: red;
+        width: 15px;
+        height: 15px;
       }
     }
   }
