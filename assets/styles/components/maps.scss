@@ -151,3 +151,11 @@
     background-color: lighten($brand-primary, 5);
   }
 }
+
+.hub-cluster {
+  background-color: rgba($black, 0.75);
+
+  div {
+    background-color: $black;
+  }
+}
