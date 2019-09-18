@@ -5,6 +5,7 @@ function get_hub_marker_ids() {
     $map = get_field('map', $hub);
     if($map) {
       var_dump($hub);
+      var_dump($map['markers']);
     }
   }
 }
