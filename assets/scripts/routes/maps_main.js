@@ -45,6 +45,11 @@ export default {
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
       map.addLayer(clusterMarkers);
+
+      if($('#iframe_map .key'.length)) {
+        console.log(response.length);
+        $('.key .initiative').append('<span>(' + response.length + ')</span>');
+      }
     }
 
     $.ajax({
