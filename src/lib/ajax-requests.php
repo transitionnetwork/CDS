@@ -38,11 +38,13 @@ function return_map_markers() {
   if ( false === ( $i_markers = get_transient($hash))) {
     foreach($posts as $key => $post) {
       $map = get_field('map', $post->ID, false);
-      $i_markers[$key]['lat'] = $map['lat'];
-      $i_markers[$key]['lng'] = $map['lng'];
-      $i_markers[$key]['permalink'] = get_the_permalink($post->ID);
-      $i_markers[$key]['title'] = get_the_title($post->ID);
-      // $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
+      if(!empty($map['markers'])) {
+        $i_markers[$key]['lat'] = $map['lat'];
+        $i_markers[$key]['lng'] = $map['lng'];
+        $i_markers[$key]['permalink'] = get_the_permalink($post->ID);
+        $i_markers[$key]['title'] = get_the_title($post->ID);
+        // $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
+      }
     }
 	// Put the results in a transient. Expire after 12 hours.
   set_transient($hash, $i_markers, 12 * HOUR_IN_SECONDS );
@@ -57,7 +59,7 @@ function return_map_markers() {
   //TODO add hub transient in here
   foreach($hubs as $hub) {
     $map = get_field('map', $hub);
-    if(!empty($map['lat'])) {
+    if(!empty($map['markers'])) {
       $h_markers[$key]['lat'] = $map['lat'];
       $h_markers[$key]['lng'] = $map['lng'];
       $h_markers[$key]['permalink'] = get_term_link($hub);
