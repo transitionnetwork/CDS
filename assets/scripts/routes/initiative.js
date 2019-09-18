@@ -1,6 +1,8 @@
 // We need jQuery
 var $ = window.jQuery;
 
+import L from 'leaflet';
+
 export default {
   loaded() {
     var lat = $('#initiative-map').data('lat');

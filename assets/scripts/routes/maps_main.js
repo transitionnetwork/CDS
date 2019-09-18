@@ -44,8 +44,10 @@ export default {
       var marker;
       var range = [];
       var clusterMarkers = L.markerClusterGroup();
+      var i;
 
-      for (var i = 0; i < iResponse.length; i++) {
+
+      for (i = 0; i < iResponse.length; i++) {
         if (iResponse[i].lat && iResponse[i].lng) {
           marker = L.marker([iResponse[i].lat, iResponse[i].lng], { icon: initiativeMarkerIcon });
           marker.bindPopup('<h5>' + iResponse[i].title + '</h5><div><a href="' + iResponse[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
@@ -55,18 +57,16 @@ export default {
       }
 
       map.addLayer(clusterMarkers);
+      
+      var bounds = L.latLngBounds(range);
+      map.fitBounds(bounds);
 
       for (i = 0; i < hResponse.length; i++) {
         if (hResponse[i].lat && hResponse[i].lng) {
-          console.log(hResponse[i]);
           marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon }).addTo(map);
           marker.bindPopup('<h5>' + hResponse[i].title + '</h5>');
-          range.push([hResponse[i].lat, hResponse[i].lng]);
         }
       }
-
-      var bounds = L.latLngBounds(range);
-      map.fitBounds(bounds);
 
       if($('#iframe_map .key'.length)) {
         $('.key .initiative').append('<span>(' + iResponse.length + ')</span>');
