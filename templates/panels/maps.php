@@ -14,7 +14,7 @@
   <div class="panel">
     <?php $url = get_the_permalink(438); ?>
     <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>
-    <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;550px&quot;&gt;</pre>
+    <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;550px&quot;&gt;&lt;/iframe&gt;</pre>
     <p><a href="<?php echo $url ?>" class="btn btn-primary btn-sm" target="_blank"><?php echo svg('eye'); ?><?php _e('Preview Map', 'tofino'); ?></a></p>
   </div>
   
@@ -24,7 +24,7 @@
     ?>
     <div class="panel">
       <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>
-      <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;550px&quot;&gt;</pre>
+      <pre>&lt;iframe&nbsp;src&#61;&quot;<?php echo $url; ?>&quot;&nbsp;width&#61;&quot;100%&quot;&nbsp;height&#61;&quot;550px&quot;&gt;&lt;/iframe&gt;</pre>
       <p><a href="<?php echo $url ?>" class="btn btn-primary btn-sm" target="_blank"><?php echo svg('eye'); ?><?php _e('Preview Map', 'tofino'); ?></a></p>
     </div>
   <?php } ?>
