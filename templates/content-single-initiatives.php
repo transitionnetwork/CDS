@@ -73,23 +73,30 @@
         </div>
         <div class="col-12 col-lg-4">
           <aside>
-            <?php echo get_field('map'); ?>
+            <?php $map = get_field('map'); ?>
+            <?php if($map) { ?>
+              <div id="initiative-map" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
+              <?php foreach($map['markers'] as $marker) { ?>
+                <label><?php _e('Location', 'tofino'); ?></label>
+                <?php $address = explode(',', $marker['default_label']); ?>
+                <?php $address = implode(',<br>', $address); ?>
+                <?php echo $address; ?>
+              <?php } ?>
+            <?php } else if (get_field('address_line_1')) { ?>
+              <label><?php _e('Location', 'tofino'); ?></label>
+              <?php echo get_field('address_line_1'); ?><br/>
+              <?php echo get_field('city'); ?><br/>
+              <?php echo get_field('province'); ?><br/>
+              <?php echo get_field('postal_code'); ?><br/>
+              <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
+            <?php } ?>
             
             <?php if(get_field('logo')) { ?>
               <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
             <?php } ?>
   
-            <?php if (get_field('address_line_1')) { ?>
-                <label><?php _e('Address', 'tofino'); ?></label>
-                <?php echo get_field('address_line_1'); ?><br/>
-                <?php echo get_field('city'); ?><br/>
-                <?php echo get_field('province'); ?><br/>
-                <?php echo get_field('postal_code'); ?><br/>
-                <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
-            <?php } ?>
-  
             <?php if (get_field('email')) { ?>
-              <label><?php echo get_field_object('email')['label']; ?> :</label>
+              <label><?php echo get_field_object('email')['label']; ?></label>
               <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
             <?php } ?>
 
@@ -117,7 +124,7 @@
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
               <?php $post_author_id = get_the_author_meta('ID'); ?>
               <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
-                <label for="authors">Change author</label>
+                <label for="authors">Update author</label>
                 <?php $users = get_users(); ?>
                 <p>
                   <select name="authors">
