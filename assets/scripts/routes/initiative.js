@@ -25,6 +25,7 @@ export default {
       shadowSize: [41, 41]
     });
 
-    L.marker([lat, lng], { icon: markerIcon }).addTo(map);
+    var marker = L.marker([lat, lng], { icon: markerIcon }).addTo(map);
+    marker.bindPopup($('#marker-address').data('address'));
   }
 }
