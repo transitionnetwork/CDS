@@ -35,7 +35,7 @@ export default {
       for (var i = 0; i < response.length; i++) {
         if (response[i].center_lat && response[i].center_lng) {
           marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
-          marker.bindPopup('<h5>' + response[i].title + '</h5><div><a href="' + response[i].permalink + '" target="_top" class="btn btn-sm btn-primary">View</a></div>');
+          marker.bindPopup('<h5>' + response[i].title + '</h5><div><a href="' + response[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           clusterMarkers.addLayer(marker);
           
           range.push([response[i].center_lat, response[i].center_lng]);
