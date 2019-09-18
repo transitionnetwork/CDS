@@ -4,7 +4,6 @@ import 'leaflet.markercluster';
 
 export default {
   loaded() {
-
     var map = L.map('iframe_map').setView([0, 0], 3);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -17,9 +16,23 @@ export default {
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
     function displayMap(response, map) {
-      var markerIcon = L.icon({
+      var iResponse = response['i_markers'];
+      var hResponse = response['h_markers'];
+
+      var initiativeMarkerIcon = L.icon({
         iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
         iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
+        shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41]
+      });
+
+      var hubMarkerIcon = L.icon({
+        iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub.png',
+        iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub-2x.png',
         shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -32,23 +45,32 @@ export default {
       var range = [];
       var clusterMarkers = L.markerClusterGroup();
 
-      for (var i = 0; i < response.length; i++) {
-        if (response[i].center_lat && response[i].center_lng) {
-          marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
-          marker.bindPopup('<h5>' + response[i].title + '</h5><div><a href="' + response[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
+      for (var i = 0; i < iResponse.length; i++) {
+        if (iResponse[i].lat && iResponse[i].lng) {
+          marker = L.marker([iResponse[i].lat, iResponse[i].lng], { icon: initiativeMarkerIcon });
+          marker.bindPopup('<h5>' + iResponse[i].title + '</h5><div><a href="' + iResponse[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           clusterMarkers.addLayer(marker);
-          
-          range.push([response[i].center_lat, response[i].center_lng]);
+          range.push([iResponse[i].lat, iResponse[i].lng]);
+        }
+      }
+
+      map.addLayer(clusterMarkers);
+
+      for (i = 0; i < hResponse.length; i++) {
+        if (hResponse[i].lat && hResponse[i].lng) {
+          console.log(hResponse[i]);
+          marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon }).addTo(map);
+          marker.bindPopup('<h5>' + hResponse[i].title + '</h5>');
+          range.push([hResponse[i].lat, hResponse[i].lng]);
         }
       }
 
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
-      map.addLayer(clusterMarkers);
 
       if($('#iframe_map .key'.length)) {
-        console.log(response.length);
-        $('.key .initiative').append('<span>(' + response.length + ')</span>');
+        $('.key .initiative').append('<span>(' + iResponse.length + ')</span>');
+        $('.key .hub').append('<span>(' + hResponse.length + ')</span>');
       }
     }
 
