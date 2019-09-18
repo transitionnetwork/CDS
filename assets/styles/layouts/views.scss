@@ -131,4 +131,8 @@ body.single-healthchecks {
   width: 100%;
   height: 300px;
   background-color: $sea-blue;
+
+  .leaflet-popup-content {
+    max-width: 140px;
+  }
 }

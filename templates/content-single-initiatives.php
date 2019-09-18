@@ -78,6 +78,7 @@
               <div id="initiative-map" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
               <?php foreach($map['markers'] as $marker) { ?>
                 <label><?php _e('Location', 'tofino'); ?></label>
+                <div id="marker-address" data-address="<?php echo $marker['default_label']; ?>"></div>
                 <?php $address = explode(',', $marker['default_label']); ?>
                 <?php $address = implode(',<br>', $address); ?>
                 <?php echo $address; ?>
