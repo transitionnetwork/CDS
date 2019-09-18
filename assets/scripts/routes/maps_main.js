@@ -46,6 +46,12 @@ export default {
       var clusterMarkers = L.markerClusterGroup();
       var i;
 
+      for (i = 0; i < hResponse.length; i++) {
+        if (hResponse[i].lat && hResponse[i].lng) {
+          marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon }).addTo(map);
+          marker.bindPopup('<h5>' + hResponse[i].title + '</h5>');
+        }
+      }
 
       for (i = 0; i < iResponse.length; i++) {
         if (iResponse[i].lat && iResponse[i].lng) {
@@ -61,13 +67,7 @@ export default {
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
 
-      for (i = 0; i < hResponse.length; i++) {
-        if (hResponse[i].lat && hResponse[i].lng) {
-          marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon }).addTo(map);
-          marker.bindPopup('<h5>' + hResponse[i].title + '</h5>');
-        }
-      }
-
+    
       if($('#iframe_map .key'.length)) {
         $('.key .initiative').append('<span>(' + iResponse.length + ')</span>');
         $('.key .hub').append('<span>(' + hResponse.length + ')</span>');
