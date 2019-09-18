@@ -49,11 +49,15 @@ function return_map_markers() {
   }
 
   //hubs
-  $hubs = get_terms('hub');
+  $hubs = get_terms('hub', array(
+    'hide_empty' => false
+  ));
   $key = 0;
+
+  //TODO add hub transient in here
   foreach($hubs as $hub) {
     $map = get_field('map', $hub);
-    if($map) {
+    if(!empty($map['lat'])) {
       $h_markers[$key]['lat'] = $map['lat'];
       $h_markers[$key]['lng'] = $map['lng'];
       $h_markers[$key]['permalink'] = get_term_link($hub);
