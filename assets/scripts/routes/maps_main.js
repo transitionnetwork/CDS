@@ -61,7 +61,15 @@ export default {
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
 
-      clusterMarkers = L.markerClusterGroup();
+      clusterMarkers = L.markerClusterGroup({
+        iconCreateFunction: function (cluster) {
+          return L.divIcon({
+            html: '<div><span>' + cluster.getChildCount() + '</span></div>',
+            className: 'hub-cluster marker-cluster',
+            iconSize: [40, 40]
+          });
+        }
+      });
       for (i = 0; i < hResponse.length; i++) {
         if (hResponse[i].lat && hResponse[i].lng) {
           marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon });
