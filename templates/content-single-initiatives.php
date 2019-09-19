@@ -33,7 +33,7 @@
 
           <ul class="meta">
             <?php $hub = wp_get_post_terms($post->ID, 'hub')[0]; ?>
-            <li><strong>Hub: </strong> <a href="<?php echo add_query_arg('hub_name', $hub->slug, home_url('list-initiatives')); ?>"><?php echo $hub->name; ?></a></li>
+            <li><strong>Hub: </strong> <a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a></li>
             <?php if($topics) { ?>
               <li><strong><?php echo get_taxonomy('topic')->label; ?>:</strong> <?php echo implode(', ', $topic_names); ?></li>
             <?php } ?>
@@ -89,9 +89,7 @@
               <?php foreach($map['markers'] as $marker) { ?>
                 <label><?php _e('Location', 'tofino'); ?></label>
                 <div id="marker-address" data-address="<?php echo $marker['default_label']; ?>"></div>
-                <?php $address = explode(',', $marker['default_label']); ?>
-                <?php $address = implode(',<br>', $address); ?>
-                <?php echo $address; ?>
+                <?php echo $marker['default_label']; ?>
               <?php } ?>
             <?php } ?>
             

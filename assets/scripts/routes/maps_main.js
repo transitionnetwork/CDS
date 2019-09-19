@@ -70,7 +70,6 @@ export default {
       var clusterMarkers = L.markerClusterGroup();
       var i;
 
-
       for (i = 0; i < iResponse.length; i++) {
         if (iResponse[i].lat && iResponse[i].lng) {
           marker = L.marker([iResponse[i].lat, iResponse[i].lng], { icon: initiativeMarkerIcon });
@@ -94,11 +93,14 @@ export default {
           });
         }
       });
-      for (i = 0; i < hResponse.length; i++) {
-        if (hResponse[i].lat && hResponse[i].lng) {
-          marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon });
-          marker.bindPopup('<h5>' + hResponse[i].title + '</h5>');
-          clusterMarkers.addLayer(marker);
+      
+      if (hResponse) {
+        for (i = 0; i < hResponse.length; i++) {
+          if (hResponse[i].lat && hResponse[i].lng) {
+            marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon });
+            marker.bindPopup('<h5>' + hResponse[i].title + '</h5><div><a href="' + hResponse[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
+            clusterMarkers.addLayer(marker);
+          }
         }
       }
 

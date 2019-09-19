@@ -27,7 +27,9 @@ function list_initiatives($post_ids) {
     <table class="item-list">
         <tr>
           <th class="col-a"><?php _e('Initiative', 'tofino'); ?></th>
-          <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
+          <?php if(!is_tax()) { ?>
+            <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
+          <?php } ?>
           <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
           <?php if(can_view_any_healthcheck()) { ?>
             <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
@@ -49,9 +51,11 @@ function list_initiatives($post_ids) {
                 render_publish_button($post->ID);
               } ?>
             </td>
-            <td>
-              <a href="<?php echo add_query_arg('hub_name', $data['hub_slug'], home_url('list-initiatives')) ?>"><?php echo $data['hub_name']; ?></a>
-            </td>
+            <?php if(!is_tax()) { ?>
+              <td>
+                <a href="<?php echo get_term_link(get_term_by('slug', $data['hub_slug'], 'hub')); ?>"><?php echo $data['hub_name']; ?></a>
+              </td>
+            <?php } ?>
             <td>
               <a href="<?php echo add_query_arg('country_name', $data['country_slug'], get_the_permalink()) ?>"><?php echo $data['country_name']; ?></a>
             </td>
