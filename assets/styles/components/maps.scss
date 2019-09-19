@@ -5,14 +5,6 @@
   position: relative;
   background-color: $sea-blue;
 
-  @include media-breakpoint-down(md) {
-    height: 400px;
-  }
-
-  @include media-breakpoint-down(xs) {
-    height: 230px;
-  }
-
   .leaflet-popup-content {
     a {
       color: $white;
