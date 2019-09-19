@@ -41,6 +41,10 @@
             </ul>
           </section>
         <?php } ?>
+
+        <?php if(is_user_role('administrator') || is_user_role('super_hub') || can_edit_hub($term->term_id)) { ?>
+          <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, home_url('edit-hub')); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
+        <?php } ?>
       </div>
  
       <div class="col-12 col-lg-4">
@@ -52,16 +56,20 @@
           
           <?php if (get_field('address_line_1', $term)) { ?>
             <label><?php _e('Location', 'tofino'); ?></label>
-            <?php echo get_field('address_line_1', $term); ?><br/>
-            <?php echo get_field('city', $term); ?><br/>
-            <?php echo get_field('province', $term); ?><br/>
-            <?php echo get_field('postal_code', $term); ?><br/>
-            <?php echo get_term_by('id', get_field('country', $term), 'country')->name; ?><br/>
+            <p>
+              <?php echo get_field('address_line_1', $term); ?><br/>
+              <?php echo get_field('city', $term); ?><br/>
+              <?php echo get_field('province', $term); ?><br/>
+              <?php echo get_field('postal_code', $term); ?><br/>
+              <?php echo get_term_by('id', get_field('country', $term), 'country')->name; ?>
+            </p>
           <?php } else if($map) { ?>
             <?php foreach($map['markers'] as $marker) { ?>
               <label><?php _e('Location', 'tofino'); ?></label>
               <div id="marker-address" data-address="<?php echo $marker['default_label']; ?>"></div>
-              <?php echo $marker['default_label']; ?>
+              <p>
+                <?php echo $marker['default_label']; ?>
+              </p>
             <?php } ?>
           <?php } ?>
           
