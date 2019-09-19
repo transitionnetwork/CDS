@@ -1,6 +1,8 @@
 var $ = window.jQuery;
 import L from 'leaflet';
 import 'leaflet.markercluster';
+import 'leaflet-search';
+import 'leaflet.locatecontrol';
 
 export default {
   loaded() {
@@ -11,9 +13,31 @@ export default {
       maxZoom: 18,
     }).addTo(map);
 
+    map.addControl(new L.Control.Search({
+      url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+      jsonpParam: 'json_callback',
+      propertyName: 'display_name',
+      propertyLoc: ['lat', 'lon'],
+      marker: L.circleMarker([0, 0], { radius: 30 }),
+      autoCollapse: true,
+      autoType: false,
+      minLength: 2,
+      zoom: 13
+    }));
+
+    L.control.locate({
+      locateOptions: {
+        maxZoom: 13
+      }
+    }).addTo(map);
+
     map.scrollWheelZoom.disable();
     map.on('focus', function () { map.scrollWheelZoom.enable(); });
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
+
+    $('#map-search').on('keyup', function(){
+      console.log($(this).val());
+    })
 
     function displayMap(response, map) {
       var iResponse = response['i_markers'];
@@ -102,6 +126,7 @@ export default {
       dataType: 'json',
       success: function (response) {
         $('.map-loading').hide();
+        $('#map-panel').show();
         displayMap(response, map);
       },
       error: function (jqxhr, status, exception) {
@@ -112,7 +137,7 @@ export default {
     })
 
     $('#iframe_map button.close').on('click', function(){
-      $(this).closest('.key').hide();
+      $(this).closest('#map-panel').hide();
     })
 
     $('#iframe_map button.my-location').on('click', function(){
