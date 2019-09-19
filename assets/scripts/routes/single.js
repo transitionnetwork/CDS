@@ -28,6 +28,9 @@ export default {
     });
 
     var marker = L.marker([lat, lng], { icon: markerIcon }).addTo(map);
-    marker.bindPopup($('#marker-address').data('address'));
+
+    if ($('#marker-address').data('address').length) {
+      marker.bindPopup($('#marker-address').data('address'));
+    }
   }
 }
