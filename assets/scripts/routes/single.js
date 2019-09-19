@@ -16,16 +16,31 @@ export default {
       maxZoom: 18,
     }).addTo(map);
 
-    var markerIcon = L.icon({
-      iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
-      iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
-      shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      tooltipAnchor: [16, -28],
-      shadowSize: [41, 41]
-    });
+    var markerIcon;
+    
+    if($('body').hasClass('tax-hub')) {
+      markerIcon = L.icon({
+        iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub.png',
+        iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub-2x.png',
+        shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41]
+      });
+    } else {
+      markerIcon = L.icon({
+        iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
+        iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
+        shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41]
+      });
+    }
 
     var marker = L.marker([lat, lng], { icon: markerIcon }).addTo(map);
 
