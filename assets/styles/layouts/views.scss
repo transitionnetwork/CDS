@@ -137,3 +137,23 @@ body.single-healthchecks {
     max-width: 140px;
   }
 }
+
+body.add-healthcheck {
+  .header {
+    margin-bottom: 1rem;
+
+    h2 {
+      margin-bottom: 0;
+    }
+    .date {
+      font-style: italic;
+    }
+  }
+
+  .message {
+    span {
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+  }
+}
