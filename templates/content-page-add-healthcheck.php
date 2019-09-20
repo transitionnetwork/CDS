@@ -18,18 +18,7 @@ if (!is_user_logged_in() || (!can_view_healthcheck($post))) {
             <h2><a href="<?php echo get_the_permalink($initiative_id); ?>"><?php echo get_the_title($initiative_id); ?></a></h2>
             <h4><?php echo date('l jS F Y'); ?></h4>
             <?php acf_form_head(); ?>
-            <?php acf_form(array(
-              'post_id'		=> 'new_post',
-              'post_title'	=> false,
-              'post_content'	=> false,
-              'return' => add_query_arg('updated', 'healthcheck', get_permalink($initiative_id)),
-              'fields' => array('group_1', 'group_2', 'group_3', 'group_4', 'group_5', 'group_6', 'group_7', 'group_8', 'group_9'),
-              'submit_value' => 'Create Healthcheck',
-              'new_post'		=> array(
-                'post_type'		=> 'healthchecks',
-                'post_status'	=> 'publish'
-              )
-            )); ?>
+            <?php echo do_shortcode('[acf_multiforms_healthcheck]'); ?>
           </div>
         </div>
       </div>
