@@ -23,7 +23,7 @@ if (!is_user_logged_in() || (!can_view_healthcheck($post))) {
               'post_title'	=> false,
               'post_content'	=> false,
               'return' => add_query_arg('updated', 'healthcheck', get_permalink($initiative_id)),
-              'fields' => array('group_1'),
+              'fields' => array('group_1', 'group_2', 'group_3', 'group_4', 'group_5', 'group_6', 'group_7', 'group_8', 'group_9'),
               'submit_value' => 'Create Healthcheck',
               'new_post'		=> array(
                 'post_type'		=> 'healthchecks',
