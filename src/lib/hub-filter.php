@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-6">
       <form action="<?php the_permalink() ?>" method="GET" class="filter">
         <div class="search-wrap">
-          <input type="text" name="search" placeholder="Initiative..." value="<?php echo get_query_var('search'); ?>">
+          <input type="text" name="search" placeholder="Search initiatives..." value="<?php echo get_query_var('search'); ?>">
           <input type="submit" value="Search" class="btn btn-sm btn-primary">
         </div>
       </form>

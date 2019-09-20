@@ -57,7 +57,8 @@ button {
   &.btn-danger,
   &.btn-primary,
   &.btn-success,
-  &.btn-dark {
+  &.btn-dark,
+  &.btn-secondary {
     svg {
       fill: $white;
     }

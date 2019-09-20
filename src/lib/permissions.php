@@ -111,3 +111,11 @@ function check_publish_argument() {
   }
 }
 add_action('init', 'check_publish_argument');
+
+function can_edit_hub($term_id) {
+  $user_hub = get_field('hub_user', wp_get_current_user());
+  if((int)$user_hub === (int)$term_id) {
+    return true;
+  } 
+  return false;
+}

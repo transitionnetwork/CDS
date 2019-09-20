@@ -5,64 +5,71 @@
   position: relative;
   background-color: $sea-blue;
 
-  @include media-breakpoint-down(md) {
-    height: 400px;
-  }
-
-  @include media-breakpoint-down(xs) {
-    height: 230px;
-  }
-
   .leaflet-popup-content {
     a {
       color: $white;
     }
   }
 
-  .key {
+  svg.logo {
     position: absolute;
+    z-index: 9999;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  #map-panel {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    background-color: $white;
+    border: 2px solid rgba($black, 0.2);
+    background-clip: padding-box;
+    padding: 0.75rem 1.5rem 0.75rem 0.75rem;
+    border-radius: $border-radius;
     bottom: 1rem;
     left: 1rem;
-    background-color: rgba($white, 0.8);
-    padding: 0.5rem 2rem 0.5rem 1rem;
-    z-index: 9999;
-    border-radius: $border-radius;
+
+    button.close {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      line-height: 0.5;
+      padding: 0;
+
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+
+  .key {
     margin: 0;
+    padding: 0;
     list-style: none;
     font-family: $font-body;
-
-    img {
-      max-width: 25px;
-      height: auto;
-      margin-right: 0.5rem;
-    }
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
 
     li + li {
       margin-top: 0.5rem;
     }
 
-    button {
-      position: absolute;
-      top: 3px;
-      right: 3px;
-      line-height: 0.5;
-      padding: 0;
+    img {
+      max-width: 20px;
+      height: auto;
+      margin-right: 0.5rem;
+    }
 
-      svg {
-        width: 13px;
-        height: 13px;
-        fill: red;
-      }
+    span {
+      font-size: 0.675rem;
+      margin-left: 0.25rem;
+      color: $brand-primary;
     }
   }
 
-  svg.logo,
-  button.my-location {
-    position: absolute;
-    z-index: 9999;
-    right: 1rem;
-    top: 1rem;
-  }
 
   svg.logo {
     width: 150px;
@@ -143,4 +150,30 @@
   div {
     background-color: lighten($brand-primary, 5);
   }
+}
+
+.hub-cluster {
+  background-color: rgba($black, 0.75);
+
+  div {
+    background-color: $black;
+  }
+}
+
+.leaflet-control-search .search-button,
+.leaflet-control-search .search-button:hover,
+.leaflet-bar-part {
+  background-size: contain;
+  background-position: 50%;
+  background-origin: content-box;
+  padding: 5px;
+}
+
+.leaflet-control-search .search-button,
+.leaflet-control-search .search-button:hover {
+  background-image: url('../img/icons/search-icon.png');
+}
+
+.leaflet-bar-part {
+  background-image: url('../img/icons/location-icon.png');
 }

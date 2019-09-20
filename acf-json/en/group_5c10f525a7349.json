@@ -1,0 +1,1928 @@
+{
+    "key": "group_5c10f525a7349",
+    "title": "Healthcheck Questions",
+    "fields": [
+        {
+            "key": "field_5c10f6df861ef",
+            "label": "How to start Transition: Developing an initiating group",
+            "name": "group_1",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c10f70d18cf6",
+                    "label": "We have a working initiating\/core group of between 4 and 15 people",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c10f7a99a2f2",
+                    "label": "Our group has a shared understanding of what Transition is and why it's needed",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c10f7b19a2f7",
+                    "label": "Our group has registered on TN website or national hub",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c10f7b09a2f6",
+                    "label": "We have made contact with nearby initiatives",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c10f7b09a2f5",
+                    "label": "We've thought about the area we're covering and is as close to the ideal range as is workable",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c10f7af9a2f4",
+                    "label": "We are aware of the opportunities and challenges of doing Transition in our community",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c10f7af9a2f3",
+                    "label": "At least one person in our group has more in depth knowledge of Transition through attending training or reading books or web sites.",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c647680bcba7",
+            "label": "Healthy Groups",
+            "name": "group_2",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c64792b4a3e8",
+                    "label": "Our group has clear and agreed aims and objectives",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6479c74a3e9",
+                    "label": "Our group gets things done",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647a2a4a3ea",
+                    "label": "Members are clear about their responsibilities and roles",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647ab24a3eb",
+                    "label": "We have an agreed code of conduct (working principles or ways of working)",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647afb4a3ec",
+                    "label": "We have clear and agreed processes for making, recording and following up on decisions",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647b164a3ed",
+                    "label": "We have effective meetings with a clear agenda, discussion and minutes",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647b274a3ee",
+                    "label": "We spend time in our meetings reflecting on how we work together",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647b3e4a3ef",
+                    "label": "We have thought about how our meetings are facilitated or chaired",
+                    "name": "q8",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647bd54a3f0",
+                    "label": "We have discussed and come to agreement about how power and leadership work in our group",
+                    "name": "q9",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647c394a3f1",
+                    "label": "There are processes for new people to join, and existing members to leave",
+                    "name": "q10",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c647c6d4a3f2",
+                    "label": "When differences or conflict have arisen we have handled it well",
+                    "name": "q11",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c64834f16c0a",
+            "label": "Vision",
+            "name": "group_3",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c64837316c0b",
+                    "label": "We have a shared understanding of challenges like resource depletion, pollution, inequality, economic vulnerability, that require us to create a new vision for the future",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6483cf16c0c",
+                    "label": "Our group has a shared vision of our community in the future",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6483de16c0d",
+                    "label": "Our vision is positive, inspiring and plausible",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6483eb16c0e",
+                    "label": "We have explored and understand how to include and work with diverse visions",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6483f616c0f",
+                    "label": "[Advanced] We can balance the need for a plan to create a positive future with enough flexibility to meet what is unknown",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c64840216c10",
+                    "label": "[Advanced] We have engaged our community in developing a positive vision of the future",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c648c65fc3d7",
+            "label": "Community Involvement",
+            "name": "group_4",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c648c8efc3d8",
+                    "label": "We understand who is in our community and how to communicate with and involve them in our group\/projects in a meaningful way",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648cd7fc3d9",
+                    "label": "We spend time listening to what’s important for different people in our community",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648ce1fc3da",
+                    "label": "We understand current local issues\/concerns and can relate Transition messages to these",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648cedfc3db",
+                    "label": "We use a range of styles and types of awareness raising and engagement methods",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "(a) for people at different stages of change \r\n(b) for different demographic and cultural groups \r\n(c) for different themes\r\n (d) for people who engage through head, heart and hands",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648cf9fc3dc",
+                    "label": "We know how to put on events that are enjoyable, inspiring, connecting and participative",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648d04fc3dd",
+                    "label": "We use both altruistic messages (pro-social and environmental) and self-interested messages (about practical benefits) to motivate and engage people",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648d0efc3de",
+                    "label": "We have used Open Space and \/ or similar processes to invite ideas and involvement of local people",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648e18fc3df",
+                    "label": "We promote and publicise our events and projects through relevant local media",
+                    "name": "q8",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c6480d6109c1",
+            "label": "Networks and Partnerships",
+            "name": "group_5",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6480f6109c2",
+                    "label": "We have connections with key local organisations such as schools, businesses, landowners, community groups",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c64813c109c3",
+                    "label": "We have thought about who to partner with and for what purpose",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c64817a109c4",
+                    "label": "We make an effort to do things in partnership with other groups or organisations.",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6481af109c5",
+                    "label": "We have made contact with our local government",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6481dd109c6",
+                    "label": "Some people involved in our group have lived in this place for many years",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c64820b109c7",
+                    "label": "We are seen by other groups as positive, collaborative, and helpful",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c64824a109c8",
+                    "label": "We are connected to a diverse range of groups in our community (e.g. income, ethnicity, life stage)",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648282109c9",
+                    "label": "We have managed difficulties in our relationship with other groups (if this has occurred)",
+                    "name": "q8",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6482bc109ca",
+                    "label": "[Advanced] We have a strategic plan for networking and partnerships",
+                    "name": "q9",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6482fb109cb",
+                    "label": "[Advanced] We promote the work of other groups in our community",
+                    "name": "q10",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c648539db129",
+            "label": "Reflect and celebrate",
+            "name": "group_6",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c648567db12a",
+                    "label": "We feed back what has been achieved to group volunteers\/members, wider community and stakeholders",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6485bfdb12b",
+                    "label": "We take time to celebrate achievements",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6485cbdb12c",
+                    "label": "We spend time together socially",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6485d5db12d",
+                    "label": "We make time\/space made for learning and reflection",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6485e0db12e",
+                    "label": "We are open to working with and learning from people outside our group\/network",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6485ebdb12f",
+                    "label": "We have established a monitoring system to track and assess how well we are doing, and use learning to adapt our strategy",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6485fddb130",
+                    "label": "We have a creative attitude to experimentation and learn from our failures.",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c648abdde26e",
+            "label": "Practical Projects",
+            "name": "group_7",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c648ae9de26f",
+                    "label": "We run a range of practical projects that benefit local people",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648b0fde270",
+                    "label": "Our projects are relevant and accessible to people on low incomes, with disabilities and from different cultures",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648b42de271",
+                    "label": "We take active measures to reduce barriers to participation (eg by involving people in the design of projects, ensuring inclusive communication, access to grants, crèches etc",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648b4cde272",
+                    "label": "Our projects have appropriate legal and governance structures and we understand our legal responsibilities",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648b58de273",
+                    "label": "We have the skills we need to manage and implement our projects effectively",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648b63de274",
+                    "label": "We know who has expertise locally and how to draw on it",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c648b6dde275",
+                    "label": "[Advanced] The projects and the enterprises that we generate create and create livelihoods for local people",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c648fa6bb28c",
+            "label": "Inner Transition",
+            "name": "group_8",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c648fd6bb28d",
+                    "label": "We are aware of the emotional significance and depth of the issues that transition addresses and understand how to work with these",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c649026bb28e",
+                    "label": "We regularly check as individuals and as a group on our personal resilience and risk of burnout",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c649039bb28f",
+                    "label": "We understand the need for inner and outer skills within Transition and can include the inner dimension in a way that is accessible",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c64904dbb290",
+                    "label": "We have created support structures for ourselves and for others involved in Transition (one to one or group)",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c64905ebb291",
+                    "label": "In our group we spend time building trust and deepening our relationships",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        },
+        {
+            "key": "field_5c64916b4d0f0",
+            "label": "Part of a Movement",
+            "name": "group_9",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6491834d0f1",
+                    "label": "We learn from others in the Transition movement.",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6491be4d0f2",
+                    "label": "We have an established channel of communication with our regional or national hub and\/or Transition Network.",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6491ce4d0f3",
+                    "label": "When we do something that other groups can learn from we share our learning",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c6491de4d0f4",
+                    "label": "We attend conferences or events (or online webinars or trainings) put on by our regional or national hub or Transition Network.",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c75bedeb3cfd",
+                    "label": "We make sure that our contact details on our Transition Profile are up to date",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                },
+                {
+                    "key": "field_5c767f077949a",
+                    "label": "All of our members are signed up to the Transition Network Newsletter",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Strongly Disagree",
+                        "2": "Disagree",
+                        "3": "Mostly Agree",
+                        "4": "Agree",
+                        "5": "Strongly Agree"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value",
+                    "wpml_cf_preferences": "2"
+                }
+            ],
+            "wpml_cf_preferences": "2"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "healthchecks"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1568977814
+}

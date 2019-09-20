@@ -1,7 +1,12 @@
 <?php
 $user_role = wp_get_current_user()->roles[0];
 $user_human_role = ucwords(str_replace('_', ' ', $user_role));
-$user_hub = get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?>
+
+if(is_user_role('hub')) {
+  $hub_id = get_field('hub_user', wp_get_current_user());
+  $hub = get_term_by('term_id', $hub_id, 'hub'); 
+}
+?>
 
 <div class="user-details">
   <?php
@@ -15,11 +20,11 @@ $user_hub = get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?>
     <div class="tag role"><?php _e('Role', 'tofino'); ?>: <?php echo $user_human_role; ?></div>
   <?php endif; ?>
 
-  <?php if($user_hub) : ?>
-    <div class="tag hub"><?php echo $user_hub; ?></div>
+  <?php if($hub) : ?>
+    <div class="tag hub"><?php echo $hub->name; ?></div>
   <?php endif; ?>
 </div>
 
 <div>
-  <span class="tag beta">BETA</span>
+  <span class="tag beta">beta</span>
 </div>
