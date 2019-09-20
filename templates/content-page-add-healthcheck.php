@@ -11,7 +11,7 @@ if (!is_user_logged_in() || (!can_view_healthcheck($post))) {
   exit;
 } else { ?>
   <?php wp_reset_postdata(); ?>
-    <main>
+    <main class="healthcheck-form">
       <div class="container">
         <div class="row justify-content-center">	
           <div class="col-12 col-xl-10">
