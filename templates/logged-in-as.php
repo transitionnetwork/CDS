@@ -26,5 +26,5 @@ if(is_user_role('hub')) {
 </div>
 
 <div>
-  <span class="tag beta">BETA</span>
+  <span class="tag beta">beta</span>
 </div>
