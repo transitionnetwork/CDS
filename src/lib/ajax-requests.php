@@ -1,5 +1,6 @@
 <?php
 function return_map_markers() {
+  //initiatives
   $args = array(
     'post_type' => 'initiatives',
     'posts_per_page' => -1
@@ -34,20 +35,56 @@ function return_map_markers() {
 
   $posts = get_posts($args);
 
-  if ( false === ( $markers = get_transient($hash))) {
-    foreach($posts as $key => $post) {
-      $map = get_field('map', $post->ID, false);
-      $markers[$key]['center_lat'] = $map['lat'];
-      $markers[$key]['center_lng'] = $map['lng'];
-      $markers[$key]['permalink'] = get_the_permalink($post->ID);
-      $markers[$key]['title'] = get_the_title($post->ID);
-      // $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
+
+  if ( false === ( $i_markers = get_transient($hash))) {
+    $key = 0;
+    foreach($posts as $post) {
+      $map = get_field('map', $post->ID);
+      if(!empty($map['markers'])) {
+        $i_markers[$key]['lat'] = $map['lat'];
+        $i_markers[$key]['lng'] = $map['lng'];
+        $i_markers[$key]['permalink'] = get_the_permalink($post->ID);
+        $i_markers[$key]['title'] = get_the_title($post->ID);
+        // $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
+        $key++;
+      }
     }
 	// Put the results in a transient. Expire after 12 hours.
-  set_transient($hash, $markers, 12 * HOUR_IN_SECONDS );
+  set_transient($hash, $i_markers, 12 * HOUR_IN_SECONDS );
   }
 
-  echo json_encode($markers);
+  //hubs
+  $hubs = get_terms('hub', array(
+    'hide_empty' => false
+  ));
+
+  if($_POST['value']['hub_name']) {
+    $hubs = []; //must be array
+    $hubs[] = get_term_by('slug', $_POST['value']['hub_name'], 'hub');
+  }
+  
+  //TODO add hub transient in here
+  $key = 0;
+  foreach($hubs as $hub) {
+    $map = get_field('map', $hub);
+    if(!empty($map['markers'])) {
+      $h_markers[$key]['lat'] = $map['lat'];
+      $h_markers[$key]['lng'] = $map['lng'];
+      $h_markers[$key]['permalink'] = get_term_link($hub);
+      $h_markers[$key]['title'] = $hub->name;
+      $key ++;
+    }
+  }
+
+  if($i_markers) {
+    $data['i_markers'] = $i_markers;
+  }
+
+  if($h_markers) {
+    $data['h_markers'] = $h_markers;
+  }
+
+  echo json_encode($data);
   wp_die();
 }
 

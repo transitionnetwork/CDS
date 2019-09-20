@@ -33,7 +33,7 @@
 
           <ul class="meta">
             <?php $hub = wp_get_post_terms($post->ID, 'hub')[0]; ?>
-            <li><strong>Hub: </strong> <a href="<?php echo add_query_arg('hub_name', $hub->slug, home_url('list-initiatives')); ?>"><?php echo $hub->name; ?></a></li>
+            <li><strong>Hub: </strong> <a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a></li>
             <?php if($topics) { ?>
               <li><strong><?php echo get_taxonomy('topic')->label; ?>:</strong> <?php echo implode(', ', $topic_names); ?></li>
             <?php } ?>
@@ -73,23 +73,32 @@
         </div>
         <div class="col-12 col-lg-4">
           <aside>
-            <?php echo get_field('map'); ?>
+            <?php $map = get_field('map'); ?>
+            <?php if($map) { ?>
+              <div id="initiative-map" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
+            <?php } ?>
+            
+            <?php if (get_field('address_line_1')) { ?>
+              <label><?php _e('Location', 'tofino'); ?></label>
+              <?php echo get_field('address_line_1'); ?><br/>
+              <?php echo get_field('city'); ?><br/>
+              <?php echo get_field('province'); ?><br/>
+              <?php echo get_field('postal_code'); ?><br/>
+              <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
+            <?php } else if($map) { ?>
+              <?php foreach($map['markers'] as $marker) { ?>
+                <label><?php _e('Location', 'tofino'); ?></label>
+                <div id="marker-address" data-address="<?php echo $marker['default_label']; ?>"></div>
+                <?php echo $marker['default_label']; ?>
+              <?php } ?>
+            <?php } ?>
             
             <?php if(get_field('logo')) { ?>
               <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
             <?php } ?>
   
-            <?php if (get_field('address_line_1')) { ?>
-                <label><?php _e('Address', 'tofino'); ?></label>
-                <?php echo get_field('address_line_1'); ?><br/>
-                <?php echo get_field('city'); ?><br/>
-                <?php echo get_field('province'); ?><br/>
-                <?php echo get_field('postal_code'); ?><br/>
-                <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
-            <?php } ?>
-  
             <?php if (get_field('email')) { ?>
-              <label><?php echo get_field_object('email')['label']; ?> :</label>
+              <label><?php echo get_field_object('email')['label']; ?></label>
               <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
             <?php } ?>
 
@@ -117,7 +126,7 @@
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
               <?php $post_author_id = get_the_author_meta('ID'); ?>
               <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
-                <label for="authors">Change author</label>
+                <label for="authors">Update author</label>
                 <?php $users = get_users(); ?>
                 <p>
                   <select name="authors">

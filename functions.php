@@ -29,6 +29,7 @@ $tofino_includes = [
   "src/lib/helpers.php",
   "src/lib/pagination.php",
   "src/lib/initiatives.php",
+  "src/lib/hubs.php",
   "src/lib/healthchecks.php",
   "src/lib/permissions.php",
   "src/lib/hub-filter.php",

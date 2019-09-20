@@ -1,10 +1,11 @@
 var $ = window.jQuery;
 import L from 'leaflet';
 import 'leaflet.markercluster';
+import 'leaflet-search';
+import 'leaflet.locatecontrol';
 
 export default {
   loaded() {
-
     var map = L.map('iframe_map').setView([0, 0], 3);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -12,14 +13,50 @@ export default {
       maxZoom: 18,
     }).addTo(map);
 
+    map.addControl(new L.Control.Search({
+      url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+      jsonpParam: 'json_callback',
+      propertyName: 'display_name',
+      propertyLoc: ['lat', 'lon'],
+      marker: L.circleMarker([0, 0], { radius: 30 }),
+      autoCollapse: true,
+      autoType: false,
+      minLength: 2,
+      zoom: 13
+    }));
+
+    L.control.locate({
+      locateOptions: {
+        maxZoom: 13
+      }
+    }).addTo(map);
+
     map.scrollWheelZoom.disable();
     map.on('focus', function () { map.scrollWheelZoom.enable(); });
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
+    $('#map-search').on('keyup', function(){
+      console.log($(this).val());
+    })
+
     function displayMap(response, map) {
-      var markerIcon = L.icon({
+      var iResponse = response['i_markers'];
+      var hResponse = response['h_markers'];
+
+      var initiativeMarkerIcon = L.icon({
         iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
         iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
+        shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41]
+      });
+
+      var hubMarkerIcon = L.icon({
+        iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub.png',
+        iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub-2x.png',
         shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -31,20 +68,49 @@ export default {
       var marker;
       var range = [];
       var clusterMarkers = L.markerClusterGroup();
+      var i;
 
-      for (var i = 0; i < response.length; i++) {
-        if (response[i].center_lat && response[i].center_lng) {
-          marker = L.marker([response[i].center_lat, response[i].center_lng], { icon: markerIcon });
-          marker.bindPopup('<h5>' + response[i].title + '</h5><div><a href="' + response[i].permalink + '" target="_top" class="btn btn-sm btn-primary">View</a></div>');
+      for (i = 0; i < iResponse.length; i++) {
+        if (iResponse[i].lat && iResponse[i].lng) {
+          marker = L.marker([iResponse[i].lat, iResponse[i].lng], { icon: initiativeMarkerIcon });
+          marker.bindPopup('<h5>' + iResponse[i].title + '</h5><div><a href="' + iResponse[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           clusterMarkers.addLayer(marker);
-          
-          range.push([response[i].center_lat, response[i].center_lng]);
+          range.push([iResponse[i].lat, iResponse[i].lng]);
         }
       }
 
+      map.addLayer(clusterMarkers);
+      
       var bounds = L.latLngBounds(range);
       map.fitBounds(bounds);
+
+      clusterMarkers = L.markerClusterGroup({
+        iconCreateFunction: function (cluster) {
+          return L.divIcon({
+            html: '<div><span>' + cluster.getChildCount() + '</span></div>',
+            className: 'hub-cluster marker-cluster',
+            iconSize: [40, 40]
+          });
+        }
+      });
+      
+      if (hResponse) {
+        for (i = 0; i < hResponse.length; i++) {
+          if (hResponse[i].lat && hResponse[i].lng) {
+            marker = L.marker([hResponse[i].lat, hResponse[i].lng], { icon: hubMarkerIcon });
+            marker.bindPopup('<h5>' + hResponse[i].title + '</h5><div><a href="' + hResponse[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
+            clusterMarkers.addLayer(marker);
+          }
+        }
+      }
+
       map.addLayer(clusterMarkers);
+
+    
+      if($('#iframe_map .key'.length)) {
+        $('.key .initiative').append('<span>(' + iResponse.length + ')</span>');
+        $('.key .hub').append('<span>(' + hResponse.length + ')</span>');
+      }
     }
 
     $.ajax({
@@ -62,6 +128,7 @@ export default {
       dataType: 'json',
       success: function (response) {
         $('.map-loading').hide();
+        $('#map-panel').show();
         displayMap(response, map);
       },
       error: function (jqxhr, status, exception) {
@@ -72,7 +139,7 @@ export default {
     })
 
     $('#iframe_map button.close').on('click', function(){
-      $(this).closest('.key').hide();
+      $(this).closest('#map-panel').hide();
     })
 
     $('#iframe_map button.my-location').on('click', function(){

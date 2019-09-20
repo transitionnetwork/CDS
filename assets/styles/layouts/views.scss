@@ -1,4 +1,5 @@
-body.single {
+body.single,
+body.tax-hub {
   h1 {
     margin-bottom: 1rem;
   }
@@ -124,5 +125,77 @@ body.single-healthchecks {
 
   label {
     margin-bottom: 0.5rem;
+  }
+}
+
+#initiative-map {
+  width: 100%;
+  height: 300px;
+  background-color: $sea-blue;
+
+  .leaflet-popup-content {
+    max-width: 140px;
+  }
+}
+
+main.healthcheck-form {
+  .header {
+    margin-bottom: 1rem;
+
+    h2 {
+      margin-bottom: 0;
+    }
+    .date {
+      font-style: italic;
+    }
+  }
+
+  .steps {
+    span {
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+  }
+
+  .step-bar-container {
+    width: 100%;
+    display: flex;
+    height: 1rem;
+    background-color: $gray-100;
+    border-radius: $border-radius;
+    border: 1px solid $gray-300;
+    margin-bottom: 1rem;
+    
+    .step-bar {
+      background-color: $brand-primary;
+      border-radius: $border-radius;
+    }
+  }
+
+  form.acf-form {
+    margin-top: 2rem;
+  }
+
+  .acf-field-group {
+    padding: 0;
+    margin-bottom: 2rem;
+
+    & > .acf-label {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .acf-button-group label.selected {
+    background-color: $brand-primary;
+    border-color: darken($brand-primary, 10);
+  }
+
+  .acf-form-submit {
+    text-align: center;
+
+    .acf-button {
+      @extend .btn-lg;
+    }
   }
 }
