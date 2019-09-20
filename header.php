@@ -19,14 +19,19 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+
+<?php if ( function_exists('icl_object_id') && ICL_LANGUAGE_CODE != 'en') {
+  $en_post_id = apply_filters( 'wpml_object_id', $post->ID, 'post', '', 'en' );
+  $en_class = get_post($en_post_id);
+} ?>
+<body <?php body_class($en_class->post_name); ?>>
 <div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>
 
 <!--[if lte IE 9]>
-  <div class="alert alert-danger browser-warning">
-    <p><?php _e('You are using an <strong>outdated</strong> browser. <a href="http://browsehappy.com/">Update your browser</a> to improve your experience.', 'tofino'); ?></p>
-  </div>
+<div class="alert alert-danger browser-warning">
+<p><?php _e('You are using an <strong>outdated</strong> browser. <a href="http://browsehappy.com/">Update your browser</a> to improve your experience.', 'tofino'); ?></p>
+</div>
 <![endif]-->
 
 <div class="bar-info">

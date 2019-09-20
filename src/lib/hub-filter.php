@@ -1,4 +1,7 @@
-<?php function render_hub_filter() { ?>
+<?php function render_hub_filter() {
+  global $sitepress;
+  $sitepress->switch_lang('en') ?>
+  
   <div class="row">
     <div class="col-12 col-lg-6">
       <form action="<?php the_permalink() ?>" method="GET" class="filter">

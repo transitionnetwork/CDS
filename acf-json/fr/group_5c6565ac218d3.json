@@ -1,0 +1,1830 @@
+{
+    "key": "group_5c6565ac218d3",
+    "title": "questions de bilan de santé",
+    "fields": [
+        {
+            "key": "field_5c6565ac54d99",
+            "label": "Comment lancer la Transition : démarrer un groupe initiateur",
+            "name": "group_1",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565ac5bfd5",
+                    "label": "1. Nous avons un groupe initiateur\/noyau composé de 4 à 15 personnes",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac5c125",
+                    "label": "2. Notre groupe à la même vision de la Transition et de son importance",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac5c1ad",
+                    "label": "3. Notre groupe s’est inscrit sur le site du réseau international ou d’un réseau national",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac5c232",
+                    "label": "4. Nous avons pris contact avec les initiatives de Transition qui nous entourent",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac5c2b2",
+                    "label": "5. Nous avons réfléchi aux différents domaines d'action que nous souhaitons couvrir et nous estimons couvrir une variété idéale et réaliste de projets",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac5c317",
+                    "label": "6. Nous avons identifié les opportunités et défis liés à la Transition au sein de notre communauté",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac5c398",
+                    "label": "7. Au moins une personne de notre groupe dispose d'une expertise approfondie sur la Transition, car elle a suivi des formations, lu les livres ou parcouru les sites Web",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac54e46",
+            "label": "Un groupe en bonne santé",
+            "name": "group_2",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565ac97051",
+                    "label": "1. Notre groupe s’est mis d’accord sur des objectifs clairs",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac970e1",
+                    "label": "2. Notre groupe obtient des résultats tangibles",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac97161",
+                    "label": "3. Les membres comprennent bien leurs responsabilités et leurs rôles",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac972ed",
+                    "label": "4. Nous nous sommes mis d'accord sur une charte (principes ou méthodes de travail)",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac9736b",
+                    "label": "5. Nous nous sommes mis d'accord sur des processus clairs pour prendre, noter et suivre les décisions",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac973e7",
+                    "label": "6. Nos réunions sont efficaces et nous avons un ordre du jour, des échanges et un compte-rendu clairs",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac97464",
+                    "label": "7. Nous consacrons du temps en réunion à réfléchir à la façon dont nous travaillons ensemble",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac974e0",
+                    "label": "8. Nous avons réfléchi à la façon dont nous pouvons animer\/faciliter nos réunions",
+                    "name": "q8",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac9755d",
+                    "label": "9. Nous avons parlé de la répartition du pouvoir et des responsabilités au sein du groupe et nous sommes parvenus à un accord",
+                    "name": "q9",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac975da",
+                    "label": "10.Des processus ont été mis en place pour intégrer de nouvelles personnes et permettre aux membres actuels de se retirer",
+                    "name": "q10",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ac97657",
+                    "label": "11.Nous avons pu gérer de façon satisfaisante les différences ou les conflits qui se sont présentés à nous",
+                    "name": "q11",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac54ecf",
+            "label": "Notre vision",
+            "name": "group_3",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565acde1c8",
+                    "label": "1. Nous partageons une vision commune des défis (comme la raréfaction des ressources, la pollution, les inégalités, la vulnérabilité économique) qui nous imposent d'imaginer l'avenir autrement",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565acde2e9",
+                    "label": "Notre groupe partage une vision commune de l'avenir de notre territoire",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565acde367",
+                    "label": "Notre vision est positive, enthousiasmante et plausible",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565acde3e3",
+                    "label": "Nous avons réfléchi et compris comment inclure d'autres points de vue",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565acde45c",
+                    "label": "[Groupe avancé] Nous comprenons la nécessité d'adopter un plan pour un avenir positif qui soit suffisamment souple pour pouvoir s'adapter à l'inconnu",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565acde4d6",
+                    "label": "[Groupe avancé ] Nous avons impliqué les habitants de notre territoire dans la recherche d'une vision positive de l'avenir",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac54ff9",
+            "label": "L’implication de la communauté",
+            "name": "group_4",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565ad2f402",
+                    "label": "Nous savons qui habite sur notre territoire, comment communiquer avec ces personnes et les impliquer de façon sensée dans notre groupe\/nos projets",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad2f4a0",
+                    "label": "Nous libérons du temps pour être à l'écoute de ce qui est important aux yeux des membres de notre communauté",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad2f524",
+                    "label": "Nous comprenons les préoccupations et problèmes actuels locaux et nous pouvons y associer un message de Transition",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad2f6b6",
+                    "label": "Nous avons recours à divers styles et types de campagnes de sensibilisation et de méthodes d'implication",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "(a) pour des personnes qui se situent à différentes étapes du changement \r\n(b) pour différents groupes culturels et démographiques \r\n(C) sur des sujets différents \r\n(d) pour des personnes qui fonctionnent avec la tête, le cœur ou les mains",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad2f731",
+                    "label": "Nous savons comment organiser des événements amusants, motivants, participatifs et créateurs de liens",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad2f7a7",
+                    "label": "Nous faisons passer des messages collectifs (pro-sociaux et environnementaux), tout comme des messages centrés sur l'individu (avantages pratiques) pour motiver et impliquer les individus",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c7652b9e79fb",
+                    "label": "Nous avons utilisé le forum ouvert et\/ou des processus similaires pour recueillir des idées et accroître l'implication de la population locale",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c76539be79fc",
+                    "label": "Nous faisons la promotion et la publicité de nos événements et projets via les médias locaux adaptés",
+                    "name": "q8",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac5507c",
+            "label": "Les réseaux et partenariats",
+            "name": "group_5",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565ad5b39a",
+                    "label": "Nous avons noué des liens avec des organisations locales clés  écoles, entreprises, comités de quartier, associations locales",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad5b430",
+                    "label": "Nous avons réfléchi aux partenariats possibles et à leurs objectifs",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad5b5ba",
+                    "label": "Nous faisons l'effort d'agir en partenariat avec d'autres groupes ou organisations",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad5b651",
+                    "label": "Nous avons pris contact avec les collectivités locales",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad5b6dc",
+                    "label": "Certains des membres de l’initiative vivent sur notre territoire depuis de nombreuses années",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad5b75d",
+                    "label": "D’autres groupes considèrent que notre initiative est positive, ouverte et utile",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad5b7db",
+                    "label": "Nous collaborons avec divers types de groupes locaux (divers au niveau des revenus, des origines ethniques, des générations, etc.)",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c76553699688",
+                    "label": "Nous avons pu gérer les difficultés qui sont survenues dans nos relations avec d'autres groupes (dans le cas où cela s'applique)",
+                    "name": "q8",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c76556499689",
+                    "label": "[Groupe avancé] Nous avons défini un plan stratégique sur la mise en réseau et les partenariats",
+                    "name": "q9",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c765600e7351",
+                    "label": "[Groupe avancé] Nous faisons la promotion du travail d’autres groupes dans notre région",
+                    "name": "q10",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac55100",
+            "label": "Réfléchir et célébrer",
+            "name": "group_6",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565ad98e23",
+                    "label": "Nous tenons les bénévoles\/membres du groupe, les voisins et les différentes parties prenantes au courant de nos actions",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad98ec4",
+                    "label": "Nous prenons le temps de célébrer nos réussites",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad98f4b",
+                    "label": "Nous prenons le temps d'apprendre à nous connaître",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad98fd2",
+                    "label": "Nous libérons du temps\/de l'espace pour l'apprentissage et la réflexion",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad99058",
+                    "label": "Nous sommes prêts à travailler avec des personnes hors du groupe\/réseau et à apprendre de leurs pratiques",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad9921c",
+                    "label": "Nous avons mis en place un système qui nous permet de suivre et d'évaluer notre fonctionnement, et nous utilisons ces conclusions pour adapter notre stratégie",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ad9929f",
+                    "label": "Nous adoptons une attitude créative par rapport à l'expérimentation et nous tirons les leçons de nos échecs",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "1: Fortement en désaccord\r\n2: pas d'accord\r\n3: plutôt d'accord\r\n4: d'accord\r\n5: Tout à fait d'accord",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": [],
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac5522e",
+            "label": "Projets pratiques",
+            "name": "group_7",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565adcff90",
+                    "label": "Nous menons toute une série de projets pratiques bénéfiques à la population locale",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565add00cd",
+                    "label": "Nos projets sont pertinents et accessibles aux personnes qui ont des revenus faibles, un handicap ou qui proviennent d'une culture différente",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565add014f",
+                    "label": "Nous cherchons activement à faire tomber les obstacles à la participation (par exemple, en impliquant les gens dans la conception d'un projet, en pratiquant une communication inclusive, en donnant accès aux bourses, crèches, etc.)",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565add01cb",
+                    "label": "Nos projets sont encadrés par des structures juridiques et de gouvernance et nous comprenons nos responsabilités juridiques",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "(",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565add0246",
+                    "label": "Nous avons les compétences nécessaires pour gérer et mettre en place efficacement nos projets",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565add02c1",
+                    "label": "Nous savons qui, au niveau local, a de l'expertise et comment l'utiliser",
+                    "name": "q6",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565add0340",
+                    "label": "[Groupe avancé] Les projets et entreprises que nous créons offrent des moyens de subsistance à des habitants du territoire",
+                    "name": "q7",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac552bd",
+            "label": "Transition intérieure",
+            "name": "group_8",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565ae158d7",
+                    "label": "Nous sommes conscients de la signification et de la profondeur émotionnelles des points soulevés par la Transition et nous savons comment les gérer",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ae1596b",
+                    "label": "Nous nous inquiétons régulièrement, que ce soit au niveau de l'individu ou du groupe, de notre résilience personnelle et des risques d'épuisement",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ae159f5",
+                    "label": "Nous comprenons l'importance des dimensions intérieures et extérieures de la Transition et nous pouvons inclure de façon accessible la dimension intérieure dans nos projets",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ae15a7a",
+                    "label": "Nous avons créé des structures de soutien pour nous-mêmes et pour les autres personnes impliquées dans la Transition (individuelles ou en groupe)",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ae15b02",
+                    "label": "Au sein de notre groupe, nous consacrons du temps à accroître la confiance et à approfondir nos relations",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_5c6565ac5533c",
+            "label": "Partie d’un mouvement",
+            "name": "group_9",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 2,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c6565ae3c4dd",
+                    "label": "Nous apprenons des autres initiatives du mouvement de la Transition",
+                    "name": "q1",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ae3c5e3",
+                    "label": "Nous avons établi un canal de communication avec notre réseau régional et\/ou avec le réseau international",
+                    "name": "q2",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ae3c668",
+                    "label": "Quand nous faisons quelque chose qui pourrait inspirer d'autres initiatives, nous partageons nos connaissances",
+                    "name": "q3",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c6565ae3c6e3",
+                    "label": "Nous participons à des conférences ou des événements (ou des webinaires en ligne ou des formations) proposés par le réseau régional ou international",
+                    "name": "q4",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 1,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5c766089581dc",
+                    "label": "Nous veillons à ce que les coordonnées de notre initiative soient à jour sur le site du Transition Network",
+                    "name": "q5",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1: Fortement en désaccord": "1: Fortement en désaccord",
+                        "2: pas d'accord": "2: pas d'accord",
+                        "3: plutôt d'accord": "3: plutôt d'accord",
+                        "4: d'accord": "4: d'accord",
+                        "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
+                    },
+                    "allow_null": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "healthchecks"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1569012105
+}
