@@ -54,6 +54,8 @@ function return_map_markers() {
   }
 
   //hubs
+  global $sitepress;
+  $sitepress->switch_lang('en');
   $hubs = get_terms('hub', array(
     'hide_empty' => false
   ));

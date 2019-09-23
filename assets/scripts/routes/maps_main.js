@@ -107,8 +107,10 @@ export default {
       map.addLayer(clusterMarkers);
 
     
-      if($('#iframe_map .key'.length)) {
+      if(iResponse) {
         $('.key .initiative').append('<span>(' + iResponse.length + ')</span>');
+      }
+      if(hResponse) {
         $('.key .hub').append('<span>(' + hResponse.length + ')</span>');
       }
     }

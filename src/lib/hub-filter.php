@@ -1,7 +1,10 @@
-<?php function render_hub_filter() { ?>
+<?php function render_hub_filter() {
+  global $sitepress;
+  $sitepress->switch_lang('en'); ?>
+  
   <div class="row">
     <div class="col-12 col-lg-6">
-      <form action="<?php the_permalink() ?>" method="GET" class="filter">
+      <form action="" method="GET" class="filter">
         <div class="search-wrap">
           <input type="text" name="search" placeholder="Search initiatives..." value="<?php echo get_query_var('search'); ?>">
           <input type="submit" value="Search" class="btn btn-sm btn-primary">
@@ -9,7 +12,7 @@
       </form>
     </div>
     <div class="col-12 col-lg-6 d-lg-flex flex-lg-column align-items-lg-end">
-      <form action="<?php the_permalink() ?>" method="GET" class="filter">
+      <form action="" method="GET" class="filter">
         <?php $terms = get_terms('hub'); ?>
         <label for="hub_name"><?php _e('Hub:', 'tofino'); ?></label>
         <select name="hub_name" onchange="this.form.submit();">
@@ -24,7 +27,7 @@
           <?php } ?>
         </select>
       </form>
-      <form action="<?php the_permalink() ?>" method="GET" class="filter">
+      <form action="" method="GET" class="filter">
         <?php $terms = get_terms('country'); ?>
         <div class="select-wrap">
           <label for="country"><?php _e('Country:', 'tofino'); ?></label>
