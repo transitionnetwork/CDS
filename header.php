@@ -24,6 +24,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   $en_post_id = apply_filters( 'wpml_object_id', $post->ID, 'post', '', 'en' );
   $en_class = get_post($en_post_id);
 } ?>
+
 <body <?php body_class($en_class->post_name); ?>>
 <div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>

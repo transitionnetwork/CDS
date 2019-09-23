@@ -34,6 +34,7 @@ $tofino_includes = [
   "src/lib/permissions.php",
   "src/lib/hub-filter.php",
   "src/lib/emails.php",
+  "src/lib/cron.php",
   "src/lib/output-csv.php",
   "src/lib/ajax-requests.php",
   "src/shortcodes/copyright.php",
@@ -329,20 +330,6 @@ function get_hub_by_id($id)
 function acf_custom_save($post_id)
 {
   if (get_post_type($post_id) == 'healthchecks') {
-    $my_post = array();
-    $my_post['ID'] = $post_id;
-
-    $post = get_post($post_id);
-
-    //check for new post 
-    if ($post->post_modified_gmt == $post->post_date_gmt) {
-      // EMAIL INITIATIVE, HUB, ADMIN (with the full data)
-      $my_post['post_title'] = get_query_var('initiative_id');
-    } else {
-      $my_post['post_title'] = get_the_title($post_id);
-    }
-
-    wp_update_post($my_post);
 
     //ensure that hc data is stored in initiative
     update_post_meta( $my_post['post_title'], 'recent_hc', $post_id);
@@ -478,4 +465,16 @@ function render_result_totals($wp_query) {
   $label = get_post_type_object($wp_query->query['post_type'])->label;
   
   return '<p><em>Displaying ' . $from . '-' . $to . ' of ' . $total_results . ' queried Initiatives</em></p>';
+}
+
+function get_environment() {
+  if(strpos(get_site_url(), 'transitioninitiative.org') !== false) {
+    return 'production';
+  }
+  
+  if(strpos(get_site_url(), 'stage') !== false) {
+    return 'stage';
+  }
+
+  return 'dev';
 }
