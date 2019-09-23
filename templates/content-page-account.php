@@ -1,7 +1,15 @@
 <?php if(get_query_var('updated') == 'hub') { ?>
   <div class="container">
     <div class="alert top alert-success">
-     <?php _e('Hub details updated'); ?>
+     <?php _e('Hub details updated.'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('updated') == 'publish') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+     <?php _e('Initiative approved and published.'); ?>
     </div>
   </div>
 <?php } ?>
