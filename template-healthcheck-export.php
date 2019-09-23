@@ -7,7 +7,13 @@ $args = array(
   'post_type' => 'healthchecks',
   'posts_per_page' => -1,
   'orderby' => 'ID',
-  'order' => 'DESC'
+  'order' => 'DESC',
+  'meta_query' => array(
+    array(
+      'key' => 'incomplete',
+      'compare' => 'NOT EXISTS'
+    )
+  )
 );
 
 $posts = get_posts($args);
