@@ -15,7 +15,7 @@ function get_initiative_by_id($post_id) {
       'country_name' => $country_object->name,
       'latest_healthcheck' => get_latest_healthcheck($post_id)
     );
-    set_transient('initiative_list_item_' . $post_id, $data, 7 * DAY_IN_SECONDS);
+    set_transient('initiative_list_item_' . $post_id, $data, DAY_IN_SECONDS);
   } else {
     $data = get_transient('initiative_list_item_' . $post_id);
   }
