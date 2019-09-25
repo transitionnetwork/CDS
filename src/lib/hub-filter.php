@@ -1,6 +1,4 @@
-<?php function render_hub_filter() {
-  global $sitepress;
-  $sitepress->switch_lang('en'); ?>
+<?php function render_hub_filter() { ?>
   
   <div class="row">
     <div class="col-12 col-lg-6">

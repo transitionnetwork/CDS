@@ -478,3 +478,28 @@ function get_environment() {
 
   return 'dev';
 }
+
+function preserve_query_args( $url, $slug ) {
+  $permitted_vars = array(
+    'initiative_id',
+    'post_id',
+    'step',
+    'token',
+    'hub_name',
+    'country',
+    'search'
+  );
+
+  $passed_vars = array();
+  foreach($permitted_vars as $var) {
+    if($_GET[$var]) {
+      $passed_vars[$var] = $_GET[$var];
+    }
+  }
+
+  $url = add_query_arg($passed_vars, $url);
+
+  return $url === null ? home_url( '?lang=' . $slug ) : $url;
+}
+
+add_filter( 'pll_the_language_link', 'preserve_query_args', 10, 2 );

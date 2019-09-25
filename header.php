@@ -37,7 +37,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
 
 <div class="bar-info">
   <div class="container">
-    <?php get_template_part('templates/logged-in-as'); ?>
+    <?php get_template_part('templates/top-nav'); ?>
   </div>
 </div>
 
@@ -53,7 +53,6 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
       </span>
       <span class="sr-only"><?php _e('Toggle Navigation Button', 'tofino'); ?></span>
     </button>
-
     <div class="collapse navbar-collapse" id="main-menu">
       <?php if(is_user_logged_in()) : ?>
         <?php

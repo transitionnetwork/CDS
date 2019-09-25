@@ -11,7 +11,7 @@
 <?php if(get_query_var('updated') == 'author') { ?>
   <div class="container">
     <div class="alert top alert-success">
-      <?php _e('The author of this initiative has been updated'); ?>
+      <?php _e('The author of this initiative has been updated', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>

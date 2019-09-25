@@ -5,8 +5,7 @@ $post = get_post($initiative_id);
 setup_postdata($post);
 
 //TODO ADD PERMS ON INCOMPLETE METADATA
-
-if (!is_user_logged_in() || (!can_view_healthcheck($post))) {
+if (!is_user_logged_in() || (!can_view_healthcheck($post)) || !get_query_var('initiative_id')) {
   wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
   exit;
 } else { ?>
