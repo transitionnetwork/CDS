@@ -92,4 +92,3 @@ $initiative_query = new WP_Query($args);
     </ul>
   </div>
 </main>
-

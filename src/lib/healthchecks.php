@@ -17,7 +17,7 @@ function list_healthchecks($healthchecks) {
                 'post_id' => $healthcheck->ID,
                 'token' => get_post_meta($healthcheck->ID, 'secret_token')[0]
               ); ?>
-              <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg($params, home_url('add-healthcheck')); ?>"><?php echo svg('play'); ?>Resume</a>
+              <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg($params, parse_post_link(422)); ?>"><?php echo svg('play'); ?>Resume</a>
             <?php } else { ?>
               <a class="btn btn-sm btn-primary" href="<?php echo get_the_permalink($healthcheck->ID); ?>"><?php echo svg('eye'); ?>View</a>
             <?php } ?>
