@@ -19,7 +19,7 @@ function list_healthchecks($healthchecks) {
               ); ?>
               <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg($params, parse_post_link(422)); ?>"><?php echo svg('play'); ?>Resume</a>
             <?php } else { ?>
-              <a class="btn btn-sm btn-primary" href="<?php echo get_the_permalink($healthcheck->ID); ?>"><?php echo svg('eye'); ?>View</a>
+              <a class="btn btn-sm btn-primary" href="<?php echo parse_post_link($healthcheck->ID); ?>"><?php echo svg('eye'); ?>View</a>
             <?php } ?>
           </td>
         </tr>

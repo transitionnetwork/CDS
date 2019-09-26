@@ -6,7 +6,7 @@ function get_initiative_by_id($post_id) {
     $hub_object = wp_get_post_terms($post_id, 'hub')[0];
     $country_object = wp_get_post_terms($post_id, 'country')[0];
     $data = array(
-      'link' => get_the_permalink($post_id),
+      'link' => parse_post_link($post_id),
       'title' => get_the_title($post_id),
       'status' => get_post_status($post_id),
       'hub_slug' => $hub_object->slug,
