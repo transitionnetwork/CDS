@@ -54,4 +54,10 @@ foreach($answers as $answer_set) {
 }
 
 // var_dump($export_data);
-outputCsv(date('Ymd') . '_healthcheck_responses.csv', $export_data); ?>
+
+//secure the export
+if(is_user_role('administrator') || is_user_role('super_hub')) {
+  outputCsv(date('Ymd') . '_healthcheck_responses.csv', $export_data);
+} else {
+  wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
+} ?>
