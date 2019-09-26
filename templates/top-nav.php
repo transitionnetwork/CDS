@@ -46,7 +46,11 @@ if(is_user_role('hub')) {
             <span aria-hidden="true">&times;</span>
           </button>
           <ul>
-            <?php pll_the_languages(array('show_flags' => true, 'hide_if_no_translation' => true)); ?>
+            <?php foreach($languages as $language) { ?>
+              <?php if(!$language['no_translation']) { ?>
+                <li><a href="<?php echo $language['url']; ?>"><img src="<?php echo $language['flag']; ?>"><span style="margin-left: 0.3rem;"><?php echo $language['name']; ?></span></a></li>
+              <?php } ?>
+            <?php } ?>
           </ul>
         </div>
       </div>

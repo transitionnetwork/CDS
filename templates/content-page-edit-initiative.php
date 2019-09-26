@@ -22,7 +22,7 @@
 							'post_id'		=> $edit_post_id,
 							'post_title'	=> true,
 							'post_content'	=> true,
-							'return' => add_query_arg('edited_post', $edit_post_id, home_url('thank-you-for-your-submission')),
+							'return' => add_query_arg('edited_post', $edit_post_id, parse_post_link(45)),
 							'submit_value' => 'Save changes',
 							'fields' => $field_args
 						)); ?>

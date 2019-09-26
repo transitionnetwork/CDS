@@ -43,7 +43,7 @@
         <?php } ?>
 
         <?php if(is_user_role('administrator') || is_user_role('super_hub') || can_edit_hub($term->term_id)) { ?>
-          <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, home_url('edit-hub')); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
+          <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
         <?php } ?>
       </div>
  

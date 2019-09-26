@@ -27,7 +27,7 @@
                 <?php echo $hub->name; ?>
               </td>
               <td class="text-right">
-                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, home_url('edit-hub')); ?>"><?php echo svg('pencil'); ?>Edit</a>
+                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit</a>
               </td>
             </tr>
           <?php } ?>

@@ -20,8 +20,8 @@
       <h1><?php echo \Tofino\Helpers\title(); ?></h1>
       <?php the_content(); ?>
       <ul class="btn-list">
-        <li><a href="<?php echo home_url('member-register'); ?>" class="btn btn-primary"><?php _e('Register', 'tofino'); ?></a></li>
-        <li><a href="<?php echo home_url('member-login'); ?>" class="btn btn-secondary"><?php _e('Sign In', 'tofino'); ?></a></li>
+        <li><a href="<?php echo parse_post_link(460); ?>" class="btn btn-primary"><?php _e('Register', 'tofino'); ?></a></li>
+        <li><a href="<?php echo parse_post_link(459); ?>" class="btn btn-secondary"><?php _e('Sign In', 'tofino'); ?></a></li>
       </ul>
       <p></p>
     </div>
