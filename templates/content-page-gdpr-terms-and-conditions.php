@@ -8,7 +8,7 @@
             <div class="scrollbox">
               <?php the_content(); ?>
             </div>
-            <form id="gdpr" action="<?php echo get_the_permalink(); ?>" method="POST">
+            <form id="gdpr" action="<?php the_permalink(); ?>" method="POST">
               <input type="hidden" name="accepted" value="true">
               <input type="submit" value="<?php _e('Accept', 'tofino'); ?>">
             </form>

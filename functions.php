@@ -435,7 +435,7 @@ function redirects() {
         'post_author' => $_POST['authors']
       );
       wp_update_post($args);
-      wp_safe_redirect(add_query_arg('updated', 'author', get_the_permalink($_POST['post_id'])));
+      wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));
     }
   }
 }

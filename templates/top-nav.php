@@ -13,7 +13,7 @@ if(is_user_role('hub')) {
   if(is_user_logged_in()) : ?>
     <?php _e('Logged in as', 'tofino'); ?> <?php echo wp_get_current_user()->user_login; ?>
   <?php else : ?>
-    <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php echo get_the_permalink(459); ?>"><?php _e('Login', 'tofino'); ?></a>
+    <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php echo parse_post_link(459); ?>"><?php _e('Login', 'tofino'); ?></a>
   <?php endif; ?>
 
   <?php if($user_role) : ?>

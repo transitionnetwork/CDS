@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-12">
               <div class="header">
-                <h1><?php _e('Healthcheck', 'tofino'); ?>: <a href="<?php echo get_the_permalink($initiative_id); ?>"><?php echo get_the_title($initiative_id); ?></a></h1>
+                <h1><?php _e('Healthcheck', 'tofino'); ?>: <a href="<?php echo parse_post_link($initiative_id); ?>"><?php echo get_the_title($initiative_id); ?></a></h1>
                 <div class="date">
                   Submitted on <?php echo date('l jS F Y'); ?>
                 </div>

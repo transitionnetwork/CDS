@@ -12,7 +12,7 @@
   <?php the_content(); ?>
   <ul class="btn-list">
     <?php if(get_query_var('edited_post')) { ?>
-      <li><a class="btn btn-primary" href="<?php echo get_the_permalink(get_query_var('edited_post')); ?>">&raquo <?php _e('View edited initiative', 'tofino'); ?></a></li>
+      <li><a class="btn btn-primary" href="<?php echo parse_post_link(get_query_var('edited_post')); ?>">&raquo <?php _e('View edited initiative', 'tofino'); ?></a></li>
     <?php } ?>
     <?php if(get_query_var('added_post')) { ?>
       <?php

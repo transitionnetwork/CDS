@@ -68,7 +68,7 @@ function alert_user_initiative_approved($post_id) {
     $message = '<p>Hello ' . $user->display_name . ',</p>';
   }
 
-  $message .= '<p>Your Initiative: "<a href="' . get_the_permalink($post_id) . '">' . get_the_title($post_id) . '</a>" has now been approved and published.</p>';
+  $message .= '<p>Your Initiative: "<a href="' . parse_post_link($post_id) . '">' . get_the_title($post_id) . '</a>" has now been approved and published.</p>';
 
   $message .= '<p>Please login to <a href="' . home_url() . '">Transition Initiative</a> and visit your dashboard to make any changes.</p>';
 

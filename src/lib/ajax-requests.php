@@ -43,7 +43,7 @@ function return_map_markers() {
       if(!empty($map['markers'])) {
         $i_markers[$key]['lat'] = $map['lat'];
         $i_markers[$key]['lng'] = $map['lng'];
-        $i_markers[$key]['permalink'] = get_the_permalink($post->ID);
+        $i_markers[$key]['permalink'] = parse_post_link($post->ID);
         $i_markers[$key]['title'] = get_the_title($post->ID);
         // $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
         $key++;
