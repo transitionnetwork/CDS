@@ -53,6 +53,14 @@ $initiative_query = new WP_Query($args);
 
 <main>
   <div class="container">
+    <?php while (have_posts()) : the_post(); ?>
+      <?php if (!is_user_logged_in() && !empty(get_the_content())) { ?>
+        <div class="panel">
+          <?php the_content(); ?>
+        </div>
+      <?php } ?>
+    <?php endwhile; ?>
+    
     <?php render_hub_filter(); ?>
     
     <?php if (get_query_var('hub_name')) :
@@ -82,12 +90,6 @@ $initiative_query = new WP_Query($args);
         'type' => 'list',
       )); ?>
     </nav>
-
-    <?php while (have_posts()) : the_post(); ?>
-      <?php if (!is_user_logged_in()) { ?>
-        <?php the_content(); ?>
-      <?php } ?>
-    <?php endwhile; ?>
 
     <ul class="button-group">
       <?php if(is_user_logged_in()) { ?>
