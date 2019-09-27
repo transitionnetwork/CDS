@@ -35,6 +35,7 @@ $tofino_includes = [
   "src/lib/hub-filter.php",
   "src/lib/emails.php",
   "src/lib/cron.php",
+  "src/lib/custom-api-endpoints.php",
   "src/lib/output-csv.php",
   "src/lib/ajax-requests.php",
   "src/shortcodes/copyright.php",
@@ -138,7 +139,6 @@ function create_posttypes()
       ),
       'public' => true,
       'has_archive' => false,
-      'show_in_rest' => true,
       'supports' => array('title', 'editor', 'author')
     )
   );
