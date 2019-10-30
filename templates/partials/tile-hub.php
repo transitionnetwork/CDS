@@ -2,9 +2,9 @@
 
 <div class="col-12 col-sm-6 col-md-3 hub-col">
   <?php if(get_field('logo', $term)) {
-    $url = get_field('logo', $term)['url'];
+    $url = get_field('logo', $term)['sizes']['medium'];
   } else {
-    $url = get_field('placeholder', 'options')['url']; //default
+    $url = get_field('placeholder', 'options')['sizes']['medium']; //default
   } ?>
   
   <div class="hub-item">
