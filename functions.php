@@ -516,3 +516,8 @@ function parse_post_link($post_id) {
   }
   return get_the_permalink($post_id);
 }
+
+function get_words($sentence, $count = 10) {
+  preg_match("/(?:[^\s,\.;\?\!]+(?:[\s,\.;\?\!]+|$)){0,$count}/", $sentence, $matches);
+  return $matches[0];
+}
