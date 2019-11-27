@@ -53,6 +53,14 @@
             </section>
           <?php } ?>
 
+          <?php if (can_publish_initiative($post) && !is_post_published($post)) {
+            render_publish_button($post->ID);
+          } ?>
+          <?php if(can_write_initiative($post)) { ?>
+            <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
+            <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>"><?php echo svg('trashcan'); ?><?php _e('Delete this initiative', 'tofino'); ?></a></div>
+          <?php } ?>
+
           <?php if (can_view_healthcheck($post)) { ?>
             <div class="panel healthchecks">
               <h3><?php _e('Healthchecks', 'tofino'); ?></h3>
@@ -151,14 +159,7 @@
           </aside>
         </div>
       </div>
-    
-      <?php if (can_publish_initiative($post) && !is_post_published($post)) {
-        render_publish_button($post->ID);
-      } ?>
-      <?php if(can_write_initiative($post)) { ?>
-        <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
-        <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>"><?php echo svg('trashcan'); ?><?php _e('Delete this initiative', 'tofino'); ?></a></div>
-      <?php } ?>
+      
     </div>
   </main>
 <?php endwhile; ?>
