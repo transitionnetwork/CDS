@@ -16,6 +16,26 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('edited_post')) { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('This initiative has been updated', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('added_post')) { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php if (wp_get_current_user()->roles[0] == 'initiative') {
+        _e('Thank you for your submission. It is now awaiting approval by a hub user.', 'tofino');
+      } else {
+        _e('Thank you for your submission', 'tofino');
+      } ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php while (have_posts()) : the_post(); ?>
   <main>
     <div class="container">

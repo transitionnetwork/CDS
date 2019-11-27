@@ -6,6 +6,10 @@
 
  get_header(); ?>
 
+<?php
+//NO LONGER IN USE. REPLACED BY ALERTS
+?>
+
 <?php while (have_posts()) : the_post(); ?>
 <div class="container">
   <h1><?php echo \Tofino\Helpers\title(); ?></h1>
