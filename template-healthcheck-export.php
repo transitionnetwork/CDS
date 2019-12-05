@@ -23,8 +23,11 @@ $healthcheck_ids = array();
 
 $i = 0;
 foreach($posts as $post) {
-  // only display the first ID;
-  if(!in_array($post->post_title, $healthcheck_ids)) {
+  // get associate initiave post object
+  $initiative = get_post($post->post_title);
+  
+  // only display the first ID and helathchecks for published initiatives;
+  if(!in_array($post->post_title, $healthcheck_ids) && $initiative->post_status == 'publish') {
     $healthcheck_ids[] = $post->post_title;
     $question_groups = get_fields($post->ID);
     
