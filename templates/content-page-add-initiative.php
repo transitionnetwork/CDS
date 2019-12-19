@@ -27,7 +27,7 @@ if(is_user_role('initiative')) {
             'post_type'		=> 'initiatives',
             'post_status'	=> $post_status
           ),
-          'fields' => array ('hub_tax', 'logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic')
+          'fields' => array ('hub_tax', 'logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic', 'private_email')
         ));
         echo '<div class="button-block"><a class="btn btn-secondary" href="javascript:history.go(-1)">Cancel</a></div>'; ?>
       </div>

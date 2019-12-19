@@ -32,10 +32,11 @@ if(is_user_role('hub')) {
     $languages = pll_the_languages(array('raw' => 'true'));
     $languages_available = array();
     foreach($languages as $language) {
-      if(!$language['no_translation']) {
+      if(!$language['no_translation'] || $language['slug'] == 'en') {
         $languages_available[] = $language;
       }
     }
+    
     $current_lang_slug = pll_current_language();
     $current_lang_name = pll_current_language('name');
     $current_flag_url = $languages[$current_lang_slug]['flag'];
@@ -59,7 +60,11 @@ if(is_user_role('hub')) {
             </button>
             <ul>
               <?php foreach($languages_available as $language) { ?>
-                <?php if(!$language['no_translation']) { ?>
+                <?php if(!$language['no_translation'] || $language['slug'] == 'en') { ?>
+                  <?php if($current_lang_slug == 'en' && $language['slug'] == 'en') {
+                    // fix url pointing to home when no translations exist for page
+                    $language['url'] = the_permalink();
+                  } ?>
                   <li><a href="<?php echo $language['url']; ?>"><img src="<?php echo $language['flag']; ?>"><span style="margin-left: 0.3rem;"><?php echo $language['name']; ?></span></a></li>
                 <?php } ?>
               <?php } ?>

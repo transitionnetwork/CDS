@@ -61,18 +61,6 @@
 
           <?php the_content(); ?>
 
-          <?php $additional = get_field('additional_web_addresses'); 
-          if($additional) { ?>
-            <section>
-              <h4><?php _e('More Links', 'tofino'); ?></h4>
-              <ul>
-                <?php foreach($additional as $item) { ?>
-                  <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
-                <?php } ?>
-              </ul>
-            </section>
-          <?php } ?>
-
           <?php if (can_publish_initiative($post) && !is_post_published($post)) {
             render_publish_button($post->ID);
           } ?>
@@ -149,6 +137,18 @@
                   <li><a href="<?php echo get_field('youtube'); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
                 <?php } ?>
               </ul>
+            <?php } ?>
+
+            <?php $additional = get_field('additional_web_addresses'); 
+            if($additional) { ?>
+              <section>
+                <h4><?php _e('More Links', 'tofino'); ?></h4>
+                <ul>
+                  <?php foreach($additional as $item) { ?>
+                    <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
+                  <?php } ?>
+                </ul>
+              </section>
             <?php } ?>
 
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
