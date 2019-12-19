@@ -11,7 +11,7 @@
         'post_type' => 'initiatives',
         'posts_per_page' => -1,
         'post_status' => 'pending',
-        'field' => 'ids',
+        'fields' => 'ids',
         'tax_query' => array(
           array(
             'taxonomy' => 'hub',
@@ -21,8 +21,8 @@
         )
       );
       $post_ids = get_posts($args);
-    if ($posts_ids) :
-      list_initiatives($posts_ids);
+    if ($post_ids) :
+      list_initiatives($post_ids);
     else : ?>
       <?php _e('There aren\'t any initiatives pending approval for', 'tofino'); ?> <?php echo $term->name; ?>.
     <?php endif; ?>
