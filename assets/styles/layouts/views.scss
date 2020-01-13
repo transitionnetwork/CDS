@@ -145,6 +145,7 @@ main.healthcheck-form {
     h2 {
       margin-bottom: 0;
     }
+
     .date {
       font-style: italic;
     }
@@ -165,7 +166,7 @@ main.healthcheck-form {
     border-radius: $border-radius;
     border: 1px solid $gray-300;
     margin-bottom: 1rem;
-    
+
     .step-bar {
       background-color: $brand-primary;
       border-radius: $border-radius;
@@ -197,5 +198,55 @@ main.healthcheck-form {
     .acf-button {
       @extend .btn-lg;
     }
+  }
+}
+
+body.account {
+  #healthcheck-bar {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  #graph-loading-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 4rem;
+  }
+}
+
+.map-loading,
+.graph-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-dual-ring::after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid $brand-primary;
+  border-color: $brand-primary transparent $brand-primary transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
