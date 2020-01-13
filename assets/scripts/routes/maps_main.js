@@ -3,6 +3,7 @@ import L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-search';
 import 'leaflet.locatecontrol';
+import Plotly from 'plotly.js';
 
 export default {
   loaded() {
@@ -147,5 +148,41 @@ export default {
     $('#iframe_map button.my-location').on('click', function(){
       map.locate({ setView: true, maxZoom: 12 });
     })
+
+    //graph
+    function plotData(data) {
+      var holdData = [
+        {
+          x: data.questions,
+          y: data.averages,
+          type: 'bar'
+        }
+      ];
+
+      Plotly.newPlot('healthcheck-bar', holdData);
+    }
+
+    if(('#healthcheck-bar').length) {
+      $.ajax({
+        url: tofinoJS.ajaxUrl,
+        type: 'POST',
+        cache: false,
+        data: {
+          action: 'getHealthcheckData',
+          value: {
+            submitted: true
+          }
+        },
+        dataType: 'json',
+        success: function (response) {
+          plotData(response)
+        },
+        error: function (jqxhr, status, exception) {
+          console.log('JQXHR:', jqxhr);
+          console.log('Status:', status);
+          console.log('Exception:', exception);
+        }
+      })
+    }
   }
 };
