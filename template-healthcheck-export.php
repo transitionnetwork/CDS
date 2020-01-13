@@ -36,12 +36,15 @@ foreach($posts as $post) {
     if($question_groups) {
       $questions[0] = 'Initiative';
       $answers[$i][0] = $initiative_title->post_title;
+      $answers[$i][1] = $post->ID;
+      
       foreach($question_groups as $key => $group) {
+        // var_dump($group);
         foreach ($group as $label => $response) {
           // add question the first time
           if($i == 0) {
-            $full_question = get_field_object($key . '_' . $label)['label'];
-            $questions[] = $full_question;
+            $full_question = get_field_object($key . '_' . $label, 4642)['label'];
+            $questions[] = str_replace('group_', '', $key) . ('.') . str_replace('q', '', $label) . ': ' . $full_question;
           }
           $answers[$i][] = $response;
         }
@@ -55,8 +58,6 @@ $export_data[] = $questions;
 foreach($answers as $answer_set) {
   $export_data[] = $answer_set;
 }
-
-// var_dump($export_data);
 
 //secure the export
 if(is_user_role('administrator') || is_user_role('super_hub')) {

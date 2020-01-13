@@ -22,8 +22,13 @@
       <div class="container">
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
         <?php get_template_part('/templates/panels/account-details'); ?>
+        
         <?php if(is_user_role('administrator')) { ?>
           <?php get_template_part('/templates/panels/reporting'); ?>
+        <?php } ?>
+        
+        <?php if(is_user_role('administrator')) { ?>
+          <?php get_template_part('/templates/panels/healthcheck-data'); ?>
         <?php } ?>
         
         <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
