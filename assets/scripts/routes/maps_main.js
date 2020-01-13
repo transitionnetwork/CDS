@@ -153,13 +153,22 @@ export default {
     function plotData(data) {
       var holdData = [
         {
-          x: data.questions,
-          y: data.averages,
-          type: 'bar'
+          x: data.averages.reverse(),
+          y: data.questions.reverse(),
+          type: 'bar',
+          orientation: 'h'
         }
       ];
 
-      Plotly.newPlot('healthcheck-bar', holdData);
+      var layout = {
+        height: 1200
+      }
+
+      Plotly.newPlot('healthcheck-bar', holdData, layout);
+    }
+
+    function countData(data) {
+      $('#healthcheck-data-count').append('<p>Number of submissions: ' + data.count + '</p>')
     }
 
     if(('#healthcheck-bar').length) {
@@ -175,7 +184,9 @@ export default {
         },
         dataType: 'json',
         success: function (response) {
+          $('#graph-loading-wrapper').hide();
           plotData(response)
+          countData(response)
         },
         error: function (jqxhr, status, exception) {
           console.log('JQXHR:', jqxhr);
