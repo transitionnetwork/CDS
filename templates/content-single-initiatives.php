@@ -151,8 +151,17 @@
               </section>
             <?php } ?>
 
+            <?php $post_author_id = get_the_author_meta('ID'); ?>
+            <?php if (is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
+              <div class="panel mt-4">
+                <h3>Author</h3>
+                <label>Name</label><?php echo get_the_author_meta('display_name'); ?>
+                <label>Email</label><?php echo get_the_author_meta('user_email'); ?>
+              </div>
+            <?php } ?>
+
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
-              <?php $post_author_id = get_the_author_meta('ID'); ?>
+              
               <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
                 <label for="authors">Update author</label>
                 <?php $users = get_users(); ?>
