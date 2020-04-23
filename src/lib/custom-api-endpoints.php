@@ -3,7 +3,7 @@
 function custom_initiative_endpoint() {
   $args = array(
     'post_type' => 'initiatives',
-    'posts_per_page' => 10
+    'posts_per_page' => -1
   );
 
   $posts = get_posts($args);
