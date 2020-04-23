@@ -57,7 +57,7 @@ function custom_initiative_endpoint() {
       ),
 
       'contact' => array(
-        'email' => get_field('email', $post),
+        // 'email' => get_field('email', $post),
         'website' => get_field('website', $post),
         'twitter' => get_field('twitter', $post),
         'facebook' => get_field('facebook', $post),
