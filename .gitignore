@@ -20,6 +20,6 @@ vendor/
 
 # ignore dist directories
 dist/
-cache/
+cache/*
 
 !dist/css/images/
