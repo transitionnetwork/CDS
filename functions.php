@@ -37,7 +37,6 @@ $tofino_includes = [
   "src/lib/cron.php",
   "src/lib/custom-api-endpoints.php",
   "src/lib/output-csv.php",
-  "src/lib/ajax-requests.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",
@@ -55,6 +54,8 @@ $tofino_includes = [
   "src/theme-options/social-networks.php",
   "src/theme-options/theme-tracker.php",
   "src/theme-options/dashboard-widget.php",
+  "src/ajax/map-requests.php",
+  "src/ajax/graph-requests.php"
 ];
 
 foreach ($tofino_includes as $file) {

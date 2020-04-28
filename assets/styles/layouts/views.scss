@@ -205,6 +205,10 @@ body.account {
   #healthcheck-bar {
     margin-bottom: 1rem;
     margin-top: 2rem;
+
+    .ytick tspan {
+      display: none;
+    }
   }
 
   #graph-loading-wrapper {
