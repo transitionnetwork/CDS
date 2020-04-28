@@ -1,9 +1,8 @@
 <?php
-function return_map_markers() {
-  //initiatives
+function get_i_data() {
   $args = array(
     'post_type' => 'initiatives',
-    'posts_per_page' => -1
+    'posts_per_page' => -1,
   );
 
   if(!empty($_POST['value']['hub_name'])) {
@@ -30,30 +29,30 @@ function return_map_markers() {
     $args['s'] = $_POST['value']['search'];
   }
 
-  $query_string = serialize($args);
-  $hash = 'map_' . md5($query_string);
-
+  
+  $data = array();
+  
   $posts = get_posts($args);
-
-
-  if ( false === ( $i_markers = get_transient($hash))) {
+  
+  if($posts) {
     $key = 0;
-    foreach($posts as $post) {
-      $map = get_field('map', $post->ID);
+    foreach($posts as $initiative) {
+      $map = get_field('map', $initiative->ID);
       if(!empty($map['markers'])) {
-        $i_markers[$key]['lat'] = $map['lat'];
-        $i_markers[$key]['lng'] = $map['lng'];
-        $i_markers[$key]['permalink'] = parse_post_link($post->ID);
-        $i_markers[$key]['title'] = get_the_title($post->ID);
-        // $markers[$key]['excerpt'] = get_the_excerpt($post->ID);
-        $key++;
+        $data[$key]['lat'] = $map['lat'];
+        $data[$key]['lng'] = $map['lng'];
+        $data[$key]['permalink'] = parse_post_link($initiative->ID);
+        $data[$key]['title'] = get_the_title($initiative->ID);
+
+        $key ++;
       }
     }
-	// Put the results in a transient. Expire after 12 hours.
-  set_transient($hash, $i_markers, 12 * HOUR_IN_SECONDS );
   }
 
-  //hubs
+  return $data;
+}
+
+function get_h_data() {
   $hubs = get_terms('hub', array(
     'hide_empty' => false
   ));
@@ -63,17 +62,47 @@ function return_map_markers() {
     $hubs[] = get_term_by('slug', $_POST['value']['hub_name'], 'hub');
   }
   
-  //TODO add hub transient in here
   $key = 0;
   foreach($hubs as $hub) {
     $map = get_field('map', $hub);
     if(!empty($map['markers'])) {
-      $h_markers[$key]['lat'] = $map['lat'];
-      $h_markers[$key]['lng'] = $map['lng'];
-      $h_markers[$key]['permalink'] = get_term_link($hub);
-      $h_markers[$key]['title'] = $hub->name;
+      $data[$key]['lat'] = $map['lat'];
+      $data[$key]['lng'] = $map['lng'];
+      $data[$key]['permalink'] = get_term_link($hub);
+      $data[$key]['title'] = $hub->name;
+      
       $key ++;
     }
+  }
+
+  return $data;
+}
+
+
+function return_map_markers() {
+  //initiatives
+  $i_filepath = TEMPLATEPATH . '/cache/i-cache.txt';
+  $h_filepath = TEMPLATEPATH . '/cache/h-cache.txt';
+  $cache_expiry = 3600;
+
+  if(!file_exists($i_filepath) || filemtime($i_filepath) < time() - $cache_expiry ) {
+    //file cache has expired
+    $i_markers = get_i_data();
+    file_put_contents($i_filepath, json_encode($i_markers));
+    $data['i_status'] = 'queried';
+  } else {
+    $data['i_status'] = 'cached';
+    $i_markers = json_decode(file_get_contents($i_filepath), true);
+  }
+  
+  if(!file_exists($h_filepath) || filemtime($h_filepath) < time() - $cache_expiry) {
+    //file cache has expired
+    $h_markers = get_h_data();
+    file_put_contents($h_filepath, json_encode($h_markers));
+    $data['h_status'] = 'queried';
+  } else {
+    $h_markers = json_decode(file_get_contents($h_filepath), true);
+    $data['h_status'] = 'cached';
   }
 
   if($i_markers) {
