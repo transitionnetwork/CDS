@@ -1,5 +1,5 @@
 import displayMap from '../shared/map';
-import displayBarGraph from '../shared/plotly';
+import displayBarGraph from '../shared/graph-all';
 
 export default {
   loaded() {

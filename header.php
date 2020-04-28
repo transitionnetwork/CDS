@@ -25,7 +25,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   $en_class = get_post($en_post_id);
 } ?>
 
-<body <?php body_class($en_class->post_name); ?>>
+<body <?php body_class($en_class->post_name); ?> data-pid="<?php echo $post->ID; ?>">
 <div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>
 
