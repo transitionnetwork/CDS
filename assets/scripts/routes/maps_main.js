@@ -116,6 +116,7 @@ export default {
       }
     }
 
+    
     $.ajax({
       url: tofinoJS.ajaxUrl,
       type: 'POST',
@@ -130,6 +131,7 @@ export default {
       },
       dataType: 'json',
       success: function (response) {
+        console.log(response);
         $('.map-loading').hide();
         $('#map-panel').show();
         displayMap(response, map);
