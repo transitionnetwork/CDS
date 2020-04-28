@@ -80,10 +80,10 @@ function get_h_data() {
 
 
 function return_map_markers() {
-  //initiatives
-  $i_filepath = TEMPLATEPATH . '/cache/i-cache.txt';
-  $h_filepath = TEMPLATEPATH . '/cache/h-cache.txt';
   $cache_expiry = 3600;
+  
+  $i_filepath = TEMPLATEPATH . '/cache/i-cache_h' . $_POST['value']['hub_name'] . '_c' . $_POST['value']['country'] . '.txt';
+  $h_filepath = TEMPLATEPATH . '/cache/h-cache_h' . $_POST['value']['hub_name'] . '_c' . $_POST['value']['country'] . '.txt';
 
   if(!file_exists($i_filepath) || filemtime($i_filepath) < time() - $cache_expiry ) {
     //file cache has expired
