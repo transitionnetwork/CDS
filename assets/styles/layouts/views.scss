@@ -201,21 +201,20 @@ main.healthcheck-form {
   }
 }
 
-body.account {
-  #healthcheck-bar {
-    margin-bottom: 1rem;
-    margin-top: 2rem;
+//healthcheck graphing
+#healthcheck-bar {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
 
-    .ytick tspan {
-      display: none;
-    }
+  .ytick tspan {
+    display: none;
   }
+}
 
-  #graph-loading-wrapper {
-    position: relative;
-    width: 100%;
-    padding: 4rem;
-  }
+#graph-loading-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 4rem;
 }
 
 .map-loading,

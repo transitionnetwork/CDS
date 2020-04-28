@@ -12,12 +12,13 @@ export default function() {
         y: data.questions.reverse(),
         type: 'bar',
         orientation: 'h',
-        customLabel: 'potato'
+        customLabel: 'potato',
+        hovermode: false
       }
     ];
 
     var layout = {
-      height: 1200
+      height: 2000
     }
 
     Plotly.newPlot('healthcheck-bar', holdData, layout);
@@ -26,16 +27,18 @@ export default function() {
       Plotly.d3.selectAll(".yaxislayer-above").selectAll('text')
         .on("click", function (d) {
 
-          var found = [],    
-            rxp = /{([^}]+)}/g,
-            str = d.text,
-            curMatch;
+          console.log(d.text)
 
-          while (curMatch = rxp.exec(str)) {
-            found.push(curMatch[1]);
-          }
+          // var found = [],          // an array to collect the strings that are found
+          //   rxp = /{([^}]+)}/g,
+          //   str = d.text,
+          //   curMatch;
 
-          alert(found);
+          // while (curMatch = rxp.exec(str)) {
+          //   found.push(curMatch[1]);
+          // }
+
+          // alert(found);
         })
     });
   }

@@ -19,6 +19,11 @@
                 </div>
               </div>
 
+              <!-- <div id="healthcheck-bar"></div>
+              <div id="graph-loading-wrapper">
+                <div class="graph-loading"><div class="lds-dual-ring"></div></div>
+              </div> -->
+
               <?php
               $alphas = range('A', 'Z');
               $fields = get_field_objects();
