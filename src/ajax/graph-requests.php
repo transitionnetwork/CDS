@@ -128,10 +128,12 @@ function return_single_healtcheck_data() {
       if($field['type'] == 'group') {
         $sub_fields = $field['sub_fields'];
         foreach ($sub_fields as $key => $sub_field) {
+          $group_letter = $alphas[str_replace('group_', '', $field['name']) - 1];
           $questions[$sub_field['key']] = array(
             'label' => $sub_field['label'],
             'name' => str_replace('group_', 'g', $field['name']) . '_' . $sub_field['name'],
-            'response' => get_field($field['name'] . '_' . $sub_field['name'], $_POST['value']['post_id'])
+            'response' => get_field($field['name'] . '_' . $sub_field['name'], $_POST['value']['post_id']),
+            'identifier' => $group_letter . ($key + 1)
           );
         }
       }
@@ -145,7 +147,7 @@ function return_single_healtcheck_data() {
   
   $output_questions = [];
   foreach($questions as $question) {
-    $output_questions[] = '<a>' . $question['name'] . '</a><span>{' . $question['label'] . '}</a>';
+    $output_questions[] = '<a>' . $question['identifier'] . '</a><span>{' . $question['label'] . '}</a>';
   }
   
   $data['data'] = $output_data;

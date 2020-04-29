@@ -55,7 +55,8 @@ $tofino_includes = [
   "src/theme-options/theme-tracker.php",
   "src/theme-options/dashboard-widget.php",
   "src/ajax/map-requests.php",
-  "src/ajax/graph-requests.php"
+  "src/ajax/graph-requests.php",
+  "src/custom/admin-tables.php"
 ];
 
 foreach ($tofino_includes as $file) {
