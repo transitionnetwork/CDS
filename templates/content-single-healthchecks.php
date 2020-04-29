@@ -19,10 +19,14 @@
                 </div>
               </div>
 
-              <!-- <div id="healthcheck-bar"></div>
-              <div id="graph-loading-wrapper">
-                <div class="graph-loading"><div class="lds-dual-ring"></div></div>
-              </div> -->
+              <?php var_dump(get_hub_by_id(get_current_user_id())); ?>
+
+              <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
+                <div id="healthcheck-bar"></div>
+                  <div id="graph-loading-wrapper">
+                  <div class="graph-loading"><div class="lds-dual-ring"></div></div>
+                </div>
+              <?php } ?>
 
               <?php
               $alphas = range('A', 'Z');
