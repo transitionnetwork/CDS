@@ -80,6 +80,11 @@ function get_h_data() {
 
 
 function return_map_markers() {
+
+  if (!file_exists(TEMPLATEPATH . '/cache')) {
+    mkdir(TEMPLATEPATH . '/cache', 0755, true);
+  }
+
   $cache_expiry = 3600;
   
   $i_filepath = TEMPLATEPATH . '/cache/i-cache_h' . $_POST['value']['hub_name'] . '_c' . $_POST['value']['country'] . '.txt';
