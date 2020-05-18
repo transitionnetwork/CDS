@@ -1,5 +1,5 @@
 <section>
-  <h2>Healthcheck Data</h2>
+  <h2>Mean Healthcheck Data</h2>
   <div id="graph-loading-wrapper">
     <div class="graph-loading"><div class="lds-dual-ring"></div></div>
   </div>
