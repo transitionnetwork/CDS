@@ -73,5 +73,4 @@ foreach ($posts as $post) {
 
 
 } ?>
-
-<?php outputCsv(date('Ymd') . '_UTS_Bookings_Export.csv', $export_data); ?>
+<?php outputCsv(date('Ymd') . '_' . $data['hub_slug'] . '_Initiative_Export.csv', $export_data); ?>
