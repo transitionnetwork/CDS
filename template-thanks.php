@@ -6,13 +6,17 @@
 
  get_header(); ?>
 
+<?php
+//NO LONGER IN USE. REPLACED BY ALERTS
+?>
+
 <?php while (have_posts()) : the_post(); ?>
 <div class="container">
   <h1><?php echo \Tofino\Helpers\title(); ?></h1>
   <?php the_content(); ?>
   <ul class="btn-list">
     <?php if(get_query_var('edited_post')) { ?>
-      <li><a class="btn btn-primary" href="<?php echo get_the_permalink(get_query_var('edited_post')); ?>">&raquo <?php _e('View edited initiative', 'tofino'); ?></a></li>
+      <li><a class="btn btn-primary" href="<?php echo parse_post_link(get_query_var('edited_post')); ?>">&raquo <?php _e('View edited initiative', 'tofino'); ?></a></li>
     <?php } ?>
     <?php if(get_query_var('added_post')) { ?>
       <?php

@@ -2,9 +2,12 @@
 var $ = window.jQuery;
 
 import L from 'leaflet';
+import select2 from '../shared/select2';
 
 export default {
   loaded() {
+    select2();
+    
     var lat = $('#initiative-map').data('lat');
     var lng = $('#initiative-map').data('lng');
     var zoom = $('#initiative-map').data('zoom');

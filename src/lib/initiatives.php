@@ -6,7 +6,7 @@ function get_initiative_by_id($post_id) {
     $hub_object = wp_get_post_terms($post_id, 'hub')[0];
     $country_object = wp_get_post_terms($post_id, 'country')[0];
     $data = array(
-      'link' => get_the_permalink($post_id),
+      'link' => parse_post_link($post_id),
       'title' => get_the_title($post_id),
       'status' => get_post_status($post_id),
       'hub_slug' => $hub_object->slug,
@@ -67,14 +67,14 @@ function list_initiatives($post_ids) {
           <td class="text-right">
             <div class="btn-group">
               <?php if (can_view_healthcheck($post)) { ?>
-                <a href="<?php echo add_query_arg(array('initiative_id' => $post_id), get_the_permalink(422)); ?>" class="btn btn-success btn-sm"><?php echo svg('plus'); ?> Add Healthcheck</a>
+                <a href="<?php echo add_query_arg(array('initiative_id' => $post_id), parse_post_link(422)); ?>" class="btn btn-success btn-sm"><?php echo svg('plus'); ?> Add Healthcheck</a>
               <?php } ?>
 
               <a class="btn btn-primary btn-sm" href="<?php echo $data['link']; ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
               
               <?php if(can_write_initiative($post)) { ?>
                 <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
-                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, home_url('edit-initiative')); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
+                <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
                 <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
               <?php } ?>
             </div>

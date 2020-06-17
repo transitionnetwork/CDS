@@ -34,8 +34,9 @@ $tofino_includes = [
   "src/lib/permissions.php",
   "src/lib/hub-filter.php",
   "src/lib/emails.php",
+  "src/lib/cron.php",
+  "src/lib/custom-api-endpoints.php",
   "src/lib/output-csv.php",
-  "src/lib/ajax-requests.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
   "src/shortcodes/svg.php",
@@ -53,6 +54,9 @@ $tofino_includes = [
   "src/theme-options/social-networks.php",
   "src/theme-options/theme-tracker.php",
   "src/theme-options/dashboard-widget.php",
+  "src/ajax/map-requests.php",
+  "src/ajax/graph-requests.php",
+  "src/custom/admin-tables.php"
 ];
 
 foreach ($tofino_includes as $file) {
@@ -137,7 +141,6 @@ function create_posttypes()
       ),
       'public' => true,
       'has_archive' => false,
-      'show_in_rest' => true,
       'supports' => array('title', 'editor', 'author')
     )
   );
@@ -265,11 +268,11 @@ function custom_query_vars_filter($vars)
   $vars[] = 'error_code';
   $vars[] = 'updated';
   $vars[] = 'hub_id';
-  $vars[] = 'hub_name';
-  $vars[] = 'country';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
+  $vars[] = 'hub_name';
   $vars[] = 'search';
+  $vars[] = 'country';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
@@ -279,7 +282,7 @@ function wpse132196_redirect_after_trashing()
 {
   if (!is_admin()) {
     exit;
-    wp_redirect(home_url('/account'));
+    wp_redirect(parse_post_link(24));
   }
 }
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
@@ -315,7 +318,9 @@ function get_latest_healthcheck($id)
     'orderby' => 'post_date',
     'order' => 'DESC'
   );
+
   $posts = get_posts($args);
+
   if ($posts) {
     return '<a href="' . get_permalink($posts[0]->ID) . '">' . date('l jS F Y - H:i', strtotime($posts[0]->post_date)) . '</a>';
   } else {
@@ -342,20 +347,6 @@ function get_hub_by_id($id)
 function acf_custom_save($post_id)
 {
   if (get_post_type($post_id) == 'healthchecks') {
-    $my_post = array();
-    $my_post['ID'] = $post_id;
-
-    $post = get_post($post_id);
-
-    //check for new post 
-    if ($post->post_modified_gmt == $post->post_date_gmt) {
-      // EMAIL INITIATIVE, HUB, ADMIN (with the full data)
-      $my_post['post_title'] = get_query_var('initiative_id');
-    } else {
-      $my_post['post_title'] = get_the_title($post_id);
-    }
-
-    wp_update_post($my_post);
 
     //ensure that hc data is stored in initiative
     update_post_meta( $my_post['post_title'], 'recent_hc', $post_id);
@@ -461,7 +452,7 @@ function redirects() {
         'post_author' => $_POST['authors']
       );
       wp_update_post($args);
-      wp_safe_redirect(add_query_arg('updated', 'author', get_the_permalink($_POST['post_id'])));
+      wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));
     }
   }
 }
@@ -491,4 +482,59 @@ function render_result_totals($wp_query) {
   $label = get_post_type_object($wp_query->query['post_type'])->label;
   
   return '<p><em>Displaying ' . $from . '-' . $to . ' of ' . $total_results . ' queried Initiatives</em></p>';
+}
+
+function get_environment() {
+  if(strpos(get_site_url(), 'transitioninitiative.org') !== false) {
+    return 'production';
+  }
+  
+  if(strpos(get_site_url(), 'stage') !== false) {
+    return 'stage';
+  }
+
+  return 'dev';
+}
+
+// Polylang helpers
+function preserve_query_args( $url, $slug ) {
+  $permitted_vars = array(
+    'initiative_id',
+    'post_id',
+    'step',
+    'token',
+    'hub_name',
+    'country',
+    'search',
+    'error_code'
+  );
+
+  // die(var_dump($permitted_vars));
+
+  $args = array();
+  foreach($permitted_vars as $var) {
+    if($_GET[$var]) {
+      $args[$var] = $_GET[$var];
+    }
+  }
+
+  $url = add_query_arg($args, $url);
+
+  return $url === null ? home_url( '?lang=' . $slug ) : $url;
+}
+
+add_filter( 'pll_the_language_link', 'preserve_query_args', 10, 2 );
+
+function parse_post_link($post_id) {
+  if(function_exists('pll_get_post')) {
+    if(pll_get_post($post_id)) {
+      return get_the_permalink(pll_get_post($post_id));
+    };
+  }
+  return get_the_permalink($post_id);
+}
+
+function get_words($sentence, $count = 10) {
+  preg_match("/(?:[^\s,\.;\?\!]+(?:[\s,\.;\?\!]+|$)){0,$count}/", $sentence, $matches);
+  return $matches[0];
 }

@@ -3,12 +3,22 @@ import Router from './router';
 
 // Import local deps
 import common from './routes/common';
-import account from './routes/maps_main';
-import map from './routes/maps_main';
-import list_initiatives from './routes/maps_main';
+
+import account from './routes/account';
+
+//iframe map page
+import map from './routes/map_route';
+
+//homepage
+import home from './routes/map_route';
+
+//search results
+import search_initiatives from './routes/map_route';
+
+import single_healthchecks from './routes/single_healthcheck'
+
 import single_initiatives from './routes/single';
 import tax_hub from './routes/single';
-import single from './routes/select2';
 
 // Import ajaxForm
 import './ajax-form';
@@ -25,10 +35,11 @@ const routes = {
   common,
   account,
   map,
-  list_initiatives,
+  home,
+  search_initiatives,
   single_initiatives,
-  tax_hub,
-  single
+  single_healthchecks,
+  tax_hub
 };
 
 // Load Events

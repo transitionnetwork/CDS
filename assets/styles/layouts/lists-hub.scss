@@ -1,0 +1,26 @@
+.hub-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.hub-item {
+  flex: 0 1 100%;
+  margin-bottom: $grid-gutter-width;
+  background-color: $background-light;
+  border: 1px solid $gray-200;
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .thumbnail-bg {
+    padding-top: 66%;
+    background-position: 50%;
+    background-size: cover;
+    display: block;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}

@@ -53,6 +53,14 @@ $initiative_query = new WP_Query($args);
 
 <main>
   <div class="container">
+    <?php while (have_posts()) : the_post(); ?>
+      <?php if (!is_user_logged_in() && !empty(get_the_content())) { ?>
+        <div class="panel">
+          <?php the_content(); ?>
+        </div>
+      <?php } ?>
+    <?php endwhile; ?>
+    
     <?php render_hub_filter(); ?>
     
     <?php if (get_query_var('hub_name')) :
@@ -85,11 +93,10 @@ $initiative_query = new WP_Query($args);
 
     <ul class="button-group">
       <?php if(is_user_logged_in()) { ?>
-        <li><a class="btn btn-primary" href="<?php echo get_permalink(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Initiative', 'tofino'); ?></a></li>
+        <li><a class="btn btn-primary" href="<?php echo parse_post_link(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Initiative', 'tofino'); ?></a></li>
       <?php } else { ?>
-        <li><a class="btn btn-primary" href="<?php echo get_permalink(460); ?>"><?php echo svg('key'); ?><?php _e('Register to add an initiative', 'tofino'); ?></a></li>
+        <li><a class="btn btn-primary" href="<?php echo parse_post_link(460); ?>"><?php echo svg('key'); ?><?php _e('Register to add an initiative', 'tofino'); ?></a></li>
       <?php } ?>
     </ul>
   </div>
 </main>
-
