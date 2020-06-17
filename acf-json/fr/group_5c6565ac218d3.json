@@ -32,11 +32,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -57,11 +57,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -82,11 +82,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -107,11 +107,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -132,11 +132,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -157,11 +157,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -182,11 +182,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -225,11 +225,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -250,11 +250,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -275,11 +275,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -300,11 +300,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -325,11 +325,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -350,11 +350,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -375,11 +375,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -400,11 +400,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -425,11 +425,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -450,11 +450,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -475,11 +475,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -518,11 +518,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -543,11 +543,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -568,11 +568,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -593,11 +593,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -618,11 +618,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -643,11 +643,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -686,11 +686,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -711,11 +711,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -736,11 +736,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -761,11 +761,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -786,11 +786,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -811,11 +811,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -836,11 +836,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 0,
                     "default_value": "",
@@ -861,11 +861,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 0,
                     "default_value": "",
@@ -904,11 +904,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -929,11 +929,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -954,11 +954,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -979,11 +979,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1004,11 +1004,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1029,11 +1029,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1054,11 +1054,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1079,11 +1079,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 0,
                     "default_value": "",
@@ -1104,11 +1104,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 0,
                     "default_value": "",
@@ -1129,11 +1129,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 0,
                     "default_value": "",
@@ -1172,11 +1172,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1197,11 +1197,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1222,11 +1222,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1247,11 +1247,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1272,11 +1272,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1297,11 +1297,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1359,10 +1359,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1384,11 +1384,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1409,11 +1409,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1434,11 +1434,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1459,11 +1459,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1484,11 +1484,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1509,11 +1509,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
-                        "5: Tout à fait d'accord": "5: Tout à fait d'accord"
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
+                        "5": "Tout à fait d'accord"
                     },
                     "allow_null": 1,
                     "default_value": "",
@@ -1552,10 +1552,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1577,10 +1577,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1602,10 +1602,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1627,10 +1627,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1652,10 +1652,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1695,10 +1695,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1720,10 +1720,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1745,10 +1745,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1770,10 +1770,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 1,
@@ -1795,10 +1795,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "1: Fortement en désaccord": "1: Fortement en désaccord",
-                        "2: pas d'accord": "2: pas d'accord",
-                        "3: plutôt d'accord": "3: plutôt d'accord",
-                        "4: d'accord": "4: d'accord",
+                        "1": "Fortement en désaccord",
+                        "2": "Pas d'accord",
+                        "3": "Plutôt d'accord",
+                        "4": "D'accord",
                         "5: Tout à fait d'accorde": "5: Tout à fait d'accorde"
                     },
                     "allow_null": 0,
