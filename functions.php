@@ -154,6 +154,19 @@ function create_posttypes()
       'supports' => array('title')
     )
   );
+  
+  register_post_type(
+    'files',
+    array(
+      'labels' => array(
+        'name' => __('Files'),
+        'singular_name' => __('file')
+      ),
+      'public' => true,
+      'has_archive' => false,
+      'supports' => array('title')
+    )
+  );
 }
 
 

@@ -28,6 +28,7 @@
         
         <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
           <?php get_template_part('/templates/panels/hub-admin'); ?>
+          <?php get_template_part('/templates/panels/file-sharing'); ?>
         <?php } ?>
         
         <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
