@@ -12,7 +12,7 @@
     <div class="map-loading"><div class="lds-dual-ring"></div></div>
   </div>
   <div class="panel">
-    <?php $url = get_the_permalink(438); ?>
+    <?php $url = parse_post_link(438); ?>
     <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>
     <pre>&lt;iframe src=&quot;<?php echo $url; ?>&quot; width="100%&quot; height=&quot;550px&quot; frameBorder=&quot;0&quot; style=&quot;display: block;&quot;&gt;&lt;/iframe&gt;</pre>
     <p><a href="<?php echo $url ?>" class="btn btn-primary btn-sm" target="_blank"><?php echo svg('eye'); ?><?php _e('Preview Map', 'tofino'); ?></a></p>
@@ -20,7 +20,7 @@
   
   <?php foreach($terms as $term) { ?>
     <h2><?php _e('Initiative map', 'tofino'); ?> for <a href="<?php echo add_query_arg('hub_name', $term->slug, get_post_type_archive_link('initiatives')); ?>"><?php echo $term->name; ?></a></h2>
-    <?php $url = add_query_arg(array('hub_id' => $term->term_id), get_the_permalink(438));
+    <?php $url = add_query_arg(array('hub_id' => $term->term_id), parse_post_link(438));
     ?>
     <div class="panel">
       <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>

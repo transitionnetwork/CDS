@@ -12,6 +12,10 @@
         
         <?php echo get_field('hub_description', $term); ?>
 
+        <?php if(is_user_role('administrator') || is_user_role('super_hub') || can_edit_hub($term->term_id)) { ?>
+          <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
+        <?php } ?>
+
         <?php $args = array(
           'post_type' => 'initiatives',
           'fields' => 'ids',
@@ -30,21 +34,6 @@
         <h2>Initiatives</h2>
         <?php list_initiatives($initiatives); ?>
 
-        <?php $additional = get_field('additional_web_addresses', $term); 
-        if($additional) { ?>
-          <section>
-            <h4><?php _e('More Links', 'tofino'); ?></h4>
-            <ul>
-              <?php foreach($additional as $item) { ?>
-                <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
-              <?php } ?>
-            </ul>
-          </section>
-        <?php } ?>
-
-        <?php if(is_user_role('administrator') || is_user_role('super_hub') || can_edit_hub($term->term_id)) { ?>
-          <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, home_url('edit-hub')); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
-        <?php } ?>
       </div>
  
       <div class="col-12 col-lg-4">
@@ -102,6 +91,19 @@
               <?php } ?>
             </ul>
           <?php } ?>
+
+          <?php $additional = get_field('additional_web_addresses', $term); 
+          if($additional) { ?>
+            <section>
+              <h4><?php _e('More Links', 'tofino'); ?></h4>
+              <ul>
+                <?php foreach($additional as $item) { ?>
+                  <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
+                <?php } ?>
+              </ul>
+            </section>
+          <?php } ?>
+          
         </aside>
       </div>
     </div>

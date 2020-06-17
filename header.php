@@ -24,7 +24,8 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   $en_post_id = apply_filters( 'wpml_object_id', $post->ID, 'post', '', 'en' );
   $en_class = get_post($en_post_id);
 } ?>
-<body <?php body_class($en_class->post_name); ?>>
+
+<body <?php body_class($en_class->post_name); ?> data-pid="<?php echo $post->ID; ?>">
 <div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>
 
@@ -36,7 +37,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
 
 <div class="bar-info">
   <div class="container">
-    <?php get_template_part('templates/logged-in-as'); ?>
+    <?php get_template_part('templates/top-nav'); ?>
   </div>
 </div>
 
@@ -52,7 +53,6 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
       </span>
       <span class="sr-only"><?php _e('Toggle Navigation Button', 'tofino'); ?></span>
     </button>
-
     <div class="collapse navbar-collapse" id="main-menu">
       <?php if(is_user_logged_in()) : ?>
         <?php

@@ -81,6 +81,14 @@ function is_post_published($post) {
   return false;
 }
 
+function can_edit_hub($term_id) {
+  $user_hub = get_field('hub_user', wp_get_current_user());
+  if((int)$user_hub === (int)$term_id) {
+    return true;
+  } 
+  return false;
+}
+
 // Publish
 function render_publish_button($post_id)
 {
@@ -103,19 +111,14 @@ function change_post_status($post_id, $status)
   wp_update_post($current_post);
 }
 
-function check_publish_argument() {
+function check_post() {
   if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
     if (isset($_POST['pid']) && !empty($_POST['pid'])) {
       change_post_status((int)$_POST['pid'], 'publish');
+      alert_user_initiative_approved($_POST['pid']);
+      wp_safe_redirect(esc_url(add_query_arg('updated', 'publish', '/account')));
+      exit();
     }
   }
 }
-add_action('init', 'check_publish_argument');
-
-function can_edit_hub($term_id) {
-  $user_hub = get_field('hub_user', wp_get_current_user());
-  if((int)$user_hub === (int)$term_id) {
-    return true;
-  } 
-  return false;
-}
+add_action('init', 'check_post');

@@ -11,7 +11,27 @@
 <?php if(get_query_var('updated') == 'author') { ?>
   <div class="container">
     <div class="alert top alert-success">
-      <?php _e('The author of this initiative has been updated'); ?>
+      <?php _e('The author of this initiative has been updated', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('edited_post')) { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('This initiative has been updated', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('added_post')) { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php if (wp_get_current_user()->roles[0] == 'initiative') {
+        _e('Thank you for your submission. It is now awaiting approval by a hub user.', 'tofino');
+      } else {
+        _e('Thank you for your submission', 'tofino');
+      } ?>
     </div>
   </div>
 <?php } ?>
@@ -41,16 +61,12 @@
 
           <?php the_content(); ?>
 
-          <?php $additional = get_field('additional_web_addresses'); 
-          if($additional) { ?>
-            <section>
-              <h4><?php _e('More Links', 'tofino'); ?></h4>
-              <ul>
-                <?php foreach($additional as $item) { ?>
-                  <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
-                <?php } ?>
-              </ul>
-            </section>
+          <?php if (can_publish_initiative($post) && !is_post_published($post)) {
+            render_publish_button($post->ID);
+          } ?>
+          <?php if(can_write_initiative($post)) { ?>
+            <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
+            <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>"><?php echo svg('trashcan'); ?><?php _e('Delete this initiative', 'tofino'); ?></a></div>
           <?php } ?>
 
           <?php if (can_view_healthcheck($post)) { ?>
@@ -67,7 +83,7 @@
               $healthchecks = get_posts($args);
               list_healthchecks($healthchecks);
               ?>
-              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), get_the_permalink(422)); ?>"><?php echo svg('plus'); ?><?php _e('Add Healthcheck', 'tofino'); ?></a></p>
+              <p><a class="btn btn-primary btn-sm" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), parse_post_link(422)); ?>"><?php echo svg('plus'); ?><?php _e('Add Healthcheck', 'tofino'); ?></a></p>
             </div>
           <?php } ?>
         </div>
@@ -123,8 +139,29 @@
               </ul>
             <?php } ?>
 
+            <?php $additional = get_field('additional_web_addresses'); 
+            if($additional) { ?>
+              <section>
+                <h4><?php _e('More Links', 'tofino'); ?></h4>
+                <ul>
+                  <?php foreach($additional as $item) { ?>
+                    <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
+                  <?php } ?>
+                </ul>
+              </section>
+            <?php } ?>
+
+            <?php $post_author_id = get_the_author_meta('ID'); ?>
+            <?php if (is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
+              <div class="panel mt-4">
+                <h3>Author</h3>
+                <label>Name</label><?php echo get_the_author_meta('display_name'); ?>
+                <label>Email</label><?php echo get_the_author_meta('user_email'); ?>
+              </div>
+            <?php } ?>
+
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
-              <?php $post_author_id = get_the_author_meta('ID'); ?>
+              
               <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
                 <label for="authors">Update author</label>
                 <?php $users = get_users(); ?>
@@ -151,14 +188,7 @@
           </aside>
         </div>
       </div>
-    
-      <?php if (can_publish_initiative($post) && !is_post_published($post)) {
-        render_publish_button($post->ID);
-      } ?>
-      <?php if(can_write_initiative($post)) { ?>
-        <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
-        <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>"><?php echo svg('trashcan'); ?><?php _e('Delete this initiative', 'tofino'); ?></a></div>
-      <?php } ?>
+      
     </div>
   </main>
 <?php endwhile; ?>
