@@ -279,7 +279,6 @@ add_filter('query_vars', 'custom_query_vars_filter');
 
 //Redirect after post deletion
 function wpse132196_redirect_after_trashing($post_id) {
-  // dd(get_post_type($post_id));
   if(get_post_type($post_id) == 'files') {
     wp_redirect(add_query_arg('tab', 'file', parse_post_link(24)));
     exit;
