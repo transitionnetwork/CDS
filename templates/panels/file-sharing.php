@@ -17,7 +17,7 @@
       wp_reset_postdata(); ?>
     </div>
   <?php } else { ?>
-    <?php _e('You haven\'t shared any files ', 'Tofino'); ?>
+    <?php _e('You haven\'t shared any files.', 'Tofino'); ?>
   <?php } ?>
   <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFileModal"><?php echo svg('plus'); ?>Add a file</button></p>
   <hr></hr>
