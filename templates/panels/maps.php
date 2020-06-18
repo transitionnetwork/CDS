@@ -8,9 +8,6 @@
     }
   } ?>
   <h2>Global Map</h2>
-  <div id="iframe_map">
-    <div class="map-loading"><div class="lds-dual-ring"></div></div>
-  </div>
   <div class="panel">
     <?php $url = parse_post_link(438); ?>
     <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>

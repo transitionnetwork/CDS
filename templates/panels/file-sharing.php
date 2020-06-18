@@ -1,17 +1,43 @@
+<?php acf_form_head(); ?>
 <section>
   <h2>File Sharing</h2>
   <h3>My Files</h3>
   <?php $args = array(
     'post_type' => 'files',
     'posts_per_page' => -1,
-    'author' => get_current_user_id()
+    'author__in' => get_current_user_id()
   );
   $my_files = get_posts($args);
-  var_dump($my_files);
-  ?>
+  if($my_files) { ?>
+    <div class="row files-row">
+      <?php foreach($my_files as $post) {
+        setup_postdata($post);
+        get_template_part('templates/partials/file');
+      }
+      wp_reset_postdata(); ?>
+    </div>
+  <?php } else { ?>
+    <?php _e('You haven\'t shared any files ', 'Tofino'); ?>
+  <?php } ?>
   <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFileModal"><?php echo svg('plus'); ?>Add a file</button></p>
   <hr></hr>
   <h3>All Files</h3>
+  <?php $args = array(
+    'post_type' => 'files',
+    'posts_per_page' => -1,
+  );
+  $all_files = get_posts($args);
+  if($all_files) { ?>
+    <div class="row files-row">
+      <?php foreach($all_files as $post) {
+        setup_postdata($post);
+        get_template_part('templates/partials/file');
+      }
+      wp_reset_postdata(); ?>
+    </div>
+  <?php } else { ?>
+    <?php _e('There are no files shared yet.', 'Tofino'); ?>
+  <?php } ?>
 </section>
 
 <!-- Modal -->
@@ -25,7 +51,19 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <?php acf_form(array(
+          'post_id'		=> 'new_post',
+          'post_title'	=> true,
+          'post_content'	=> false,
+          'return' => add_query_arg('tab', 'file', get_the_permalink()),
+          'submit_value' => 'Add File',
+          'uploader' => 'basic',
+          'new_post'		=> array(
+            'post_type'		=> 'files',
+            'post_status' => 'publish'
+          )
+        ));
+        ?>
       </div>
     </div>
   </div>

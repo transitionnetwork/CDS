@@ -114,38 +114,47 @@ export default function() {
     }
   }
 
-
-  $.ajax({
-    url: tofinoJS.ajaxUrl,
-    type: 'POST',
-    cache: false,
-    data: {
-      action: 'getMapMarkers',
-      value: {
-        hub_name: $('#iframe_map').data('hub'),
-        country: $('#iframe_map').data('country'),
-        search: $('#iframe_map').data('search')
+  function loadMap() {
+    $.ajax({
+      url: tofinoJS.ajaxUrl,
+      type: 'POST',
+      cache: false,
+      data: {
+        action: 'getMapMarkers',
+        value: {
+          hub_name: $('#iframe_map').data('hub'),
+          country: $('#iframe_map').data('country'),
+          search: $('#iframe_map').data('search')
+        }
+      },
+      dataType: 'json',
+      success: function (response) {
+        console.log(response);
+        $('.map-loading').hide();
+        $('#map-panel').show();
+        displayMap(response, map);
+      },
+      error: function (jqxhr, status, exception) {
+        console.log('JQXHR:', jqxhr);
+        console.log('Status:', status);
+        console.log('Exception:', exception);
       }
-    },
-    dataType: 'json',
-    success: function (response) {
-      console.log(response);
-      $('.map-loading').hide();
-      $('#map-panel').show();
-      displayMap(response, map);
-    },
-    error: function (jqxhr, status, exception) {
-      console.log('JQXHR:', jqxhr);
-      console.log('Status:', status);
-      console.log('Exception:', exception);
+    })
+  
+    $('#iframe_map button.close').on('click', function () {
+      $(this).closest('#map-panel').hide();
+    })
+  
+    $('#iframe_map button.my-location').on('click', function () {
+      map.locate({ setView: true, maxZoom: 12 });
+    })
+  }
+
+  loadMap();
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    if(e.target.id == 'nav-maps-tab') {
+      map.invalidateSize()
     }
-  })
-
-  $('#iframe_map button.close').on('click', function () {
-    $(this).closest('#map-panel').hide();
-  })
-
-  $('#iframe_map button.my-location').on('click', function () {
-    map.locate({ setView: true, maxZoom: 12 });
   })
 }
