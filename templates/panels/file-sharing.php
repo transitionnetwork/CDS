@@ -17,7 +17,9 @@
       wp_reset_postdata(); ?>
     </div>
   <?php } else { ?>
-    <?php _e('You haven\'t shared any files.', 'Tofino'); ?>
+    <p>
+      <?php _e('You haven\'t shared any files.', 'Tofino'); ?>
+    </p>
   <?php } ?>
   <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFileModal"><?php echo svg('plus'); ?>Add a file</button></p>
   <hr></hr>
@@ -36,7 +38,9 @@
       wp_reset_postdata(); ?>
     </div>
   <?php } else { ?>
-    <?php _e('There are no files shared yet.', 'Tofino'); ?>
+    <p>
+      <?php _e('There are no files shared yet.', 'Tofino'); ?>
+    </p>
   <?php } ?>
 </section>
 

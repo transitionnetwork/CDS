@@ -1,10 +1,11 @@
-<div class="col-12 col-sm-6 col-md-4">
+<div class="col-12 col-sm-6 col-md-3">
   <div class="file-tile">
     <?php $file = get_field('file'); ?>
     <?php if($file) { ?>
       <?php if($file['type'] == 'image') { ?>
-        <p><img src="<?php echo $file['sizes']['thumbnail']; ?>" alt="<?php echo get_the_title(); ?>" title="<?php echo get_the_title(); ?>"></p>
+        <p><a href="<?php echo $file['url']; ?>" target="_blank"><img src="<?php echo $file['sizes']['thumbnail']; ?>" alt="<?php echo get_the_title(); ?>" title="<?php echo get_the_title(); ?>"></a></p>
       <?php } else { ?>
+        <?php // insert preview icons; ?>
       <?php } ?>
     <?php } ?>
     <h4><a href="<?php echo $file['url']; ?>" target="_blank"><?php the_title(); ?></a></h4>
