@@ -1,0 +1,20 @@
+.files-row {
+  margin-bottom: 1.5rem;
+}
+
+.file-tile {
+  padding: 1.5rem;
+  border: 1px solid $gray-300;
+  border-radius: 0.25rem;
+
+  ul {
+    padding-left: 1rem;
+    font-size: 0.875rem;
+
+    label {
+      font-weight: bold;
+      margin: 0;
+      display: block;
+    }
+  }
+}

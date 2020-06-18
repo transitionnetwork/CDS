@@ -278,11 +278,14 @@ function custom_query_vars_filter($vars)
 add_filter('query_vars', 'custom_query_vars_filter');
 
 //Redirect after post deletion
-function wpse132196_redirect_after_trashing()
-{
-  if (!is_admin()) {
+function wpse132196_redirect_after_trashing($post_id) {
+  // dd(get_post_type($post_id));
+  if(get_post_type($post_id) == 'files') {
+    wp_redirect(add_query_arg('tab', 'file', parse_post_link(24)));
     exit;
+  } else if(get_post_type($post_id) == 'initiatives') {
     wp_redirect(parse_post_link(24));
+    exit;
   }
 }
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
