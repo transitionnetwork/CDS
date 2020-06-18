@@ -5,13 +5,12 @@
       <?php if($file['type'] == 'image') { ?>
         <p><img src="<?php echo $file['sizes']['thumbnail']; ?>" alt="<?php echo get_the_title(); ?>" title="<?php echo get_the_title(); ?>"></p>
       <?php } else { ?>
-        <?php var_dump($file['type']); ?>
       <?php } ?>
     <?php } ?>
     <h4><a href="<?php echo $file['url']; ?>" target="_blank"><?php the_title(); ?></a></h4>
     <ul>
       <li><label><a href="<?php echo $file['url']; ?>" download>Download</a></label></a>
-      <li><label>File Type:</label><?php echo $file['type']; ?></li>
+      <li><label>File Type:</label><?php echo $file['type'] . '/' . $file['subtype']; ?></li>
       <?php if(get_field('license')) { ?>
         <li><label>License:</label><?php echo get_field('license'); ?></li>
       <?php } ?>
