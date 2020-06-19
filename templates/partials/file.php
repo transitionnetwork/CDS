@@ -10,7 +10,7 @@
     <?php } ?>
     <h4><a href="<?php echo $file['url']; ?>" target="_blank"><?php the_title(); ?></a></h4>
     <ul>
-      <li><label><a class="download-file" href="#" download>Download File</a> [<span class="download-count" data-value="<?php echo get_field('download_count') ? get_field('download_count') : 0; ?>"><?php echo get_field('download_count') ? get_field('download_count') : 0; ?></span>]</label></a>
+      <li><label><a class="download-file" href="<?php echo $file['url']; ?>" download>Download File</a> [<span class="download-count" data-value="<?php echo get_field('download_count') ? get_field('download_count') : 0; ?>"><?php echo get_field('download_count') ? get_field('download_count') : 0; ?></span>]</label></a>
       <li><label>File Type:</label><?php echo $file['type'] . '/' . $file['subtype']; ?></li>
       <?php if(get_field('license')) { ?>
         <li><label>License:</label><?php echo get_field('license'); ?></li>
