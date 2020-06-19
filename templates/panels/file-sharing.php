@@ -60,6 +60,7 @@
           'post_title'	=> true,
           'post_content'	=> false,
           'return' => add_query_arg('tab', 'file', get_the_permalink()),
+          'fields' => array('license', 'photographer', 'attribution', 'file'),
           'submit_value' => 'Add File',
           'uploader' => 'basic',
           'new_post'		=> array(
