@@ -1,5 +1,5 @@
 <div class="col-12 col-sm-6 col-md-3">
-  <div class="file-tile">
+  <div class="file-tile" data-id="<?php echo get_the_ID(); ?>">
     <?php $file = get_field('file'); ?>
     <?php if($file) { ?>
       <?php if($file['type'] == 'image') { ?>
@@ -10,7 +10,7 @@
     <?php } ?>
     <h4><a href="<?php echo $file['url']; ?>" target="_blank"><?php the_title(); ?></a></h4>
     <ul>
-      <li><label><a href="<?php echo $file['url']; ?>" download>Download</a></label></a>
+      <li><label><a class="download-file" href="#" download>Download File</a> [<span class="download-count" data-value="<?php echo get_field('download_count') ? get_field('download_count') : 0; ?>"><?php echo get_field('download_count') ? get_field('download_count') : 0; ?></span>]</label></a>
       <li><label>File Type:</label><?php echo $file['type'] . '/' . $file['subtype']; ?></li>
       <?php if(get_field('license')) { ?>
         <li><label>License:</label><?php echo get_field('license'); ?></li>

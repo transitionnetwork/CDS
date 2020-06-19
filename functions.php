@@ -56,6 +56,7 @@ $tofino_includes = [
   "src/theme-options/dashboard-widget.php",
   "src/ajax/map-requests.php",
   "src/ajax/graph-requests.php",
+  "src/ajax/file-requests.php",
   "src/custom/admin-tables.php"
 ];
 

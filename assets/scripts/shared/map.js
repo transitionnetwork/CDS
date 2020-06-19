@@ -151,10 +151,4 @@ export default function() {
   }
 
   loadMap();
-
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    if(e.target.id == 'nav-maps-tab') {
-      map.invalidateSize()
-    }
-  })
 }
