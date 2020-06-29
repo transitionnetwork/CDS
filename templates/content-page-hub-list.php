@@ -4,7 +4,7 @@
       <h1><?php echo \Tofino\Helpers\title(); ?></h1>
       <?php $args = array(
         'taxonomy' => 'hub',
-        'hide_empty' => true,
+        'hide_empty' => false,
         'exclude' => array(285)
       ); ?>
       <?php $hubs = get_terms($args); ?>
