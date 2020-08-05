@@ -29,16 +29,16 @@ export default function() {
 
           console.log(d.text)
 
-          // var found = [],          // an array to collect the strings that are found
-          //   rxp = /{([^}]+)}/g,
-          //   str = d.text,
-          //   curMatch;
+          var found = [],          // an array to collect the strings that are found
+            rxp = /{([^}]+)}/g,
+            str = d.text,
+            curMatch;
 
-          // while (curMatch = rxp.exec(str)) {
-          //   found.push(curMatch[1]);
-          // }
+          while (curMatch = rxp.exec(str)) {
+            found.push(curMatch[1]);
+          }
 
-          // alert(found);
+          alert(found);
         })
     });
   }
