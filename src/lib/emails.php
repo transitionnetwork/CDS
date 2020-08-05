@@ -115,3 +115,46 @@ function check_pending_intiatives() {
   }
 }
 
+function email_created_post($post_id, $type) {
+  if($type == 'healthcheck') {
+    //the initiative id is the title of a healthcheck
+    $initiative_id = get_the_title($post_id);
+  } else {
+    $initiative_id = $post_id;
+  }
+  
+  $hub_id = get_field('hub_tax', $initiative_id);
+  $hub = get_term_by('id', $hub_id, 'hub');
+  
+  //get hub users
+  $args = array(
+    'role__in' => array('hub', 'super_hub'),
+    'meta_query' => array(
+      array(
+        'key' => 'hub_user',
+        'value' => $hub_id
+      )
+    )
+  );
+
+  // The Query
+  $user_query = new WP_User_Query( $args );
+  if($user_query->results) {
+    $to = array();
+    foreach($user_query->results as $user) {
+      $to[] = $user->user_email;
+    }
+  }
+  
+  $subject = 'A new ' . $type . ' has been created for the ' . $hub->name . ' hub';
+  
+  $message = 'Please log into ' . home_url() . ' and browse to your dashboard for further information.';
+
+  if(get_environment() === 'production') {
+    wp_mail( $to, $subject, $message);
+  } else {
+    wp_mail( 'mark@benewith.com', $subject, $message);
+  }
+  
+  return;
+}
