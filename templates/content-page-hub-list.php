@@ -17,5 +17,6 @@
         </div>
       <?php } ?>
     <?php endwhile; ?>
+    <p><a href="<?php echo parse_post_link(6185); ?>">Add new hub<p></a>
   </div>
 </main>
