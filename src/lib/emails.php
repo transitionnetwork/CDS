@@ -150,8 +150,6 @@ function email_created_post($post_id, $type) {
   
   $message = 'Please log into ' . home_url() . ' and browse to your dashboard for further information.';
 
-  dd($to);
-
   if(get_environment() === 'production') {
     wp_mail( $to, $subject, $message);
   } else {
