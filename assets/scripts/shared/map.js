@@ -115,7 +115,13 @@ export default function() {
   }
 
   function loadMap() {
-    let hub_ids = $('#iframe_map').data('hub').split(',');
+    let hub_ids = $('#iframe_map').data('hub')
+    
+    if(hub_ids.length) {
+      hub_ids = hub_ids.split(',')
+    }
+
+    console.log(hub_ids)
     
     $.ajax({
       url: tofinoJS.ajaxUrl,
