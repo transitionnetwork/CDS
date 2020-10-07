@@ -86,9 +86,14 @@ function return_map_markers() {
   }
 
   $cache_expiry = 3600;
+
+  $hub_name = $_POST['value']['hub_name'];
+  if(is_array($hub_name)) {
+    $hub_name = implode('_', $hub_name);
+  }
   
-  $i_filepath = TEMPLATEPATH . '/cache/i-cache_h' . $_POST['value']['hub_name'] . '_c' . $_POST['value']['country'] . '.txt';
-  $h_filepath = TEMPLATEPATH . '/cache/h-cache_h' . $_POST['value']['hub_name'] . '_c' . $_POST['value']['country'] . '.txt';
+  $i_filepath = TEMPLATEPATH . '/cache/i-cache_h' . $hub_name . '_c' . $_POST['value']['country'] . '.txt';
+  $h_filepath = TEMPLATEPATH . '/cache/h-cache_h' . $hub_name . '_c' . $_POST['value']['country'] . '.txt';
 
   if(!file_exists($i_filepath) || filemtime($i_filepath) < time() - $cache_expiry ) {
     //file cache has expired
@@ -117,6 +122,8 @@ function return_map_markers() {
   if($h_markers) {
     $data['h_markers'] = $h_markers;
   }
+
+  $data['hub_name'] = $hub_name;
 
   echo json_encode($data);
   wp_die();
