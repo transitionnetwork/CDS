@@ -115,6 +115,8 @@ export default function() {
   }
 
   function loadMap() {
+    let hub_ids = $('#iframe_map').data('hub').split(',');
+    
     $.ajax({
       url: tofinoJS.ajaxUrl,
       type: 'POST',
@@ -122,7 +124,7 @@ export default function() {
       data: {
         action: 'getMapMarkers',
         value: {
-          hub_name: $('#iframe_map').data('hub'),
+          hub_name: hub_ids,
           country: $('#iframe_map').data('country'),
           search: $('#iframe_map').data('search')
         }
