@@ -168,7 +168,7 @@
                 <p>
                   <select name="authors">
                     <?php foreach($users as $user) { ?>
-                      <option value="<?php echo $user->ID; ?>" <?php echo ($user->ID === $post_author_id) ? 'selected' : ''; ?>><?php echo $user->user_email; ?></option>
+                      <option value="<?php echo $user->ID; ?>" <?php echo ($user->ID === $post_author_id) ? 'selected' : ''; ?>><?php echo $user->display_name; ?> | <?php echo $user->user_email; ?></option>
                     <?php } ?>
                   </select>
                   <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
