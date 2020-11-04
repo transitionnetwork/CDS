@@ -38,29 +38,9 @@
  
       <div class="col-12 col-lg-4">
         <aside>
-          <?php $map = get_field('map', $term); ?>
-          <?php if($map) { ?>
-            <div id="initiative-map" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
-          <?php } ?>
-          
-          <?php if (get_field('address_line_1', $term)) { ?>
-            <label><?php _e('Location', 'tofino'); ?></label>
-            <p>
-              <?php echo get_field('address_line_1', $term); ?><br/>
-              <?php echo get_field('city', $term); ?><br/>
-              <?php echo get_field('province', $term); ?><br/>
-              <?php echo get_field('postal_code', $term); ?><br/>
-              <?php echo get_term_by('id', get_field('country', $term), 'country')->name; ?>
-            </p>
-          <?php } else if($map) { ?>
-            <?php foreach($map['markers'] as $marker) { ?>
-              <label><?php _e('Location', 'tofino'); ?></label>
-              <div id="marker-address" data-address="<?php echo $marker['default_label']; ?>"></div>
-              <p>
-                <?php echo $marker['default_label']; ?>
-              </p>
-            <?php } ?>
-          <?php } ?>
+          <?php $map = get_field('map'); ?>
+          <?php set_query_var('map', $map); ?>
+          <?php get_template_part('templates/partials/single-map'); ?>
           
           <?php if(get_field('logo', $term)) { ?>
             <p><img src="<?php echo get_field('logo', $term)['sizes']['large']; ?>"></p>
