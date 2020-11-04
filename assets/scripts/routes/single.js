@@ -6,7 +6,9 @@ import select2 from '../shared/select2';
 
 export default {
   loaded() {
-    select2();
+    if($('select').length) {
+      select2();
+    }
     
     var lat = $('#initiative-map').data('lat');
     var lng = $('#initiative-map').data('lng');
@@ -47,7 +49,7 @@ export default {
 
     var marker = L.marker([lat, lng], { icon: markerIcon }).addTo(map);
 
-    if ($('#marker-address').data('address').length) {
+    if ($('#marker-address').length) {
       marker.bindPopup($('#marker-address').data('address'));
     }
   }
