@@ -12,11 +12,12 @@ if($query_value) {
   
   $slugs = implode(',', $slugs); ?>
 
-  <div id="iframe_map" data-hub="<?php echo $slugs; ?>">
-    <a href="<?php echo home_url(); ?>" target="_top"><?php echo svg(array('sprite' => 'tn-logo', 'class' => 'logo')); ?></a>
-    <?php get_template_part('templates/partials/map-panel'); ?>
-    <div class="map-loading"><div class="lds-dual-ring"></div></div>
-  </div>
 <?php } ?>
+
+<div id="iframe_map" data-hub="<?php echo ($slugs) ? $slugs : null; ?>">
+  <a href="<?php echo home_url(); ?>" target="_top"><?php echo svg(array('sprite' => 'tn-logo', 'class' => 'logo')); ?></a>
+  <?php get_template_part('templates/partials/map-panel'); ?>
+  <div class="map-loading"><div class="lds-dual-ring"></div></div>
+</div>
 
 <?php get_footer('map'); ?>
