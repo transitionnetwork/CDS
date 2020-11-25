@@ -308,7 +308,8 @@ function add_logout_link($nav, $args)
     return $nav;
   }
 }
-add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
+// disabled for now to keep nav tidy
+// add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
 
 
 //Healthcheck

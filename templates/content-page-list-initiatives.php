@@ -85,7 +85,7 @@ $initiative_query = new WP_Query($args);
         'format' => '?paged=%#%',
         'current' => $initiative_query->query['paged'],
         'total' => $initiative_query->max_num_pages,
-        'prev_text' => 'initiative_query',
+        'prev_text' => 'Prev',
         'next_text' => 'Next',
         'type' => 'list',
       )); ?>

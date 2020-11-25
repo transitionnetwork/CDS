@@ -10,7 +10,7 @@ import account from './routes/account';
 import map from './routes/map_route';
 
 //homepage
-import home from './routes/map_route';
+import home from './routes/home';
 
 //search results
 import search_initiatives from './routes/map_route';
