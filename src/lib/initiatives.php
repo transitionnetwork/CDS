@@ -33,6 +33,7 @@ function list_initiatives($post_ids) {
         <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
         <?php if(can_view_any_healthcheck()) { ?>
           <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
+          <th class="col-b"><?php _e('Author last login', 'tofino'); ?></th>
         <?php } ?>
         <th></th>
       </tr>
@@ -59,11 +60,21 @@ function list_initiatives($post_ids) {
           <td>
             <a href="<?php echo add_query_arg('country_name', $data['country_slug'], get_the_permalink()) ?>"><?php echo $data['country_name']; ?></a>
           </td>
-          <td>
-            <?php if(can_view_healthcheck($post)) {
-              echo $data['latest_healthcheck'];
-            } ?>
-          </td>
+          <?php if(can_view_healthcheck($post)) { ?>
+            <td>
+              <?php echo $data['latest_healthcheck']; ?>
+            </td>
+            <td>
+              <?php
+              $author_id = get_post_field( 'post_author', $post_id );
+              $last_login = get_user_meta($author_id, 'last_logged_in', true);
+              if($last_login) {
+                echo date('l jS F Y - H:i', strtotime($last_login));
+              } else {
+                echo 'Never';
+              } ?>
+            </td>
+          <?php } ?>
           <td class="text-right">
             <div class="btn-group">
               <?php if (can_view_healthcheck($post)) { ?>
