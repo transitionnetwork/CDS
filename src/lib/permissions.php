@@ -1,7 +1,11 @@
 <?php
-function is_user_role($queried_role)
+function is_user_role($queried_role, $user = null)
 {
-  $user_roles = wp_get_current_user()->roles;
+  if(!$user) {
+    $user = wp_get_current_user();
+  }
+  
+  $user_roles = $user->roles;
   if (in_array($queried_role, $user_roles)) {
     return true;
   }
@@ -113,13 +117,34 @@ function change_post_status($post_id, $status)
 }
 
 function check_post() {
+  //publish posts from dashboard
   if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
     if (isset($_POST['pid']) && !empty($_POST['pid'])) {
       change_post_status((int)$_POST['pid'], 'publish');
       alert_user_initiative_approved($_POST['pid']);
-      wp_safe_redirect(esc_url(add_query_arg('updated', 'publish', '/account')));
+      wp_safe_redirect(esc_url(add_query_arg('updated', 'publish', home_url('account'))));
+      exit();
+    }
+  }
+
+  //request super hub access in dashboard
+  if (isset($_POST['type']) && $_POST['type'] == 'request_hub_access') {
+    if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
+      $user_id = (int)$_POST['user_id'];
+      $success = send_access_request_to_hub($user_id);
+      
+      if($success) {
+        $date = date('Y-m-d H:i:s');
+        update_user_meta($user_id, 'hub_access_requested', $date);
+  
+        $redirect_url = add_query_arg('updated', 'hub_request', home_url('account'));
+      } else {
+        $redirect_url = add_query_arg('failed', 'hub_request', home_url('account'));
+      }
+      
+      wp_safe_redirect($redirect_url);
       exit();
     }
   }
 }
-add_action('init', 'check_post');
+add_action('template_redirect', 'check_post');

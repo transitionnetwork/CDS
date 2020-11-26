@@ -268,6 +268,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'initiative_id';
   $vars[] = 'error_code';
   $vars[] = 'updated';
+  $vars[] = 'failed';
   $vars[] = 'hub_id';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
@@ -332,15 +333,27 @@ function get_latest_healthcheck($id)
   }
 }
 
-function get_user_hub_id()
+function get_user_hub_id($user_id)
 {
-  return get_the_terms(wp_get_current_user(), 'hub')[0]->term_id;
+  return get_term_by('slug', get_user_hub_slug($user_id), 'hub')->term_id;
 }
 
-function get_hub_users($hub_id)
+function get_user_hub_slug($user_id) {
+  return get_usermeta($user_id, 'hub', true);
+}
+
+function get_hub_users($hub_slug)
 {
-  $users = get_objects_in_term($hub_id, 'hub');
-  return $users;
+  $args = array(
+    'meta_query' => array(
+      array(
+        'key' => 'hub',
+        'value' => $hub_slug
+      )
+    )
+  );
+  $user_query = new WP_User_Query( $args );
+  return $user_query->results;
 }
 
 function get_hub_by_id($id)
