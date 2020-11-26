@@ -1,4 +1,5 @@
 <?php 
+//this doesn't seem to be in use
 $users = get_hub_users(get_user_hub_slug(get_current_user_id()));
 
 $args = array(
