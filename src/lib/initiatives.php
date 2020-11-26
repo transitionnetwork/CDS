@@ -31,7 +31,7 @@ function list_initiatives($post_ids) {
           <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
         <?php } ?>
         <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
-        <?php if(can_view_any_healthcheck()) { ?>
+        <?php if(is_user_logged_in()) { ?>
           <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
           <th class="col-b"><?php _e('Author last login', 'tofino'); ?></th>
         <?php } ?>
@@ -60,19 +60,27 @@ function list_initiatives($post_ids) {
           <td>
             <a href="<?php echo add_query_arg('country_name', $data['country_slug'], get_the_permalink()) ?>"><?php echo $data['country_name']; ?></a>
           </td>
-          <?php if(can_view_healthcheck($post)) { ?>
+          <?php if(is_user_logged_in()) { ?>
             <td>
-              <?php echo $data['latest_healthcheck']; ?>
+              <?php if(can_view_healthcheck($post)) { ?>
+                <?php echo $data['latest_healthcheck']; ?>
+              <?php } else { ?>
+                <?php echo '-'; ?>
+              <?php } ?>
             </td>
             <td>
-              <?php
-              $author_id = get_post_field( 'post_author', $post_id );
-              $last_login = get_user_meta($author_id, 'last_logged_in', true);
-              if($last_login) {
-                echo date('l jS F Y - H:i', strtotime($last_login));
-              } else {
-                echo 'Never';
-              } ?>
+              <?php if(can_view_healthcheck($post)) { ?>
+                <?php
+                $author_id = get_post_field( 'post_author', $post_id );
+                $last_login = get_user_meta($author_id, 'last_logged_in', true);
+                if($last_login) {
+                  echo date('l jS F Y - H:i', strtotime($last_login));
+                } else {
+                  echo 'Never';
+                } ?>
+              <?php } else { ?>
+                <?php echo '-'; ?>
+              <?php } ?>
             </td>
           <?php } ?>
           <td class="text-right">

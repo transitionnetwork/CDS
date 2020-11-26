@@ -19,9 +19,10 @@ function is_post_in_user_hub($post) {
 }
 
 function is_user_post_author($post) {
-  if(get_current_user_id() == get_the_author_id($post)) {
+  if(get_current_user_id() === (int)get_post_field( 'post_author', $post )) {
     return true;
   }
+  return false;
 }
 
 function can_view_any_healthcheck() {
