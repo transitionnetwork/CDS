@@ -1,7 +1,10 @@
+<?php $hub_slug = get_user_meta(get_current_user_id(), 'hub', true);?>
+<?php $hub = get_term_by('slug', $hub_slug, 'hub');?>
+
 <?php if(get_query_var('updated') == 'hub') { ?>
   <div class="container">
     <div class="alert top alert-success">
-     <?php _e('Hub details updated.'); ?>
+     <?php _e('Hub details updated.', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>
@@ -9,7 +12,23 @@
 <?php if(get_query_var('updated') == 'publish') { ?>
   <div class="container">
     <div class="alert top alert-success">
-     <?php _e('Initiative approved and published.'); ?>
+     <?php _e('Initiative approved and published.', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('updated') == 'hub_request') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+     <?php _e('Your access request has been sent to the ' . $hub->name .  ' hub.', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('failed') == 'hub_request') { ?>
+  <div class="container">
+    <div class="alert top alert-danger">
+     <?php _e('Cannot request hub access. Your current hub, "' . $hub->name . '", has no super hub users. Please email <a href="mailto:websupport@transitionnetwork.org">websupport@transitionnetwork.org</a> for further information', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>

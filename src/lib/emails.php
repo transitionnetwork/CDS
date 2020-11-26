@@ -51,6 +51,44 @@ function send_pending_alert_to_hub($user, $initiatives) {
   }
 }
 
+function send_access_request_to_hub($user_id) {
+  $hub = get_user_meta($user_id, 'hub', true);
+  $hub_users = get_hub_users($hub);
+
+  if($hub_users) {
+    $email_addresses = [];
+    
+    foreach($hub_users as $hub_user) {
+      if(is_user_role('super_hub', $hub_user)) {
+        $email_addresses[] = $hub_user->user_email;
+      }
+    }
+
+    if(empty($email_addresses)) {
+      //this hub has no super hub users!
+      return false;
+    }
+
+    //do the email thing and
+    $requesting_user = get_user_by('id', $user_id);
+    $subject = 'Transition Network: User ' . $requesting_user->display_name . ' has requested hub access';
+    $body = '<ul>';
+    $body .= '<li>Name: ' . $requesting_user->display_name . '</li>';
+    $body .= '<li>Email: ' . $requesting_user->user_email . '</li>';
+    $body .= '</ul>';
+    $body .= '<p>Please contact the user<p>';
+    $body .= '<p>Best Wishes,<br/>Transition Network</p>';
+
+    if(get_environment() === 'production') {
+      wp_mail( $email_addresses, $subject, $body);
+    } else {
+      wp_mail( 'mark@benewith.com', $subject, $message);
+    }
+
+    return true;
+  }
+}
+
 function alert_user_initiative_approved($post_id) {
   $author_id = get_post($post_id)->post_author;
   $author = get_user_by('id', $author_id);

@@ -1,5 +1,5 @@
 <?php 
-$users = get_hub_users(get_user_hub_id());
+$users = get_hub_users(get_user_hub_slug(get_current_user_id()));
 
 $args = array(
   'post_type' => 'initiatives',
