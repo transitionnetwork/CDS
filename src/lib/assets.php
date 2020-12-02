@@ -159,7 +159,7 @@ function localize_scripts() {
       'nextNonce'      => wp_create_nonce('next_nonce'),
       'cookieExpires'  => (get_theme_mod('notification_expires') ? get_theme_mod('notification_expires'): 999),
       'themeUrl'       => get_template_directory_uri(),
-      'notificationJS' => (get_theme_mod('notification_use_js') ? 'true' : 'false')
+      'notificationJS' => (get_theme_mod('notification_use_js') ? 'true' : 'false'),
     ]);
   }
 }
