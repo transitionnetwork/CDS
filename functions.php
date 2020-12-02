@@ -57,7 +57,8 @@ $tofino_includes = [
   "src/ajax/map-requests.php",
   "src/ajax/graph-requests.php",
   "src/ajax/file-requests.php",
-  "src/custom/admin-tables.php"
+  "src/custom/admin-tables.php",
+  "src/custom/acf-save.php"
 ];
 
 foreach ($tofino_includes as $file) {
@@ -374,37 +375,6 @@ function get_hub_by_id($id)
   return get_term($id, 'hub')->name;
 }
 
-function acf_custom_save($post_id)
-{
-  if (get_post_type($post_id) == 'healthchecks') {
-
-    //ensure that hc data is stored in initiative
-    update_post_meta( $my_post['post_title'], 'recent_hc', $post_id);
-    update_post_meta( $my_post['post_title'], 'last_hc_date', get_the_date('Y-m-d H:i:s', $post_id) );
-
-    $post = get_post($post_id);
-    if ($post->post_date == $post->post_modified) { // new post
-      email_created_post($post_id, 'healthcheck');
-    }
-  }
-  
-  if (get_post_type($post_id) == 'initiatives') {
-    $post = get_post($post_id);
-    $author = get_userdata($post->post_author);
-    
-    if ($post->post_date == $post->post_modified) { // new post
-      email_created_post($post_id, 'initiative');
-    }
-    
-    //purge transients
-    delete_transient('map_query');
-    delete_transient('map_points');
-    delete_transient('initiative_list_item_', $post_id);
-    
-    //update 
-  }
-}
-add_filter('acf/save_post', 'acf_custom_save', 20);
 
 // Hook Gravity Forms user registration -> Map taxomomy
 

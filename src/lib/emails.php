@@ -196,3 +196,15 @@ function email_created_post($post_id, $type) {
   
   return;
 }
+
+function email_hub_application() {
+  $to = 'websupport@transitionnetwork.org';
+  $subject = 'A new hub application has been received';
+  $message = 'Please login to Transition Iniative to view the request';
+  
+  if(get_environment() === 'production') {
+    wp_mail( $to, $subject, $message);
+  } else {
+    wp_mail( 'mark@benewith.com', $subject, $message);
+  }
+}
