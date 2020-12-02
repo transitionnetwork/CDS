@@ -5,7 +5,7 @@ import 'leaflet-search';
 import 'leaflet.locatecontrol';
 
 export default function() {
-  var map = L.map('iframe_map').setView([0, 0], 3);
+  var map = L.map('iframe_map', { "tap": false }).setView([0, 0], 3);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
@@ -121,8 +121,6 @@ export default function() {
       hub_ids = hub_ids.split(',')
     }
 
-    console.log(hub_ids)
-    
     $.ajax({
       url: tofinoJS.ajaxUrl,
       type: 'POST',
@@ -137,7 +135,8 @@ export default function() {
       },
       dataType: 'json',
       success: function (response) {
-        console.log(response);
+        // console.log(response);
+        
         $('.map-loading').hide();
         $('#map-panel').show();
         displayMap(response, map);
