@@ -6,11 +6,12 @@
     <div class="row justify-content-between">
       <div class="col-12 col-lg-7">
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
-        <ul class="meta">
-          <li><strong>Status:</strong> <?php echo ucwords(get_field('status', $term)); ?>
-        </ul>
         
-        <?php echo get_field('hub_description', $term); ?>
+        <?php $status = get_field('status', $term); ?>
+        <?php $status_color = get_status_tag($status); ?>
+        <p><span class="btn btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
+        
+        <div class="mt-4"><?php echo get_field('hub_description', $term); ?></div>
 
         <?php if(is_user_role('administrator') || is_user_role('super_hub') || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
@@ -31,8 +32,12 @@
 
         $initiatives = get_posts($args); ?>
         
-        <h2>Initiatives</h2>
-        <?php list_initiatives($initiatives); ?>
+        <?php if($initiatives) { ?>
+          <div class="mt-5">
+            <h2>Initiatives</h2>
+            <?php list_initiatives($initiatives); ?>
+          </div>
+        <?php } ?>
 
       </div>
  
@@ -43,7 +48,7 @@
           <?php get_template_part('templates/partials/single-map'); ?>
           
           <?php if(get_field('logo', $term)) { ?>
-            <p><img src="<?php echo get_field('logo', $term)['sizes']['large']; ?>"></p>
+            <p class="mt-4"><img src="<?php echo get_field('logo', $term)['sizes']['large']; ?>"></p>
           <?php } ?>
 
           <?php if (get_field('email', $term)) { ?>
