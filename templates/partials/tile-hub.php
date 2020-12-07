@@ -11,12 +11,21 @@
     <a class="thumbnail-bg" href="<?php echo get_term_link($hub); ?>" style="background-image: url(<?php echo $url; ?>)"></a>
     <div class="content">
       <h3><a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a></h3>
-      <p><strong>Status:</strong> <?php echo ucwords(get_field('status', $term)); ?></p>
+      
+      <?php $status = get_field('status', $term); ?>
+      <?php $status_color = get_status_tag($status); ?>
+      <p><strong>Status:</strong> <span class="btn btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
+      
       <?php $hub_excerpt = strip_tags(get_field('hub_description', $term)); ?>
       <?php if($hub_excerpt && ($hub->slug != 'japan')) { ?>
         <p><?php echo get_words($hub_excerpt, 15); ?>...</p>
       <?php } ?>
-      <p class="mb-0"><a href="<?php echo get_term_link($hub); ?>">Read More</a></p>
+      
+      <?php if(get_field('training', $term)) { ?>
+        <p><span class="btn btn-sm btn-success"><?php _e('We Offer Training', 'tofino'); ?></span></p>
+      <?php } ?>
+
+      <p class="mb-0"><a href="<?php echo get_term_link($hub); ?>">&raquo; Read More</a></p>
     </div>
   </div>
 </div>
