@@ -14,7 +14,7 @@
       
       <?php $status = get_field('status', $term); ?>
       <?php $status_color = get_status_tag($status); ?>
-      <p><strong>Status:</strong> <span class="btn btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
+      <p><span class="btn btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
       
       <?php $hub_excerpt = strip_tags(get_field('hub_description', $term)); ?>
       <?php if($hub_excerpt && ($hub->slug != 'japan')) { ?>
