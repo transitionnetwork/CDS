@@ -9,7 +9,7 @@
         
         <?php $status = get_field('status', $term); ?>
         <?php $status_color = get_status_tag($status); ?>
-        <p><span class="btn btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
+        <p><span class="btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
         
         <div class="mt-4"><?php echo get_field('hub_description', $term); ?></div>
 

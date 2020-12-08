@@ -14,7 +14,7 @@
       
       <?php $status = get_field('status', $term); ?>
       <?php $status_color = get_status_tag($status); ?>
-      <p><span class="btn btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
+      <p><span class="btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
       
       <?php $hub_excerpt = strip_tags(get_field('hub_description', $term)); ?>
       <?php if($hub_excerpt && ($hub->slug != 'japan')) { ?>
@@ -22,7 +22,7 @@
       <?php } ?>
       
       <?php if(get_field('training', $term)) { ?>
-        <p><span class="btn btn-sm btn-success"><?php _e('We Offer Training', 'tofino'); ?></span></p>
+        <p><span class="btn-sm btn-success"><?php _e('We Offer Training', 'tofino'); ?></span></p>
       <?php } ?>
 
       <p class="mb-0"><a href="<?php echo get_term_link($hub); ?>">&raquo; Read More</a></p>

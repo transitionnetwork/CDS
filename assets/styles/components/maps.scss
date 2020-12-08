@@ -80,6 +80,25 @@
   h5 {
     font-size: 1rem;
   }
+
+  .training-toggle {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 9999;
+    background: $white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    border-radius: $border-radius;
+    border: 2px solid rgba($black, 0.2);
+
+    label {
+      margin: 0;
+      margin-left: 0.5rem;
+    }
+  }
 }
 
 //markers
