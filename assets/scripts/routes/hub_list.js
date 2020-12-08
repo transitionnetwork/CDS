@@ -87,24 +87,6 @@ export default {
         maxZoom: 18,
       }).addTo(map);
   
-      map.addControl(new L.Control.Search({
-        url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
-        jsonpParam: 'json_callback',
-        propertyName: 'display_name',
-        propertyLoc: ['lat', 'lon'],
-        marker: L.circleMarker([0, 0], { radius: 30 }),
-        autoCollapse: true,
-        autoType: false,
-        minLength: 2,
-        zoom: 13
-      }));
-  
-      L.control.locate({
-        locateOptions: {
-          maxZoom: 13
-        }
-      }).addTo(map);
-  
       map.scrollWheelZoom.disable();
       map.on('focus', function () { map.scrollWheelZoom.enable(); });
       map.on('blur', function () { map.scrollWheelZoom.disable(); });
