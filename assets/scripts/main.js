@@ -12,8 +12,12 @@ import map from './routes/map_route';
 //homepage
 import home from './routes/home';
 
+//hub_list
+import hub_list from './routes/hub_list'
+
 //search results
 import search_initiatives from './routes/map_route';
+
 
 import single_healthchecks from './routes/single_healthcheck'
 
@@ -36,6 +40,7 @@ const routes = {
   account,
   map,
   home,
+  hub_list,
   search_initiatives,
   single_initiatives,
   single_healthchecks,

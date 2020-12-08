@@ -1,3 +1,12 @@
+<div id="iframe_map">
+  <div class="map-loading"><div class="lds-dual-ring"></div></div>
+
+  <div class="training-toggle">
+    <input type="checkbox" id="training" name="training">
+    <label for="training"><?php _e('Only show hubs that offer training'); ?></label>
+  </div>
+</div>
+
 <main>
   <div class="container">
     <?php while (have_posts()) : the_post(); ?>

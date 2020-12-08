@@ -70,6 +70,7 @@ function get_h_data() {
       $data[$key]['lng'] = $map['lng'];
       $data[$key]['permalink'] = get_term_link($hub);
       $data[$key]['title'] = $hub->name;
+      $data[$key]['training'] = get_field('training', $hub);
       
       $key ++;
     }
@@ -85,7 +86,7 @@ function return_map_markers() {
     mkdir(TEMPLATEPATH . '/cache', 0755, true);
   }
 
-  $cache_expiry = 3600;
+  $cache_expiry = 24 * 60 * 60; //24hrs
 
   $hub_name = $_POST['value']['hub_name'];
   if(is_array($hub_name)) {
@@ -123,7 +124,7 @@ function return_map_markers() {
     $data['h_markers'] = $h_markers;
   }
 
-  $data['hub_name'] = $hub_name;
+  $data['values_submitted'] = $_POST['value'];
 
   //debug
   // $data['i_filepath'] = $i_filepath;
@@ -135,3 +136,28 @@ function return_map_markers() {
 
 add_action('wp_ajax_nopriv_getMapMarkers', 'return_map_markers');
 add_action('wp_ajax_getMapMarkers', 'return_map_markers');
+
+
+function return_hub_markers() {
+  $markers = get_h_data();
+
+  if($_POST['value']['training'] === "true") {
+    $training_markers = array();
+    foreach($markers as $marker) {
+      if($marker['training']) {
+        $training_markers[] = $marker;
+      }
+    }
+
+    $markers = $training_markers;
+  }
+
+  $data['h_markers'] = $markers;
+  $data['input'] = $_POST['value']['training'];
+  echo json_encode($data);
+
+  wp_die();
+}
+
+add_action('wp_ajax_nopriv_getHubMarkers', 'return_hub_markers');
+add_action('wp_ajax_getHubMarkers', 'return_hub_markers');
