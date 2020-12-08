@@ -153,7 +153,6 @@ function return_hub_markers() {
   }
 
   $data['h_markers'] = $markers;
-  $data['input'] = $_POST['value']['training'];
   echo json_encode($data);
 
   wp_die();
