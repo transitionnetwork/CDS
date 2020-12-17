@@ -27,7 +27,7 @@ $request = wp_remote_get(
   array(
     'timeout' => 100,
     'headers' => array(
-      'Authorization' => 'Bearer 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'
+      'Authorization' => 'Bearer #'
     )
   )
 );
