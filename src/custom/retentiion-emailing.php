@@ -10,7 +10,6 @@ function retention_emailing_get_authors() {
   $posts = get_posts($args);
   if($posts) {
     $author_ids = array();
-    $author_emails = array();
     foreach($posts as $post) {
       $author_id = get_post_field( 'post_author', $post->ID );
       $userdata = get_userdata($author_id);
@@ -20,11 +19,11 @@ function retention_emailing_get_authors() {
       $time_ago = strtotime($time_ago);
   
       if($time_ago > $registered) {
-        $author_emails[] = $userdata->user_email;
         $author_ids[] = $author_id;
       }
     }
   
+    $author_ids = array_unique($author_ids);
     update_option('retention_author_ids', $author_ids);
     update_option('retention_author_ids_saved', date('Y-m-d H:i:s'));
     // file_put_contents(TEMPLATEPATH . '/info_author_ids.json', json_encode($author_ids));
