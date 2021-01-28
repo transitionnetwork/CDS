@@ -23,3 +23,5 @@ dist/
 cache/*
 
 !dist/css/images/
+
+templates/content-page-temp.php
