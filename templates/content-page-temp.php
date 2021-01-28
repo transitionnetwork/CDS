@@ -4,11 +4,7 @@
       retention_emailing_get_authors();
       break;
     case 'send' :
-      if(get_environment() === 'production') {
-        retention_emailing_send_emails();
-      } else {
-        var_dump('this is not production');
-      }
+      retention_emailing_send_emails();
       break;
     case 'bounce' :
       retention_save_bounce_emails();

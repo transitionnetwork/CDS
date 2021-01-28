@@ -38,7 +38,7 @@ function retention_emailing_send_emails() {
   $start = get_field('email_start', 'options');
   $stop = get_field('email_stop', 'options');
 
-  if($author_ids && $start && $stop) {
+  if($author_ids && isset($start) && isset($stop)) {
     foreach($author_ids as $user_id) {
       $cleanedKey = pkg_autologin_generate_code();
 
@@ -54,12 +54,16 @@ function retention_emailing_send_emails() {
 
     foreach($author_ids as $k => $user_id) {
       if($k >= $start && $k <= $stop) {
-        if(get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY) && !get_user_meta($user_id, 'inactive_login_reminder_email_sent')) {
-          email_autologin_reminder_email($user_id);
+        if(get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY) && !get_user_meta($user_id, 'inactive_login_reminder_email_sent') && get_environment() === 'production') {
+          // email_autologin_reminder_email($user_id);
           add_user_meta($user_id, 'inactive_login_reminder_email_sent', date('Y-m-d H:i:s'));
           var_dump($user_id . ': success');
         } else {
+          echo '<div>';
           var_dump($user_id . ': no success');
+          var_dump(get_user_meta($user_id, 'inactive_login_reminder_email_sent'));
+          var_dump(get_environment());
+          echo '</div>';
         }
       }
     }
