@@ -4,7 +4,11 @@
       retention_emailing_get_authors();
       break;
     case 'send' :
-      retention_emailing_send_emails();
+      if(!strpos($_SERVER['SERVER_NAME'], '.loc')) {
+        retention_emailing_send_emails();
+      } else {
+        var_dump('this is dev');
+      }
       break;
     case 'bounce' :
       retention_save_bounce_emails();
@@ -23,7 +27,7 @@
 
     <hr>
 
-    <p>Send emails to keys <?php echo get_field('email_start', 'options'); ?>to <?php echo get_field('email_start', 'options'); ?>?
+    <p>Send emails to keys <?php echo get_field('email_start', 'options'); ?> to <?php echo get_field('email_stop', 'options'); ?>?
 
     <form method="POST">
       <input type="hidden" name="ret_emails" value="send">

@@ -26,7 +26,7 @@ function retention_emailing_get_authors() {
     }
   
     file_put_contents(TEMPLATEPATH . '/info_author_ids.json', json_encode($author_ids));
-    var_dump('retention list saved');
+    var_dump('retention list saved with ' . count($author_ids) . ' authors');
   }
 
 }
