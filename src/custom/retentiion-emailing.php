@@ -23,7 +23,7 @@ function retention_emailing_get_authors() {
       }
     }
   
-    $author_ids = array_unique($author_ids);
+    $author_ids = array_values(array_unique($author_ids));
     update_option('retention_author_ids', $author_ids);
     update_option('retention_author_ids_saved', date('Y-m-d H:i:s'));
     // file_put_contents(TEMPLATEPATH . '/info_author_ids.json', json_encode($author_ids));
@@ -53,6 +53,7 @@ function retention_emailing_send_emails() {
 
     foreach($author_ids as $k => $user_id) {
       if($k >= $start && $k <= $stop) {
+        echo '<div>k: ' . $k . ' user_id:' . $user_id . '</div>'; 
         if(get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY) && !get_user_meta($user_id, 'inactive_login_reminder_email_sent') && get_environment() === 'production') {
           // email_autologin_reminder_email($user_id);
           add_user_meta($user_id, 'inactive_login_reminder_email_sent', date('Y-m-d H:i:s'));
@@ -60,6 +61,7 @@ function retention_emailing_send_emails() {
         } else {
           echo '<div>';
           var_dump($user_id . ': no success');
+          var_dump(get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY) );
           var_dump(get_user_meta($user_id, 'inactive_login_reminder_email_sent'));
           var_dump(get_environment());
           echo '</div>';
