@@ -214,7 +214,7 @@ function email_autologin_reminder_email($user_id) {
   $userdata = get_userdata($user_id);
   $to = array(
     $userdata->user_email,
-    'mark@benewith.com'
+    // 'mark@benewith.com'
   );
   $subject = 'Transition Town - Are you still the official contact for your Transition group?';
   
