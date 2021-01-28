@@ -59,7 +59,8 @@ $tofino_includes = [
   "src/ajax/file-requests.php",
   "src/custom/admin-tables.php",
   "src/custom/acf-save.php",
-  "src/custom/helpers.php"
+  "src/custom/helpers.php",
+  "src/custom/retentiion-emailing.php"
 ];
 
 foreach ($tofino_includes as $file) {
