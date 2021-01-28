@@ -25,14 +25,16 @@ function retention_emailing_get_authors() {
       }
     }
   
-    file_put_contents(TEMPLATEPATH . '/info_author_ids.json', json_encode($author_ids));
+    update_option('retention_author_ids', $author_ids);
+    update_option('retention_author_ids_saved', date('Y-m-d H:i:s'));
+    // file_put_contents(TEMPLATEPATH . '/info_author_ids.json', json_encode($author_ids));
     var_dump('retention list saved with ' . count($author_ids) . ' authors');
   }
 
 }
 
 function retention_emailing_send_emails() {
-  $author_ids = json_decode(file_get_contents(TEMPLATEPATH . '/info_author_ids.json'));
+  $author_ids = get_option('retention_author_ids');
   $start = get_field('email_start', 'options');
   $stop = get_field('email_stop', 'options');
 
