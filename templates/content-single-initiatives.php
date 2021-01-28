@@ -140,12 +140,11 @@
               <div class="panel mt-4">
                 <h3>Author</h3>
                 <label>Name</label><?php echo get_the_author_meta('display_name'); ?>
-                <label>Email</label><?php echo get_the_author_meta('user_email'); ?>
+                <label>Email</label>><a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><?php echo get_the_author_meta('user_email'); ?></a>
               </div>
             <?php } ?>
 
-            <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
-              
+            <?php if (can_view_healthcheck($post)) { ?>
               <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
                 <label for="authors">Update author</label>
                 <?php $users = get_users(); ?>
@@ -161,9 +160,7 @@
                   <input type="submit" value="Change">
                 </p>
               </form>
-            <?php } ?>
-  
-            <?php if (can_view_healthcheck($post)) { ?>
+
               <?php if(get_field('private_email')) { ?>
                 <label><?php echo get_field_object('private_email')['label']; ?>:</label>
                 <a href="mailto:<?php echo get_field('private_email'); ?>"><?php echo get_field('private_email'); ?></a>
