@@ -225,13 +225,13 @@ function email_autologin_reminder_email($user_id) {
   <p><strong>If your Transition group is still active:</strong></p>
   <ul>
     <li>If this is the correct email address to use as a primary contact for your group, please check the information on the link below.:<br/>
-    http://cds.loc/account/?autologin_code=' .get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '<br/>
+    https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '<br/>
     Do make sure that all of your website and social media information is listed correctly - so that people can connect with you.</li>
     <li>If you would like to change the contact details for your Transition group - please reply to this email and cc the person or group to whom it should be changed. If you have a shared email account such as info@yourgroup.org we would advise you to use this address.</li>
   </ul>
   <p><strong>If your Transition group is no longer active:</strong></p>
   <ul><li>To remove your listing from the Transition Network website, please click this link below.<br/>
-  http://cds.loc/account#nav-initiative-admin/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '</li></ul>
+  https://' . $_SERVER['SERVER_NAME'] . '/account#nav-initiative-admin/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '</li></ul>
   <p>If you have any questions - reply to this email and we will do our best to help you.</p>
   <p>Thanks!</p>
   <p>X and the Transition Network team</p>
