@@ -212,7 +212,10 @@ function email_hub_application() {
 
 function email_autologin_reminder_email($user_id) {
   $userdata = get_userdata($user_id);
-  $to = $userdata->user_email;
+  $to = array(
+    $userdata->user_email,
+    'mark@benewith.com'
+  );
   $subject = 'Transition Town - Are you still the official contact for your Transition group?';
   
   $body = '

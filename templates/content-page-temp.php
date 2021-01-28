@@ -4,10 +4,10 @@
       retention_emailing_get_authors();
       break;
     case 'send' :
-      if(!strpos($_SERVER['SERVER_NAME'], '.loc')) {
+      if(get_environment() === 'production') {
         retention_emailing_send_emails();
       } else {
-        var_dump('this is dev');
+        var_dump('this is not production');
       }
       break;
     case 'bounce' :
