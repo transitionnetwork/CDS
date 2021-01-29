@@ -214,6 +214,8 @@ function email_autologin_reminder_email($user_id) {
   );
   $subject = 'Updated: Transition Town - Are you still the official contact for your Transition group?';
   
+  $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account#nav-initiative-admin/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true);
+  
   $body = '
   <p><strong>Please accept our apologies for resending this email. There may be issues with the previously included links to login to the site which have now been corrected.</strong></p>
   <p>Hello Friends,</p>
@@ -221,14 +223,14 @@ function email_autologin_reminder_email($user_id) {
   <p>Interest in the Transition movement continues to grow and <a href="https://transitionnetwork.org/transition-near-me/">Transition Near Me</a> is one of the most visited pages on our website. We want to help you to make sure that your group’s information is up-to-date, and that Transition Network has the correct contact details for you.</p>
   <p><strong>If your Transition group is still active:</strong></p>
   <ul>
-    <li>If this is the correct email address to use as a primary contact for your group, please <a href="https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '">check the information</a> or copy the link below into your browser:<br/>
-    https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '<br/>
+    <li>If this is the correct email address to use as a primary contact for your group, please <a href="' . $link . '">check the information</a> or copy the link below into your browser:<br/>
+    ' . $link . '<br/>
     Do make sure that all of your website and social media information is listed correctly - so that people can connect with you.</li>
     <li>If you would like to change the contact details for your Transition group - please reply to this email and cc the person or group to whom it should be changed. If you have a shared email account such as info@yourgroup.org we would advise you to use this address.</li>
   </ul>
   <p><strong>If your Transition group is no longer active:</strong></p>
-  <ul><li>To remove your listing from the Transition Network website, please <a href="https://' . $_SERVER['SERVER_NAME'] . '/account#nav-initiative-admin/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '">click this link</a> or copy and paste the link below into your browser:<br/>
-  https://' . $_SERVER['SERVER_NAME'] . '/account#nav-initiative-admin/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '</li></ul>
+  <ul><li>To remove your listing from the Transition Network website, please <a href="' . $link . '">click this link</a> or copy and paste the link below into your browser:<br/>
+  ' . $link . '</li></ul>
   <p>If you are unable to login, <a href="https://transitioninitiative.org/member-password-lost/">please reset your password.</a></p>
   <p>If you have any questions - reply to this email and we will do our best to help you.</p>
   <p>Thanks!</p>
