@@ -37,23 +37,26 @@ function retention_emailing_send_emails() {
   $start = get_field('email_start', 'options');
   $stop = get_field('email_stop', 'options');
 
+  if(get_field('test_mode', 'options')) {
+    $author_ids = array(27477);
+  }
+
   if($author_ids && isset($start) && isset($stop)) {
-    foreach($author_ids as $user_id) {
-      $cleanedKey = pkg_autologin_generate_code();
-
-      if (!add_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, $cleanedKey, True)) {
-        if (!update_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, $cleanedKey)) {
-          // Check if the key was changed at all - if not this is an error of update_user_meta
-          if (get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, True) != $cleanedKey) {
-            wp_die(__('Failed to update autologin link.', PKG_AUTOLOGIN_LANGUAGE_DOMAIN));
-          }
-        }
-      }
-    }
-
     foreach($author_ids as $k => $user_id) {
       if($k >= $start && $k <= $stop) {
         echo '<div>k: ' . $k . ' user_id:' . $user_id . '</div>'; 
+
+        $cleanedKey = pkg_autologin_generate_code();
+
+        if (!add_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, $cleanedKey, True) && !get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY)) {
+          if (!update_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, $cleanedKey)) {
+            // Check if the key was changed at all - if not this is an error of update_user_meta
+            if (get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, True) != $cleanedKey) {
+              wp_die(__('Failed to update autologin link.', PKG_AUTOLOGIN_LANGUAGE_DOMAIN));
+            }
+          }
+        }
+
         if(get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY) && !get_user_meta($user_id, 'inactive_login_reminder_email_sent') && get_environment() === 'production') {
           email_autologin_reminder_email($user_id);
           add_user_meta($user_id, 'inactive_login_reminder_email_sent', date('Y-m-d H:i:s'));
