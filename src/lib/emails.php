@@ -214,7 +214,7 @@ function email_autologin_reminder_email($user_id) {
   );
   $subject = 'Updated: Transition Town - Are you still the official contact for your Transition group?';
   
-  $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account#nav-initiative-admin/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true);
+  $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin';
   
   $body = '
   <p><strong>Please accept our apologies for resending this email. There may be issues with the previously included links to login to the site which have now been corrected.</strong></p>
