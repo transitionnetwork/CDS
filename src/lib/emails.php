@@ -238,13 +238,8 @@ function email_autologin_reminder_email($user_id) {
   <p><strong>If you wish to stop receiving these emails and/or have your account removed, please reply with "unsubscribe" or "remove" in the subject line.</strong></p>
   ';
 
-  wp_mail( $to, $subject, $body);
-}
-
-add_filter('wp_mail', 'ws_add_site_header');
-function ws_add_site_header($email) {
-  $email['headers'][] = 'X-MJ-CustomID: 123987';
-  return $email;               
+  $headers[] = 'X-MJ-CustomID: 123987';
+  wp_mail( $to, $subject, $body, $headers);
 }
 
 
