@@ -38,7 +38,7 @@ function retention_emailing_send_emails() {
   $stop = get_field('email_stop', 'options');
 
   if(get_field('test_mode', 'options')) {
-    $author_ids = array(27477);
+    $author_ids = array(13553); //sam@bristolwireless.net
     $start = 0;
     $stop = 0;
   }
