@@ -43,7 +43,7 @@
  
       <div class="col-12 col-lg-4">
         <aside>
-          <?php $map = get_field('map'); ?>
+          <?php $map = get_field('map', $term); ?>
           <?php set_query_var('map', $map); ?>
           <?php get_template_part('templates/partials/single-map'); ?>
           

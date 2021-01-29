@@ -53,15 +53,16 @@ $initiative_query = new WP_Query($args);
 
 <main>
   <div class="container">
+
+    <?php render_hub_filter(); ?>
+
     <?php while (have_posts()) : the_post(); ?>
       <?php if (!is_user_logged_in() && !empty(get_the_content())) { ?>
-        <div class="panel">
+        <div class="panel mt-3">
           <?php the_content(); ?>
         </div>
       <?php } ?>
     <?php endwhile; ?>
-    
-    <?php render_hub_filter(); ?>
     
     <?php if (get_query_var('hub_name')) :
       $term = get_term_by('slug', get_query_var('hub_name'), 'hub');

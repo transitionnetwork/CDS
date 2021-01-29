@@ -19,7 +19,7 @@
 							'post_title'	=> false,
 							'post_content'	=> false,
 							'return' => add_query_arg('updated', 'hub', parse_post_link(24)),
-							'fields' => array('status', 'hub_description', 'logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses'),
+							'fields' => array('status', 'training', 'hub_description', 'logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses'),
 							'submit_value' => 'Save changes'
 						);
 						acf_form($args);

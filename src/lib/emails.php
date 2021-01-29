@@ -95,7 +95,6 @@ function alert_user_initiative_approved($post_id) {
 
   $to = array(
     $author->user_email,
-    'mark@benewith.com'
   );
 
   $subject = 'Your Initiative has now been approved';
@@ -112,11 +111,7 @@ function alert_user_initiative_approved($post_id) {
 
   $message .= '<p>Best Wishes,<br/>Transition Network</p>';
 
-  if(get_environment() === 'production') {
-    wp_mail( $to, $subject, $message);
-  } else {
-    wp_mail( 'mark@benewith.com', $subject, $message);
-  }
+  wp_mail( $to, $subject, $message);
 }
 
 
@@ -161,6 +156,7 @@ function email_created_post($post_id, $type) {
     $initiative_id = $post_id;
   }
   
+  //EMAIL HUB USER
   $hub_id = get_field('hub_tax', $initiative_id);
   $hub = get_term_by('id', $hub_id, 'hub');
   
@@ -188,11 +184,15 @@ function email_created_post($post_id, $type) {
   
   $message = 'Please log into ' . home_url() . ' and browse to your dashboard for further information.';
 
-  if(get_environment() === 'production') {
-    wp_mail( $to, $subject, $message);
-  } else {
-    wp_mail( 'mark@benewith.com', $subject, $message);
-  }
+  wp_mail( $to, $subject, $message);
+
+  // //EMAIL USER
+  // $author_id = get_post($post_id)->post_author;
+  // $author = get_user_by('id', $author_id);
+
+  // $to = $author->user_email;
+  // $subject = '';
+  // $message = '';
   
   return;
 }
@@ -202,11 +202,7 @@ function email_hub_application() {
   $subject = 'A new hub application has been received';
   $message = 'Please login to Transition Iniative to view the request';
   
-  if(get_environment() === 'production') {
-    wp_mail( $to, $subject, $message);
-  } else {
-    wp_mail( 'mark@benewith.com', $subject, $message);
-  }
+  wp_mail( $to, $subject, $message);
 }
 
 
@@ -239,3 +235,13 @@ function email_autologin_reminder_email($user_id) {
 
   wp_mail( $to, $subject, $body);
 }
+
+
+function disabling_emails( $args ){
+  if(get_environment() !== 'production') {
+    $args['to'] = 'mark@benewith.com';
+  }
+
+  return $args;
+}
+add_filter('wp_mail','disabling_emails', 10,1);
