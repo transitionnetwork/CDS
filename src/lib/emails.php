@@ -215,10 +215,6 @@ function email_autologin_reminder_email($user_id) {
   $subject = 'Updated Links: Transition Town - Are you still the official contact for your Transition group?';
   
   $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin';
-
-  $headers = array(
-    'X-MJ-CustomID: 123987'
-  );
   
   $body = '
   <p><strong>Please accept our apologies for resending this email. There may be issues with the previously included links to login to the site which have now been corrected.</strong></p>
@@ -242,7 +238,13 @@ function email_autologin_reminder_email($user_id) {
   <p><strong>If you wish to stop receiving these emails and/or have your account removed, please reply with "unsubscribe" or "remove" in the subject line.</strong></p>
   ';
 
-  wp_mail( $to, $subject, $body, $headers);
+  wp_mail( $to, $subject, $body);
+}
+
+add_filter('wp_mail', 'ws_add_site_header');
+function ws_add_site_header($email) {
+  $email['headers'][] = 'X-MJ-CustomID: 123987';
+  return $email;               
 }
 
 
