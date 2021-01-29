@@ -39,6 +39,8 @@ function retention_emailing_send_emails() {
 
   if(get_field('test_mode', 'options')) {
     $author_ids = array(27477);
+    $start = 0;
+    $stop = 0;
   }
 
   if($author_ids && isset($start) && isset($stop)) {
