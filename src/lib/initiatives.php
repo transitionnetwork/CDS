@@ -94,7 +94,10 @@ function list_initiatives($post_ids) {
               <?php if(can_write_initiative($post)) { ?>
                 <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
                 <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
-                <a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link($post->ID); ?>" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
+
+                <form action="" method="post">
+                  <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
+                </form>
               <?php } ?>
             </div>
           </td>

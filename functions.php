@@ -284,6 +284,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'initiative_id';
   $vars[] = 'error_code';
   $vars[] = 'updated';
+  $vars[] = 'deleted';
   $vars[] = 'failed';
   $vars[] = 'hub_id';
   $vars[] = 'edited_post';
@@ -297,11 +298,12 @@ add_filter('query_vars', 'custom_query_vars_filter');
 
 //Redirect after post deletion
 function wpse132196_redirect_after_trashing($post_id) {
-  if(get_post_type($post_id) == 'files') {
+  if(get_post_type($post_id) === 'files') {
     wp_redirect(add_query_arg('tab', 'file', parse_post_link(24)));
     exit;
   }
 }
+
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
 
 //Change label of Content Editor in acf_form()
@@ -444,10 +446,12 @@ add_filter('acf/load_field/key=field_5c473dfca1fd3', 'set_tax_default');
 
 function redirects() {
   if ('POST' == $_SERVER['REQUEST_METHOD']) {
-    if($_POST['accepted'] == 'true') {
-      update_user_meta(get_current_user_id(), '_gdpr_accepted', 'field_5c51aba1d7642');
-      update_user_meta(get_current_user_id(), 'gdpr_accepted', true);
-      wp_safe_redirect('account');
+    if(array_key_exists('accepted', $_POST)) {
+      if($_POST['accepted'] == 'true') {
+        update_user_meta(get_current_user_id(), '_gdpr_accepted', 'field_5c51aba1d7642');
+        update_user_meta(get_current_user_id(), 'gdpr_accepted', true);
+        wp_safe_redirect('account');
+      }
     }
 
     if(array_key_exists('authors', $_POST)) {
@@ -457,6 +461,14 @@ function redirects() {
       );
       wp_update_post($args);
       wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));
+    }
+
+    if(array_key_exists('unpublish', $_POST)) {
+      $args = array(
+        'ID' => $_POST['unpublish'],
+        'post_status' => 'draft'
+      );
+      wp_update_post($args);
     }
   }
 }

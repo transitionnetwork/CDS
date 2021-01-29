@@ -37,6 +37,13 @@
 <?php } ?>
 
 <?php while (have_posts()) : the_post(); ?>
+  <?php if(get_post_status() === 'draft') { ?>
+    <div class="container">
+      <div class="alert top alert-success">
+        <?php _e('This initiative has now been removed and cannot be seen by the public.', 'tofino'); ?>
+      </div>
+    </div>
+  <?php } ?>
   <main>
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
@@ -66,7 +73,11 @@
           } ?>
           <?php if(can_write_initiative($post)) { ?>
             <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
-            <div class="button-block"><a class="btn btn-danger btn-sm" href="<?php echo get_delete_post_link(get_the_ID()); ?>"><?php echo svg('trashcan'); ?><?php _e('Delete this initiative', 'tofino'); ?></a></div>
+            <div class="button-block">
+              <form action="" method="post">
+                <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
+              </form>
+            </div>
           <?php } ?>
 
           <?php if (can_view_healthcheck($post)) { ?>
@@ -140,7 +151,7 @@
               <div class="panel mt-4">
                 <h3>Author</h3>
                 <label>Name</label><?php echo get_the_author_meta('display_name'); ?>
-                <label>Email</label>><a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><?php echo get_the_author_meta('user_email'); ?></a>
+                <label>Email</label><a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><?php echo get_the_author_meta('user_email'); ?></a>
               </div>
             <?php } ?>
 
