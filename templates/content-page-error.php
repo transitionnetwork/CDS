@@ -13,5 +13,9 @@
         break;
     } ?>
     <div class="alert alert-danger"><?php echo $message; ?></div>
+    <?php if(!is_user_logged_in()) { ?>
+      <h2>Sorry this link is broken.</h2>
+      <p>Please check your email for the most recent message from us which includes the working links. Alternatively if you know your password you can <a href="<?php echo home_url('member-login'); ?>">login here</a></p>
+    <?php } ?>
   </div>
 </main>
