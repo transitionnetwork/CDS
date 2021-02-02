@@ -100,7 +100,7 @@
   $label = get_post_type_object($init_query->query['post_type'])->label;
   ?>
   
-  <p class="mt-3"><em>Displaying <?php echo $from; ?>-<?php echo $to; ?> of <?php echo $total_results; ?>. Ordered by most recently updated initaitives</em></p>
+  <p class="mt-3"><em>Displaying <?php echo $from; ?>-<?php echo $to; ?> of <?php echo $total_results; ?>. Ordered by most recently updated.</em></p>
 
   <?php if($total_results > $per_page) { ?>
     <nav class="pagination" aria-label="contact-navigation">
