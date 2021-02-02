@@ -38,7 +38,7 @@
         <?php } ?>
         <td>
           <?php if($country_term) { ?>
-            <?php echo  $country_term->name; ?>
+            <?php echo $country_term->name; ?>
           <?php } ?>
         </td>
 
@@ -52,9 +52,7 @@
           </td>
           <td>
             <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_the_modified_date('j-M-Y H:i', $post); ?>
-            <?php } else { ?>
-              <?php echo '-'; ?>
+              <?php echo get_initiatve_age($post->ID) . ' days ago'; ?>
             <?php } ?>
           </td>
         <?php } ?>

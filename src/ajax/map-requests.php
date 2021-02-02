@@ -38,17 +38,13 @@ function get_i_data() {
     $key = 0;
     foreach($posts as $initiative) {
       $map = get_field('map', $initiative->ID);
-
-      $today = (int)date('U');
-      $posted = get_the_modified_date('U', $initiative->ID);
-      $duration = $today - $posted;
       
       if(!empty($map['markers'])) {
         $data[$key]['lat'] = $map['lat'];
         $data[$key]['lng'] = $map['lng'];
         $data[$key]['permalink'] = parse_post_link($initiative->ID);
         $data[$key]['title'] = get_the_title($initiative->ID);
-        $data[$key]['age'] = floor($duration / 86400); // age in days
+        $data[$key]['age'] = get_initiatve_age($initiative->ID);
 
         $key ++;
       }

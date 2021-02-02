@@ -45,3 +45,14 @@ function get_initiatives_main() {
 
   return new WP_Query($args);
 }
+
+
+function get_initiatve_age($post = 0) {
+  $post = get_post( $post );
+  
+  $today = (int)date('U');
+  $posted = get_the_modified_date('U', $post);
+  $duration = $today - $posted;
+
+  return floor($duration / 86400);
+}
