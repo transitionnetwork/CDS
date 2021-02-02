@@ -16,6 +16,7 @@
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $country_term = get_the_terms($post->ID, 'country')[0]; ?>
       <?php $hub_term = get_the_terms($post->ID, 'hub')[0]; ?>
+      
       <tr>
         <td>
           <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
