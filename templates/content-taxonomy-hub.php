@@ -16,29 +16,6 @@
         <?php if(is_user_role('administrator') || is_user_role('super_hub') || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
         <?php } ?>
-
-        <?php $args = array(
-          'post_type' => 'initiatives',
-          'fields' => 'ids',
-          'posts_per_page' => -1,
-          'tax_query' => array(
-            array(
-              'taxonomy' => 'hub',
-              'field' => 'term_id',
-              'terms' => $term->term_id
-            )
-          )
-        ); 
-
-        $initiatives = get_posts($args); ?>
-        
-        <?php if($initiatives) { ?>
-          <div class="mt-5">
-            <h2>Initiatives</h2>
-            <?php list_initiatives($initiatives); ?>
-          </div>
-        <?php } ?>
-
       </div>
  
       <div class="col-12 col-lg-4">
@@ -90,6 +67,30 @@
           <?php } ?>
           
         </aside>
+      </div>
+
+      <div class="col-12">
+
+        <h2>Initiatives</h2>
+        
+        <?php $args = array(
+          'post_type' => 'initiatives',
+          'fields' => 'ids',
+          'posts_per_page' => -1,
+          'tax_query' => array(
+            array(
+              'taxonomy' => 'hub',
+              'field' => 'term_id',
+              'terms' => $term->term_id
+            )
+          )
+        ); 
+
+        $init_query = new WP_Query($args);
+        set_query_var('init_query', $init_query);
+        get_template_part('templates/tables/initiatives');
+
+        ?>
       </div>
     </div>
   </div>

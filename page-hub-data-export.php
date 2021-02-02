@@ -12,20 +12,20 @@ $args = array(
   )
 );
 
-$posts = get_posts($args);
-?>
+$init_query = new WP_Query($args); ?>
 
 <?php session_start();
 $export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "Topics", "Private Email", "Email Address", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube"];
 
-foreach ($posts as $post) {
+while ($init_query->have_posts()) : $init_query->the_post();
 
-  $data = get_initiative_by_id($post->ID);
+  $country_term = get_the_terms($post->ID, 'country')[0];
+  $hub_term = get_the_terms($post->ID, 'hub')[0];
 
-  $name = $data['title'];
-  $status = $data['status'];
-  $hub = $data['hub_name'];
-  $country = $data['country_name'];
+  $name = get_the_title();
+  $status = get_post_status();
+  $hub = $hub_term->name;
+  $country = $country_term->name;
 
   $healthcheck_args = array(
     'post_type' => 'healthchecks',
@@ -72,5 +72,5 @@ foreach ($posts as $post) {
   $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $private_email, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
 
 
-} ?>
-<?php outputCsv(date('Ymd') . '_' . $data['hub_slug'] . '_Initiative_Export.csv', $export_data); ?>
+endwhile; ?>
+<?php outputCsv(date('Ymd') . '_' . $hub_term->slug . '_Initiative_Export.csv', $export_data); ?>

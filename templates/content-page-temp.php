@@ -1,3 +1,34 @@
+<?php
+$args = array(
+  'orderby' => 'meta_value',
+  'meta_key' => 'last_logged_in',
+  'order' => 'DESC',
+);
+
+$user_query = new WP_User_Query( $args );
+
+// User Loop
+if ( ! empty( $user_query->results ) ) {
+  foreach ( $user_query->results as $user ) {
+      $user->ID;
+
+      $the_query = new WP_Query( 'author=' . $user->ID . '&post_status=publish&post_type=initiatives' );
+      echo '<p>' . $user->display_name . '</p>';
+      // The Loop
+      if ( $the_query->have_posts() ) {
+          echo '<ul>';
+          while ( $the_query->have_posts() ) {
+              $the_query->the_post();
+              echo '<li>' . get_the_title() . '</li>';
+          }
+          echo '</ul>';
+      } 
+      /* Restore original Post Data */
+      wp_reset_postdata();
+  }
+}
+?>
+
 <?php if(array_key_exists('ret_emails', $_POST)) {
   switch($_POST['ret_emails']) {
     case 'build' :

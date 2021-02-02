@@ -5,13 +5,21 @@ $args = array(
   'post_status' => 'pending',
   'fields' => 'ids'
 );
-$post_ids = get_posts($args); ?>
+
+$init_query = new WP_Query($args); ?>
+
+
 <section>
   <h2><?php _e('All Initiatives pending approval', 'tofino'); ?></h2>
-  <?php if ($post_ids) :
-    list_initiatives($post_ids);
-  else : ?>
-  <?php _e('There aren\'t any initiatives pending approval', 'tofino'); ?>
-  <?php endif; ?>
+
+  <?php
+  if($init_query->have_posts()) { 
+    set_query_var('init_query', $init_query);
+    get_template_part('templates/tables/initiatives');
+  } else {
+    e('There aren\'t any initiatives pending approval', 'tofino');
+  }
+  ?>
+
 </section>
 

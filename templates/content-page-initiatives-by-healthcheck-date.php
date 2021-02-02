@@ -18,21 +18,10 @@
       'posts_per_page' => -1
     );
     
-    $post_ids = get_posts($args);
-    
-    $total_pages = ceil(count($post_ids) / $per_page);
-    list_initiatives($post_ids); ?>
-    
-    <nav class="pagination">
-      <?php echo paginate_links(array(
-      'base' => '%_%',
-      'format' => '?paged=%#%',
-      'current' => $paged,
-      'total' => $total_pages,
-      'prev_text' => 'Previous',
-      'next_text' => 'Next',
-      'type' => 'list',
-      )); ?>
-    </nav>
+    $init_query = new WP_Query($args);
+    set_query_var('init_query', $init_query);
+    get_template_part('templates/tables/initiatives');
+    ?>
+
   </div>
 </main>
