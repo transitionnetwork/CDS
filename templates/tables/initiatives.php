@@ -51,7 +51,7 @@
           </td>
           <td>
             <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_the_modified_date('l jS F Y - H:i', $post); ?>
+              <?php echo get_the_modified_date('j-M-Y H:i', $post); ?>
             <?php } else { ?>
               <?php echo '-'; ?>
             <?php } ?>

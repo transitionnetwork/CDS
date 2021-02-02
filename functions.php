@@ -342,7 +342,7 @@ function get_latest_healthcheck($id)
   $posts = get_posts($args);
 
   if ($posts) {
-    return '<a href="' . get_permalink($posts[0]->ID) . '">' . date('l jS F Y - H:i', strtotime($posts[0]->post_date)) . '</a>';
+    return '<a href="' . get_permalink($posts[0]->ID) . '">' . date('j-M-Y H:i', strtotime($posts[0]->post_date)) . '</a>';
   } else {
     return 'Never';
   }
