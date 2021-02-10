@@ -1,4 +1,5 @@
 <?php
+die();
 $args = array(
   'orderby' => 'meta_value',
   'meta_key' => 'last_logged_in',
