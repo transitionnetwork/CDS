@@ -146,16 +146,15 @@
               </section>
             <?php } ?>
 
-            <?php $post_author_id = get_the_author_meta('ID'); ?>
-            <?php if (is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
+            <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
+            
+              <?php $post_author_id = get_the_author_meta('ID'); ?>
               <div class="panel mt-4">
                 <h3>Author</h3>
                 <label>Name</label><?php echo get_the_author_meta('display_name'); ?>
                 <label>Email</label><a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><?php echo get_the_author_meta('user_email'); ?></a>
               </div>
-            <?php } ?>
-
-            <?php if (can_view_healthcheck($post)) { ?>
+            
               <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
                 <label for="authors">Update author</label>
                 <?php $users = get_users(); ?>
