@@ -14,6 +14,7 @@
       <th></th>
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
+      <?php $post = get_post($post); ?>
       <?php $country_term = get_the_terms($post, 'country')[0]; ?>
       <?php $hub_term = get_the_terms($post, 'hub')[0]; ?>
       
@@ -59,17 +60,17 @@
         <td class="text-right">
           <div class="btn-group">
             <?php if (can_view_healthcheck($post)) { ?>
-              <a href="<?php echo add_query_arg(array('initiative_id' => $post), parse_post_link(422)); ?>" class="btn btn-success btn-sm"><?php echo svg('plus'); ?> Add Healthcheck</a>
+              <a href="<?php echo add_query_arg(array('initiative_id' => $post->ID), parse_post_link(422)); ?>" class="btn btn-success btn-sm"><?php echo svg('plus'); ?> Add Healthcheck</a>
             <?php } ?>
 
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
             
             <?php if(can_write_initiative($post)) { ?>
               <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
-              <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
+              <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
 
               <form action="" method="post">
-                <button name="unpublish" value="<?php echo $post; ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
+                <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
               </form>
             <?php } ?>
           </div>

@@ -95,11 +95,11 @@ function can_edit_hub($term_id) {
 }
 
 // Publish
-function render_publish_button($post_id)
+function render_publish_button($post = 0)
 {
-  ?>
+  $post = get_post($post); ?>
   <form name="front_end_publish" method="POST" action="">
-    <input type="hidden" name="pid" id="pid" value="<?php echo $post_id; ?>">
+    <input type="hidden" name="pid" id="pid" value="<?php echo $post->ID; ?>">
     <input type="hidden" name="FE_PUBLISH" id="FE_PUBLISH" value="FE_PUBLISH">
     <label class="submit"><input type="submit" name="submit" id="submit" value="">
       <?php echo svg('check'); ?> Approve

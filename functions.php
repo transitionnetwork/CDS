@@ -327,13 +327,14 @@ function add_logout_link($nav, $args)
 // disabled for now to keep nav tidy
 // add_filter('wp_nav_menu_items', 'add_logout_link', 10, 2);
 
-
 //Healthcheck
-function get_latest_healthcheck($id)
+function get_latest_healthcheck($post = 0)
 {
+  $post = get_post($post);
+  
   $args = array(
     'post_type' => 'healthchecks',
-    'title' => $id,
+    'title' => $post->ID,
     'posts_per_page' => 1,
     'orderby' => 'post_date',
     'order' => 'DESC'
