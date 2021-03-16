@@ -195,9 +195,11 @@ function create_posttypes()
         'name' => __('Emails'),
         'singular_name' => __('emails')
       ),
-      'public' => true,
+      'show_in_nav_menus' => false,
+      'publicly_queryable' => false,
       'has_archive' => false,
-      'supports' => array('title')
+      'show_ui' => true,
+      'supports' => array('title', 'editor')
     )
   );
 }
