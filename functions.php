@@ -180,7 +180,20 @@ function create_posttypes()
     array(
       'labels' => array(
         'name' => __('Files'),
-        'singular_name' => __('file')
+        'singular_name' => __('File')
+      ),
+      'public' => true,
+      'has_archive' => false,
+      'supports' => array('title')
+    )
+  );
+
+  register_post_type(
+    'emails',
+    array(
+      'labels' => array(
+        'name' => __('Emails'),
+        'singular_name' => __('emails')
       ),
       'public' => true,
       'has_archive' => false,
