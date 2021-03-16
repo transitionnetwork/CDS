@@ -532,3 +532,12 @@ function get_words($sentence, $count = 10) {
   preg_match("/(?:[^\s,\.;\?\!]+(?:[\s,\.;\?\!]+|$)){0,$count}/", $sentence, $matches);
   return $matches[0];
 }
+
+add_action('init', 'customRSS');
+function customRSS() {
+  add_feed('last-updated-initiatives', 'get_feed_updated_initiatives');
+}
+
+function get_feed_updated_initiatives() {
+  get_template_part('templates/rss/updated-initiatives');
+}
