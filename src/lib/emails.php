@@ -89,6 +89,31 @@ function send_access_request_to_hub($user_id) {
   }
 }
 
+function alert_user_initiative_pending($post_id) {
+  $author_id = get_post($post_id)->post_author;
+  $author = get_user_by('id', $author_id);
+
+  $to = array(
+    $author->user_email,
+  );
+
+  $email_post_id = 6608;
+
+  $subject = get_field('subject', $email_post_id);
+
+  if ($user->first_name) {
+    $message = '<p>Hi ' . $user->first_name . ',</p>';
+  } else {
+    $message = '<p>Hi ' . $user->display_name . ',</p>';
+  }
+
+  $post_content = get_post($email_post_id);
+  $content = $post_content->post_content;
+  $message .= $content;
+
+  wp_mail( $to, $subject, $message);
+}
+
 function alert_user_initiative_approved($post_id) {
   $author_id = get_post($post_id)->post_author;
   $author = get_user_by('id', $author_id);
@@ -97,23 +122,22 @@ function alert_user_initiative_approved($post_id) {
     $author->user_email,
   );
 
-  $subject = 'Your Initiative has now been approved';
+  $email_post_id = 6607;
+
+  $subject = get_field('subject', $email_post_id);
 
   if ($user->first_name) {
-    $message = '<p>Hello ' . $user->first_name . ',</p>';
+    $message = '<p>Hi ' . $user->first_name . ',</p>';
   } else {
-    $message = '<p>Hello ' . $user->display_name . ',</p>';
+    $message = '<p>Hi ' . $user->display_name . ',</p>';
   }
 
-  $message .= '<p>Your Initiative: "<a href="' . parse_post_link($post_id) . '">' . get_the_title($post_id) . '</a>" has now been approved and published.</p>';
-
-  $message .= '<p>Please login to <a href="' . home_url() . '">Transition Initiative</a> and visit your dashboard to make any changes.</p>';
-
-  $message .= '<p>Best Wishes,<br/>Transition Network</p>';
+  $post_content = get_post($email_post_id);
+  $content = $post_content->post_content;
+  $message .= $content;
 
   wp_mail( $to, $subject, $message);
 }
-
 
 function check_pending_intiatives() {
   // get all hub users

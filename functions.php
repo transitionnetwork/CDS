@@ -193,7 +193,7 @@ function create_posttypes()
     array(
       'labels' => array(
         'name' => __('Emails'),
-        'singular_name' => __('emails')
+        'singular_name' => __('Email')
       ),
       'show_in_nav_menus' => false,
       'publicly_queryable' => false,
