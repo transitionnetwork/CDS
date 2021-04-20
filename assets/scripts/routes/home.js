@@ -1,9 +1,12 @@
-import displayMap from '../shared/map';
+import displayMap from '../shared/display-map';
 // import select2 from '../shared/select2';
 
 export default {
   loaded() {
-    displayMap();
+    const queryString = window.location.search;
+    console.log(queryString);
+
+    console.log('hello')
   },
   finalize() {
     // select2();

@@ -7,16 +7,16 @@ import common from './routes/common';
 import account from './routes/account';
 
 //iframe map page
-import map from './routes/map_route';
+import map from './routes/map_url_params';
 
 //homepage
 import home from './routes/home';
 
 //hub_list
-import hub_list from './routes/hub_list'
+import hub_list from './routes/zz_hub_list'
 
 //search results
-import search_initiatives from './routes/map_route';
+import search_initiatives from './routes/map_url_params';
 
 
 import single_healthchecks from './routes/single_healthcheck'
