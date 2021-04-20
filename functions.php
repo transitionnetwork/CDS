@@ -60,7 +60,8 @@ $tofino_includes = [
   "src/custom/admin-tables.php",
   "src/custom/acf-save.php",
   "src/custom/helpers.php",
-  "src/custom/retentiion-emailing.php"
+  // "src/custom/retention-emailing.php",
+  "src/custom/rank-math.php"
 ];
 
 foreach ($tofino_includes as $file) {
