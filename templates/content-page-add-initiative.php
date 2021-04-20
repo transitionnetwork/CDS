@@ -23,12 +23,11 @@ if(is_user_role('initiative')) {
             'post_content'	=> true,
             'return' => add_query_arg('added_post', 'initiative', '%post_url%'),
             'submit_value' => 'Create Initiative',
-            'uploader' => 'basic',
+            'field_groups' => array ('group_5a26865e56e22', 'group_5a26865e64f00', 'group_5a26865e89711', 'group_5b3e27aee4439', 'group_606d979a4877d'),
             'new_post'		=> array(
               'post_type'		=> 'initiatives',
               'post_status'	=> $post_status
             ),
-            'fields' => array ('hub_tax', 'logo', 'map', 'address_line_1', 'city', 'province', 'postal_code', 'country', 'email', 'website', 'twitter', 'facebook', 'instagram', 'youtube', 'additional_web_addresses', 'topic', 'private_email')
           ));
           echo '<div class="button-block"><a class="btn btn-secondary" href="javascript:history.go(-1)">Cancel</a></div>'; ?>
         <?php } ?>
