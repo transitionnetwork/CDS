@@ -59,8 +59,10 @@
           } ?>
 
           <ul class="meta">
-            <?php $hub = wp_get_post_terms($post->ID, 'hub')[0]; ?>
-            <li><strong>Hub: </strong> <a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a></li>
+            <?php $hubs = wp_get_post_terms($post->ID, 'hub'); ?>
+            <?php if(count($hubs) === 1) { ?>
+              <li><strong>Hub: </strong> <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a></li>
+            <?php } ?>
             <?php if($topics) { ?>
               <li><strong><?php echo get_taxonomy('topic')->label; ?>:</strong> <?php echo implode(', ', $topic_names); ?></li>
             <?php } ?>
