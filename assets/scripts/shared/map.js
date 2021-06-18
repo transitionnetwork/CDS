@@ -105,12 +105,12 @@ export default function() {
 
     map.addLayer(clusterMarkers);
 
-
+    console.log(tofinoJS);
     if (iResponse) {
-      $('.key .initiative').append('<span>(' + iResponse.length + ')</span>');
+      $('.key .initiative').append('<a href="' + tofinoJS.homeUrl +'">(' + iResponse.length + ')</a>');
     }
     if (hResponse) {
-      $('.key .hub').append('<span>(' + hResponse.length + ')</span>');
+      $('.key .hub').append('<a href="' + tofinoJS.homeUrl + '/hub-list">(' + hResponse.length + ')</a>');
     }
   }
 
