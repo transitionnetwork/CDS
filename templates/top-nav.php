@@ -1,6 +1,12 @@
 <?php
-$user_role = wp_get_current_user()->roles[0];
-$user_human_role = ucwords(str_replace('_', ' ', $user_role));
+if(is_user_logged_in(  )) {
+  $user_role = wp_get_current_user()->roles[0];
+  $user_human_role = ucwords(str_replace('_', ' ', $user_role));
+} else {
+  $user_role = null;
+}
+
+$hub_object = null;
 
 if(is_user_role('hub')) {
   $hub_id = get_field('hub_user', wp_get_current_user());

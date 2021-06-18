@@ -31,10 +31,12 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
 
 <?php if ( function_exists('icl_object_id') && ICL_LANGUAGE_CODE != 'en') {
   $en_post_id = apply_filters( 'wpml_object_id', $post->ID, 'post', '', 'en' );
-  $en_class = get_post($en_post_id);
+  $body_class = get_post($en_post_id)->post_name;
+} else {
+  $body_class = null;
 } ?>
 
-<body <?php body_class($en_class->post_name); ?> data-pid="<?php echo $post->ID; ?>">
+<body <?php body_class($body_class); ?> data-pid="<?php echo $post->ID; ?>">
 <div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>
 
