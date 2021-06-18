@@ -23,7 +23,7 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => false,
-      'supports' => array('title', 'editor', 'author')
+      'supports' => array('title', 'editor', 'author', 'thumbnail')
     )
   );
 
@@ -87,9 +87,10 @@ add_action('init', 'create_posttypes');
 // Create user taxonomies
 function create_custom_taxonomies() {
   $args = array(
-    'public'       => true,
-    'single_value' => false,
+    'hierarchical' => true,
+    'show_ui' => true,
     'show_admin_column' => true,
+    'query_var' => true,
     'labels' => array(
       'name'                      => 'Hubs',
       'singular_name'             => 'Hub',
