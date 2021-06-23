@@ -107,10 +107,10 @@ export default function() {
 
     console.log(tofinoJS);
     if (iResponse) {
-      $('.key .initiative').append('<a href="' + tofinoJS.homeUrl +'">(' + iResponse.length + ')</a>');
+      $('.key .initiative').append('<a href="' + tofinoJS.homeUrl +'" title="View Initiatives">(' + iResponse.length + ')</a>');
     }
     if (hResponse) {
-      $('.key .hub').append('<a href="' + tofinoJS.homeUrl + '/hub-list">(' + hResponse.length + ')</a>');
+      $('.key .hub').append('<a href="' + tofinoJS.homeUrl + '/hub-list" title="View Hubs">(' + hResponse.length + ')</a>');
     }
   }
 

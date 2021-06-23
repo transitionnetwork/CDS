@@ -3,6 +3,7 @@ function get_status_tag($status) {
   switch($status['value']) {
     case 'forming' :
     case 're-forming' :
+    case 'emerging' :
       return 'warning';
       break;
     case 'functioning' :
