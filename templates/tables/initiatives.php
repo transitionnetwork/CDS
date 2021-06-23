@@ -80,7 +80,8 @@
   </table>
 
   <?php 
-  $paged = $init_query->query['paged'];
+  
+  $paged = array_key_exists('paged', $init_query->query) ? $init_query->query['paged'] : null;
   $max_num_pages = $init_query->max_num_pages;
   $per_page = $init_query->query['posts_per_page'];
   $total_results = $init_query->found_posts;
@@ -107,7 +108,7 @@
       <?php echo paginate_links(array(
         'base' => @add_query_arg('paged', '%#%'),
         'format' => '?paged=%#%',
-        'current' => $init_query->query['paged'],
+        'current' => $paged,
         'total' => $init_query->max_num_pages,
         'prev_text' => 'Prev',
         'next_text' => 'Next',
