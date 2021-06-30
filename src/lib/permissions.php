@@ -1,14 +1,27 @@
 <?php
-function is_user_role($queried_role, $user = null)
+function is_user_role($queried_roles, $user = null)
 {
+  //will accept array or string as first parameter
+  
   if(!$user) {
     $user = wp_get_current_user();
   }
   
   $user_roles = $user->roles;
-  if (in_array($queried_role, $user_roles)) {
-    return true;
+  
+  if(is_array($queried_roles)) {
+    foreach($queried_roles as $queried_role) {
+      if (in_array($queried_role, $user_roles)) {
+        return true;
+      }
+    }
+  } else {
+    if (in_array($queried_roles, $user_roles)) {
+      return true;
+    }
   }
+
+  return;
 }
 
 function is_post_in_user_hub($post) {
