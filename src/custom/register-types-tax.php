@@ -208,17 +208,17 @@ function create_custom_taxonomies() {
     'query_var' => true,
     'rewrite' => array('slug' => 'trainer-topic', 'with_front' => false),
     'labels' => array(
-      'name' => _x('Topics', 'taxonomy general name'),
-      'singular_name' => _x('Topic', 'taxonomy singular name'),
-      'search_items' => __('Search Topics'),
-      'all_items' => __('All Topics'),
-      'parent_item' => __('Parent Topic'),
-      'parent_item_colon' => __('Parent Topic:'),
-      'edit_item' => __('Edit Topic'),
-      'update_item' => __('Update Topic'),
-      'add_new_item' => __('Add New Topic'),
-      'new_item_name' => __('New Topic Name'),
-      'menu_name' => __('Topics'),
+      'name' => _x('Trainer Topics', 'taxonomy general name'),
+      'singular_name' => _x('Trainer Topic', 'taxonomy singular name'),
+      'search_items' => __('Search Trainer Topics'),
+      'all_items' => __('All Trainer Topics'),
+      'parent_item' => __('Parent Trainer Topic'),
+      'parent_item_colon' => __('Parent Trainer Topic:'),
+      'edit_item' => __('Edit Trainer Topic'),
+      'update_item' => __('Update Trainer Topic'),
+      'add_new_item' => __('Add New Trainer Topic'),
+      'new_item_name' => __('New Trainer Topic Name'),
+      'menu_name' => __('Trainer Topics'),
     )
   );
 
