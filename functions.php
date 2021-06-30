@@ -169,12 +169,23 @@ function wpse132196_redirect_after_trashing($post_id) {
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
 
 //Change label of Content Editor in acf_form()
-function my_acf_prepare_field($field)
+function prepare_post_title($field)
+{
+  global $post;
+  if($post->post_name === 'add-trainer') {
+    $field['label'] = "Full Name";
+  }
+  return $field;
+}
+add_filter('acf/prepare_field/name=_post_title', 'prepare_post_title');
+
+//Change label of Content Editor in acf_form()
+function prepare_post_content($field)
 {
   $field['label'] = "Description";
   return $field;
 }
-add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');
+add_filter('acf/prepare_field/name=_post_content', 'prepare_post_content');
 
 //Logout link with nonce
 function add_logout_link($nav, $args)
