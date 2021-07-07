@@ -1,19 +1,23 @@
 <?php acf_form_head(); ?>
 
-<?php if(get_query_var('updated') == 'healthcheck') { ?>
-  <div class="container">
-    <div class="alert top alert-success">
-     <?php echo get_post_field('post_content', 45); ?>
-    </div>
-  </div>
-<?php } ?>
+<?php $updated = get_query_var('updated'); ?>
 
-<?php if(get_query_var('updated') == 'author') { ?>
-  <div class="container">
-    <div class="alert top alert-success">
-      <?php _e('The author of this initiative has been updated', 'tofino'); ?>
+<?php if($updated) { ?>
+  <?php if($updated === 'healthcheck') { ?>
+    <div class="container">
+      <div class="alert top alert-success">
+       <?php echo get_post_field('post_content', 45); ?>
+      </div>
     </div>
-  </div>
+  <?php } ?>
+  
+  <?php if($updated === 'author') { ?>
+    <div class="container">
+      <div class="alert top alert-success">
+        <?php _e('The author of this initiative has been updated', 'tofino'); ?>
+      </div>
+    </div>
+  <?php } ?>
 <?php } ?>
 
 <?php if(get_query_var('edited_post')) { ?>
@@ -74,6 +78,7 @@
             render_publish_button($post->ID);
           } ?>
           <?php if(can_write_initiative($post)) { ?>
+            <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
             <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
             <div class="button-block">
               <form action="" method="post">
@@ -148,35 +153,9 @@
               </section>
             <?php } ?>
 
-            <?php if (is_user_role('administrator') || is_user_role('super_hub')) { ?>
+            <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
             
-              <?php $post_author_id = get_the_author_meta('ID'); ?>
-              <div class="panel mt-4">
-                <h3>Author</h3>
-                <label>Name</label><?php echo get_the_author_meta('display_name'); ?>
-                <label>Email</label><a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><?php echo get_the_author_meta('user_email'); ?></a>
-              </div>
-            
-              <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
-                <label for="authors">Update author</label>
-                <?php $users = get_users(); ?>
-                <p>
-                  <select name="authors">
-                    <?php foreach($users as $user) { ?>
-                      <option value="<?php echo $user->ID; ?>" <?php echo ($user->ID === $post_author_id) ? 'selected' : ''; ?>><?php echo $user->display_name; ?> | <?php echo $user->user_email; ?></option>
-                    <?php } ?>
-                  </select>
-                  <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
-                </p>
-                <p>
-                  <input type="submit" value="Change">
-                </p>
-              </form>
-
-              <?php if(get_field('private_email')) { ?>
-                <label><?php echo get_field_object('private_email')['label']; ?>:</label>
-                <a href="mailto:<?php echo get_field('private_email'); ?>"><?php echo get_field('private_email'); ?></a>
-              <?php } ?>
+              <?php get_template_part('templates/partials/update-author'); ?>
             <?php } ?>
           </aside>
         </div>
