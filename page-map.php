@@ -1,10 +1,10 @@
 <?php get_header('map'); 
 
+$slugs = [];
 $query_value = get_query_var('hub_id');
 if($query_value) {
   $hub_ids = explode(',', $query_value);
 
-  $slugs = [];
   foreach($hub_ids as $hub_id) {
     $hub_term = get_term_by('id', $hub_id, 'hub');
     $slugs[] = $hub_term->slug;
