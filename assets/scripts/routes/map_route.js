@@ -1,4 +1,4 @@
-import displayMap from '../shared/map';
+import displayMap from '../shared/display-map';
 
 export default {
   loaded() {

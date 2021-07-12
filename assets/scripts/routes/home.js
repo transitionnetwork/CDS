@@ -1,4 +1,4 @@
-import displayMap from '../shared/map';
+import displayMap from '../shared/old-map';
 // import select2 from '../shared/select2';
 
 export default {
