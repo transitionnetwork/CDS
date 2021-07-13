@@ -160,7 +160,9 @@ function localize_scripts() {
       'cookieExpires'  => (get_theme_mod('notification_expires') ? get_theme_mod('notification_expires'): 999),
       'themeUrl'       => get_template_directory_uri(),
       'notificationJS' => (get_theme_mod('notification_use_js') ? 'true' : 'false'),
-      'homeUrl'        => home_url()
+      'homeUrl'        => home_url(),
+      'postId'         => get_the_ID(),
+      'postTitle'      => get_the_title()
     ]);
   }
 }

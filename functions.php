@@ -153,6 +153,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
   $vars[] = 'hub_name';
+  $vars[] = 'type';
   $vars[] = 'search';
   $vars[] = 'country';
   return $vars;

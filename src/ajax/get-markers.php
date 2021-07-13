@@ -1,5 +1,5 @@
 <?php
-function ajax_get_intiative_markers($params) {
+function ajax_get_intiative_markers($params, $cache_expiry) {
   if($params['type'] === "1" || $params['type'] === "2") {
     $args = array(
       'post_type' => 'initiatives',
@@ -28,50 +28,87 @@ function ajax_get_intiative_markers($params) {
       $args['s'] = $_POST['value']['search'];
     }
 
-    $initiatives = get_posts($args);
+    $path = TEMPLATEPATH . '/cache/' . md5(serialize($args)) . '.json';
 
-    if($initiatives) {
-      $results = array();
-      foreach($initiatives as $initiative) {
-        
-        $map = get_field('map', $initiative->ID);
-        
-        $results[$initiative->ID]['type'] = 'initative';
-        $results[$initiative->ID]['lat'] = $map['lat'];
-        $results[$initiative->ID]['lng'] = $map['lng'];
-        $results[$initiative->ID]['permalink'] = parse_post_link($initiative->ID);
-        $results[$initiative->ID]['title'] = get_the_title($initiative->ID);
-        $results[$initiative->ID]['age'] = get_initiatve_age($initiative->ID);
+    if(!file_exists($path) || filemtime($path) < time() - $cache_expiry ) {
+      $initiatives = get_posts($args);
 
+      if($initiatives) {
+        $results = array();
+        foreach($initiatives as $initiative) {
+          
+          $map = get_field('map', $initiative->ID);
+          
+          //only show those that aren't saved with the default coords
+          if($map['lat'] !== 51.4548627 && $map['lng'] !== -2.5977516) {
+            $results[$initiative->ID]['type'] = 'initiative';
+            $results[$initiative->ID]['lat'] = $map['lat'];
+            $results[$initiative->ID]['lng'] = $map['lng'];
+            $results[$initiative->ID]['permalink'] = parse_post_link($initiative->ID);
+            $results[$initiative->ID]['title'] = get_the_title($initiative->ID);
+            $results[$initiative->ID]['age'] = get_initiatve_age($initiative->ID);
+          } 
+        }
+        
+        file_put_contents($path, json_encode($results));
+        
+        return $results;
       }
-      
-      return $results;
+
+    } else {
+      return json_decode(file_get_contents($path), true);
     }
   }
 
   return array();
 }
 
-function ajax_get_hub_markers($params) {
+function ajax_get_hub_markers($params, $cache_expiry) {
   //hub queries second
   if($params['type'] === "1" || $params['type'] === "3") {
-    $args = array(
-      'hide_empty' => false
-    );
 
-    $hubs = get_terms('hub', $args);
+    if(array_key_exists('hub_name', $params)) {
+    
+      $hub_term = get_term_by('slug', $params['hub_name'], 'hub');
+      $hubs = ($hub_term) ? array($hub_term) : null;
+    
+    } else if(array_key_exists('country', $params)) {
+
+      $country_term = get_term_by('slug', $params['country'], 'country');
+
+      if($country_term) {
+        $country_term_id = $country_term->term_id;
+      
+        $args = array(
+          'hide_empty' => false,
+          'meta_query' => array(
+            array(
+              'key' => 'associated_countries',
+              'value' => '\;i\:' . $country_term_id . '\;|\"' . $country_term_id . '\";',
+              'compare' => 'REGEXP'
+            )
+          )
+        );
+  
+        $hubs = get_terms('hub', $args);
+      }
+    } else {
+      $args = array(
+        'hide_empty' => false
+      );
+      
+      $hubs = get_terms('hub', $args);
+    }
 
     if($hubs) {
       $results = array();
-
+      
       foreach($hubs as $hub) {
         if(
           !array_key_exists('training', $params) ||
-          (array_key_exists('training', $params) && get_field('training', $hub) === 1)
-        ) {
-
-          ///ADD FILTERING BY hub_name and country (if)
-        
+          (array_key_exists('training', $params) && get_field('training', $hub) === TRUE)
+          ) {
+            
           $map = get_field('map', $hub);
           
           $results[$hub->term_id]['type'] = 'hub';
@@ -91,12 +128,18 @@ function ajax_get_hub_markers($params) {
 } 
 
 function ajax_get_map_markers() {
+  //create cache dir
+  if (!file_exists(TEMPLATEPATH . '/cache')) {
+    mkdir(TEMPLATEPATH . '/cache', 0755, true);
+  }
+  
+  $cache_expiry = 24 * 60 * 60; //24hrs
+
   if($_POST === 'getMarkers') {
     return false;
   }
 
   $params = array_key_exists('params', $_POST['value']) ? $_POST['value']['params'] : array();
-  
   
   if(!array_key_exists('type', $params)) {
     // ALL/BOTH = 1
@@ -107,9 +150,12 @@ function ajax_get_map_markers() {
   }
 
   $markers = array();
-  $markers = array_merge(ajax_get_intiative_markers($params), ajax_get_hub_markers($params));
+  $markers = array(
+    'initiatives' => ajax_get_intiative_markers($params, $cache_expiry),
+    'hubs' => ajax_get_hub_markers($params, $cache_expiry)
+  );
   
-  echo json_encode(array($params, $markers));
+  echo json_encode($markers);
   wp_die();
 }
 
