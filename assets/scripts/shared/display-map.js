@@ -125,7 +125,7 @@ export default function () {
     
     map.addLayer(hubMarkers);
 
-    var bounds = L.latLngBounds(range);
+    var bounds = L.latLngBounds(range).pad(0.25);
     map.fitBounds(bounds);
 
     //add counts
@@ -184,12 +184,12 @@ export default function () {
   function checkForEvents() {
     //hide panel
     $('#iframe_map button.close').on('click', function () {
-      $(this).closest('#map-panel').hide();
+      $('#map-info-panel').hide();
     })
 
     //go to my location
     $('#iframe_map button.my-location').on('click', function () {
-      map.locate({ setView: true, maxZoom: 12 });
+      map.locate({ setView: true, maxZoom: 8 });
     })
 
     $('#filter-hub select').on('change', function() {
