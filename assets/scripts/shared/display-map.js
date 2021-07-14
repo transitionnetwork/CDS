@@ -16,7 +16,7 @@ export default function () {
     for (let p of getUpdateParams()) {
       console.log(p)
       params[p[0]] = p[1];
-    };
+    }
 
     return params
   }
@@ -122,7 +122,7 @@ export default function () {
     
     map.addLayer(hubMarkers);
 
-    var bounds = L.latLngBounds(range).pad(0.1);
+    var bounds = L.latLngBounds(range).pad(0);
     map.fitBounds(bounds);
 
     //add counts
