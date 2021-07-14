@@ -17,8 +17,9 @@
   </div>
   
   <?php foreach($terms as $term) { ?>
-    <h2><?php _e('Initiative map', 'tofino'); ?> for <a href="<?php echo add_query_arg('hub_name', $term->slug, get_post_type_archive_link('initiatives')); ?>"><?php echo $term->name; ?></a></h2>
-    <?php $url = add_query_arg(array('hub_id' => $term->term_id), parse_post_link(438));
+    <h2><?php _e('Initiative map', 'tofino'); ?> for <a href="<?php echo add_query_arg('hub_name', $term->slug, parse_post_link(5901)); ?>"><?php echo $term->name; ?></a></h2>
+    
+    <?php $url = add_query_arg(array('hub_name' => $term->slug), parse_post_link(438));
     ?>
     <div class="panel">
       <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>
