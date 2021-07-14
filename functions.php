@@ -32,7 +32,6 @@ $tofino_includes = [
   "src/lib/hubs.php",
   "src/lib/healthchecks.php",
   "src/lib/permissions.php",
-  "src/lib/hub-filter.php",
   "src/lib/emails.php",
   "src/lib/cron.php",
   "src/lib/custom-api-endpoints.php",
@@ -54,7 +53,6 @@ $tofino_includes = [
   "src/theme-options/social-networks.php",
   "src/theme-options/theme-tracker.php",
   "src/theme-options/dashboard-widget.php",
-  // "src/ajax/map-requests.php",
   "src/ajax/get-markers.php",
   "src/ajax/graph-requests.php",
   "src/ajax/file-requests.php",
@@ -152,10 +150,12 @@ function custom_query_vars_filter($vars)
   $vars[] = 'hub_id';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
+
   $vars[] = 'hub_name';
   $vars[] = 'type';
   $vars[] = 'search';
   $vars[] = 'country';
+  $vars[] = 'training';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');

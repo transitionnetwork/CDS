@@ -4,24 +4,25 @@ import 'leaflet.markercluster';
 import 'leaflet.locatecontrol';
 
 export default function () {
+  function getUpdateParams() {
+    var url = new URL(window.location.href)
+    var params = new URLSearchParams(url.search)
 
-  function transformToAssocArray(prmstr) {
-    var params = {};
-    var prmarr = prmstr.split("&");
-    for (var i = 0; i < prmarr.length; i++) {
-      var tmparr = prmarr[i].split("=");
-      params[tmparr[0]] = tmparr[1];
-    }
     return params;
   }
 
-  function getSearchParams() {
-    var prmstr = window.location.search.substr(1);
-    return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+  function getMarkerParams() {
+    var params = {}
+    for (let p of getUpdateParams()) {
+      console.log(p)
+      params[p[0]] = p[1];
+    };
+
+    return params
   }
   
   function initialiseMap() {
-    map = L.map('iframe_map', { "tap": false }).setView([0, 0], 3);
+    map = L.map('map-iframe', { "tap": false }).setView([0, 0], 3);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
@@ -78,10 +79,6 @@ export default function () {
 
     var marker;
     var range = [];
-    clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
-    hubMarkers = L.markerClusterGroup({ chunkedLoading: true });
-
-    console.log(response)
 
     for (const i in response.initiatives) {
       if (response.initiatives[i].lat && response.initiatives[i].lng) {
@@ -125,7 +122,7 @@ export default function () {
     
     map.addLayer(hubMarkers);
 
-    var bounds = L.latLngBounds(range).pad(0.25);
+    var bounds = L.latLngBounds(range).pad(0.1);
     map.fitBounds(bounds);
 
     //add counts
@@ -141,6 +138,8 @@ export default function () {
   }
   
   function getMarkers(params) {
+    $('#map-loading').show();
+    
     $.ajax({
       url: tofinoJS.ajaxUrl,
       type: 'POST',
@@ -153,12 +152,15 @@ export default function () {
       },
       dataType: 'json',
       success: function (response) {
-        $('.map-loading').hide();
-        $('#map-panel').show();
-        if(typeof response.initiatives === 'object'  || typeof response.hubs === 'object') {
+        $('#map-loading').hide();
+        $('#map-no-results').hide();
+        clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
+        hubMarkers = L.markerClusterGroup({ chunkedLoading: true });
+        
+        if (Object.keys(response.initiatives).length > 0 || Object.keys(response.hubs).length > 0) {
           displayMarkers(response);
         } else {
-          console.log('no results')
+          $('#map-no-results').show();
         }
       },
       error: function (jqxhr, status, exception) {
@@ -169,26 +171,61 @@ export default function () {
     })
   }
 
+  function udpateFilterUi(params) {
+    if(params.get('type')) {
+      $('#filter-type select').val(params.get('type'))
+    } else {
+      $('#filter-type select').val('1');
+    }
+    
+    if(params.get('hub_name')) {
+      $('#filter-hub select').val(params.get('hub_name'))
+    } else {
+      $('#filter-hub select').val('');
+    }
+    
+    if(params.get('country')) {
+      $('#filter-country select').val(params.get('country'))
+    } else {
+      $('#filter-country select').val('');
+    }
+    
+    if(params.get('training')) {
+      $('#training-toggle input').prop('checked', true)
+    } else {
+      $('#training-toggle input').prop('checked', false)
+    }
+  }
+  
   function processFilter(params) {
+    //remove legacy params
+    params.delete('hub_id');
+    
+    console.log(tofinoJS);
+
     window.history.pushState("object or string", "Title", "?" + params.toString());
-
-    map.removeLayer(clusterMarkers)
-    map.removeLayer(hubMarkers)
-    getMarkers(getSearchParams())
-
-    if(tofinoJS.postTitle === 'example') {
-      console.log(tofinoJS);
+    
+    if (tofinoJS.isFrontPage) {
+      window.location.href = tofinoJS.homeUrl + '/search-initiatives/?' + params.toString()
+    } else if(tofinoJS.postName === 'search-initiatives') {
+      location.reload()
+    } else {
+      udpateFilterUi(params);
+  
+      map.removeLayer(clusterMarkers)
+      map.removeLayer(hubMarkers)
+      getMarkers(getMarkerParams())
     }
   }
   
   function checkForEvents() {
     //hide panel
-    $('#iframe_map button.close').on('click', function () {
+    $('#map-iframe button.close').on('click', function () {
       $('#map-info-panel').hide();
     })
 
     //go to my location
-    $('#iframe_map button.my-location').on('click', function () {
+    $('#map-iframe button.my-location').on('click', function () {
       map.locate({ setView: true, maxZoom: 8 });
     })
 
@@ -198,7 +235,6 @@ export default function () {
 
       //delete country from url and clear url
       params.delete('country')
-      $('#filter-country select').val('');
       
       //update URL
       if ($('#filter-hub select').val().length) {
@@ -211,12 +247,10 @@ export default function () {
     })
 
     $('#filter-country select').on('change', function() {
-      var url = new URL(window.location.href)
-      var params = new URLSearchParams(url.search)
+      var params = getUpdateParams();
 
       //delete country from url and clear url
       params.delete('hub_name')
-      $('#filter-hub select').val('');
       
       //update
       if ($('#filter-country select').val().length) {
@@ -229,8 +263,7 @@ export default function () {
     })
 
     $('#filter-type select').on('change', function() {
-      var url = new URL(window.location.href)
-      var params = new URLSearchParams(url.search)
+      var params = getUpdateParams();
 
       if ($('#filter-type select').val().length) {
         params.set('type', $('#filter-type select').val());
@@ -242,27 +275,40 @@ export default function () {
     })
     
     $('#training-toggle input').on('change', function() {
-      var url = new URL(window.location.href)
-      var params = new URLSearchParams(url.search)
+      var params = getUpdateParams();
       
       if(this.checked) {
         params.set('training', true)
-        if(params.get('type', '2')) {
-          params.set('type', '1')
-        }
+        // if(params.get('type') === '2') {
+        //   params.set('type', '1')
+        // }
       } else {
         params.delete('training')
       }
       
       processFilter(params)
     })
+
+    //back button hit
+    window.onpopstate = function () {
+      var params = getUpdateParams();
+
+      processFilter(params);
+    }; history.pushState({}, '');
   }
 
   //these variables are given global scope
   var map = initialiseMap()
-  var clusterMarkers, hubMarkers;
-  
-  getMarkers(getSearchParams())
+  var clusterMarkers, hubMarkers;  
 
+  var params = getMarkerParams()
+
+  //set params
+  if (tofinoJS.postName === 'hub-list') {
+    params['type'] ='3';
+  }
+
+  getMarkers(params)
+  
   checkForEvents()
 }

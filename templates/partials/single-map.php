@@ -1,4 +1,4 @@
-<?php if($map) { ?>
+<?php if($map && $map['markers']) { ?>
   <div id="initiative-map" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
 <?php } ?>
 
@@ -10,7 +10,7 @@
   <?php echo get_field('postal_code'); ?><br/>
   <?php echo get_term_by('id', get_field('country'), 'country')->name; ?><br/>
   <div id="marker-address" data-address="<?php echo get_field('address_line_1'); ?>"></div>
-<?php } else if ($map) { ?>
+<?php } else if ($map && $map['markers']) { ?>
   <label><?php _e('Location', 'tofino'); ?></label>
   <div id="marker-address" data-address="<?php echo $map['markers'][0]['default_label']; ?>"></div>
   <?php echo $map['markers'][0]['default_label']; ?>

@@ -36,7 +36,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   $body_class = null;
 } ?>
 
-<body <?php body_class($body_class); ?> data-pid="<?php echo $post->ID; ?>">
+<body <?php body_class($body_class); ?> data-pid="<?php echo ($post) ? $post->ID : null; ?>">
 <div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>
 

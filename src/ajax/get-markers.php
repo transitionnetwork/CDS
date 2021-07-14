@@ -40,7 +40,7 @@ function ajax_get_intiative_markers($params, $cache_expiry) {
           $map = get_field('map', $initiative->ID);
           
           //only show those that aren't saved with the default coords
-          if($map['lat'] !== 51.4548627 && $map['lng'] !== -2.5977516) {
+          if($map['markers']) {
             $results[$initiative->ID]['type'] = 'initiative';
             $results[$initiative->ID]['lat'] = $map['lat'];
             $results[$initiative->ID]['lng'] = $map['lng'];
@@ -147,6 +147,11 @@ function ajax_get_map_markers() {
     // HUBS = 3
     
     $params['type'] = "1";
+  }
+
+  //handle egacy embed codes which use hub_id
+  if(array_key_exists('hub_id', $params)) {
+    $params['hub_name'] = get_term_by('id', $params['hub_id'], 'hub')->slug;
   }
 
   $markers = array();

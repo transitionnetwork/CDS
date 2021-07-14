@@ -1,12 +1,7 @@
-<div id="iframe_map" data-hub="<?php echo get_query_var('hub_name'); ?>" data-country="<?php echo get_query_var('country'); ?>" data-search="<?php echo get_query_var('search'); ?>">
-  <?php get_template_part('templates/partials/map-panel'); ?>
-  <div class="map-loading"><div class="lds-dual-ring"></div></div>
-</div>
+<?php get_template_part('templates/partials/map-display'); ?>
 
 <main>
   <div class="container">
-
-    <?php render_hub_filter(); ?>
 
     <?php while (have_posts()) : the_post(); ?>
       <?php if (!is_user_logged_in() && !empty(get_the_content())) { ?>
