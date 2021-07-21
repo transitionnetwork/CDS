@@ -10,6 +10,8 @@ $theme_config = [
   'svg' => ['sprite_file' => $svg_url . '?v=' . filemtime($svg_file_path)]
 ];
 
+//fix header sent issue
+ob_start();
 
 /**
  * Tofino includes
