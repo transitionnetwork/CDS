@@ -2,6 +2,7 @@ var $ = window.jQuery;
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet.locatecontrol';
+import * as GeoSearch from 'leaflet-geosearch';
 
 export default function () {
   function getUpdateParams() {
@@ -50,6 +51,25 @@ export default function () {
     map.scrollWheelZoom.disable();
     map.on('focus', function () { map.scrollWheelZoom.enable(); });
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
+
+    //new search
+    const search = new GeoSearch.GeoSearchControl({
+      provider: new GeoSearch.OpenStreetMapProvider(),
+      marker: {
+        icon: L.icon({
+          iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-red.png',
+          iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-red-2x.png',
+          shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          tooltipAnchor: [16, -28],
+          shadowSize: [41, 41]
+        })
+      }
+    })
+
+    map.addControl(search);
 
     return map
   }

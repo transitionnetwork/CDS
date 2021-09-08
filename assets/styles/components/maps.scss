@@ -175,21 +175,56 @@
   }
 }
 
-.leaflet-control-search .search-button,
-.leaflet-control-search .search-button:hover,
-.leaflet-bar-part {
+.leaflet-control-geosearch .leaflet-bar-part,
+.leaflet-control-locate .leaflet-bar-part {
   background-size: contain;
   background-position: 50%;
   background-origin: content-box;
   padding: 5px;
 }
 
-.leaflet-control-search .search-button,
-.leaflet-control-search .search-button:hover {
-  background-image: url('../img/icons/search-icon.png');
+.leaflet-control-geosearch {
+  display: flex;
+  flex-direction: row-reverse;
+  background: $white;
+
+  .leaflet-bar-part {
+    background-image: url('../img/icons/search-icon.png');
+  }
+
+  a.leaflet-bar-part::after,
+  a.leaflet-bar-part::before {
+    display: none;
+  }
+
+  form {
+    display: none;
+
+
+    input.glass {
+      border: 0;
+      padding: 6px;
+    }
+
+    a.reset {
+      display: none;
+    }
+
+    .results.active {
+      padding: 6px;
+      cursor: pointer;
+    }
+  }
+  
+  &.active {
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 
-.leaflet-bar-part {
+.leaflet-control-locate .leaflet-bar-part {
   background-image: url('../img/icons/location-icon.png');
 }
 
