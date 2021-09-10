@@ -62,7 +62,8 @@ $tofino_includes = [
   "src/custom/acf-save.php",
   "src/custom/helpers.php",
   "src/custom/rank-math.php",
-  "src/custom/register-types-tax.php"
+  "src/custom/register-types-tax.php",
+  "src/custom/controller_trainers.php"
   // "src/custom/retention-emailing.php",
 ];
 
@@ -322,13 +323,14 @@ function set_tax_default($field) {
 }
 add_filter('acf/load_field/key=field_5c473dfca1fd3', 'set_tax_default');
 
-function redirects() {
+function process_post_requests() {
   if ('POST' == $_SERVER['REQUEST_METHOD']) {
     if(array_key_exists('accepted', $_POST)) {
       if($_POST['accepted'] == 'true') {
         update_user_meta(get_current_user_id(), '_gdpr_accepted', 'field_5c51aba1d7642');
         update_user_meta(get_current_user_id(), 'gdpr_accepted', true);
         wp_safe_redirect('account');
+        exit();
       }
     }
 
@@ -339,6 +341,7 @@ function redirects() {
       );
       wp_update_post($args);
       wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));
+      exit();
     }
 
     if(array_key_exists('unpublish', $_POST)) {
@@ -348,11 +351,35 @@ function redirects() {
       );
       wp_update_post($args);
     }
+
+    if(array_key_exists('trainer_update', $_POST)) {
+      $args = array(
+        'ID' => $_POST['post_id'],
+        'post_status' => $_POST['trainer_update']
+      );
+
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'trainer', get_the_permalink(get_queried_object()->name)));
+    }
+  }
+
+  //$_GET REQUESTS - revert post back to unpublished if edited by non admin owner
+  global $post;
+  if($post && (get_post_type() === 'trainers') && get_query_var('updated') === 'trainer') {
+    if(get_the_author_meta('ID') === get_current_user_id()) {
+      $args = array(
+        'ID' => get_the_ID(),
+        'post_status' => $_POST['trainer_update']
+      );
+
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'trainer', get_the_permalink(get_queried_object()->name)));
+    }
   }
 }
 
-if (is_user_logged_in()) {
-  add_action('template_redirect', 'redirects');
+if (!is_admin()) {
+  add_action('template_redirect', 'process_post_requests');
 }
 
 function get_environment() {
@@ -417,4 +444,12 @@ function customRSS() {
 
 function get_feed_updated_initiatives() {
   get_template_part('templates/rss/updated-initiatives');
+}
+
+function is_user_trainer_admin() {
+  if(is_user_role(array('administrator', 'trainer_admin'))) {
+    return true;
+  }
+
+  return false;
 }

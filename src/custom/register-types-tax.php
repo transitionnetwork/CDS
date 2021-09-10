@@ -22,8 +22,8 @@ function create_posttypes() {
         'singular_name' => __('Trainer')
       ),
       'public' => true,
-      'has_archive' => false,
-      'supports' => array('title', 'editor', 'author', 'thumbnail')
+      'has_archive' => 'trainers',
+      'supports' => array('title', 'author')
     )
   );
 

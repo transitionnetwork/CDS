@@ -33,9 +33,7 @@
       <?php if(is_user_logged_in()) { ?>
         <li><a class="btn btn-primary" href="<?php echo parse_post_link(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Initiative', 'tofino'); ?></a></li>
 
-        <?php if(is_user_role(array('administrator', 'trainer_admin'))) { ?>
-          <li><a class="btn btn-primary" href="<?php echo parse_post_link(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a></li>
-        <?php } ?>
+        <li><a class="btn btn-primary" href="<?php echo parse_post_link(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a></li>
       <?php } else { ?>
         <li><a class="btn btn-primary" href="<?php echo parse_post_link(460); ?>"><?php echo svg('key'); ?><?php _e('Register to add an initiative', 'tofino'); ?></a></li>
       <?php } ?>

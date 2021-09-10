@@ -38,6 +38,10 @@ a {
   }
 }
 
+.normal-size {
+  font-size: 1rem;
+}
+
 @mixin button-svg {
   vertical-align: text-top;
   width: 15px;

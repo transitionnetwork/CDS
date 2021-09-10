@@ -1,9 +1,11 @@
-.hub-col {
+.hub-col,
+.trainer-col {
   display: flex;
   flex-direction: column;
 }
 
-.hub-item {
+.hub-item,
+.trainer-item {
   flex: 0 1 100%;
   margin-bottom: $grid-gutter-width;
   background-color: $background-light;

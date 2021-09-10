@@ -1,5 +1,5 @@
 <?php if($map && $map['markers']) { ?>
-  <div id="initiative-map" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
+  <div id="single-map" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
 <?php } ?>
 
 <?php if (get_field('address_line_1')) { ?>

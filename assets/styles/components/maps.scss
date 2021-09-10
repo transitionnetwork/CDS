@@ -200,7 +200,6 @@
   form {
     display: none;
 
-
     input.glass {
       border: 0;
       padding: 6px;
@@ -215,7 +214,7 @@
       cursor: pointer;
     }
   }
-  
+
   &.active {
     form {
       display: flex;

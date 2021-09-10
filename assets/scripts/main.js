@@ -18,10 +18,9 @@ import hub_list from './routes/hub_list'
 //search results
 import search_initiatives from './routes/map_route';
 
-
-import single_healthchecks from './routes/single_healthcheck'
-
 import single_initiatives from './routes/single';
+import single_healthchecks from './routes/single_healthcheck'
+import single_trainers from './routes/single_trainer';
 import tax_hub from './routes/single';
 
 // Import ajaxForm
@@ -44,6 +43,7 @@ const routes = {
   search_initiatives,
   single_initiatives,
   single_healthchecks,
+  single_trainers,
   tax_hub
 };
 
