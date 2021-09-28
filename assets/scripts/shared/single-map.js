@@ -26,10 +26,21 @@ export default function () {
       tooltipAnchor: [16, -28],
       shadowSize: [41, 41]
     });
+  } else if ($('body').hasClass('single-trainers')) {
+    markerIcon = L.icon({
+      iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-trainer.png',
+      iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-trainer-2x.png',
+      shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    });
   } else {
     markerIcon = L.icon({
-      iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
-      iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
+      iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-initiative.png',
+      iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-initiative-2x.png',
       shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],

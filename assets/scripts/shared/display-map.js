@@ -76,8 +76,8 @@ export default function () {
 
   function displayMarkers(response) {
     var initiativeMarkerIcon = L.icon({
-      iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon.png',
-      iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-2x.png',
+      iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-initiative.png',
+      iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-initiative-2x.png',
       shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
@@ -97,13 +97,24 @@ export default function () {
       shadowSize: [41, 41]
     });
 
+    var trainerMarkerIcon = L.icon({
+      iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-trainer.png',
+      iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-trainer-2x.png',
+      shadowUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    });
+
     var marker;
     var range = [];
 
     for (const i in response.initiatives) {
       if (response.initiatives[i].lat && response.initiatives[i].lng) {
         
-        if(response.initiatives[i].type === 'initiative') {
+        if(response.initiatives[i].type === 'initiatives') {
           marker = L.marker([response.initiatives[i].lat, response.initiatives[i].lng], { icon: initiativeMarkerIcon });
           
           marker.bindPopup('<h5>' + response.initiatives[i].title + '</h5><div><a href="' + response.initiatives[i].permalink + '" target="_parent" class="btn btn-sm btn-primary">View</a></div>');
@@ -115,6 +126,8 @@ export default function () {
     }
 
     map.addLayer(clusterMarkers);
+
+    /////
 
     hubMarkers = L.markerClusterGroup({
       iconCreateFunction: function (cluster) {
@@ -129,7 +142,7 @@ export default function () {
     for (const i in response.hubs) {
       if (response.hubs[i].lat && response.hubs[i].lng) {
 
-        if (response.hubs[i].type === 'hub') {
+        if (response.hubs[i].type === 'hubs') {
           marker = L.marker([response.hubs[i].lat, response.hubs[i].lng], { icon: hubMarkerIcon });
           
           marker.bindPopup('<h5>' + response.hubs[i].title + '</h5><div><a href="' + response.hubs[i].permalink + '" target="_parent" class="btn btn-sm btn-primary">View</a></div>');
@@ -141,6 +154,36 @@ export default function () {
     }
     
     map.addLayer(hubMarkers);
+    
+    /////
+
+    trainerMarkers = L.markerClusterGroup({
+      iconCreateFunction: function (cluster) {
+        return L.divIcon({
+          html: '<div><span>' + cluster.getChildCount() + '</span></div>',
+          className: 'hub-cluster marker-cluster',
+          iconSize: [40, 40]
+        });
+      }
+    });
+    
+    for (const i in response.trainers) {
+      if (response.trainers[i].lat && response.trainers[i].lng) {
+
+        if (response.trainers[i].type === 'trainers') {
+          marker = L.marker([response.trainers[i].lat, response.trainers[i].lng], { icon: trainerMarkerIcon });
+
+          marker.bindPopup('<h5>' + response.trainers[i].title + '</h5><div><a href="' + response.trainers[i].permalink + '" target="_parent" class="btn btn-sm btn-primary">View</a></div>');
+          trainerMarkers.addLayer(marker);
+
+          range.push([response.trainers[i].lat, response.trainers[i].lng]);
+        }
+      }
+    }
+
+    map.addLayer(trainerMarkers);
+    
+    /////
 
     var bounds = L.latLngBounds(range).pad(0);
     map.fitBounds(bounds);
@@ -148,9 +191,11 @@ export default function () {
     //add counts
     var countInitiatives = Object.keys(response.initiatives).length;
     var countHubs = Object.keys(response.hubs).length;
+    var countTrainers = Object.keys(response.trainers).length;
     // var countTotal = countInitiatives + countHubs;
     
     $('.key .initiative .count').html('(' + countInitiatives + ')');
+    $('.key .trainer .count').html('(' + countTrainers + ')');
     $('.key .hub .count, #filter-type span.hubs').html('(' + countHubs + ')');
 
     // $('#filter-type option[value="2"]').html('Initiatives (' + countInitiatives + ')')
@@ -172,12 +217,15 @@ export default function () {
       },
       dataType: 'json',
       success: function (response) {
+        console.log(response);
+
         $('#map-loading').hide();
         $('#map-no-results').hide();
         clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
         hubMarkers = L.markerClusterGroup({ chunkedLoading: true });
+        trainerMarkers = L.markerClusterGroup({ chunkedLoading: true });
         
-        if (Object.keys(response.initiatives).length > 0 || Object.keys(response.hubs).length > 0) {
+        if (Object.keys(response.initiatives).length > 0 || Object.keys(response.hubs).length > 0 || Object.keys(response.trainers).length > 0) {
           displayMarkers(response);
         } else {
           $('#map-no-results').show();
@@ -234,6 +282,7 @@ export default function () {
   
       map.removeLayer(clusterMarkers)
       map.removeLayer(hubMarkers)
+      map.removeLayer(trainerMarkers)
       getMarkers(getMarkerParams())
     }
   }
@@ -319,7 +368,7 @@ export default function () {
 
   //these variables are given global scope
   var map = initialiseMap()
-  var clusterMarkers, hubMarkers;  
+  var clusterMarkers, hubMarkers, trainerMarkers;  
 
   var params = getMarkerParams()
 

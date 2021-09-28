@@ -1,10 +1,20 @@
 <?php
-function ajax_get_intiative_markers($params, $cache_expiry) {
-  if($params['type'] === "1" || $params['type'] === "2") {
-    $args = array(
-      'post_type' => 'initiatives',
-      'posts_per_page' => -1,
-    );
+function ajax_get_post_markers($params, $cache_expiry) {
+  if(in_array($params['type'], array('1', '2', '4'))) {
+    
+    if($params['type'] === '1') {
+      $args['post_type'] = array('initiatives', 'trainers');
+    }
+    
+    if($params['type'] === '2') {
+      $args['post_type'] = array('initiatives');
+    }
+    
+    if($params['type'] === '4') {
+      $args['post_type'] = array('trainers');
+    }
+    
+    $args['posts_per_page'] = -1;
     
     if(array_key_exists('hub_name', $params)) {
       $args['tax_query'] = array(
@@ -31,25 +41,27 @@ function ajax_get_intiative_markers($params, $cache_expiry) {
     $path = TEMPLATEPATH . '/cache/' . md5(serialize($args)) . '.json';
 
     if(!file_exists($path) || filemtime($path) < time() - $cache_expiry ) {
-      $initiatives = get_posts($args);
+      $posts = get_posts($args);
 
-      if($initiatives) {
+      if($posts) {
         $results = array();
-        foreach($initiatives as $initiative) {
+        foreach($posts as $post) {
           
-          $map = get_field('map', $initiative->ID);
+          $map = get_field('map', $post->ID);
+
+          $post_type = get_post_type($post->ID);
           
           //only show those that aren't saved with the default coords
           if($map['markers']) {
-            $results[$initiative->ID]['type'] = 'initiative';
-            $results[$initiative->ID]['lat'] = $map['lat'];
-            $results[$initiative->ID]['lng'] = $map['lng'];
-            $results[$initiative->ID]['permalink'] = parse_post_link($initiative->ID);
-            $results[$initiative->ID]['title'] = get_the_title($initiative->ID);
-            $results[$initiative->ID]['age'] = get_initiatve_age($initiative->ID);
+            $results[$post_type][$post->ID]['type'] = $post_type;
+            $results[$post_type][$post->ID]['lat'] = $map['lat'];
+            $results[$post_type][$post->ID]['lng'] = $map['lng'];
+            $results[$post_type][$post->ID]['permalink'] = parse_post_link($post->ID);
+            $results[$post_type][$post->ID]['title'] = get_the_title($post->ID);
+            $results[$post_type][$post->ID]['age'] = get_initiatve_age($post->ID);
           } 
         }
-        
+
         file_put_contents($path, json_encode($results));
         
         return $results;
@@ -111,7 +123,7 @@ function ajax_get_hub_markers($params, $cache_expiry) {
             
           $map = get_field('map', $hub);
           
-          $results[$hub->term_id]['type'] = 'hub';
+          $results[$hub->term_id]['type'] = 'hubs';
           $results[$hub->term_id]['lat'] = $map['lat'];
           $results[$hub->term_id]['lng'] = $map['lng'];
           $results[$hub->term_id]['permalink'] = get_term_link($hub);
@@ -145,18 +157,22 @@ function ajax_get_map_markers() {
     // ALL/BOTH = 1
     // INITIATIVES = 2
     // HUBS = 3
+    // TRAINERS = 4
     
     $params['type'] = "1";
   }
 
-  //handle egacy embed codes which use hub_id
+  //handle legacy embed codes which use hub_id property instead of hub_name
   if(array_key_exists('hub_id', $params)) {
     $params['hub_name'] = get_term_by('id', $params['hub_id'], 'hub')->slug;
   }
 
+  $post_markers = ajax_get_post_markers($params, $cache_expiry);
+  
   $markers = array();
   $markers = array(
-    'initiatives' => ajax_get_intiative_markers($params, $cache_expiry),
+    'initiatives' => ($post_markers['initiatives']) ? $post_markers['initiatives'] : array(),
+    'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
     'hubs' => ajax_get_hub_markers($params, $cache_expiry)
   );
   
