@@ -9,6 +9,11 @@ function endpoint_add_custom_routes() {
     'methods' => 'GET',
     'callback' => 'endpoint_get_trainers',
   ));
+
+  register_rest_route( 'cds/v1', '/hubs', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_hubs',
+  ));
 }
 
 add_action( 'rest_api_init', 'endpoint_add_custom_routes');
@@ -28,17 +33,20 @@ function endpoint_get_taxonomy_terms($post, $taxonomy) {
   }
 }
 
-function endpoint_get_location($post) {
-  $map = get_field('map', $post);
-  $country = (get_the_terms($post, 'country')) ? get_the_terms($post, 'country')[0]->name : '';
-  
+function endpoint_get_location($item, $post = true) {
+  $map = get_field('map', $item);
+
   $data = array(
-    'address' => get_field('address_line_1', $post),
-    'city' => get_field('city', $post),
-    'province' => get_field('province', $post),
-    'postal_codes' => get_field('postal_codes', $post),
-    'country' => $country
+    'address' => get_field('address_line_1', $item),
+    'city' => get_field('city', $item),
+    'province' => get_field('province', $item),
+    'postal_codes' => get_field('postal_codes', $item),
   );
+
+  if($post) {
+    $data['country'] = (get_the_terms($post, 'country')) ? get_the_terms($post, 'country')[0]->name : '';
+  }
+  
 
   if($map && !empty($map['markers'])) {
     $data['lat'] = $map['markers'][0]['lat'];

@@ -1,6 +1,17 @@
 <?php
 die();
 $args = array(
+  'taxonomy' => 'hub',
+  'hide_empty' => false,
+  'exclude' => array(285)
+);
+
+$hub_query = new WP_Term_Query($args);
+
+var_dump($hub_query);
+die();
+
+$args = array(
   'orderby' => 'meta_value',
   'meta_key' => 'last_logged_in',
   'order' => 'DESC',

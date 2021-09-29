@@ -18,7 +18,7 @@ function endpoint_get_initiatives($request) {
       global $post;
       
       $logo = get_field('logo', $post);
-      $logo = ($logo) ? $logo['url'] : '';
+      $logo = ($logo) ? $logo['sizes']['large'] : '';
   
       $data[] = array(
         'title' => $post->post_title,

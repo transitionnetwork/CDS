@@ -17,7 +17,7 @@ function endpoint_get_trainers($request) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
       $photo = get_field('your_website_listing_training_photo', $post);
-      $photo = ($photo) ? $photo['url'] : '';
+      $photo = ($photo) ? $photo['sizes']['large'] : '';
       
       $data[] = array(
         'title' => $post->post_title,
