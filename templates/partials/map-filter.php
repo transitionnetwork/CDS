@@ -8,7 +8,7 @@
             <option value="1" <?php echo (get_query_var('type') === "1") ? 'selected' : null; ?>>All</option>
             <option value="2" <?php echo (get_query_var('type') === "2") ? 'selected' : null; ?>>Initiatives</option>
             <option value="3" <?php echo (get_query_var('type') === "3") ? 'selected' : null; ?>>Hubs</option>
-            <option value="4" <?php echo (get_query_var('type') === "4") ? 'selected' : null; ?>>Trainers</option>
+            <!-- <option value="4" <?php echo (get_query_var('type') === "4") ? 'selected' : null; ?>>Trainers</option> -->
           </select>
         </div>
       </div>

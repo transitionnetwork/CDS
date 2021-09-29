@@ -7,9 +7,9 @@
     <img src="<?php echo get_template_directory_uri() . '/dist/img/icons/marker-icon-hub-2x.png'; ?>" alt="Hubs" title="Hubs"><?php _e('Hubs'); ?>
     <a class="count" href="<?php echo home_url('hub-list'); ?>" title="View Hubs"></a>
   </li>
-  <li class="trainer">
+  <!-- <li class="trainer">
     <img src="<?php echo get_template_directory_uri() . '/dist/img/icons/marker-icon-trainer-2x.png'; ?>" alt="Trainers" title="Trainers"><?php _e('Trainers'); ?>
     <a class="count" href="<?php echo home_url('trainers'); ?>" title="View Hubs"></a>
-  </li>
+  </li> -->
 </ul>
 

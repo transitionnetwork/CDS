@@ -172,7 +172,7 @@ function ajax_get_map_markers() {
   $markers = array();
   $markers = array(
     'initiatives' => ($post_markers['initiatives']) ? $post_markers['initiatives'] : array(),
-    'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
+    // 'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
     'hubs' => ajax_get_hub_markers($params, $cache_expiry)
   );
   
