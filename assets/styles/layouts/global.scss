@@ -83,6 +83,22 @@ button {
   }
 }
 
+.btn-outline {
+  background-color: $white;
+  border-color: $brand-primary;
+  color: $brand-primary;
+
+  &:hover {
+    background-color: $gray-100;
+    border-color: darken($brand-primary, 5);
+    color: darken($brand-primary, 5);
+  }
+
+  svg {
+    fill: $brand-primary;
+  }
+}
+
 .bar-info {
   background-color: $black;
   color: $white;
@@ -116,6 +132,8 @@ main {
 
 .btn {
   border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .acf-form input[type="submit"],
