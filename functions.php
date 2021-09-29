@@ -36,7 +36,6 @@ $tofino_includes = [
   "src/lib/permissions.php",
   "src/lib/emails.php",
   "src/lib/cron.php",
-  "src/lib/custom-api-endpoints.php",
   "src/lib/output-csv.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
@@ -63,7 +62,10 @@ $tofino_includes = [
   "src/custom/helpers.php",
   "src/custom/rank-math.php",
   "src/custom/register-types-tax.php",
-  "src/custom/controller_trainers.php"
+  "src/custom/controller_trainers.php",
+  "src/custom/api-endpoints/helpers.php",
+  "src/custom/api-endpoints/initiatives.php",
+  "src/custom/api-endpoints/trainers.php",
   // "src/custom/retention-emailing.php",
 ];
 
@@ -159,6 +161,10 @@ function custom_query_vars_filter($vars)
   $vars[] = 'search';
   $vars[] = 'country';
   $vars[] = 'training';
+  
+  //api endpoints
+  $vars[] = 'per_page';
+  $vars[] = 'page';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
