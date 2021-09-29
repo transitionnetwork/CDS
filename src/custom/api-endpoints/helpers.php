@@ -86,8 +86,8 @@ function endpoint_get_params_args($request) {
   $args = array();
   
   if(!empty($request['per_page'])) {
-		if($request['per_page'] > 100 || $request['per_page'] < 0) {
-			$request['per_page'] = 100;
+		if($request['per_page'] > 1500 || $request['per_page'] < 0) {
+			$request['per_page'] = 1500;
 		}
 		
 		$args['posts_per_page'] = $request['per_page'];
