@@ -18,6 +18,20 @@ function endpoint_add_custom_routes() {
 
 add_action( 'rest_api_init', 'endpoint_add_custom_routes');
 
+/**
+ * Register the /wp-json/acf/v3/posts endpoint so it will be cached.
+ */
+function wprc_add_acf_posts_endpoint( $allowed_endpoints ) {
+    if ( ! isset( $allowed_endpoints[ 'cds/v1' ] ) || ! in_array( 'posts', $allowed_endpoints[ 'cds/v1' ] ) ) {
+        $allowed_endpoints[ 'cds/v1' ][] = 'initiatives';
+        $allowed_endpoints[ 'cds/v1' ][] = 'trainers';
+        $allowed_endpoints[ 'cds/v1' ][] = 'hubs';
+    }
+    return $allowed_endpoints;
+}
+add_filter( 'wp_rest_cache/allowed_endpoints', 'wprc_add_acf_posts_endpoint', 10, 1);
+
+
 function endpoint_get_taxonomy_terms($post, $taxonomy) {
   $terms = get_the_terms($post, $taxonomy);
   if($terms) {
