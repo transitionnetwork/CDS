@@ -32,6 +32,6 @@ Reporting is provided on healthcheck dates for initiatives.
 
 ## Off Site ##
 
-Third parties are able to connect to the CDS site from their own websites using the CDS (Wordpress) API to obtain initiative data for a hub.
+Third parties are able to connect to the CDS site from their own websites using the CDS (Wordpress) API https://transitioninitiative.org/api/ to obtain initiative data for a hub.
 
 They are also able to display a map showing hub initiatives using an iframe.
