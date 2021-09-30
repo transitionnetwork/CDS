@@ -16,7 +16,7 @@ import home from './routes/home';
 import hub_list from './routes/hub_list'
 
 //search results
-import search_initiatives from './routes/map_route';
+import search_groups from './routes/map_route';
 
 import single_initiatives from './routes/single';
 import single_healthchecks from './routes/single_healthcheck'
@@ -40,7 +40,7 @@ const routes = {
   map,
   home,
   hub_list,
-  search_initiatives,
+  search_groups,
   single_initiatives,
   single_healthchecks,
   single_trainers,

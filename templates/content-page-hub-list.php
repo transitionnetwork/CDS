@@ -21,11 +21,5 @@
         </div>
       <?php } ?>
     <?php endwhile; ?>
-    <p>
-      <a href="<?php echo parse_post_link(6185); ?>" class="btn btn-primary">
-        <?php echo svg('plus'); ?>
-        <span>Add new hub</span>
-      </a>
-    </p>
   </div>
 </main>

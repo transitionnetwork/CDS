@@ -7,6 +7,12 @@
         <?php while (have_posts()) : the_post(); ?>
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
 
+          <?php if(!is_user_logged_in()) { ?>
+            <?php the_content(); ?>
+            <p>
+              <a class="btn btn-outline" href="<?php echo parse_post_link(460); ?>"><?php echo svg('key'); ?><?php _e('Register as an individual', 'tofino'); ?></a>
+            </p>
+          <?php } else { ?>
             <?php acf_form(array(
               'post_id'		=> 'new_post',
               'post_title'	=> true,
@@ -20,6 +26,7 @@
               ),
             ));
             echo '<div class="button-block"><a class="btn btn-secondary" href="javascript:history.go(-1)">Cancel</a></div>'; ?>
+          <?php } ?>
         <?php endwhile; ?>
       </div>
     </div>
