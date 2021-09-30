@@ -8,6 +8,9 @@ function create_posttypes() {
         'name' => __('Groups'),
         'singular_name' => __('Group')
       ),
+      'rewrite' => array(
+        'slug' => 'group'
+      ),
       'public' => true,
       'has_archive' => false,
       'supports' => array('title', 'editor', 'author')
