@@ -1,4 +1,7 @@
-Copyright (c) Ben Word and Scott Walkinshaw from Roots/Sage - https://roots.io/
+
+Copyright (c) Transition Network https://transitionnetwork.org/
+
+Theme files Copyright (c) Ben Word and Scott Walkinshaw from Roots/Sage - https://roots.io/
 
 Modifications and new functionality Copyright (c) Daniel Hewes from Lambda Creatives - https://lambdacreatives.com
 
