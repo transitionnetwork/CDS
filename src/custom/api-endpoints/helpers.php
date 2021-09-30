@@ -5,6 +5,11 @@ function endpoint_add_custom_routes() {
     'callback' => 'endpoint_get_initiatives',
   ));
 
+  register_rest_route( 'cds/v1', '/groups', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_initiatives',
+  ));
+
   register_rest_route( 'cds/v1', '/trainers', array(
     'methods' => 'GET',
     'callback' => 'endpoint_get_trainers',
@@ -24,6 +29,7 @@ add_action( 'rest_api_init', 'endpoint_add_custom_routes');
 function wprc_add_acf_posts_endpoint( $allowed_endpoints ) {
     if ( ! isset( $allowed_endpoints[ 'cds/v1' ] ) || ! in_array( 'posts', $allowed_endpoints[ 'cds/v1' ] ) ) {
         $allowed_endpoints[ 'cds/v1' ][] = 'initiatives';
+        $allowed_endpoints[ 'cds/v1' ][] = 'groups';
         $allowed_endpoints[ 'cds/v1' ][] = 'trainers';
         $allowed_endpoints[ 'cds/v1' ][] = 'hubs';
     }
