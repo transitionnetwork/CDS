@@ -1,6 +1,6 @@
 <ul class="key">
   <li class="initiative">
-    <img src="<?php echo get_template_directory_uri() . '/dist/img/icons/marker-icon-2x.png'; ?>" alt="Groups" title="Groups"><?php _e('Groups'); ?>
+    <img src="<?php echo get_template_directory_uri() . '/dist/img/icons/marker-icon-initiative-2x.png'; ?>" alt="Groups" title="Groups"><?php _e('Groups'); ?>
     <a class="count" href="<?php echo home_url(); ?>" title="View Groups"></a>
   </li>
   <li class="hub">

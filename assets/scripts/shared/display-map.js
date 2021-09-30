@@ -190,12 +190,12 @@ export default function () {
 
     //add counts
     var countInitiatives = Object.keys(response.initiatives).length;
+    // var countTrainers = Object.keys(response.trainers).length;
     var countHubs = Object.keys(response.hubs).length;
-    var countTrainers = Object.keys(response.trainers).length;
     // var countTotal = countInitiatives + countHubs;
     
     $('.key .initiative .count').html('(' + countInitiatives + ')');
-    $('.key .trainer .count').html('(' + countTrainers + ')');
+    // $('.key .trainer .count').html('(' + countTrainers + ')');
     $('.key .hub .count, #filter-type span.hubs').html('(' + countHubs + ')');
 
     // $('#filter-type option[value="2"]').html('Initiatives (' + countInitiatives + ')')
