@@ -274,8 +274,8 @@ export default function () {
     window.history.pushState("object or string", "Title", "?" + params.toString());
     
     if (tofinoJS.isFrontPage) {
-      window.location.href = tofinoJS.homeUrl + '/search-initiatives/?' + params.toString()
-    } else if(tofinoJS.postName === 'search-initiatives') {
+      window.location.href = tofinoJS.homeUrl + '/search-groups/?' + params.toString()
+    } else if(tofinoJS.postName === 'search-groups') {
       location.reload()
     } else {
       udpateFilterUi(params);

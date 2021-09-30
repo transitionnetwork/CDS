@@ -1,1 +1,1 @@
-<?php get_template_part('templates/content-page-list-initiatives'); ?>
+<?php get_template_part('templates/content-page-list-groups'); ?>
