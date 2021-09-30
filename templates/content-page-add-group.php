@@ -1,7 +1,7 @@
 <?php acf_form_head(); ?>
 
 <?php
-// Ensure initiative level posts are set to pending
+// Ensure group level posts are set to pending
 if(is_user_role('initiative')) {
   $post_status = 'pending';
 } else {
@@ -22,7 +22,7 @@ if(is_user_role('initiative')) {
             'post_title'	=> true,
             'post_content'	=> true,
             'return' => add_query_arg('added_post', 'initiative', '%post_url%'),
-            'submit_value' => 'Create Initiative',
+            'submit_value' => 'Create Group',
             'field_groups' => array ('group_5a26865e56e22', 'group_5a26865e64f00', 'group_5a26865e89711', 'group_5b3e27aee4439', 'group_606d979a4877d'),
             'new_post'		=> array(
               'post_type'		=> 'initiatives',

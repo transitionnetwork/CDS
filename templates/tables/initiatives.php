@@ -2,7 +2,7 @@
 <?php if($init_query->have_posts()) { ?>
   <table class="item-list">
     <tr>
-      <th class="col-a"><?php _e('Initiative', 'tofino'); ?></th>
+      <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
       <?php if(!is_tax()) { ?>
         <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
       <?php } ?>
@@ -66,7 +66,7 @@
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
             
             <?php if(can_write_initiative($post)) { ?>
-              <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
+              <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
               <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
 
               <form action="" method="post">

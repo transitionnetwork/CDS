@@ -17,7 +17,7 @@
   </div>
   
   <?php foreach($terms as $term) { ?>
-    <h2><?php _e('Initiative map', 'tofino'); ?> for <a href="<?php echo add_query_arg('hub_name', $term->slug, parse_post_link(5901)); ?>"><?php echo $term->name; ?></a></h2>
+    <h2><?php _e('Group map', 'tofino'); ?> for <a href="<?php echo add_query_arg('hub_name', $term->slug, parse_post_link(5901)); ?>"><?php echo $term->name; ?></a></h2>
     
     <?php $url = add_query_arg(array('hub_name' => $term->slug), parse_post_link(438));
     ?>

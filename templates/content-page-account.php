@@ -12,7 +12,7 @@
 <?php if(get_query_var('updated') == 'publish') { ?>
   <div class="container">
     <div class="alert top alert-success">
-     <?php _e('Initiative approved and published.', 'tofino'); ?>
+     <?php _e('Group approved and published.', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>
@@ -55,7 +55,7 @@
               <a class="nav-item nav-link" id="nav-hub-admin-tab" data-toggle="tab" href="#nav-hub-admin" role="tab" aria-controls="nav-hub-admin" aria-selected="false">Hub Admin</a>
             <?php } ?>
             
-            <a class="nav-item nav-link" id="nav-initiative-admin-tab" data-toggle="tab" href="#nav-initiative-admin" role="tab" aria-controls="nav-initiative-admin" aria-selected="false">Initiative Admin</a>
+            <a class="nav-item nav-link" id="nav-initiative-admin-tab" data-toggle="tab" href="#nav-initiative-admin" role="tab" aria-controls="nav-initiative-admin" aria-selected="false">Group Admin</a>
             
             <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
               <a class="nav-item nav-link" id="nav-filesharing-tab" data-toggle="tab" href="#nav-filesharing" role="tab" aria-controls="nav-filesharing" aria-selected="false">Filesharing</a>

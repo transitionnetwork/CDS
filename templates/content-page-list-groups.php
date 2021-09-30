@@ -15,7 +15,7 @@
             <?php } ?>
           <?php } else { ?>
             <li>
-              <?php _e('To add an initiative, please', 'tofino'); ?><br/>
+              <?php _e('To add a group, please', 'tofino'); ?><br/>
               <a class="btn btn-outline" href="<?php echo parse_post_link(459); ?>"><?php echo svg('key'); ?><?php _e('Sign in', 'tofino'); ?></a>
               <?php _e('or', 'tofino'); ?>
               <a class="btn btn-outline" href="<?php echo parse_post_link(460); ?>"><?php echo svg('key'); ?><?php _e('Register', 'tofino'); ?></a>

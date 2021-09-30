@@ -14,7 +14,7 @@
   <?php if($updated === 'author') { ?>
     <div class="container">
       <div class="alert top alert-success">
-        <?php _e('The author of this initiative has been updated', 'tofino'); ?>
+        <?php _e('The author of this group has been updated', 'tofino'); ?>
       </div>
     </div>
   <?php } ?>
@@ -23,7 +23,7 @@
 <?php if(get_query_var('edited_post')) { ?>
   <div class="container">
     <div class="alert top alert-success">
-      <?php _e('This initiative has been updated', 'tofino'); ?>
+      <?php _e('This group has been updated', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>
@@ -31,7 +31,7 @@
 <?php if(get_query_var('added_post')) { ?>
   <div class="container">
     <div class="alert top alert-success">
-      <?php if (wp_get_current_user()->roles[0] == 'initiative') {
+      <?php if (wp_get_current_user()->roles[0] === 'initiative') {
         _e('Thank you for your submission. It is now awaiting approval by a hub user.', 'tofino');
       } else {
         _e('Thank you for your submission', 'tofino');
@@ -44,7 +44,7 @@
   <?php if(get_post_status() === 'draft') { ?>
     <div class="container">
       <div class="alert top alert-success">
-        <?php _e('This initiative has now been removed and cannot be seen by the public.', 'tofino'); ?>
+        <?php _e('This group has now been removed and cannot be seen by the public.', 'tofino'); ?>
       </div>
     </div>
   <?php } ?>
@@ -78,8 +78,8 @@
             render_publish_button($post->ID);
           } ?>
           <?php if(can_write_initiative($post)) { ?>
-            <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
-            <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this initiative', 'tofino'); ?></a></div>
+            <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
+            <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this group', 'tofino'); ?></a></div>
             <div class="button-block">
               <form action="" method="post">
                 <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
