@@ -11,7 +11,7 @@
             <li><a class="btn btn-outline" href="<?php echo parse_post_link(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a></li>
 
             <?php if(is_user_role(array('administrator'))) { ?>
-              <li><a class="btn btn-outline" href="#"><?php echo svg('plus'); ?><?php _e('Register New User', 'tofino'); ?></a></li>
+              <li><a class="btn btn-outline" href="<?php echo get_the_permalink(); ?>"><?php echo svg('key'); ?><?php _e('Register New User', 'tofino'); ?></a></li>
             <?php } ?>
           <?php } else { ?>
             <li>
