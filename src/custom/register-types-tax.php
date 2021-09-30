@@ -5,8 +5,8 @@ function create_posttypes() {
     'initiatives',
     array(
       'labels' => array(
-        'name' => __('Initiatives'),
-        'singular_name' => __('Initiative')
+        'name' => __('Groups'),
+        'singular_name' => __('Group')
       ),
       'public' => true,
       'has_archive' => false,
