@@ -25,7 +25,7 @@ function send_pending_alert_to_hub($user, $initiatives) {
     'mark@benewith.com'
   );
 
-  $subject = 'Reminder: You have pending initiatives to approve';
+  $subject = 'Reminder: You have pending groups to approve';
 
   if ($user->first_name) {
     $message = '<p>Hello ' . $user->first_name . ',</p>';
@@ -33,7 +33,7 @@ function send_pending_alert_to_hub($user, $initiatives) {
     $message = '<p>Hello ' . $user->display_name . ',</p>';
   }
 
-  $message .= '<p>You have the following initiatives to approve</p>';
+  $message .= '<p>You have the following groups to approve</p>';
   $message .= '<ul>';
   foreach ($initiatives as $initiative) {
     $message .= '<li>' . get_the_title($initiative) . '</li>';

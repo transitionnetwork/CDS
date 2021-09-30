@@ -6,7 +6,7 @@
           <label for="type_name"><?php _e('Show:', 'tofino'); ?></label>
           <select name="type_name">
             <option value="1" <?php echo (get_query_var('type') === "1") ? 'selected' : null; ?>>All</option>
-            <option value="2" <?php echo (get_query_var('type') === "2") ? 'selected' : null; ?>>Initiatives</option>
+            <option value="2" <?php echo (get_query_var('type') === "2") ? 'selected' : null; ?>>Groups</option>
             <option value="3" <?php echo (get_query_var('type') === "3") ? 'selected' : null; ?>>Hubs</option>
             <!-- <option value="4" <?php echo (get_query_var('type') === "4") ? 'selected' : null; ?>>Trainers</option> -->
           </select>
@@ -67,7 +67,7 @@
 
   <!-- <form action="" method="GET" class="filter">
     <div class="search-wrap">
-      <input type="text" name="search" placeholder="Search initiatives..." value="<?php echo get_query_var('search'); ?>">
+      <input type="text" name="search" placeholder="Search groups..." value="<?php echo get_query_var('search'); ?>">
       <input type="submit" value="Search" class="btn btn-sm btn-primary">
     </div>
   </form> -->

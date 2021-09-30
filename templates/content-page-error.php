@@ -6,7 +6,7 @@
         $message = __('You do not have the correct permissions', 'tofino');
         break;
       case '2':
-        $message = __('Administrators can\'t add initiatives as their accounts aren\'t associated with a hub', 'tofino');
+        $message = __('Administrators can\'t add groups as their accounts aren\'t associated with a hub', 'tofino');
         break;
       default:
         $message = __('Unkown error', 'tofino');
