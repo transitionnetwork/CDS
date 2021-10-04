@@ -79,7 +79,7 @@
           } ?>
           <?php if(can_write_initiative($post)) { ?>
             <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
-            <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-initiative'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this group', 'tofino'); ?></a></div>
+            <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-group'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit this group', 'tofino'); ?></a></div>
             <div class="button-block">
               <form action="" method="post">
                 <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
