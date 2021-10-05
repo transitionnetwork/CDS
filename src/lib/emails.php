@@ -11,8 +11,8 @@ function custom_wp_new_user_notification_email($wp_new_user_notification_email, 
   $parent_user = get_user_by('id', $parent_id);
   
   $key = get_password_reset_key($user);
-  $message = '<p>';
-  $message .= sprintf(__('Welcome to Transition Groups,')) . '</p>';
+  $message = '<p><a href="' . home_url() . '">';
+  $message .= sprintf(__('Welcome to Transition Groups,')) . '</a></p>';
 
   if($parent_id) {
     $message .= '<p>' . $parent_user->user_email  . ' has registered you at our website.' . '</p>';
