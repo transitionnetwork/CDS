@@ -390,7 +390,7 @@ if (!is_admin()) {
 }
 
 function get_environment() {
-  if(strpos(get_site_url(), 'transitioninitiative.org') !== false) {
+  if(strpos(get_site_url(), 'transitiongroups.org') !== false) {
     return 'production';
   }
   

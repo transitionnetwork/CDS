@@ -1,4 +1,17 @@
 <?php
+// $args = array(
+//   'post_type' => 'initiatives',
+//   'posts_per_page' => -1,
+//   'tax_query' => array(
+//     array(
+//       'taxonomy' => 'hub',
+//       'operator' => 'NOT EXISTS'
+//     )
+//   )
+// );
+
+// var_dump(count(get_posts($args)));
+
 die();
 $args = array(
   'taxonomy' => 'hub',

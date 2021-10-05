@@ -9,7 +9,7 @@ function acf_custom_save($post_id)
 
     $post = get_post($post_id);
     if ($post->post_date === $post->post_modified) { // new post
-      email_created_post($post_id, 'healthcheck');
+      custom_email_created_post($post_id, 'healthcheck');
     }
   }
   
@@ -18,7 +18,7 @@ function acf_custom_save($post_id)
     $author = get_userdata($post->post_author);
     
     if ($post->post_date === $post->post_modified) { // new post
-      email_created_post($post_id, 'initiative');
+      custom_email_created_post($post_id, 'initiative');
     }
     
     //purge transients
@@ -30,7 +30,7 @@ function acf_custom_save($post_id)
   }
 
   if(get_post_type($post_id) === 'hub_applications') { // hub_application
-    email_hub_application();
+    custom_email_hub_application();
   }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);

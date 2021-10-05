@@ -7,13 +7,15 @@
 
 <?php $args = array();
 
-if(is_user_role('hub')) {
-  $hub = get_user_meta( get_current_user_id(), 'hub', true );
+if(is_user_role('administrator')) {
+  //let admins view all users
+  $args = array();  
+} else {
   $args = array(
     'meta_query' => array(
       array(
-        'key' => 'hub',
-        'value' => $hub
+        'key' => 'parent_id',
+        'value' => get_current_user_id()
       )
     )
   );

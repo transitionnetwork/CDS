@@ -134,7 +134,7 @@ function check_post() {
   if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
     if (isset($_POST['pid']) && !empty($_POST['pid'])) {
       change_post_status((int)$_POST['pid'], 'publish');
-      alert_user_initiative_approved($_POST['pid']);
+      custom_email_alert_user_initiative_approved($_POST['pid']);
       wp_safe_redirect(esc_url(add_query_arg('updated', 'publish', home_url('account'))));
       exit();
     }
@@ -144,7 +144,7 @@ function check_post() {
   if (isset($_POST['type']) && $_POST['type'] == 'request_hub_access') {
     if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
       $user_id = (int)$_POST['user_id'];
-      $success = send_access_request_to_hub($user_id);
+      $success = custom_email_send_access_request_to_hub($user_id);
       
       if($success) {
         $date = date('Y-m-d H:i:s');

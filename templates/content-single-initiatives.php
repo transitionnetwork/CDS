@@ -14,7 +14,8 @@
   <?php if($updated === 'author') { ?>
     <div class="container">
       <div class="alert top alert-success">
-        <?php _e('The author of this group has been updated', 'tofino'); ?>
+        <?php _e('The author of this group has been updated. The new author has been emailed', 'tofino'); ?>
+        <?php custom_email_initaitive_author_updated(get_the_ID()) ?>
       </div>
     </div>
   <?php } ?>
@@ -153,8 +154,7 @@
               </section>
             <?php } ?>
 
-            <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-            
+            <?php if (is_user_role(array('administrator', 'super_hub', 'hub') && can_write_initiative($post))) { ?>
               <?php get_template_part('templates/partials/update-author'); ?>
             <?php } ?>
           </aside>
