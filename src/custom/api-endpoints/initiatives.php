@@ -20,7 +20,7 @@ function get_group_data($post) {
   );
 }
 
-function endpoint_get_groups($request) {
+function endpoint_get_groups(WP_REST_Request $request) {
   $data = [];
   $default_per_page = 20;
 
@@ -28,6 +28,10 @@ function endpoint_get_groups($request) {
     'post_type' => 'initiatives',
     'posts_per_page' => $default_per_page
   );
+  
+  if(array_key_exists('slug', $request->get_query_params())) {
+    $args['name'] = $request['slug'];
+  }
 
   $params_args = endpoint_get_params_args($request);
   $args = array_merge($args, $params_args);
@@ -55,7 +59,7 @@ function endpoint_get_groups($request) {
 function endpoint_get_groups_by_distance($request) {
   $data = [];
 
-  if(!property_exists($request, 'distance')) {
+  if(!array_key_exists('distance', $request->get_query_params())) {
     //default distance of 50 miles
     $request['distance'] = 50;
   }
