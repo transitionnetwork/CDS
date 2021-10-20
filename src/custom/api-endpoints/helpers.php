@@ -2,12 +2,17 @@
 function endpoint_add_custom_routes() {
   register_rest_route( 'cds/v1', '/initiatives', array(
     'methods' => 'GET',
-    'callback' => 'endpoint_get_initiatives',
+    'callback' => 'endpoint_get_groups',
   ));
-
+  
   register_rest_route( 'cds/v1', '/groups', array(
     'methods' => 'GET',
-    'callback' => 'endpoint_get_initiatives',
+    'callback' => 'endpoint_get_groups',
+  ));
+
+  register_rest_route( 'cds/v1', '/group-distance', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_groups_by_distance',
   ));
 
   register_rest_route( 'cds/v1', '/trainers', array(
@@ -145,4 +150,51 @@ function endpoint_get_params_args($request) {
   }
 
   return $args;
+}
+
+function get_nearby_locations( $lat, $lng, $distance, $post_type = 'initiatives' ) {
+    global $wpdb;
+    // Radius of the earth 3959 miles or 6371 kilometers.
+    $earth_radius = 3959;
+
+    $sql = $wpdb->prepare( "
+        SELECT DISTINCT
+            p.ID,
+            p.post_title,
+            p.post_name,
+            map_lat.meta_value as locLat,
+            map_lng.meta_value as locLong,
+            ( %d * acos(
+            cos( radians( %s ) )
+            * cos( radians( map_lat.meta_value ) )
+            * cos( radians( map_lng.meta_value ) - radians( %s ) )
+            + sin( radians( %s ) )
+            * sin( radians( map_lat.meta_value ) )
+            ) )
+            AS distance
+        FROM $wpdb->posts p
+        INNER JOIN $wpdb->postmeta map_lat ON p.ID = map_lat.post_id
+        INNER JOIN $wpdb->postmeta map_lng ON p.ID = map_lng.post_id
+        WHERE 1 = 1
+        AND p.post_type = '$post_type'
+        AND p.post_status = 'publish'
+        AND map_lat.meta_key = 'cloned_lat'
+        AND map_lng.meta_key = 'cloned_lng'
+        HAVING distance < %s
+        ORDER BY distance ASC",
+        $earth_radius,
+        $lat,
+        $lng,
+        $lat,
+        $distance
+    );
+
+    // Uncomment and paste into phpMyAdmin to debug.
+    // echo $sql;
+
+    $nearbyLocations = $wpdb->get_results( $sql );
+
+    if ( $nearbyLocations ) {
+        return $nearbyLocations;
+    }
 }

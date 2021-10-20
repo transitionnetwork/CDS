@@ -1,5 +1,26 @@
 <?php
-function endpoint_get_initiatives($request) {
+function get_group_data($post) {
+  $logo = get_field('logo', $post);
+  $logo = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
+
+  return array(
+    'id' => $post->ID,
+    'title' => $post->post_title,
+    'url' => get_the_permalink($post),
+    'logo' => $logo,
+
+    'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
+    'countries' => endpoint_get_taxonomy_terms($post, 'country'),
+    'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
+
+    'description' => apply_filters('the_content', get_post_field('post_content', $post->ID)),
+    
+    'location' => endpoint_get_location($post),
+    'contact' => endpoint_get_contact($post),
+  );
+}
+
+function endpoint_get_groups($request) {
   $data = [];
   $default_per_page = 20;
 
@@ -16,25 +37,7 @@ function endpoint_get_initiatives($request) {
   if($post_query->have_posts()) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
-      
-      $logo = get_field('logo', $post);
-      $logo = ($logo) ? $logo['sizes']['large'] : '';
-  
-      $data[] = array(
-        'id' => $post->ID,
-        'title' => $post->post_title,
-        'url' => get_the_permalink($post),
-        'logo' => $logo,
-  
-        'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
-        'countries' => endpoint_get_taxonomy_terms($post, 'country'),
-        'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
-  
-        'description' => apply_filters('the_content', get_post_field('post_content', $post->ID)),
-        
-        'location' => endpoint_get_location($post),
-        'contact' => endpoint_get_contact($post),
-      );
+      $data[] = get_group_data($post);
     endwhile;
   }
 
@@ -46,5 +49,25 @@ function endpoint_get_initiatives($request) {
     return array(
       'body' => 'No Records Found'
     );
+  }
+}
+
+function endpoint_get_groups_by_distance($request) {
+  $data = [];
+
+  if(!property_exists($request, 'distance')) {
+    //default distance of 50 miles
+    $request['distance'] = 50;
+  }
+
+  $results = get_nearby_locations($request['lat'], $request['lng'], $request['distance']);
+
+  if($results) {
+    foreach($results as $result) {
+      $post = get_post($result->ID);
+      $data[] = array_merge(get_group_data($post), array('distance_miles' => $result->distance));
+    }
+    
+    return array_merge(array('body' => $data));
   }
 }
