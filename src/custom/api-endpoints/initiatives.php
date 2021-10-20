@@ -69,9 +69,13 @@ function endpoint_get_groups_by_distance($request) {
   if($results) {
     foreach($results as $result) {
       $post = get_post($result->ID);
-      $data[] = array_merge(get_group_data($post), array('distance_miles' => $result->distance));
+      $data[] = array_merge(get_group_data($post), array('distance_miles' => $result->distance, 'slug' => $result->post_name));
     }
     
     return array_merge(array('body' => $data));
+  } else {
+    return array(
+      'body' => 'No Records Found'
+    );
   }
 }
