@@ -1,17 +1,16 @@
 <?php
-// $args = array(
-//   'post_type' => 'initiatives',
-//   'posts_per_page' => -1,
-//   'tax_query' => array(
-//     array(
-//       'taxonomy' => 'hub',
-//       'operator' => 'NOT EXISTS'
-//     )
-//   )
-// );
-
-// var_dump(count(get_posts($args)));
-
+function update_all_posts() {
+    $args = array(
+        'post_type' => array('initiatives', 'trainers'),
+        'numberposts' => -1
+    );
+    $all_posts = get_posts($args);
+    foreach ($all_posts as $single_post){
+        $single_post->post_title = $single_post->post_title.'';
+        wp_update_post( $single_post );
+    }
+}
+add_action( 'wp_loaded', 'update_all_posts' );
 die();
 $args = array(
   'taxonomy' => 'hub',

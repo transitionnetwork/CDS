@@ -21,6 +21,7 @@ function endpoint_get_initiatives($request) {
       $logo = ($logo) ? $logo['sizes']['large'] : '';
   
       $data[] = array(
+        'id' => $post->ID,
         'title' => $post->post_title,
         'url' => get_the_permalink($post),
         'logo' => $logo,

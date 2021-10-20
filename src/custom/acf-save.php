@@ -25,12 +25,20 @@ function acf_custom_save($post_id)
     delete_transient('map_query');
     delete_transient('map_points');
     delete_transient('initiative_list_item_', $post_id);
-    
-    //update 
   }
 
   if(get_post_type($post_id) === 'hub_applications') { // hub_application
     custom_email_hub_application();
+  }
+
+  if(in_array(get_post_type($post_id), array('initaitives', 'trainers'))) {
+    //clone map latlng
+    die();
+    $map = get_field('map', $post_id);
+    if($map && !empty($map['markers'])) {
+      update_post_meta( $post_id, 'cloned_lat', $map['markers'][0]['lat']);
+      update_post_meta( $post_id, 'cloned_lng', $map['markers'][0]['lng']);
+    }
   }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
