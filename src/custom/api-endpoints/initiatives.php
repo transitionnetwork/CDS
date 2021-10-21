@@ -75,7 +75,7 @@ function endpoint_get_groups_by_distance($request) {
     return array_merge(array('body' => $data));
   } else {
     return array(
-      'body' => 'No Records Found'
+      'body' => 'No Groups Found within ' . $request['distance'] . ' miles'
     );
   }
 }
