@@ -49,10 +49,10 @@ function acf_custom_after_save($post_id) {
 
     $args = array(
       'ID' => $post_id,
-      'post_tite' => $name
+      'post_title' => $name
     );
 
-    wp_insert_post($args);
+    $id = wp_update_post($args);
   }
 }
 add_filter('acf/save_post', 'acf_custom_after_save');
