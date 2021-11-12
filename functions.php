@@ -189,6 +189,17 @@ function prepare_post_content($field)
 }
 add_filter('acf/prepare_field/name=_post_content', 'prepare_post_content');
 
+function change_post_content_type( $field ) { 
+  //disable wysiwyg fancies
+  if($field['type'] == 'wysiwyg') { 
+    $field['tabs'] = 'visual';
+    $field['toolbar'] = 'basic';
+    $field['media_upload'] = 0; 
+  } 
+return $field; }
+add_filter( 'acf/get_valid_field', 'change_post_content_type'); 
+
+
 //Logout link with nonce
 function add_logout_link($nav, $args)
 {
