@@ -3,8 +3,8 @@
 <main>
   <div class="container-fluid">
 
-    <div class="row justify-content-md-between">
-      <div class="col-12 col-md-3 order-md-2">
+    <div class="row justify-content-lg-between">
+      <div class="col-12 col-lg-3 order-lg-2">
         <ul class="button-group">
           <?php if(is_user_logged_in()) { ?>
             <li><a class="btn btn-outline" href="<?php echo parse_post_link(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Group', 'tofino'); ?></a></li>
@@ -28,7 +28,7 @@
         </ul>
       </div>
       
-      <div class="col-12 col-md-9 order-md-1">
+      <div class="col-12 col-lg-9 order-lg-1">
         <?php if (get_query_var('hub_name')) :
           $term = get_term_by('slug', get_query_var('hub_name'), 'hub');
           echo '<h1>Hub: ' . $term->name . '</h1>';
