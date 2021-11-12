@@ -84,8 +84,7 @@ gulp.task('build',
     'svgs',
     'styles',
     'scripts',
-    'fonts',
-    'php:lint'
+    'fonts'
   ]
 );
 

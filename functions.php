@@ -180,16 +180,6 @@ function wpse132196_redirect_after_trashing($post_id) {
 
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
 
-//Change label of Content Editor in acf_form()
-function prepare_post_title($field)
-{
-  global $post;
-  if($post->post_name === 'add-trainer') {
-    $field['label'] = "Full Name";
-  }
-  return $field;
-}
-add_filter('acf/prepare_field/name=_post_title', 'prepare_post_title');
 
 //Change label of Content Editor in acf_form()
 function prepare_post_content($field)

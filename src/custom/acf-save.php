@@ -33,7 +33,6 @@ function acf_custom_save($post_id)
 
   if(in_array(get_post_type($post_id), array('initaitives', 'trainers'))) {
     //clone map latlng
-    die();
     $map = get_field('map', $post_id);
     if($map && !empty($map['markers'])) {
       update_post_meta( $post_id, 'cloned_lat', $map['markers'][0]['lat']);
@@ -42,3 +41,18 @@ function acf_custom_save($post_id)
   }
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
+
+
+function acf_custom_after_save($post_id) {
+  if(get_post_type($post_id) === 'trainers') { // hub_application
+    $name = get_field('general_information_name', $post_id);
+
+    $args = array(
+      'ID' => $post_id,
+      'post_tite' => $name
+    );
+
+    wp_insert_post($args);
+  }
+}
+add_filter('acf/save_post', 'acf_custom_after_save');
