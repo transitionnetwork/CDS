@@ -18,7 +18,7 @@
             'post_content'	=> false,
             'return' => add_query_arg('added_post', 'trainer', '%post_url%'),
             'submit_value' => 'Add Trainer',
-            // 'field_groups' => array ('group_60ccb2664b168', 'group_5a26865e64f00', 'group_5a26865e89711'),
+            'field_groups' => array ('group_618e60616625b'),
             'new_post'		=> array(
               'post_type'		=> 'trainers',
               'post_status'	=> 'pending'
