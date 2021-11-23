@@ -5,6 +5,7 @@
 		exit;
 	} else { ?>
 		<?php wp_reset_postdata(); ?>
+		
 		<main>
 			<div class="container">
 				<div class="row justify-content-center">	
@@ -14,11 +15,11 @@
 						acf_form_head();
 						$args = array(
 							'post_id'		=> get_query_var('edit_post'),
-							'post_title'	=> true,
+							'post_title'	=> false,
 							'post_content'	=> false,
 							'return' => add_query_arg('updated', 'trainer', get_the_permalink(get_query_var('edit_post'))),
-							'submit_value' => 'Update trainer',
-							'field_groups' => array ('group_60ccb2664b168', 'group_5a26865e64f00', 'group_5a26865e89711'),
+							'submit_value' => 'Update Trainer',
+							// 'field_groups' => array ('group_60ccb2664b168', 'group_5a26865e64f00', 'group_5a26865e89711'),
 						);
 						acf_form($args);
 						?>
@@ -26,5 +27,6 @@
 				</div>
 			</div>
 		</main>
+	
 	<?php } ?>
 <?php endwhile; ?>
