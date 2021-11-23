@@ -13,7 +13,11 @@
       <?php } ?>
 
       <?php
-      echo (get_words(get_field('your_website_listing_training_bio'), 20)); ?>&hellip;
+      $summary = get_words(get_field('general_information_trainer_bio'), 20);
+      $summary = strrev(implode(strrev(''), explode(strrev('</p>'), strrev($summary), 2))); //remove last </p>
+      ?>
+
+      <?php echo $summary; ?>&hellip;
 
       <p class="mb-0"><a href="<?php echo get_the_permalink(); ?>">&raquo; Read More</a></p>
 

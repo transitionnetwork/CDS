@@ -25,6 +25,8 @@
     </div>
   <?php } ?>
   
+  <?php $gen_info = get_field('general_information'); ?>
+
   <main>
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
@@ -52,18 +54,13 @@
           </ul>
 
           <?php $field_names = array(
-            'training_information_training_format_detail' => 'Detail of coaching formats offered',
-            'training_information_training_regions' => 'Regional Focus',
-            'training_information_training_other_organisations' => 'Training undertaken by trainer',
-            'your_website_listing_training_bio' => 'Biography'
+            'general_information_trainer_bio',
           ); ?>
 
-          <?php foreach($field_names as $field_name => $field_label) {
+          <?php foreach($field_names as $field_name) {
             if(get_field($field_name)) { ?>
             <div class="mt-4">
-              <?php if($field_label) { ?>
-                <h3 class="normal-size"><strong><?php echo $field_label; ?></strong></h3>
-              <?php } ?>
+              <h3 class="normal-size"><strong><?php echo get_field_object($field_name)['label']; ?></strong></h3>
               <div class="mt-1">
                 <?php echo get_field($field_name); ?>
               </div>
@@ -72,7 +69,7 @@
           } ?>
           
           <?php if(is_user_trainer_admin()) { ?>
-            <div class="mt-3">
+            <div class="mt-5">
               <p><a href="<?php echo add_query_arg('edit_post', get_the_ID(), parse_post_link(6741)); ?>" class="btn btn-dark btn-sm"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a></p>
           
               <?php get_template_part('templates/partials/form-toggle-trainer-state'); ?>
@@ -82,16 +79,16 @@
 
         <div class="col-12 col-lg-4">
           <aside>
-            <?php $training_photo = get_field('your_website_listing_training_photo'); ?>
+            <?php $training_photo = get_field('general_information_trainer_photo'); ?>
             <div>
               <?php if($training_photo) { ?>
                 <img src="<?php echo $training_photo['sizes']['large']; ?>">
               <?php } ?>
             </div>
             
-            <?php $map = get_field('map'); ?>
+            <?php $map = get_field('general_information_location')['map']; ?>
             <?php set_query_var('map', $map); ?>
-            <?php if($map) { ?>
+            <?php if(!empty($map)) { ?>
               <div class="mt-4">
                 <?php get_template_part('templates/partials/single-map'); ?>
               </div>
@@ -124,14 +121,12 @@
               </ul>
             <?php } ?>
 
-            <?php $additional = get_field('additional_web_addresses'); 
-            if($additional) { ?>
+            <?php $website = get_field('general_information_your_website'); ?>
+            <?php if($website) { ?>
               <section>
-                <h4><?php _e('More Links', 'tofino'); ?></h4>
+                <h4><?php _e('Website', 'tofino'); ?></h4>
                 <ul>
-                  <?php foreach($additional as $item) { ?>
-                    <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
-                  <?php } ?>
+                  <li><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></li>
                 </ul>
               </section>
             <?php } ?>
