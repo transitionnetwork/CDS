@@ -5,6 +5,7 @@
   <?php if(is_user_logged_in()) { ?>
     <p>
       <a class="btn btn-primary btn-sm" href="<?php echo parse_post_link(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a>
+      <a class="btn btn-primary btn-sm" href="<?php echo parse_post_link(7097); ?>"><?php echo svg('cloud-download'); ?>Export CSV of trainer data</a>
     </p>
   <?php } ?>
   <?php if ( $trainers_query->have_posts() ) : ?>
