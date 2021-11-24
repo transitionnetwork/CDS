@@ -33,7 +33,6 @@
       <div class="row justify-content-between">
         <div class="col-12 col-lg-7">
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
-          <?php $formats = get_list_terms('trainer_type'); ?>
           <?php $languages = get_list_terms('trainer_language'); ?>
           <?php $topics = get_list_terms('trainer_topic'); ?>
           <?php $countries = get_list_terms('country'); ?>

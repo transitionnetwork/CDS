@@ -56,3 +56,20 @@ function acf_custom_after_save($post_id) {
   }
 }
 add_filter('acf/save_post', 'acf_custom_after_save');
+
+function validate_bio_words( $valid, $value, $field, $input_name ) {
+
+  // Bail early if value is already invalid.
+  if( $valid !== true ) {
+      return $valid;
+  }
+
+  // Prevent value from saving if it contains the companies old name.
+  if(str_word_count($value) > 250 ) {
+    return __('Please enter less than 250 words.', 'tofino');
+  }
+  return $valid;
+}
+
+add_filter('acf/validate_value/name=trainer_bio', 'validate_bio_words', 10, 4);
+
