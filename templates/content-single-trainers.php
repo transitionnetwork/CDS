@@ -38,9 +38,6 @@
           <?php $countries = get_list_terms('country'); ?>
 
           <ul class="meta">
-            <?php if($formats) { ?>
-              <li><strong>Traing Formats: </strong> <?php echo $formats; ?></li>
-            <?php } ?>
             <?php if($languages) { ?>
               <li><strong>Languages: </strong> <?php echo $languages; ?></li>
             <?php } ?>
@@ -97,27 +94,6 @@
             <?php if (get_field('email')) { ?>
               <label><?php echo get_field_object('email')['label']; ?></label>
               <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
-            <?php } ?>
-
-            <?php if(get_field('website') || get_field('facebook') || get_field('instagram') || get_field('twitter') || get_field('youtube')) { ?>
-              <label><?php _e('Links', 'tofino'); ?></label>
-              <ul class="links">
-                <?php if (get_field('website')) { ?>
-                  <li><a href="<?php echo get_field('website'); ?>" target="_blank">Web</a></li>
-                <?php } ?>
-                <?php if (get_field('twitter')) { ?>
-                  <li><a href="<?php echo get_field('twitter'); ?>" target="_blank"><?php echo svg('twitter'); ?></a></li>
-                <?php } ?>
-                <?php if (get_field('facebook')) { ?>
-                  <li><a href="<?php echo get_field('facebook'); ?>" target="_blank"><?php echo svg('facebook'); ?></a></li>
-                <?php } ?>
-                <?php if (get_field('instagram')) { ?>
-                  <li><a href="<?php echo get_field('instagram'); ?>" target="_blank"><?php echo svg('instagram'); ?></a></li>
-                <?php } ?>
-                <?php if (get_field('youtube')) { ?>
-                  <li><a href="<?php echo get_field('youtube'); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
-                <?php } ?>
-              </ul>
             <?php } ?>
 
             <?php $website = get_field('general_information_your_website'); ?>
