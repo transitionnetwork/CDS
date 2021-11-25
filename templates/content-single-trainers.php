@@ -36,16 +36,20 @@
           <?php $languages = get_list_terms('trainer_language'); ?>
           <?php $topics = get_list_terms('trainer_topic'); ?>
           <?php $countries = get_list_terms('country'); ?>
+          <?php $regions = get_field('additional_information_trainer_regions'); ?>
 
           <ul class="meta">
             <?php if($languages) { ?>
-              <li><strong>Languages: </strong> <?php echo $languages; ?></li>
+              <li><strong>Languages:</strong>&nbsp;<?php echo $languages; ?></li>
             <?php } ?>
             <?php if($topics) { ?>
-              <li><strong>Topics: </strong> <?php echo $topics; ?></li>
+              <li><strong>Topics:</strong>&nbsp;<?php echo $topics; ?></li>
             <?php } ?>
             <?php if($countries) { ?>
-              <li><strong>Countries: </strong> <?php echo $countries; ?></li>
+              <li><strong>Countries:</strong>&nbsp;<?php echo $countries; ?></li>
+            <?php } ?>
+            <?php if($regions) { ?>
+              <li><strong>Regions:</strong>&nbsp;<?php echo $regions; ?>
             <?php } ?>
           </ul>
 

@@ -9,13 +9,14 @@ $args = array(
 $init_query = new WP_Query($args); ?>
 
 <?php session_start();
-$export_data[] = ["Name", "Bio", "Profile Photo", "Location", "Website", "Languages", "Topics", "Countries"];
+$export_data[] = ["Name", "Bio", "Profile Photo", "Location", "Website", "Languages", "Topics", "Countries", "Regions"];
 
 while ($init_query->have_posts()) : $init_query->the_post();
 
   $languages = get_list_terms('trainer_language');
   $topics = get_list_terms('trainer_topic');
   $countries = get_list_terms('country');
+  $regions = get_field('additional_information_trainer_regions');
 
   $name = get_the_title();
   $bio = get_field('general_information_trainer_bio');
