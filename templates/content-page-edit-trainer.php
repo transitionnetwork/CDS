@@ -20,7 +20,7 @@
 							'post_title'	=> false,
 							'post_content'	=> false,
 							'return' => add_query_arg('updated', 'trainer', get_the_permalink(get_query_var('edit_post'))),
-							'submit_value' => 'Update Trainer',
+							'submit_value' => __('Update Trainer'),
 						));
 						?>
 
