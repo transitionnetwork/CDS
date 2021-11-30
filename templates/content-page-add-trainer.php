@@ -18,13 +18,17 @@
             'post_content'	=> false,
             'return' => add_query_arg('added_post', 'trainer', '%post_url%'),
             'submit_value' => 'Add Trainer',
-            // 'field_groups' => array ('group_618e60616625b'),
             'new_post'		=> array(
               'post_type'		=> 'trainers',
               'post_status'	=> 'pending'
-            ),
-          ));
-          echo '<div class="button-block"><a class="btn btn-secondary" href="javascript:history.go(-1)">Cancel</a></div>'; ?>
+            )
+          )); ?>
+          <div class="button-block">
+            <a class="btn btn-secondary" href="javascript:history.go(-1)"><?php _e('Cancel', 'tofino'); ?></a>
+          </div>; ?>
+
+          <?php $footer_text = get_field('footer_text') ; ?>
+          <?php echo ($footer_text) ? $footer_text : null; ?>
         <?php } ?>
       </div>
     </div>
