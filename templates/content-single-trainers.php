@@ -85,7 +85,7 @@
                 <img src="<?php echo $training_photo['sizes']['large']; ?>">
               <?php } ?>
             </div>
-            
+
             <?php $map = get_field('general_information_location')['map']; ?>
             <?php set_query_var('map', $map); ?>
             <?php if(!empty($map)) { ?>
@@ -93,7 +93,6 @@
                 <?php get_template_part('templates/partials/single-map'); ?>
               </div>
             <?php } ?>
-            
   
             <?php if (get_field('email')) { ?>
               <label><?php echo get_field_object('email')['label']; ?></label>

@@ -39,11 +39,7 @@ function acf_custom_save($post_id)
       update_post_meta( $post_id, 'cloned_lng', $map['markers'][0]['lng']);
     }
   }
-}
-add_filter('acf/save_post', 'acf_custom_save', 20);
 
-
-function acf_custom_after_save($post_id) {
   if(get_post_type($post_id) === 'trainers') { // hub_application
     $name = get_field('general_information_name', $post_id);
 
@@ -52,10 +48,32 @@ function acf_custom_after_save($post_id) {
       'post_title' => $name
     );
 
-    $id = wp_update_post($args);
+    $created_id = wp_update_post($args);
+
+    //get_flag;
+    $flag = get_post_meta($created_id, 'created_flag', true);
+
+    if ($flag === 'already_created') {
+      // this is not a new post
+      return;
+    }
+    
+    // set flag
+    update_post_meta($post_id, 'created_flag', 'already_created');
+
+    $trainer_admin_users = get_users(array( 'role__in' => array( 'trainer_admin')));
+
+    if($trainer_admin_users) {
+      $trainer_admin_emails = array();
+      foreach($trainer_admin_users as $user) {
+        $trainer_admin_emails[] = $user->user_email;
+      }
+      custom_email_send_transactional_email(7124, $trainer_admin_emails);
+    }
   }
 }
-add_filter('acf/save_post', 'acf_custom_after_save');
+add_filter('acf/save_post', 'acf_custom_save', 20);
+
 
 function validate_bio_words( $valid, $value, $field, $input_name ) {
 
