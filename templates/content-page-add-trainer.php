@@ -25,7 +25,7 @@
           )); ?>
           <div class="button-block">
             <a class="btn btn-secondary" href="javascript:history.go(-1)"><?php _e('Cancel', 'tofino'); ?></a>
-          </div>; ?>
+          </div>
 
           <?php $footer_text = get_field('footer_text') ; ?>
           <?php echo ($footer_text) ? $footer_text : null; ?>
