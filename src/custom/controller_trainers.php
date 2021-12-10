@@ -3,18 +3,19 @@ function trainers_get() {
   $args = array(
     'post_type' => 'trainers',
     'posts_per_page' => -1,
-    'meta_query' => array(
-      array(
-        'key' => 'trainer_confirmation',
-        'value' => true
-      )
-    )
+    // 'meta_query' => array(
+    //   array(
+    //     'key' => 'trainer_confirmation',
+    //     'value' => true
+    //   )
+    // )
   );
 
   if(is_user_trainer_admin()) {
     $args['post_status'] = array('pending', 'publish');
   }
 
+  $posts = new WP_Query($args);
 
   return new WP_Query($args);
 }
