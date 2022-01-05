@@ -6,6 +6,10 @@ $args = array(
   'post_status' => 'publish'
 );
 
+if(is_user_trainer_admin()) {
+  $args['post_status'] = array('pending', 'publish');
+}
+
 $init_query = new WP_Query($args); ?>
 
 <?php session_start();
