@@ -119,16 +119,15 @@ function composer_error_notice()
 }
 
 // Admin notice for missing dist directory.
-function missing_dist_error_notice()
-{
+function missing_dist_error_notice() {
   ?>
-<div class="error notice">
-    <p>
-        <?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino-nt'); ?>
-    </p>
-</div>
-<?php
+  <div class="error notice">
+      <p>
+          <?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino-nt'); ?>
+      </p>
+  </div>
 
+  <?php
 }
 
 function dd($string)

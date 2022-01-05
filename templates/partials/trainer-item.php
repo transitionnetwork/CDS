@@ -17,7 +17,7 @@
       $summary = strrev(implode(strrev(''), explode(strrev('</p>'), strrev($summary), 2))); //remove last </p>
       ?>
 
-      <?php echo $summary; ?>&hellip;
+      <?php echo strip_tags($summary); ?>&hellip;
 
       <p class="mb-0"><a href="<?php echo get_the_permalink(); ?>">&raquo; Read More</a></p>
 
