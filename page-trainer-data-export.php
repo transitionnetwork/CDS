@@ -23,7 +23,7 @@ while ($init_query->have_posts()) : $init_query->the_post();
   $regions = get_field('additional_information_trainer_regions');
 
   $name = get_the_title();
-  $bio = get_field('general_information_trainer_bio');
+  $bio = strip_tags(get_field('general_information_trainer_bio'));
 
   $training_photo = get_field('general_information_trainer_photo');
   $photo = ($training_photo) ? $training_photo['url'] : null;
@@ -37,4 +37,5 @@ while ($init_query->have_posts()) : $init_query->the_post();
 
 
 endwhile; ?>
+
 <?php outputCsv(date('Ymd') . 'Transition_Groups_Trainers_Export.csv', $export_data); ?>
