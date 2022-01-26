@@ -47,9 +47,15 @@ function ajax_get_post_markers($params, $cache_expiry) {
         $results = array();
         foreach($posts as $post) {
           
-          $map = get_field('map', $post->ID);
-
           $post_type = get_post_type($post->ID);
+          
+          if($post_type === 'initiatives') {
+            $map = get_field('map', $post->ID);
+          }
+          
+          if($post_type === 'trainer') {
+            $map = get_field('general_information_location_map', $post->ID);
+          }
           
           //only show those that aren't saved with the default coords
           if($map['markers']) {
@@ -172,8 +178,8 @@ function ajax_get_map_markers() {
   $markers = array();
   $markers = array(
     'initiatives' => ($post_markers['initiatives']) ? $post_markers['initiatives'] : array(),
-    // 'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
-    'hubs' => ajax_get_hub_markers($params, $cache_expiry)
+    'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
+    'hubs' => ajax_get_hub_markers($params, $cache_expiry),
   );
   
   echo json_encode($markers);

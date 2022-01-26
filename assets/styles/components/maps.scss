@@ -175,6 +175,14 @@
   }
 }
 
+.trainer-cluster {
+  background-color: rgba($brand-trainer, 0.75);
+
+  div {
+    background-color: $brand-trainer;
+  }
+}
+
 .leaflet-control-geosearch .leaflet-bar-part,
 .leaflet-control-locate .leaflet-bar-part {
   background-size: contain;

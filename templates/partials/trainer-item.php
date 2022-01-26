@@ -1,6 +1,5 @@
 <div class="col-12 col-md-6 col-lg-4">
   <div class="trainer-item">
-    <?php var_dump(get_field('email')); ?>
     <?php $photo = (get_field('general_information_trainer_photo')) ? get_field('general_information_trainer_photo')['sizes']['large'] : get_field('placeholder', 'options')['sizes']['large']; ?>
     
     <a class="thumbnail-bg" href="<?php echo get_the_permalink(); ?>" style="background-image: url(<?php echo $photo; ?>)"></a>

@@ -15,7 +15,6 @@ export default function () {
   function getMarkerParams() {
     var params = {}
     for (let p of getUpdateParams()) {
-      console.log(p)
       params[p[0]] = p[1];
     }
 
@@ -29,18 +28,6 @@ export default function () {
       attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
       maxZoom: 18,
     }).addTo(map);
-
-    // map.addControl(new L.Control.Search({
-    //   url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
-    //   jsonpParam: 'json_callback',
-    //   propertyName: 'display_name',
-    //   propertyLoc: ['lat', 'lon'],
-    //   marker: L.circleMarker([0, 0], { radius: 30 }),
-    //   autoCollapse: true,
-    //   autoType: false,
-    //   minLength: 2,
-    //   zoom: 13
-    // }));
 
     L.control.locate({
       locateOptions: {
@@ -161,7 +148,7 @@ export default function () {
       iconCreateFunction: function (cluster) {
         return L.divIcon({
           html: '<div><span>' + cluster.getChildCount() + '</span></div>',
-          className: 'hub-cluster marker-cluster',
+          className: 'trainer-cluster marker-cluster',
           iconSize: [40, 40]
         });
       }
@@ -182,7 +169,7 @@ export default function () {
     }
 
     map.addLayer(trainerMarkers);
-    
+
     /////
 
     var bounds = L.latLngBounds(range).pad(0);
@@ -190,12 +177,12 @@ export default function () {
 
     //add counts
     var countInitiatives = Object.keys(response.initiatives).length;
-    // var countTrainers = Object.keys(response.trainers).length;
+    var countTrainers = Object.keys(response.trainers).length;
     var countHubs = Object.keys(response.hubs).length;
     // var countTotal = countInitiatives + countHubs;
     
     $('.key .initiative .count').html('(' + countInitiatives + ')');
-    // $('.key .trainer .count').html('(' + countTrainers + ')');
+    $('.key .trainer .count').html('(' + countTrainers + ')');
     $('.key .hub .count, #filter-type span.hubs').html('(' + countHubs + ')');
 
     // $('#filter-type option[value="2"]').html('Initiatives (' + countInitiatives + ')')
@@ -204,6 +191,7 @@ export default function () {
   
   function getMarkers(params) {
     $('#map-loading').show();
+    console.log(params)
     
     $.ajax({
       url: tofinoJS.ajaxUrl,
