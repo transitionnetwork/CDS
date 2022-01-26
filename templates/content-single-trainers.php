@@ -97,16 +97,18 @@
             <?php $email = get_field('general_information_email'); ?>
             <?php $website = get_field('general_information_your_website'); ?>
             <?php if($website && $email) { ?>
-              <section>
                 <?php if($email) { ?>
-                  <h4><?php _e('Email', 'tofino'); ?></h4>
-                  <p><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
-                <?php } ?>
-                <?php if($website) { ?>
-                  <h4><?php _e('Website', 'tofino'); ?></h4>
-                  <p><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></p>
-                <?php } ?>
-              </section>
+                <div>
+                  <label><?php _e('Email', 'tofino'); ?></label>
+                  <div><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></div>
+                </div>
+              <?php } ?>
+              <?php if($website) { ?>
+                <div>
+                  <label><?php _e('Website', 'tofino'); ?></label>
+                  <div><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></div>
+                </div>
+              <?php } ?>
             <?php } ?>
 
           </aside>
