@@ -53,8 +53,8 @@ function ajax_get_post_markers($params, $cache_expiry) {
             $map = get_field('map', $post->ID);
           }
           
-          if($post_type === 'trainer') {
-            $map = get_field('general_information_location_map', $post->ID);
+          if($post_type === 'trainers') {
+            $map = get_field('general_information_map', $post->ID);
           }
           
           //only show those that aren't saved with the default coords
