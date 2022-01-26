@@ -365,6 +365,12 @@ export default function () {
     params['type'] ='3';
   }
 
+  if (tofinoJS.postName === 'trainers') {
+    params['type'] ='4';
+  }
+
+  console.log(tofinoJS);
+
   getMarkers(params)
   
   checkForEvents()

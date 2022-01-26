@@ -15,6 +15,9 @@ import home from './routes/home';
 //hub_list
 import hub_list from './routes/hub_list'
 
+//trainer_list
+import post_type_archive_trainers from './routes/trainer_list'
+
 //search results
 import search_groups from './routes/map_route';
 
@@ -44,7 +47,8 @@ const routes = {
   single_initiatives,
   single_healthchecks,
   single_trainers,
-  tax_hub
+  tax_hub,
+  post_type_archive_trainers
 };
 
 // Load Events

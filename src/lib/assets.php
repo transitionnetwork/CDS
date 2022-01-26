@@ -171,6 +171,10 @@ function localize_scripts() {
     if($post) {
       $args['postName'] = $post->post_name;
     }
+
+    if(is_archive()) {
+      $args['postName'] = get_queried_object()->name;
+    }
     
     wp_localize_script('tofino/js', 'tofinoJS', $args);
   }
