@@ -93,19 +93,19 @@
                 <?php get_template_part('templates/partials/single-map'); ?>
               </div>
             <?php } ?>
-  
-            <?php if (get_field('email')) { ?>
-              <label><?php echo get_field_object('email')['label']; ?></label>
-              <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
-            <?php } ?>
 
+            <?php $email = get_field('general_information_email'); ?>
             <?php $website = get_field('general_information_your_website'); ?>
-            <?php if($website) { ?>
+            <?php if($website && $email) { ?>
               <section>
-                <h4><?php _e('Website', 'tofino'); ?></h4>
-                <ul>
-                  <li><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></li>
-                </ul>
+                <?php if($email) { ?>
+                  <h4><?php _e('Email', 'tofino'); ?></h4>
+                  <p><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
+                <?php } ?>
+                <?php if($website) { ?>
+                  <h4><?php _e('Website', 'tofino'); ?></h4>
+                  <p><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></p>
+                <?php } ?>
               </section>
             <?php } ?>
 
