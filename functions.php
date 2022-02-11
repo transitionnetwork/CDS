@@ -323,7 +323,7 @@ if (function_exists('acf_add_options_page')) {
 // set default hub value to no-hub when adding initiative
 function set_tax_default($field) {
   global $post;
-  if($post->post_name == 'add-initiative') {
+  if($post && $post->post_name == 'add-initiative') {
     $field['value'] = 285;
   }
   return $field;

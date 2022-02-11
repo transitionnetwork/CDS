@@ -191,7 +191,6 @@ export default function () {
   
   function getMarkers(params) {
     $('#map-loading').show();
-    console.log(params)
     
     $.ajax({
       url: tofinoJS.ajaxUrl,
@@ -205,8 +204,6 @@ export default function () {
       },
       dataType: 'json',
       success: function (response) {
-        console.log(response);
-
         $('#map-loading').hide();
         $('#map-no-results').hide();
         clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
@@ -257,8 +254,6 @@ export default function () {
     //remove legacy params
     params.delete('hub_id');
     
-    console.log(tofinoJS);
-
     window.history.pushState("object or string", "Title", "?" + params.toString());
     
     if (tofinoJS.isFrontPage) {
@@ -368,8 +363,6 @@ export default function () {
   if (tofinoJS.postName === 'trainers') {
     params['type'] ='4';
   }
-
-  console.log(tofinoJS);
 
   getMarkers(params)
   

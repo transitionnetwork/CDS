@@ -1,25 +1,4 @@
 <?php
-function trainers_get() {
-  $args = array(
-    'post_type' => 'trainers',
-    'posts_per_page' => -1,
-    // 'meta_query' => array(
-    //   array(
-    //     'key' => 'trainer_confirmation',
-    //     'value' => true
-    //   )
-    // )
-  );
-
-  if(is_user_trainer_admin()) {
-    $args['post_status'] = array('pending', 'publish');
-  }
-
-  $posts = new WP_Query($args);
-
-  return new WP_Query($args);
-}
-
 function get_trainer_status($post_status) {
   $map = array(
     'publish' => array(
@@ -34,3 +13,18 @@ function get_trainer_status($post_status) {
 
   return $map[$post_status];
 }
+
+
+function modify_trainer_query( $query ) {
+  if($query->is_main_query() && !is_admin() && $query->is_post_type_archive) {
+    if($query->query_vars['post_type'] === 'trainers' ) {
+      $query->set('posts_per_page', -1);
+
+      if(is_user_trainer_admin()) {
+        $query->set('post_status', array('pending', 'publish'));
+      }
+    }
+  }
+}
+
+add_action( 'pre_get_posts', 'modify_trainer_query' );
