@@ -12,7 +12,7 @@
     <?php $url = parse_post_link(438); ?>
     <iframe src="<?php echo $url; ?>" frameborder="0" width="100%" height="550px;" style="display:block;"></iframe>
     <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>
-    <pre>&lt;iframe src=&quot;<?php echo $url; ?>&quot; width="100%&quot; height=&quot;550px&quot; frameBorder=&quot;0&quot; style=&quot;display: block;&quot;&gt;&lt;/iframe&gt;</pre>
+    <pre>&lt;iframe src=&quot;<?php echo $url; ?>&quot; width="100%&quot; height=&quot;550px&quot; frameBorder=&quot;0&quot; style=&quot;display: block;&quot; allow=&quot;geolocation &apos;src&apos;&quot;&gt;&lt;/iframe&gt;</pre>
     <p><a href="<?php echo $url ?>" class="btn btn-primary btn-sm" target="_blank"><?php echo svg('eye'); ?><?php _e('Preview Map', 'tofino'); ?></a></p>
   </div>
   
@@ -23,8 +23,12 @@
     ?>
     <div class="panel">
       <p><?php _e('To embed this map, please copy and paste the HTML below', 'tofino'); ?>:</p>
-      <pre>&lt;iframe src=&quot;<?php echo $url; ?>&quot; width="100%&quot; height=&quot;550px&quot; frameBorder=&quot;0&quot; style=&quot;display: block;&quot;&gt;&lt;/iframe&gt;</pre>
+      <pre>&lt;iframe src=&quot;<?php echo $url; ?>&quot; width="100%&quot; height=&quot;550px&quot; frameBorder=&quot;0&quot; style=&quot;display: block;&quot; allow=&quot;geolocation &apos;src&apos;&quot;&gt;&lt;/iframe&gt;</pre>
       <p><a href="<?php echo $url ?>" class="btn btn-primary btn-sm" target="_blank"><?php echo svg('eye'); ?><?php _e('Preview Map', 'tofino'); ?></a></p>
     </div>
   <?php } ?>
 </section>
+
+
+<iframe style="display: block; max-width: 100%; max-height: 6270px;" src="https://transitiongroups.org/map/?hub_name=croatia" width="100%" height="550px" frameborder="0" scrolling="yes" class="iframe-class" allow="geolocation 'src'"></iframe>
+  
