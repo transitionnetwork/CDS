@@ -25,6 +25,14 @@ function acf_custom_save($post_id)
     delete_transient('map_query');
     delete_transient('map_points');
     delete_transient('initiative_list_item_', $post_id);
+
+    //purge cached data directory
+    $files = glob(TEMPLATEPATH . '/cache/*'); // get all file names
+    foreach($files as $file){ // iterate files
+      if(is_file($file)) {
+        unlink($file); // delete file
+      }
+    }
   }
 
   if(get_post_type($post_id) === 'hub_applications') { // hub_application
