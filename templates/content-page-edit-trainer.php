@@ -2,12 +2,12 @@
 
 <?php while (have_posts()) : the_post(); ?>
 	<?php
-	if(!is_user_trainer_admin() || !get_query_var('edit_post')) {
-		wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
-		exit;
-	} else { ?>
-		<?php wp_reset_postdata(); ?>
+	if (
+			get_query_var('edit_post') &&
+			(is_my_trainer_post(get_query_var('edit_post')) || is_user_trainer_admin())
+		) { ?>
 		
+		<?php wp_reset_postdata(); ?>
 		<main>
 			<div class="container">
 				<div class="row justify-content-center">	
@@ -32,5 +32,9 @@
 			</div>
 		</main>
 	
-	<?php } ?>
-<?php endwhile; ?>
+	<?php } else {
+		wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
+		exit;
+	} ?>
+	
+	<?php endwhile; ?>

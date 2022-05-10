@@ -161,3 +161,15 @@ function check_post() {
   }
 }
 add_action('template_redirect', 'check_post');
+
+function is_my_trainer_post($post = null) {
+  $post_id = (!$post) ? get_post()->ID : (int)$post;
+
+  $author_id = (int)get_post_field ('post_author', $post_id);
+
+  if($author_id === get_current_user_id()) {
+    return true;
+  }
+
+  return false;
+}

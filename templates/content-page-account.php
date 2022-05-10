@@ -1,6 +1,16 @@
 <?php $hub_slug = get_user_meta(get_current_user_id(), 'hub', true);?>
 <?php $hub = get_term_by('slug', $hub_slug, 'hub');?>
 
+<?php
+$args = array(
+  'author' => get_current_user_id(),
+  'post_type' => 'trainers',
+);
+
+$my_trainer_posts = get_posts($args);
+?>
+
+
 <?php if(get_query_var('updated') == 'hub') { ?>
   <div class="container">
     <div class="alert top alert-success">
@@ -56,6 +66,10 @@
             <?php } ?>
             
             <a class="nav-item nav-link" id="nav-initiative-admin-tab" data-toggle="tab" href="#nav-initiative-admin" role="tab" aria-controls="nav-initiative-admin" aria-selected="false">Group Admin</a>
+
+            <?php if(is_array($my_trainer_posts)) { ?>
+              <a class="nav-item nav-link" id="nav-trainers-tab" data-toggle="tab" href="#nav-trainers" role="tab" aria-controls="nav-trainers" aria-selected="false">My Trainer Profiles</a>
+            <?php } ?>
             
             <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
               <a class="nav-item nav-link" id="nav-filesharing-tab" data-toggle="tab" href="#nav-filesharing" role="tab" aria-controls="nav-filesharing" aria-selected="false">Filesharing</a>
@@ -101,6 +115,18 @@
               get_template_part('/templates/panels/hub-initiatives-pending-approval');
             } ?>
           </div>
+
+          <?php if(is_array($my_trainer_posts)) { ?>
+            <div class="tab-pane fade" id="nav-trainers" role="tabpanel" aria-labelledby="nav-trainers-tab">
+              <div class="row mt-4">
+                <?php foreach($my_trainer_posts as $post) { ?>
+                  <?php setup_postdata( $post ); ?>
+                   <?php get_template_part('templates/partials/trainer-item'); ?>
+                <?php } ?>
+              </div>
+              <?php wp_reset_postdata(); ?>
+            </div>
+          <?php } ?>
           
           <div class="tab-pane fade" id="nav-filesharing" role="tabpanel" aria-labelledby="nav-filesharing-tab">
             <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
