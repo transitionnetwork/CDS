@@ -1,4 +1,4 @@
-<?php get_template_part('templates/partials/map-display'); ?>
+<?php get_header(); ?>
 
 <main>
   <div class="container-fluid">
@@ -38,3 +38,5 @@
     </div>
   </div>
 </main>
+
+<?php get_footer(); ?>

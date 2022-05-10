@@ -39,8 +39,8 @@ function get_initiatives_main() {
     );
   }
 
-  if(get_query_var('search')) { 
-    $args['s'] = get_query_var('search');
+  if(get_query_var('s')) { 
+    $args['s'] = get_query_var('s');
   }
 
   return new WP_Query($args);

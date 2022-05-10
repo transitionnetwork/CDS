@@ -62,12 +62,3 @@
     </div>
   </div>
 </div>
-
-
-
-  <!-- <form action="" method="GET" class="filter">
-    <div class="search-wrap">
-      <input type="text" name="search" placeholder="Search groups..." value="<?php echo get_query_var('search'); ?>">
-      <input type="submit" value="Search" class="btn btn-sm btn-primary">
-    </div>
-  </form> -->
