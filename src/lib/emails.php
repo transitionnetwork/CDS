@@ -30,7 +30,7 @@ add_filter('wp_new_user_notification_email', 'custom_wp_new_user_notification_em
 
 function custom_email_send_pending_alert_to_hub($user, $initiatives) {
   $to = array(
-    $user->user_email,
+    // $user->user_email,
     'mark@benewith.com'
   );
 
@@ -42,14 +42,16 @@ function custom_email_send_pending_alert_to_hub($user, $initiatives) {
     $message = '<p>Hello ' . $user->display_name . ',</p>';
   }
 
-  $message .= '<p>You have the following groups to approve</p>';
+  $message .= '<p>Brilliant news! You have a new group in your area.</p>';
+  $message .= '<p>They are relying on you to make them visible to the world.</p>';
+
   $message .= '<ul>';
   foreach ($initiatives as $initiative) {
     $message .= '<li>' . get_the_title($initiative) . '</li>';
   }
   $message .= '</ul>';
 
-  $message .= '<p>Please login to <a href="' . home_url() . '">Transition Groups</a> and visit your dashboard to approve or delete these submissions.</p>';
+  $message .= '<p>Please login to <a href="' . home_url() . '">Transition Groups</a> and visit your dashboard to let them be seen.</p>';
 
   $message .= '<p>Thanks,<br/>Transition Network</p>';
 
@@ -253,7 +255,7 @@ function custom_email_autologin_reminder_email($user_id) {
   wp_mail( $to, $subject, $body, $headers);
 }
 
-function check_pending_intiatives() {
+function check_pending_groups() {
   // get all hub users
   $args = array(
     'role' => 'hub'
@@ -278,12 +280,16 @@ function check_pending_intiatives() {
       )
     );
 
-    $initiatives = get_posts($args);
+    $groups = get_posts($args);
 
-    if($initiatives) {
-      custom_email_send_pending_alert_to_hub($user, $initiatives);
+    if($groups) {
+      custom_email_send_pending_alert_to_hub($user, $groups);
     }
   }
+}
+
+function check_old_healthcheck() {
+  //query initatives and find records with last_hc_date older than 11 months or non-existant
 }
 
 function disabling_emails( $args ){
