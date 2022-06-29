@@ -191,6 +191,8 @@ export default function () {
   
   function getMarkers(params) {
     $('#map-loading').show();
+
+    console.log(params)
     
     $.ajax({
       url: tofinoJS.ajaxUrl,
@@ -204,6 +206,8 @@ export default function () {
       },
       dataType: 'json',
       success: function (response) {
+        console.log(response)
+        
         $('#map-loading').hide();
         $('#map-no-results').hide();
         clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
@@ -253,6 +257,9 @@ export default function () {
   function processFilter(params) {
     //remove legacy params
     params.delete('hub_id');
+    
+    //remove multi country to allow normal function of filters
+    params.delete('multi_country');
     
     window.history.pushState("object or string", "Title", "?" + params.toString());
     

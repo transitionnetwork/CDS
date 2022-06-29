@@ -32,6 +32,17 @@ function ajax_get_post_markers($params, $cache_expiry) {
           'terms' => $params['country']
         )
       );
+    } else if(array_key_exists('multi_country', $params)) {
+      //custom query for multi country maps only
+      $countries = explode(',', $params['multi_country']);
+
+      $args['tax_query'] =  array(
+        array (
+          'taxonomy' => 'country',
+          'field' => 'slug',
+          'terms' => $countries
+        )
+      );
     }
   
     if(!empty($_POST['value']['search'])) {
@@ -181,6 +192,12 @@ function ajax_get_map_markers() {
     'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
     'hubs' => ajax_get_hub_markers($params, $cache_expiry),
   );
+  
+  //remove hubs and trainers if multi_country query
+  if(array_key_exists('multi_country', $params)) {
+    $markers['hubs'] = array();
+    $markers['trainers'] = array();
+  }
   
   echo json_encode($markers);
   wp_die();
