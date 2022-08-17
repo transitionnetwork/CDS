@@ -168,7 +168,7 @@ function ajax_get_map_markers() {
     return false;
   }
 
-  $params = array_key_exists('params', $_POST['value']) ? $_POST['value']['params'] : array();
+  $params = (array_key_exists('value', $_POST) && array_key_exists('params', $_POST['value'])) ? $_POST['value']['params'] : array();
   
   if(!array_key_exists('type', $params)) {
     // ALL/BOTH = 1
