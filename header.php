@@ -103,3 +103,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
 <?php if (get_theme_mod('footer_sticky') === 'enabled') : ?>
   <div class="wrapper">
 <?php endif; ?>
+
+
+<?php echo do_shortcode('[mo_oauth_login]'); ?>
+TEST

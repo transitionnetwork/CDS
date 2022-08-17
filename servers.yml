@@ -1,7 +1,7 @@
-wp2.xinc.digital:
+stage.xinc.digital:
   user: stage
   stage: stage
-  deploy_path: ~/web/cds.stage.yaddaconnect.co.uk/public_html/wp-content/themes/
+  deploy_path: ~/web/groups.stage.xinc.digital/public_html/wp-content/themes/
   api_key: #
 
 78.47.62.21:
