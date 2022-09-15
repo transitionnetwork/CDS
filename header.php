@@ -105,5 +105,4 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
 <?php endif; ?>
 
 
-<?php echo do_shortcode('[mo_oauth_login]'); ?>
-TEST
+<?php // echo do_shortcode('[mo_oauth_login]'); ?>
