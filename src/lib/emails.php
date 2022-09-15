@@ -104,11 +104,21 @@ function custom_email_alert_user_initiative_approved($post_id) {
   $author_id = get_post($post_id)->post_author;
   $author = get_user_by('id', $author_id);
 
+  $email_post_id = 6607; //international group
+
+  $countries = get_the_terms($post_id, 'country');
+  if($countries) {
+    foreach($countries as $country) {
+      //check for united kingdom, ireland, scotland
+      if(in_array($country->term_id, array(263, 245, 117))) {
+        $email_post_id = 7381;
+      }
+    }
+  }
+
   $to = array(
     $author->user_email,
   );
-
-  $email_post_id = 6607;
 
   $subject = get_field('subject', $email_post_id);
 

@@ -86,7 +86,7 @@
   $per_page = $init_query->query['posts_per_page'];
   $total_results = $init_query->found_posts;
 
-  if($paged === 1) {
+  if($paged === 1 || !$paged) {
     $from = 1;
   } else {
     $from = $per_page * ($paged - 1) + 1;
