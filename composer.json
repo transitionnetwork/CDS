@@ -23,7 +23,7 @@
   ],
   "require": {
     "php": ">=5.5.9",
-    "composer/installers": "~1.2.0",
+    "composer/installers": ">1.2.0",
     "google/recaptcha": "~1.1.2",
     "respect/validation": "^1.1"
   },
@@ -33,5 +33,10 @@
   },
   "autoload": {
     "psr-4": { "Tofino\\": "src/lib/" }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
   }
 }
