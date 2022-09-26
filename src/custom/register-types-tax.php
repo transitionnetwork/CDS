@@ -5,8 +5,11 @@ function create_posttypes() {
     'initiatives',
     array(
       'labels' => array(
-        'name' => __('Initiatives'),
-        'singular_name' => __('Initiative')
+        'name' => __('Groups'),
+        'singular_name' => __('Group')
+      ),
+      'rewrite' => array(
+        'slug' => 'group'
       ),
       'public' => true,
       'has_archive' => false,
@@ -22,8 +25,8 @@ function create_posttypes() {
         'singular_name' => __('Trainer')
       ),
       'public' => true,
-      'has_archive' => false,
-      'supports' => array('title', 'editor', 'author', 'thumbnail')
+      'has_archive' => 'trainers',
+      'supports' => array('title', 'author')
     )
   );
 
@@ -70,8 +73,8 @@ function create_posttypes() {
     'emails',
     array(
       'labels' => array(
-        'name' => __('Emails'),
-        'singular_name' => __('Email')
+        'name' => __('Transactional Emails'),
+        'singular_name' => __('Transactional Email')
       ),
       'show_in_nav_menus' => false,
       'publicly_queryable' => false,
@@ -162,16 +165,16 @@ function create_custom_taxonomies() {
     'query_var' => true,
     'rewrite' => array('slug' => 'language', 'with_front' => false),
     'labels' => array(
-      'name' => _x('Languages', 'taxonomy general name'),
-      'singular_name' => _x('Language', 'taxonomy singular name'),
-      'search_items' => __('Search Languages'),
-      'all_items' => __('All Languages'),
-      'parent_item' => __('Parent Language'),
-      'parent_item_colon' => __('Parent Language:'),
-      'edit_item' => __('Edit Language'),
-      'update_item' => __('Update Language'),
-      'add_new_item' => __('Add New Language'),
-      'new_item_name' => __('New Language Name'),
+      'name' => _x('Trainer Languages', 'taxonomy general name'),
+      'singular_name' => _x('Trainer Language', 'taxonomy singular name'),
+      'search_items' => __('Search Trainer Languages'),
+      'all_items' => __('All Trainer Languages'),
+      'parent_item' => __('Parent Trainer Language'),
+      'parent_item_colon' => __('Parent Trainer Language:'),
+      'edit_item' => __('Edit Trainer Language'),
+      'update_item' => __('Update Trainer Language'),
+      'add_new_item' => __('Add New Trainer Language'),
+      'new_item_name' => __('New Trainer Language Name'),
       'menu_name' => __('Languages'),
     )
   );
@@ -200,5 +203,28 @@ function create_custom_taxonomies() {
   );
 
   register_taxonomy('trainer_type', array('trainers'), $args);
+
+  $args = array(
+    'hierarchical' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'trainer-topic', 'with_front' => false),
+    'labels' => array(
+      'name' => _x('Trainer Topics', 'taxonomy general name'),
+      'singular_name' => _x('Trainer Topic', 'taxonomy singular name'),
+      'search_items' => __('Search Trainer Topics'),
+      'all_items' => __('All Trainer Topics'),
+      'parent_item' => __('Parent Trainer Topic'),
+      'parent_item_colon' => __('Parent Trainer Topic:'),
+      'edit_item' => __('Edit Trainer Topic'),
+      'update_item' => __('Update Trainer Topic'),
+      'add_new_item' => __('Add New Trainer Topic'),
+      'new_item_name' => __('New Trainer Topic Name'),
+      'menu_name' => __('Trainer Topics'),
+    )
+  );
+
+  register_taxonomy('trainer_topic', array('trainers'), $args);
 }
 add_action('init', 'create_custom_taxonomies');

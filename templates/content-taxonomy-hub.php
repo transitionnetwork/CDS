@@ -71,7 +71,7 @@
 
       <div class="col-12">
 
-        <h2>Initiatives</h2>
+        <h2>Groups</h2>
         
         <?php $args = array(
           'post_type' => 'initiatives',

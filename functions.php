@@ -10,6 +10,8 @@ $theme_config = [
   'svg' => ['sprite_file' => $svg_url . '?v=' . filemtime($svg_file_path)]
 ];
 
+//fix header sent issue
+ob_start();
 
 /**
  * Tofino includes
@@ -32,10 +34,8 @@ $tofino_includes = [
   "src/lib/hubs.php",
   "src/lib/healthchecks.php",
   "src/lib/permissions.php",
-  "src/lib/hub-filter.php",
   "src/lib/emails.php",
   "src/lib/cron.php",
-  "src/lib/custom-api-endpoints.php",
   "src/lib/output-csv.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
@@ -54,14 +54,19 @@ $tofino_includes = [
   "src/theme-options/social-networks.php",
   "src/theme-options/theme-tracker.php",
   "src/theme-options/dashboard-widget.php",
-  "src/ajax/map-requests.php",
+  "src/ajax/get-markers.php",
   "src/ajax/graph-requests.php",
   "src/ajax/file-requests.php",
   "src/custom/admin-tables.php",
   "src/custom/acf-save.php",
   "src/custom/helpers.php",
   "src/custom/rank-math.php",
-  "src/custom/register-types-tax.php"
+  "src/custom/register-types-tax.php",
+  "src/custom/controller_trainers.php",
+  "src/custom/api-endpoints/helpers.php",
+  "src/custom/api-endpoints/initiatives.php",
+  "src/custom/api-endpoints/trainers.php",
+  "src/custom/api-endpoints/hubs.php",
   // "src/custom/retention-emailing.php",
 ];
 
@@ -114,16 +119,15 @@ function composer_error_notice()
 }
 
 // Admin notice for missing dist directory.
-function missing_dist_error_notice()
-{
+function missing_dist_error_notice() {
   ?>
-<div class="error notice">
-    <p>
-        <?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino-nt'); ?>
-    </p>
-</div>
-<?php
+  <div class="error notice">
+      <p>
+          <?php _e('/dist directory not found. You probably want to run npm install and gulp on the command line.', 'tofino-nt'); ?>
+      </p>
+  </div>
 
+  <?php
 }
 
 function dd($string)
@@ -151,9 +155,16 @@ function custom_query_vars_filter($vars)
   $vars[] = 'hub_id';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
+
   $vars[] = 'hub_name';
+  $vars[] = 'type';
   $vars[] = 'search';
   $vars[] = 'country';
+  $vars[] = 'training';
+  
+  //api endpoints
+  $vars[] = 'per_page';
+  $vars[] = 'page';
   return $vars;
 }
 add_filter('query_vars', 'custom_query_vars_filter');
@@ -168,13 +179,25 @@ function wpse132196_redirect_after_trashing($post_id) {
 
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
 
+
 //Change label of Content Editor in acf_form()
-function my_acf_prepare_field($field)
+function prepare_post_content($field)
 {
   $field['label'] = "Description";
   return $field;
 }
-add_filter('acf/prepare_field/name=_post_content', 'my_acf_prepare_field');
+add_filter('acf/prepare_field/name=_post_content', 'prepare_post_content');
+
+function change_post_content_type( $field ) { 
+  //disable wysiwyg fancies
+  if($field['type'] == 'wysiwyg') { 
+    $field['tabs'] = 'visual';
+    $field['toolbar'] = 'basic';
+    $field['media_upload'] = 0; 
+  } 
+return $field; }
+add_filter( 'acf/get_valid_field', 'change_post_content_type'); 
+
 
 //Logout link with nonce
 function add_logout_link($nav, $args)
@@ -300,20 +323,21 @@ if (function_exists('acf_add_options_page')) {
 // set default hub value to no-hub when adding initiative
 function set_tax_default($field) {
   global $post;
-  if($post->post_name == 'add-initiative') {
+  if($post && $post->post_name == 'add-initiative') {
     $field['value'] = 285;
   }
   return $field;
 }
 add_filter('acf/load_field/key=field_5c473dfca1fd3', 'set_tax_default');
 
-function redirects() {
+function process_post_requests() {
   if ('POST' == $_SERVER['REQUEST_METHOD']) {
     if(array_key_exists('accepted', $_POST)) {
       if($_POST['accepted'] == 'true') {
         update_user_meta(get_current_user_id(), '_gdpr_accepted', 'field_5c51aba1d7642');
         update_user_meta(get_current_user_id(), 'gdpr_accepted', true);
         wp_safe_redirect('account');
+        exit();
       }
     }
 
@@ -324,6 +348,7 @@ function redirects() {
       );
       wp_update_post($args);
       wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));
+      exit();
     }
 
     if(array_key_exists('unpublish', $_POST)) {
@@ -333,15 +358,39 @@ function redirects() {
       );
       wp_update_post($args);
     }
+
+    if(array_key_exists('trainer_update', $_POST)) {
+      $args = array(
+        'ID' => $_POST['post_id'],
+        'post_status' => $_POST['trainer_update']
+      );
+
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'trainer', get_the_permalink(get_queried_object()->name)));
+    }
+  }
+
+  //$_GET REQUESTS - revert post back to unpublished if edited by non admin owner
+  global $post;
+  if($post && (get_post_type() === 'trainers') && get_query_var('updated') === 'trainer') {
+    if(get_the_author_meta('ID') === get_current_user_id()) {
+      $args = array(
+        'ID' => get_the_ID(),
+        'post_status' => $_POST['trainer_update']
+      );
+
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'trainer', get_the_permalink(get_queried_object()->name)));
+    }
   }
 }
 
-if (is_user_logged_in()) {
-  add_action('template_redirect', 'redirects');
+if (!is_admin()) {
+  add_action('template_redirect', 'process_post_requests');
 }
 
 function get_environment() {
-  if(strpos(get_site_url(), 'transitioninitiative.org') !== false) {
+  if(strpos(get_site_url(), 'transitiongroups.org') !== false) {
     return 'production';
   }
   
@@ -402,4 +451,12 @@ function customRSS() {
 
 function get_feed_updated_initiatives() {
   get_template_part('templates/rss/updated-initiatives');
+}
+
+function is_user_trainer_admin() {
+  if(is_user_role(array('administrator', 'trainer_admin'))) {
+    return true;
+  }
+
+  return false;
 }

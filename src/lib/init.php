@@ -37,7 +37,9 @@ function setup() {
   // Register wp_nav_menu() menus
   register_nav_menus([
     'primary_navigation_loggedin' => __('Primary Navigation Logged In', 'tofino-nt'),
-    'primary_navigation_loggedout' => __('Primary Navigation Logged Out', 'tofino-nt')
+    'primary_navigation_loggedout' => __('Primary Navigation Logged Out', 'tofino-nt'),
+    'secondary_navigation_loggedout' => __('Secondary Navigation Logged Out', 'tofino-nt'),
+    'secondary_navigation_loggedout' => __('Secondary Navigation Logged Out', 'tofino-nt')
   ]);
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');

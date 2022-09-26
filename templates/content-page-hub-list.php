@@ -1,11 +1,6 @@
-<div id="iframe_map">
-  <div class="map-loading"><div class="lds-dual-ring"></div></div>
+<?php set_query_var('type', '3'); ?>
 
-  <div class="training-toggle">
-    <input type="checkbox" id="training" name="training">
-    <label for="training"><?php _e('Only show hubs that offer training'); ?></label>
-  </div>
-</div>
+<?php get_template_part('templates/partials/map-display'); ?>
 
 <main>
   <div class="container">
@@ -26,11 +21,5 @@
         </div>
       <?php } ?>
     <?php endwhile; ?>
-    <p>
-      <a href="<?php echo parse_post_link(6185); ?>" class="btn btn-primary">
-        <?php echo svg('plus'); ?>
-        <span>Add new hub</span>
-      </a>
-    </p>
   </div>
 </main>

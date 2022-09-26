@@ -127,7 +127,7 @@ body.single-healthchecks {
   }
 }
 
-#initiative-map {
+#single-map {
   width: 100%;
   height: 300px;
   background-color: $sea-blue;
@@ -216,7 +216,7 @@ main.healthcheck-form {
   padding: 4rem;
 }
 
-.map-loading,
+#map-loading,
 .graph-loading {
   position: absolute;
   top: 50%;

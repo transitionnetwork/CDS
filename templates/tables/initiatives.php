@@ -2,7 +2,7 @@
 <?php if($init_query->have_posts()) { ?>
   <table class="item-list">
     <tr>
-      <th class="col-a"><?php _e('Initiative', 'tofino'); ?></th>
+      <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
       <?php if(!is_tax()) { ?>
         <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
       <?php } ?>
@@ -66,7 +66,7 @@
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
             
             <?php if(can_write_initiative($post)) { ?>
-              <?php $confirm_message = __('Are you sure you want to remove this initiative?', 'tofino'); ?>
+              <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
               <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
 
               <form action="" method="post">
@@ -80,12 +80,13 @@
   </table>
 
   <?php 
-  $paged = $init_query->query['paged'];
+  
+  $paged = array_key_exists('paged', $init_query->query) ? $init_query->query['paged'] : null;
   $max_num_pages = $init_query->max_num_pages;
   $per_page = $init_query->query['posts_per_page'];
   $total_results = $init_query->found_posts;
 
-  if($paged === 1) {
+  if($paged === 1 || !$paged) {
     $from = 1;
   } else {
     $from = $per_page * ($paged - 1) + 1;
@@ -107,7 +108,7 @@
       <?php echo paginate_links(array(
         'base' => @add_query_arg('paged', '%#%'),
         'format' => '?paged=%#%',
-        'current' => $init_query->query['paged'],
+        'current' => $paged,
         'total' => $init_query->max_num_pages,
         'prev_text' => 'Prev',
         'next_text' => 'Next',

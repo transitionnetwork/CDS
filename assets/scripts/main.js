@@ -15,13 +15,15 @@ import home from './routes/home';
 //hub_list
 import hub_list from './routes/zz_hub_list'
 
+//trainer_list
+import post_type_archive_trainers from './routes/trainer_list'
+
 //search results
-import search_initiatives from './routes/map_url_params';
-
-
-import single_healthchecks from './routes/single_healthcheck'
+import search_groups from './routes/map_route';
 
 import single_initiatives from './routes/single';
+import single_healthchecks from './routes/single_healthcheck'
+import single_trainers from './routes/single_trainer';
 import tax_hub from './routes/single';
 
 // Import ajaxForm
@@ -41,10 +43,12 @@ const routes = {
   map,
   home,
   hub_list,
-  search_initiatives,
+  search_groups,
   single_initiatives,
   single_healthchecks,
-  tax_hub
+  single_trainers,
+  tax_hub,
+  post_type_archive_trainers
 };
 
 // Load Events

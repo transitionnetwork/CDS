@@ -36,8 +36,6 @@ module.exports = function (gulp, browserSync) {
       gulp.watch(paths.scripts + '**/*.js', ['scripts']).on('change', function(file) {
         util.log('JS file changed: ' + file.path + '');
       });
-
-      gulp.watch(['**/*.php', '!vendor/**/*.php'], ['php:lint']);
     }
   );
 };

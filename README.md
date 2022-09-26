@@ -1,6 +1,6 @@
 # Transition Network Content Delivery System
 
-**CDS** is a web site and service which allows Transition Hubs, Initiatives, and the public to get information about the global Transition movement.
+**CDS** is a web site and service which allows Transition Hubs, Initiatives, and the public to get information about the global Transition movement. It is used to provide this service: https://transitiongroups.org/
 
 ## On site ##
 Users are able to login and view / add initiative data
@@ -32,6 +32,6 @@ Reporting is provided on healthcheck dates for initiatives.
 
 ## Off Site ##
 
-Third parties are able to connect to the CDS site from their own websites using the CDS (Wordpress) API to obtain initiative data for a hub.
+Third parties are able to connect to the CDS site from their own websites using the CDS (Wordpress) API https://transitiongroups.org/api/ to obtain initiative data for a hub.
 
 They are also able to display a map showing hub initiatives using an iframe.

@@ -13,14 +13,14 @@ $init_query = new WP_Query($args);
 ?>
 
 <section>
-  <h2><?php _e('All initatives created for', 'tofino'); ?> <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?></h2>
+  <h2><?php _e('All groups created for', 'tofino'); ?> <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?></h2>
 
   <?php
   if($init_query->have_posts()) { 
     set_query_var('init_query', $init_query);
     get_template_part('templates/tables/initiatives');
   } else {
-    e('There haven\'t been any other initiatives added for this hub', 'tofino');
+    e('There haven\'t been any other groups added for this hub', 'tofino');
   }
   ?>
 </section>

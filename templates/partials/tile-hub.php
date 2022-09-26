@@ -1,6 +1,6 @@
 <?php $term = 'term_' . $hub->term_id; ?>
 
-<div class="col-12 col-sm-6 col-md-4 col-lg-3 hub-col">
+<div class="col-12 col-sm-6 col-lg-4 hub-col">
   <?php if(get_field('logo', $term)) {
     $url = get_field('logo', $term)['sizes']['large'];
   } else {

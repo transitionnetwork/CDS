@@ -60,7 +60,7 @@ function retention_emailing_send_emails() {
         }
 
         if(get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY) && !get_user_meta($user_id, 'inactive_login_reminder_email_sent') && get_environment() === 'production') {
-          email_autologin_reminder_email($user_id);
+          custom_email_autologin_reminder_email($user_id);
           add_user_meta($user_id, 'inactive_login_reminder_email_sent', date('Y-m-d H:i:s'));
           var_dump($user_id . ': success');
         } else {

@@ -5,7 +5,7 @@
   }
     
   foreach($terms as $term) { ?>
-    <h2><?php _e('Initiatives pending approval for', 'tofino'); ?> <a href="<?php echo add_query_arg('hub_name', $term->slug, get_post_type_archive_link('initiatives')); ?>"><?php echo $term->name; ?></a></h2>
+    <h2><?php _e('Groups pending approval for', 'tofino'); ?> <a href="<?php echo add_query_arg('hub_name', $term->slug, get_post_type_archive_link('initiatives')); ?>"><?php echo $term->name; ?></a></h2>
     <?php
     $args = array(
       'post_type' => 'initiatives',

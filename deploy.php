@@ -28,6 +28,7 @@ task('deploy:upload_dist', function() {
 task('deploy:theme_composer', function() {
   cd('{{release_path}}');
   run('~/composer.phar install');
+  // run('composer install');
 })->desc('Remote composer install');
 
 task('setup', [

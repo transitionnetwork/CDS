@@ -1,14 +1,27 @@
 <?php
-function is_user_role($queried_role, $user = null)
+function is_user_role($queried_roles, $user = null)
 {
+  //will accept array or string as first parameter
+  
   if(!$user) {
     $user = wp_get_current_user();
   }
   
   $user_roles = $user->roles;
-  if (in_array($queried_role, $user_roles)) {
-    return true;
+  
+  if(is_array($queried_roles)) {
+    foreach($queried_roles as $queried_role) {
+      if (in_array($queried_role, $user_roles)) {
+        return true;
+      }
+    }
+  } else {
+    if (in_array($queried_roles, $user_roles)) {
+      return true;
+    }
   }
+
+  return;
 }
 
 function is_post_in_user_hub($post) {
@@ -121,7 +134,7 @@ function check_post() {
   if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
     if (isset($_POST['pid']) && !empty($_POST['pid'])) {
       change_post_status((int)$_POST['pid'], 'publish');
-      alert_user_initiative_approved($_POST['pid']);
+      custom_email_alert_user_initiative_approved($_POST['pid']);
       wp_safe_redirect(esc_url(add_query_arg('updated', 'publish', home_url('account'))));
       exit();
     }
@@ -131,7 +144,7 @@ function check_post() {
   if (isset($_POST['type']) && $_POST['type'] == 'request_hub_access') {
     if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
       $user_id = (int)$_POST['user_id'];
-      $success = send_access_request_to_hub($user_id);
+      $success = custom_email_send_access_request_to_hub($user_id);
       
       if($success) {
         $date = date('Y-m-d H:i:s');
@@ -148,3 +161,15 @@ function check_post() {
   }
 }
 add_action('template_redirect', 'check_post');
+
+function is_my_trainer_post($post = null) {
+  $post_id = (!$post) ? get_post()->ID : (int)$post;
+
+  $author_id = (int)get_post_field ('post_author', $post_id);
+
+  if($author_id === get_current_user_id()) {
+    return true;
+  }
+
+  return false;
+}
