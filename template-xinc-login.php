@@ -13,7 +13,7 @@
       <?php while (have_posts()) : the_post(); ?>
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
         <?php the_content(); ?>
-        <?php if(!user_is_logged_in()) {
+        <?php if(!is_user_logged_in()) {
           echo do_shortcode('[openid_connect_generic_login_button]');
         } ?>
       <?php endwhile; ?>
