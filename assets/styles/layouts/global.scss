@@ -143,6 +143,12 @@ input[type="submit"] {
   @extend .btn-primary;
 }
 
+.button.button-large {
+  line-height: 1.6;
+  @extend .btn;
+  @extend .btn-primary;
+}
+
 form#hub-filter input[type="submit"],
 form#gdpr input[type="submit"] {
   @extend .btn;
