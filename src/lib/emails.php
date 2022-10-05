@@ -128,9 +128,7 @@ function custom_email_alert_user_initiative_approved($post_id) {
     $message = '<p>Hi ' . $author->display_name . ',</p>';
   }
 
-  $post_content = get_post($email_post_id);
-  $content = $post_content->post_content;
-  $message .= $content;
+  $message .= get_post_field('post_content', $email_post_id);
 
   wp_mail( $to, $subject, $message);
 }
@@ -212,9 +210,7 @@ function custom_email_created_post($post_id, $type) {
     $message = '<p>Hi ' . $author->display_name . ',</p>';
   }
 
-  $post_content = get_post($email_post_id);
-  $content = $post_content->post_content;
-  $message .= $content;
+  $message .= get_post_field('post_content', $email_post_id);
 
   wp_mail( $to, $subject, $message);
   
