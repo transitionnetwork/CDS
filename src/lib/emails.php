@@ -18,7 +18,7 @@ function custom_wp_new_user_notification_email($wp_new_user_notification_email, 
     $message .= '<p>' . $parent_user->user_email  . ' has registered you at our website.' . '</p>';
   }
 
-  $message .= '<p>To set your password, visit the following address:' . '</p>';
+  $message .= '<p>To set your password, please <a href="' . site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login')  . '">click here</a> or visit the URL below:' . '</p>';
   $message .= '<p>' . site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login') . '</p>';
   $message .= '<p>' . 'Kind regards,' . '</p>';
   $message .= '<p>' . 'The Transition Network Team' . '</p>';
