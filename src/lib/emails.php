@@ -4,8 +4,22 @@ function set_content_type($content_type) {
 }
 add_filter('wp_mail_content_type', 'set_content_type');
 
-function custom_wp_new_user_notification_email($wp_new_user_notification_email, $user, $blogname)
-{
+function custom_retrieve_password_message( $message, $key, $user_login, $user_data  ) {
+  
+  $message = '<p>Someone has requested a password reset for your account using the email address ' . sprintf(__('%s'), $user_data->user_email) . '</p>
+
+  <p>If this was a mistake, just ignore this email and nothing will happen.</p>
+
+  <p>To reset your password, please <a href="' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') .  '">click here</a> or visit the following address:</p>
+
+  <p>' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . '</p>';
+
+  return $message;
+}
+add_filter( 'retrieve_password_message', 'custom_retrieve_password_message', 10, 4 );
+
+
+function custom_wp_new_user_notification_email($wp_new_user_notification_email, $user, $blogname) {
 
   $parent_id = get_user_meta( $user->ID, 'parent_id', true);
   $parent_user = get_user_by('id', $parent_id);
@@ -23,6 +37,8 @@ function custom_wp_new_user_notification_email($wp_new_user_notification_email, 
   $message .= '<p>' . 'Kind regards,' . '</p>';
   $message .= '<p>' . 'The Transition Network Team' . '</p>';
   $wp_new_user_notification_email['message'] = $message;
+
+  $wp_new_user_notification_email['headers'] = array('Content-Type: text/html; charset=UTF-8');
 
   return $wp_new_user_notification_email;
 }
