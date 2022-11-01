@@ -45,10 +45,16 @@ function custom_wp_new_user_notification_email($wp_new_user_notification_email, 
 add_filter('wp_new_user_notification_email', 'custom_wp_new_user_notification_email', 10, 3);
 
 function custom_email_send_pending_alert_to_hub($user, $initiatives) {
-  $to = array(
-    // $user->user_email,
-    'mark@benewith.com'
-  );
+
+  if(get_environment() === 'production') {
+    $to = array(
+      $user->user_email,
+    );
+  } else {
+    $to = array(
+      'mark@benewith.com'
+    );
+  }
 
   $subject = 'Reminder: You have pending groups to approve';
 
