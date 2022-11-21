@@ -228,3 +228,10 @@ function create_custom_taxonomies() {
   register_taxonomy('trainer_topic', array('trainers'), $args);
 }
 add_action('init', 'create_custom_taxonomies');
+
+function add_nav_menus() {
+  register_nav_menus( array(
+    'footer_menu'=> 'Footer Menu',
+  ));
+}
+add_action('init', 'add_nav_menus');

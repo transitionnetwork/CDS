@@ -17,6 +17,7 @@ function get_group_data($post) {
     
     'location' => endpoint_get_location($post),
     'contact' => endpoint_get_contact($post),
+    'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
   );
 }
 
@@ -47,7 +48,6 @@ function endpoint_get_groups(WP_REST_Request $request) {
 
   if(!empty($data)) {
     $pagination = endpoint_get_pagination($post_query);
-
     return array_merge(array('body' => $data), $pagination);
   } else {
     return array(
