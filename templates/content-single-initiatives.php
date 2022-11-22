@@ -75,6 +75,8 @@
 
           <?php the_content(); ?>
 
+          <?php _e('<em>This group has been added to this site by the <a href="' . get_term_link($hubs[0]) . '">' . $hubs[0]->name . '</a> Hub</em>', 'tofino'); ?>
+
           <?php if (can_publish_initiative($post) && !is_post_published($post)) {
             render_publish_button($post->ID);
           } ?>
