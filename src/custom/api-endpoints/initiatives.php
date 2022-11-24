@@ -42,7 +42,7 @@ function endpoint_get_groups(WP_REST_Request $request) {
   if($post_query->have_posts()) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
-      $data[] = get_group_data($post);
+      $data[] = get_group_data($post, $request);
     endwhile;
   }
 

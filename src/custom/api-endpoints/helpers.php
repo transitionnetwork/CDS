@@ -10,6 +10,11 @@ function endpoint_add_custom_routes() {
     'callback' => 'endpoint_get_groups',
   ));
 
+  register_rest_route( 'cds/v1', '/groups-full-info', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_groups',
+  ));
+
   register_rest_route( 'cds/v1', '/group-distance', array(
     'methods' => 'GET',
     'callback' => 'endpoint_get_groups_by_distance',
@@ -97,6 +102,13 @@ function endpoint_get_contact($post) {
 function endpoint_get_pagination($post_query) {
   // dd($post_query);
   $per_page = (int)$post_query->query['posts_per_page'];
+
+  // $logged_in_status = (is_user_logged_in() ? 'logged_in' : 'not_logged_in');
+  // if($logged_in_status === 'logged_in') {
+  //   if(is_user_role('administrator')) {
+  //     $logged_in_status = 'administrator';
+  //   }
+  // }
 
   return array(
     'count' => (int)$post_query->post_count,
