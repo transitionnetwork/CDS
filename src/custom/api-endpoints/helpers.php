@@ -34,6 +34,18 @@ function endpoint_add_custom_routes() {
 add_action( 'rest_api_init', 'endpoint_add_custom_routes');
 
 /**
+ * Unregister the /wp-json/cds/v1/groups-full-info endpoint so it will not be cached.
+ */
+function wp_rest_cache_unregister_restricted_endpoint( $allowed_endpoints ) {
+    if ( isset( $allowed_endpoints[ 'cds/v1' ] ) && ( $key = array_search( 'groups-full-info', $allowed_endpoints[ 'cds/v1' ] ) ) !== false ) {
+        unset( $allowed_endpoints[ 'cds/v1' ][ $key ] );
+    }
+    return $allowed_endpoints;
+}
+
+add_filter( 'wp_rest_cache/allowed_endpoints', 'wp_rest_cache_unregister_restricted_endpoint', 100, 1);
+
+/**
  * Register the /wp-json/acf/v3/posts endpoint so it will be cached.
  */
 function wprc_add_acf_posts_endpoint( $allowed_endpoints ) {
