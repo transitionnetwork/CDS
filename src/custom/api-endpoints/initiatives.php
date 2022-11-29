@@ -1,9 +1,9 @@
 <?php
-function get_group_data($post) {
+function get_group_data($post, $callback = null) {
   $logo = get_field('logo', $post);
   $logo = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
 
-  return array(
+  $data = array(
     'id' => $post->ID,
     'title' => $post->post_title,
     'url' => get_the_permalink($post),
@@ -19,9 +19,17 @@ function get_group_data($post) {
     'contact' => endpoint_get_contact($post),
     'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
   );
+
+  if(isset($callback) && $callback === 'endpoint_get_groups_full_info') {
+    $data['private_email'] = get_field('private_email', $post);
+  }
+  
+  return $data;
 }
 
-function endpoint_get_groups(WP_REST_Request $request) {
+function get_groups_from_request($request) {
+  $request_attributes = $request->get_attributes();
+  
   $data = [];
   $default_per_page = 20;
 
@@ -42,7 +50,7 @@ function endpoint_get_groups(WP_REST_Request $request) {
   if($post_query->have_posts()) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
-      $data[] = get_group_data($post, $request);
+      $data[] = get_group_data($post, $request_attributes['callback']);
     endwhile;
   }
 
@@ -54,6 +62,14 @@ function endpoint_get_groups(WP_REST_Request $request) {
       'body' => 'No Records Found'
     );
   }
+}
+
+function endpoint_get_groups_full_info(WP_REST_Request $request) {
+  return get_groups_from_request($request);
+}
+
+function endpoint_get_groups(WP_REST_Request $request) {
+  return get_groups_from_request($request);
 }
 
 function endpoint_get_groups_by_distance($request) {

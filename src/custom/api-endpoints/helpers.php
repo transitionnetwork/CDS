@@ -12,7 +12,7 @@ function endpoint_add_custom_routes() {
 
   register_rest_route( 'cds/v1', '/groups-full-info', array(
     'methods' => 'GET',
-    'callback' => 'endpoint_get_groups',
+    'callback' => 'endpoint_get_groups_full_info',
   ));
 
   register_rest_route( 'cds/v1', '/group-distance', array(
