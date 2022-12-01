@@ -28,6 +28,7 @@ function get_full_group_data($post) {
   $logo = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
 
   $data = array(
+    'title' => $post->post_title,
     'group_id' => $post->ID,
     'private_email' => get_field('private_email', $post),
     'url' => get_the_permalink($post),
