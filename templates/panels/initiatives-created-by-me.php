@@ -22,5 +22,5 @@ $init_query = new WP_Query($args); ?>
   }
   ?>
 
-  <div class="button-block"><a href="/add-initiative" class="btn btn-primary btn-sm"><?php echo svg('plus'); ?><?php _e('Add New Group', 'tofino'); ?></a></div>
+  <div class="button-block"><a href="/add-new-group" class="btn btn-primary btn-sm"><?php echo svg('plus'); ?><?php _e('Add New Group', 'tofino'); ?></a></div>
 </section>
