@@ -29,6 +29,11 @@ function endpoint_add_custom_routes() {
     'methods' => 'GET',
     'callback' => 'endpoint_get_groups_full_info',
   ));
+  
+  register_rest_route( 'cds/v1', '/update-group-baserow', array(
+    'methods' => 'POST',
+    'callback' => 'endpoint_update_group_baserow',
+  ));
 }
 
 add_action( 'rest_api_init', 'endpoint_add_custom_routes');

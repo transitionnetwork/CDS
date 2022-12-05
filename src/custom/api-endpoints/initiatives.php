@@ -30,6 +30,7 @@ function get_full_group_data($post) {
   $data = array(
     'title' => $post->post_title,
     'group_id' => $post->ID,
+    'baserow_id' => (int)get_post_meta( $post->ID, 'baserow_id', true ),
     'private_email' => get_field('private_email', $post),
     'url' => get_the_permalink($post),
     'logo' => $logo,
@@ -126,4 +127,18 @@ function endpoint_get_groups_by_distance($request) {
       'body' => 'No Groups found within ' . $request['distance'] . ' miles of location.'
     );
   }
+}
+
+//
+function endpoint_update_group_baserow(WP_REST_Request $request) {
+
+  $response['post_id'] = $request['post_id'];
+  $response['baserow_id'] = $request['baserow_id'];
+
+  $response['updated'] = update_post_meta( $request['post_id'], 'baserow_id', $request['baserow_id'] );
+
+  $response = new WP_REST_Response($response);
+  $response->set_status(200);
+
+  return ['request' => $response];
 }
