@@ -32,6 +32,7 @@ function get_full_group_data($post) {
     'group_id' => $post->ID,
     'baserow_id' => (int)get_post_meta( $post->ID, 'baserow_id', true ),
     'private_email' => get_field('private_email', $post),
+    'user_email' => get_the_author_meta('user_email', $post->post_author),
     'url' => get_the_permalink($post),
     'logo' => $logo,
     'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
@@ -129,7 +130,6 @@ function endpoint_get_groups_by_distance($request) {
   }
 }
 
-//
 function endpoint_update_group_baserow(WP_REST_Request $request) {
 
   $response['post_id'] = $request['post_id'];
