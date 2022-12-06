@@ -15,7 +15,7 @@ function get_group_data($post) {
 
     'description' => get_field('description', $post),
     
-    'location' => endpoint_get_location($post),
+    'location' => endpoint_get_location($post, null),
     'contact' => endpoint_get_contact($post),
     'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
   );

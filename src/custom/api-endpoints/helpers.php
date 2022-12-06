@@ -68,8 +68,13 @@ function endpoint_get_taxonomy_terms($post, $taxonomy) {
   }
 }
 
-function endpoint_get_location($item, $post = true) {
-  $map = get_field('map', $item);
+function endpoint_get_location($item, $post = true, $clone_field = null) {
+
+  if($clone_field) {
+    $map = get_field($clone_field)['map'];
+  } else { 
+    $map = get_field('map', $item);
+  }
 
   $data = array(
     'address' => get_field('address_line_1', $item),
@@ -81,7 +86,6 @@ function endpoint_get_location($item, $post = true) {
   if($post) {
     $data['country'] = (get_the_terms($post, 'country')) ? get_the_terms($post, 'country')[0]->name : '';
   }
-  
 
   if($map && !empty($map['markers'])) {
     $data['lat'] = $map['markers'][0]['lat'];
