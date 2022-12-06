@@ -73,7 +73,7 @@
             <?php } ?>
           </ul>
 
-          <?php the_content(); ?>
+          <?php echo get_field('description', $post); ?>
 
           <?php _e('<em>This group has been added to this site by the <a href="' . get_term_link($hubs[0]) . '">' . $hubs[0]->name . '</a> Hub</em>', 'tofino'); ?>
 

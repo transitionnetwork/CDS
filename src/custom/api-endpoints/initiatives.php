@@ -13,7 +13,7 @@ function get_group_data($post) {
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
     'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
 
-    'description' => apply_filters('the_content', get_post_field('post_content', $post->ID)),
+    'description' => get_field('description', $post),
     
     'location' => endpoint_get_location($post),
     'contact' => endpoint_get_contact($post),
@@ -39,7 +39,7 @@ function get_full_group_data($post) {
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
     'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
     'grant_status' => endpoint_get_taxonomy_terms($post, 'grant_status'),
-    'description' => apply_filters('the_content', get_post_field('post_content', $post->ID)),
+    'description' => get_field('description', $post),
 
     'location_address' => get_field('address_line_1', $post),
     'location_city' => get_field('city', $post),
