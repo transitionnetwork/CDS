@@ -29,7 +29,6 @@
 						acf_form(array(
 							'post_id'		=> $edit_post_id,
 							'post_title'	=> true,
-							'post_content'	=> true,
 							'return' => add_query_arg('edited_post', 'initiative', parse_post_link($edit_post_id)),
 							'submit_value' => 'Save changes',
 							'field_groups' => $field_groups
