@@ -15,6 +15,11 @@ function endpoint_add_custom_routes() {
     'callback' => 'endpoint_get_groups_by_distance',
   ));
 
+  register_rest_route( 'cds/v1', '/get_group_by_email', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_group_by_email',
+  ));
+
   register_rest_route( 'cds/v1', '/trainers', array(
     'methods' => 'GET',
     'callback' => 'endpoint_get_trainers',

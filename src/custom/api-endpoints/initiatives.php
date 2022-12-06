@@ -107,7 +107,7 @@ function endpoint_get_groups(WP_REST_Request $request) {
   return get_groups_from_request($request);
 }
 
-function endpoint_get_groups_by_distance($request) {
+function endpoint_get_groups_by_distance(WP_REST_Request $request) {
   $data = [];
 
   if(!array_key_exists('distance', $request->get_query_params())) {
@@ -127,6 +127,49 @@ function endpoint_get_groups_by_distance($request) {
   } else {
     return array(
       'body' => 'No Groups found within ' . $request['distance'] . ' miles of location.'
+    );
+  }
+}
+
+function endpoint_get_group_by_email(WP_REST_Request $request) {
+  if(!array_key_exists('email', $request->get_query_params())) {
+    return (array(
+      'body' => 'Please supply an email address using the email parameter.'
+    ));
+  }
+  
+  $data = [];
+
+  $user = get_user_by('email', $request['email']);
+
+  if(!$user) {
+    return (array(
+      'body' => 'User does not exist.'
+    ));
+  }
+
+  $args = array(
+    'author'        =>  $user->ID,
+    'orderby'       =>  'post_date',
+    'order'         =>  'ASC',
+    'posts_per_page' => -1,
+    'post_type' => 'initiatives'
+  );
+
+  $post_query = new WP_Query($args);
+
+  if($post_query->have_posts()) {
+    while($post_query->have_posts()) : $post_query->the_post();
+      global $post;
+      $data[] = get_group_data($post);
+    endwhile;
+  }
+
+  if(!empty($data)) {
+    return array('body' => $data);
+  } else {
+    return array(
+      'body' => 'No Records Found'
     );
   }
 }
