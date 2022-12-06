@@ -38,6 +38,7 @@ function get_full_group_data($post) {
     'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
     'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
+    'grant_status' => endpoint_get_taxonomy_terms($post, 'grant_status'),
     'description' => apply_filters('the_content', get_post_field('post_content', $post->ID)),
 
     'location_address' => get_field('address_line_1', $post),
