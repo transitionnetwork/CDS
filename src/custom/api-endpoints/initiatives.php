@@ -26,6 +26,7 @@ function get_group_data($post) {
 function get_full_group_data($post) {
   $logo = get_field('logo', $post);
   $logo = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
+  $description = strip_tags(get_field('description', $post));
 
   $data = array(
     'title' => $post->post_title,
@@ -39,8 +40,7 @@ function get_full_group_data($post) {
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
     'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
     'grant_status' => endpoint_get_taxonomy_terms($post, 'grant_status'),
-    'description' => get_field('description', $post),
-
+    'description' => str_replace(array("\r", "\n"), '', $description),
     'location_address' => get_field('address_line_1', $post),
     'location_city' => get_field('city', $post),
     'location_province' => get_field('province', $post),
