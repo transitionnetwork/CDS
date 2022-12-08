@@ -1,4 +1,3 @@
-
 <?php if($init_query->have_posts()) { ?>
   <table class="item-list">
     <tr>
@@ -119,5 +118,5 @@
 
 
 <?php } else { ?>
-  <p><?php _e('No initaitives found', 'tofino'); ?></p>
+  <p><?php _e('No groups found', 'tofino'); ?></p>
 <?php } ?>

@@ -1,4 +1,4 @@
-<?php $hub_slug = get_user_meta(get_current_user_id(), 'hub', true);?>
+<?php $hub_slug = get_user_meta(get_current_user_id(), 'hub', true); ?>
 <?php $hub = get_term_by('slug', $hub_slug, 'hub');?>
 
 <?php
