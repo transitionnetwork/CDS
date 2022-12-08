@@ -104,7 +104,7 @@ export default function () {
         if(response.initiatives[i].type === 'initiatives') {
           marker = L.marker([response.initiatives[i].lat, response.initiatives[i].lng], { icon: initiativeMarkerIcon });
           
-          marker.bindPopup('<h5>' + response.initiatives[i].title + '</h5><div><a href="' + response.initiatives[i].permalink + '" target="_parent" class="btn btn-sm btn-primary">View</a></div>');
+          marker.bindPopup('<h5>' + response.initiatives[i].title + '</h5><div><a href="' + response.initiatives[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           clusterMarkers.addLayer(marker);
           
           range.push([response.initiatives[i].lat, response.initiatives[i].lng]);
@@ -132,7 +132,7 @@ export default function () {
         if (response.hubs[i].type === 'hubs') {
           marker = L.marker([response.hubs[i].lat, response.hubs[i].lng], { icon: hubMarkerIcon });
           
-          marker.bindPopup('<h5>' + response.hubs[i].title + '</h5><div><a href="' + response.hubs[i].permalink + '" target="_parent" class="btn btn-sm btn-primary">View</a></div>');
+          marker.bindPopup('<h5>' + response.hubs[i].title + '</h5><div><a href="' + response.hubs[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           hubMarkers.addLayer(marker);
           
           range.push([response.hubs[i].lat, response.hubs[i].lng]);
@@ -160,7 +160,7 @@ export default function () {
         if (response.trainers[i].type === 'trainers') {
           marker = L.marker([response.trainers[i].lat, response.trainers[i].lng], { icon: trainerMarkerIcon });
 
-          marker.bindPopup('<h5>' + response.trainers[i].title + '</h5><div><a href="' + response.trainers[i].permalink + '" target="_parent" class="btn btn-sm btn-primary">View</a></div>');
+          marker.bindPopup('<h5>' + response.trainers[i].title + '</h5><div><a href="' + response.trainers[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           trainerMarkers.addLayer(marker);
 
           range.push([response.trainers[i].lat, response.trainers[i].lng]);
