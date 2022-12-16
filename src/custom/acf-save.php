@@ -106,8 +106,8 @@ function validation_group_description( $valid, $value, $field, $input_name ) {
     return $valid;
   }
 
-  if(strlen($value) < 500 ) {
-    return __('Please enter more than 500 characters.' . strlen($value), 'tofino');
+  if(strlen($value) < 150 ) {
+    return __('Please enter more than 150 characters.' . strlen($value), 'tofino');
   }
   
   return $valid;
