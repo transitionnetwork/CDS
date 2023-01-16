@@ -65,6 +65,7 @@ $tofino_includes = [
   "src/custom/controller_trainers.php",
   "src/custom/api-endpoints/helpers.php",
   "src/custom/api-endpoints/initiatives.php",
+  "src/custom/api-endpoints/initiatives_murmation.php",
   "src/custom/api-endpoints/trainers.php",
   "src/custom/api-endpoints/hubs.php",
   // "src/custom/retention-emailing.php",
