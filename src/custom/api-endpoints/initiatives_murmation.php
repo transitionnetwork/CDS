@@ -41,24 +41,37 @@ function endpoint_get_groups_murmarations(WP_REST_Request $request) {
       $map = get_field('map');
       $logo = get_field('logo');
 
-      $link_fields = array('website', 'twitter', 'facebook', 'instagram', 'youtube');
+      $link_fields = array('twitter', 'facebook', 'instagram', 'youtube');
       $links = array();
       foreach($link_fields as $link_field) {
         if(get_field($link_field)) {
-          $links[ucwords($link_field)] = get_field($link_field);
+          $links[] = array(
+            'name' => ucwords($link_field),
+            'url' => urlencode(get_field($link_field))
+          );
         }
       }
 
       $additional = get_field('additional_web_addresses');
       if($additional) {
         foreach($additional as $item) {
-          $links[$item['label']] = $links[$item['address']];
+          $links[] = array(
+            'name' => $item['label'],
+            'url' => $item['address']
+          );
         }
       }
+      
+      if(get_field('email')) {
+        $links[] = array(
+          'name' => 'email',
+          'url' => 'mailto:' . get_field('email')
+        );
+      }
     
-      $data[$i]['linked_schemas'] = 'organizations_schema-v1.0.0';
-      $data[$i]['name'] = get_the_title();
-      $data[$i]['primary_url'] = get_the_permalink();
+      $data[$i]['linked_schemas'] = array('organizations_schema-v1.0.0');
+      $data[$i]['name'] = html_entity_decode(get_the_title());
+      $data[$i]['primary_url'] = (get_field('website')) ? get_field('website') : get_the_permalink();
       $data[$i]['urls'] = $links;
       $data[$i]['description'] = get_field('description');
       $data[$i]['locality'] = get_field('city');
@@ -70,15 +83,22 @@ function endpoint_get_groups_murmarations(WP_REST_Request $request) {
       );
       $data[$i]['image'] = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
 
-      $tags = array('Transition Intiative');
+      $tags = array('Transition Group');
       $topics = get_the_terms($post, 'topic');
       if($topics) {
         foreach($topics as $term) {
-          $tags[] = $term->name;
+          $tags[] = html_entity_decode($term->name);
         }
       };
 
       $data[$i]['tags'] = $tags;
+
+      $data[$i]['metadata'] = array(
+        'sources' => array(
+          'name' => 'Transition Groups',
+          'profile_data_url' => get_the_permalink()
+        )
+      );
 
       $i ++;
 
