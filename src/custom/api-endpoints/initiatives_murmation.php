@@ -47,7 +47,7 @@ function endpoint_get_groups_murmarations(WP_REST_Request $request) {
         if(get_field($link_field)) {
           $links[] = array(
             'name' => ucwords($link_field),
-            'url' => urlencode(get_field($link_field))
+            'url' => get_field($link_field)
           );
         }
       }
