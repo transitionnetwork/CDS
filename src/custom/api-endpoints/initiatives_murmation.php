@@ -95,8 +95,7 @@ function get_group_data_murmarations($post) {
   $data['primary_url'] = (get_field('website')) ? get_field('website') : get_the_permalink();
   $data['urls'] = $links;
   
-  $description = get_field('description');
-  $description = strip_tags(html_entity_decode($description));
+  $description = strip_tags(html_entity_decode(get_field('description')));
   $description = trim(preg_replace('/\s\s+/', ' ', $description));
 
   $data['description'] = $description;
