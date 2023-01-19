@@ -1,6 +1,3 @@
-<?php post_groups_to_murmaration(); ?>
-<?php die(); ?>
-
 <?php acf_form_head(); ?>
 
 <?php
