@@ -121,6 +121,7 @@ function get_group_data_murmarations($post) {
 
   $data['metadata'] = array(
     'sources' => array(
+      'access_time' => time(),
       'name' => 'Transition Groups',
       'profile_data_url' => get_the_permalink()
     )
