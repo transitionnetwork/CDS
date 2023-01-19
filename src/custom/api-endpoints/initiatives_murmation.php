@@ -82,12 +82,12 @@ function get_group_data_murmarations($post) {
     }
   }
   
-  if(get_field('email')) {
-    $links[] = array(
-      'name' => 'email',
-      'url' => 'mailto:' . get_field('email')
-    );
-  }
+  // if(get_field('email')) {
+  //   $links[] = array(
+  //     'name' => 'email',
+  //     'url' => 'mailto:' . get_field('email')
+  //   );
+  // }
 
   $data['linked_schemas'] = array('organizations_schema-v1.0.0');
   $data['name'] = html_entity_decode(get_the_title());
@@ -106,7 +106,10 @@ function get_group_data_murmarations($post) {
     'lat' => $map['markers'][0]['lat'],
     'lon' => $map['markers'][0]['lng'],
   );
-  $data['image'] = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
+
+  if($logo && $logo['type'] === 'image') {
+    $data['image'] = $logo['sizes']['large'];
+  }
 
   $tags = array('Transition Group');
   $topics = get_the_terms($post, 'topic');
