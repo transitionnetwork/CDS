@@ -1,5 +1,5 @@
 <?php
-function endpoint_get_groups_murmarations_single(WP_REST_Request $request) {
+function endpoint_get_groups_murmurations_single(WP_REST_Request $request) {
   $args = array(
     'post_type' => 'initiatives',
     'p' => (int)$request['id']
@@ -12,7 +12,7 @@ function endpoint_get_groups_murmarations_single(WP_REST_Request $request) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
 
-      $data = get_group_data_murmarations($post);
+      $data = get_group_data_murmurations($post);
       $i ++;
 
     endwhile;
@@ -27,7 +27,7 @@ function endpoint_get_groups_murmarations_single(WP_REST_Request $request) {
   }
 }
 
-function endpoint_get_groups_murmarations(WP_REST_Request $request) {
+function endpoint_get_groups_murmurations(WP_REST_Request $request) {
   $data = [];
 
   $args = array(
@@ -42,7 +42,7 @@ function endpoint_get_groups_murmarations(WP_REST_Request $request) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
 
-      $data[$i] = get_group_data_murmarations($post);
+      $data[$i] = get_group_data_murmurations($post);
       $i ++;
 
     endwhile;
@@ -57,7 +57,7 @@ function endpoint_get_groups_murmarations(WP_REST_Request $request) {
   }
 }
 
-function get_group_data_murmarations($post) {
+function get_group_data_murmurations($post) {
   $map = get_field('map');
   $logo = get_field('logo');
 

@@ -20,14 +20,14 @@ function endpoint_add_custom_routes() {
     'callback' => 'endpoint_get_group_by_email',
   ));
   
-  register_rest_route( 'cds/v1', '/get-groups-murmarations', array(
+  register_rest_route( 'cds/v1', '/get-groups-murmurations', array(
     'methods' => 'GET',
-    'callback' => 'endpoint_get_groups_murmarations',
+    'callback' => 'endpoint_get_groups_murmurations',
   ));
 
-  register_rest_route('cds/v1', '/get-groups-murmarations/(?P<id>\d+)', array(
+  register_rest_route('cds/v1', '/get-groups-murmurations/(?P<id>\d+)', array(
     'method' => 'GET', 
-    'callback' => 'endpoint_get_groups_murmarations_single', 
+    'callback' => 'endpoint_get_groups_murmurations_single', 
   ));
   
   register_rest_route( 'cds/v1', '/trainers', array(
@@ -63,7 +63,7 @@ function wprc_add_acf_posts_endpoint( $allowed_endpoints ) {
       $allowed_endpoints[ 'cds/v1' ][] = 'group-distance';
       $allowed_endpoints[ 'cds/v1' ][] = 'trainers';
       $allowed_endpoints[ 'cds/v1' ][] = 'hubs';
-      $allowed_endpoints[ 'cds/v1' ][] = 'get-groups-murmarations';
+      $allowed_endpoints[ 'cds/v1' ][] = 'get-groups-murmurations';
   }
   return $allowed_endpoints;
 }
