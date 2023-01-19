@@ -2,7 +2,6 @@
 function endpoint_get_groups_murmarations_single(WP_REST_Request $request) {
   $args = array(
     'post_type' => 'initiatives',
-    'posts_per_page' => -1,
     'p' => (int)$request['id']
   );
   
@@ -13,7 +12,7 @@ function endpoint_get_groups_murmarations_single(WP_REST_Request $request) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
 
-      $data[$i] = get_group_data_murmarations($post);
+      $data = get_group_data_murmarations($post);
       $i ++;
 
     endwhile;
