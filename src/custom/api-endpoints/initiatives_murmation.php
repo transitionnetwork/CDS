@@ -82,17 +82,14 @@ function get_group_data_murmarations($post) {
     }
   }
   
-  // if(get_field('email')) {
-  //   $links[] = array(
-  //     'name' => 'email',
-  //     'url' => 'mailto:' . get_field('email')
-  //   );
-  // }
-
   $data['linked_schemas'] = array('organizations_schema-v1.0.0');
   $data['name'] = html_entity_decode(get_the_title());
   $data['primary_url'] = (get_field('website')) ? get_field('website') : get_the_permalink();
   $data['urls'] = $links;
+
+  if(get_field('email')) {
+    $data['email'] = 'mailto:' . strtolower(get_field('email'));
+  }
   
   $description = strip_tags(html_entity_decode(get_field('description')));
   $description = trim(preg_replace('/\s\s+/', ' ', $description));
