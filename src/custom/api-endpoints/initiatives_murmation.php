@@ -42,7 +42,7 @@ function endpoint_get_groups_murmurations(WP_REST_Request $request) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
 
-      $data[$i] = get_group_data_murmurations($post);
+      $data[$i] = home_url('/wp-json/cds/v1/get-groups-murmurations/') . $post->ID;
       $i ++;
 
     endwhile;
