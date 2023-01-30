@@ -1,4 +1,14 @@
 <?php
+function endpoint_format_url($url) {
+  $url = trim($url);
+  $scheme = parse_url($url, PHP_URL_SCHEME);
+  if (empty($scheme)) {
+    return 'https://' . ltrim($url, '/');
+  }
+
+  return $url;
+}
+
 function endpoint_add_custom_routes() {
   register_rest_route( 'cds/v1', '/initiatives', array(
     'methods' => 'GET',

@@ -67,7 +67,7 @@ function get_group_data_murmurations($post) {
     if(get_field($link_field)) {
       $links[] = array(
         'name' => ucwords($link_field),
-        'url' => get_field($link_field)
+        'url' => endpoint_format_url(get_field($link_field))
       );
     }
   }
@@ -75,20 +75,22 @@ function get_group_data_murmurations($post) {
   $additional = get_field('additional_web_addresses');
   if($additional) {
     foreach($additional as $item) {
-      $links[] = array(
-        'name' => $item['label'],
-        'url' => $item['address']
-      );
+      if($item['label'] && $item['address']) {
+        $links[] = array(
+          'name' => $item['label'],
+          'url' => endpoint_format_url($item['address'])
+        );
+      }
     }
   }
   
   $data['linked_schemas'] = array('organizations_schema-v1.0.0');
   $data['name'] = html_entity_decode(get_the_title());
-  $data['primary_url'] = (get_field('website')) ? get_field('website') : get_the_permalink();
+  $data['primary_url'] = (get_field('website')) ? endpoint_format_url(get_field('website')) : get_the_permalink();
   $data['urls'] = $links;
 
   if(get_field('email')) {
-    $data['email'] = 'mailto:' . strtolower(get_field('email'));
+    $data['email'] = strtolower(get_field('email'));
   }
   
   $description = strip_tags(html_entity_decode(get_field('description')));
@@ -99,9 +101,10 @@ function get_group_data_murmurations($post) {
   $data['locality'] = get_field('city');
   $data['region'] = get_field('province');
   $data['country_name'] = endpoint_get_taxonomy_terms($post, 'country');
+
   $data['geolocation'] = array(
-    'lat' => $map['markers'][0]['lat'],
-    'lon' => $map['markers'][0]['lng'],
+    'lat' => ($map['markers']) ? $map['markers'][0]['lat'] : '',
+    'lon' => ($map['markers']) ? $map['markers'][0]['lng'] : '',
   );
 
   if($logo && $logo['type'] === 'image') {
