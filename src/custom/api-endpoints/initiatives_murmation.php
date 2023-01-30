@@ -102,10 +102,12 @@ function get_group_data_murmurations($post) {
   $data['region'] = get_field('province');
   $data['country_name'] = endpoint_get_taxonomy_terms($post, 'country');
 
-  $data['geolocation'] = array(
-    'lat' => ($map['markers']) ? $map['markers'][0]['lat'] : '',
-    'lon' => ($map['markers']) ? $map['markers'][0]['lng'] : '',
-  );
+  if($map['markers'] && $map['markers'][0]['lat'] && $map['markers'][0]['lng']) {
+    $data['geolocation'] = array(
+      'lat' => $map['markers'][0]['lat'],
+      'lon' => $map['markers'][0]['lng']
+    );
+  }
 
   if($logo && $logo['type'] === 'image') {
     $data['image'] = $logo['sizes']['large'];
