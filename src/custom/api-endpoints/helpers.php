@@ -9,6 +9,15 @@ function endpoint_format_url($url) {
   return $url;
 }
 
+function add_log_message($log_msg) {
+  $log_filename = ABSPATH . "api-log.log";
+
+  $log_msg = date('Y-m-d H:i:s') . ' : ' . $log_msg;
+
+  // if you don't add `FILE_APPEND`, the file will be erased each time you add a log
+  file_put_contents($log_filename, $log_msg . "\n", FILE_APPEND);
+} 
+
 function endpoint_add_custom_routes() {
   register_rest_route( 'cds/v1', '/initiatives', array(
     'methods' => 'GET',

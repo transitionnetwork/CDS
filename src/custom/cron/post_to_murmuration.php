@@ -1,7 +1,5 @@
 <?php
 function post_to_murmuration_api($post) {
-  return;
-  ////////
   $body = array(
     'profile_url' => 'https://transitiongroups.org/wp-json/cds/v1/get-groups-murmurations/' . $post->ID
   );
@@ -14,13 +12,41 @@ function post_to_murmuration_api($post) {
     ],
   ))['body'];
 
-  $response = json_decode($response);
+  add_log_message('UPDATE post-' . $post->ID . ' ' . $response);
 
-  // SOME SORT OF LOGGING NEEDS TO HAPPEN HERE
+  if($response->errors) {
+    $errors = $response->errors;
+    update_post_meta($post->ID, 'murmurations_error', json_encode($error));
+  } else {
+    $node_id = $response->data->node_id;
+    $status = $response->data->status;
+  
+    update_post_meta($post->ID, 'murmurations_node_id', $node_id);
+    update_post_meta($post->ID, 'murmurations_status', $status);
+    update_post_meta($post->ID, 'murmurations_error', null);
+  }
 
   return;
 }
 
 function remove_from_murmuration_api($post) {
-  return;
+  $node_id = get_post_meta( $post->ID, 'murmurations_node_id', true );
+  
+  if($node_id) {
+    $response = wp_remote_post('https://test-index.murmurations.network/v2/nodes/' . $node_id, array(
+    'method' => 'DELETE',
+    'headers' => [
+      'Content-Type' => 'application/json',
+    ]))['body'];
+  }
+
+  add_log_message('DELETE post-' . $post->ID . ' ' . $response);
+
+  if($response->errors) {
+    $errors = $response->errors;
+    update_post_meta($post->ID, 'murmurations_error', json_encode($error));
+  } else {
+    update_post_meta($post->ID, 'murmurations_status', $status);
+    update_post_meta($post->ID, 'murmurations_error', null);
+  }
 }
