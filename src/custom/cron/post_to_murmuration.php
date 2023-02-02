@@ -1,7 +1,7 @@
 <?php
 function post_to_murmuration_api($post) {
   $body = array(
-    'profile_url' => 'https://transitiongroups.org/wp-json/cds/v1/get-groups-murmurations/' . $post->ID
+    'profile_url' => home_url('wp-json/cds/v1/get-groups-murmurations/') . $post->ID
   );
 
   $response = wp_remote_post('https://test-index.murmurations.network/v2/nodes-sync', array(
