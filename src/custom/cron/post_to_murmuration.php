@@ -4,6 +4,8 @@ function post_to_murmuration_api($post) {
     'profile_url' => home_url('wp-json/cds/v1/get-groups-murmurations/') . $post->ID
   );
 
+  add_log_message($body);
+
   $response = wp_remote_post('https://test-index.murmurations.network/v2/nodes-sync', array(
     'method' => 'POST',
     'body' => json_encode($body),
