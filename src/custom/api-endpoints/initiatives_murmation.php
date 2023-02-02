@@ -22,13 +22,7 @@ function endpoint_get_groups_murmurations_single(WP_REST_Request $request) {
   if(!empty($data)) {
     return $data;
   } else {
-    return array(
-      'code' => 'rest_no_route',
-      'message' => 'No route was found matching the URL and request method.',
-      'data' => array(
-        'status'=> 404
-      )
-    );
+    return new WP_Error( 'page_does_not_exist', __('The page you are looking for does not exist'), array( 'status' => 404 ) );
   }
 }
 
