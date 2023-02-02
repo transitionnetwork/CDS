@@ -33,12 +33,6 @@ function acf_custom_save($post_id)
         unlink($file); // delete file
       }
     }
-
-    if($post->post_status === 'publish') {
-      post_to_murmuration_api($post);
-    } else {
-      remove_from_murmuration_api($post);
-    }
   }
 
   if(get_post_type($post_id) === 'hub_applications') { // hub_application
@@ -120,4 +114,3 @@ function validation_group_description( $valid, $value, $field, $input_name ) {
 }
 
 add_filter('acf/validate_value/name=description', 'validation_group_description', 10, 4);
-

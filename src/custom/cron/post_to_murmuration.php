@@ -54,3 +54,13 @@ function remove_from_murmuration_api($post) {
     update_post_meta($post->ID, 'murmurations_error', null);
   }
 }
+
+function send_murmurations_request($post_id, $post, $update) {
+  if($post->post_status === 'publish') {
+    post_to_murmuration_api($post);
+  } else {
+    remove_from_murmuration_api($post);
+  }
+}
+
+add_action( 'save_post_initiatives', 'send_murmurations_request', 10, 3 );
