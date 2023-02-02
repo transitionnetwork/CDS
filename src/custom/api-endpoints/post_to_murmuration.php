@@ -4,7 +4,7 @@ function post_to_murmuration_api($post) {
     'profile_url' => home_url('wp-json/cds/v1/get-groups-murmurations/') . $post->ID
   );
 
-  $response = wp_remote_post('https://test-index.murmurations.network/v2/nodes-sync', array(
+  $response = wp_remote_post('https://index.murmurations.network/v2/nodes-sync', array(
     'method' => 'POST',
     'body' => json_encode($body),
     'headers' => [
@@ -37,7 +37,7 @@ function remove_from_murmuration_api($post) {
   // var_dump($node_id);
   
   if($node_id) {
-    $response = wp_remote_post('https://test-index.murmurations.network/v2/nodes/' . $node_id, array(
+    $response = wp_remote_post('https://index.murmurations.network/v2/nodes/' . $node_id, array(
     'method' => 'DELETE',
     'headers' => [
       'Content-Type' => 'text/plain',
