@@ -82,7 +82,6 @@ function wprc_add_acf_posts_endpoint( $allowed_endpoints ) {
       $allowed_endpoints[ 'cds/v1' ][] = 'group-distance';
       $allowed_endpoints[ 'cds/v1' ][] = 'trainers';
       $allowed_endpoints[ 'cds/v1' ][] = 'hubs';
-      $allowed_endpoints[ 'cds/v1' ][] = 'get-groups-murmurations';
   }
   return $allowed_endpoints;
 }

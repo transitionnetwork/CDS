@@ -2,7 +2,8 @@
 function endpoint_get_groups_murmurations_single(WP_REST_Request $request) {
   $args = array(
     'post_type' => 'initiatives',
-    'p' => (int)$request['id']
+    'p' => (int)$request['id'],
+    'post_status' => 'publish'
   );
   
   $post_query = new WP_Query($args);

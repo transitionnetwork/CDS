@@ -36,6 +36,8 @@ function acf_custom_save($post_id)
 
     if($post->post_status === 'publish') {
       post_to_murmuration_api($post);
+    } else {
+      remove_from_murmuration_api($post);
     }
   }
 
@@ -119,18 +121,3 @@ function validation_group_description( $valid, $value, $field, $input_name ) {
 
 add_filter('acf/validate_value/name=description', 'validation_group_description', 10, 4);
 
-//on post status change (murmurations API)
-function groups_run_on_status_change( $new_status, $old_status, $post ) {
-  
-  if ( $old_status == $new_status )
-  return;
-
-  if($new_status === 'publish') {
-    //add to murmurations
-    post_to_murmuration_api($post_id);
-  } else {
-    //delete from murmarations
-    remove_from_murmuration_api($post);
-  }
-}
-add_action( 'transition_post_status', 'groups_run_on_status_change', 10, 3 );
