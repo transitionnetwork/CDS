@@ -23,7 +23,11 @@ function endpoint_get_groups_murmurations_single(WP_REST_Request $request) {
     return $data;
   } else {
     return array(
-      'body' => 'Group not found'
+      'code' => 'rest_no_route',
+      'message' => 'No route was found matching the URL and request method.',
+      'data' => array(
+        'status'=> 404
+      )
     );
   }
 }
