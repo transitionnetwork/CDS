@@ -27,7 +27,7 @@ if(is_user_role('hub')) {
       <div class="tag hub"><?php echo $hub_object->name; ?></div>
     <?php endif; ?>
 
-    <?php _e('Logged in as', 'tofino'); ?> <?php echo wp_get_current_user()->user_login; ?> | <a href="<?php echo wp_logout_url(home_url()); ?>"><?php _e('Logout', 'tofino'); ?></a>
+    <?php _e('Logged in as', 'tofino'); ?> <?php echo wp_get_current_user()->user_email; ?> | <a href="<?php echo wp_logout_url(home_url()); ?>"><?php _e('Logout', 'tofino'); ?></a>
   <?php } ?>
 
 </div>
