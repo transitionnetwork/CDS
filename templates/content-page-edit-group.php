@@ -31,6 +31,7 @@
 							'post_title'	=> true,
 							'return' => add_query_arg('edited_post', 'initiative', parse_post_link($edit_post_id)),
 							'submit_value' => 'Save changes',
+							'uploader' => 'basic',
 							'field_groups' => $field_groups
 						)); ?>
 					</div>

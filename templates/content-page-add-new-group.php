@@ -24,6 +24,7 @@ if(is_user_role('initiative')) {
             'post_title'	=> true,
             'return' => add_query_arg('added_post', 'initiative', '%post_url%'),
             'submit_value' => 'Create Group',
+            'uploader' => 'basic',
             // 'field_groups' => array ('group_5a26865e56e22', 'group_5a26865e64f00', 'group_5a26865e89711', 'group_5b3e27aee4439', 'group_606d979a4877d'),
             'new_post'		=> array(
               'post_type'		=> 'initiatives',

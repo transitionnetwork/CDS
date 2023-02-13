@@ -19,6 +19,7 @@
 							'post_id'		=> get_query_var('edit_post'),
 							'post_title'	=> false,
 							'post_content'	=> false,
+							'uploader' => 'basic',
 							'return' => add_query_arg('updated', 'trainer', get_the_permalink(get_query_var('edit_post'))),
 							'submit_value' => __('Update Trainer'),
 						));

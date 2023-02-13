@@ -18,6 +18,7 @@
             'post_content'	=> false,
             'return' => add_query_arg('added_post', 'trainer', '%post_url%'),
             'submit_value' => __('Add New Trainer'),
+            'uploader' => 'basic',
             'new_post'		=> array(
               'post_type'		=> 'trainers',
               'post_status'	=> 'pending'
