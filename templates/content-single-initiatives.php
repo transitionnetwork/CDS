@@ -118,7 +118,7 @@
               <?php } ?>
     
               <?php if (get_field('email')) { ?>
-                <h3><?php echo get_field_object('email')['label']; ?></h3>
+                <h3 class="mt-3"><?php echo get_field_object('email')['label']; ?></h3>
                 <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
               <?php } ?>
   
