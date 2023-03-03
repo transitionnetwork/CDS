@@ -38,20 +38,20 @@
           <?php $countries = get_list_terms('country'); ?>
           <?php $regions = get_field('additional_information_trainer_regions'); ?>
 
-          <ul class="meta">
+          <div class="panel">
             <?php if($languages) { ?>
-              <li><strong>Languages:</strong>&nbsp;<?php echo $languages; ?></li>
+              <div><strong>Languages:</strong>&nbsp;<?php echo $languages; ?></div>
             <?php } ?>
             <?php if($topics) { ?>
-              <li><strong>Topics:</strong>&nbsp;<?php echo $topics; ?></li>
+              <div><strong>Topics:</strong>&nbsp;<?php echo $topics; ?></div>
             <?php } ?>
             <?php if($countries) { ?>
-              <li><strong>Countries:</strong>&nbsp;<?php echo $countries; ?></li>
+              <div><strong>Countries:</strong>&nbsp;<?php echo $countries; ?></div>
             <?php } ?>
             <?php if($regions) { ?>
-              <li><strong>Regions:</strong>&nbsp;<?php echo $regions; ?>
+              <div><strong>Regions:</strong>&nbsp;<?php echo $regions; ?></div>
             <?php } ?>
-          </ul>
+            </div>
 
           <?php $field_names = array(
             'general_information_trainer_bio',
@@ -60,7 +60,7 @@
           <?php foreach($field_names as $field_name) {
             if(get_field($field_name)) { ?>
             <div class="mt-4">
-              <h3 class="normal-size"><strong><?php echo get_field_object($field_name)['label']; ?></strong></h3>
+              <h3><?php echo get_field_object($field_name)['label']; ?></h3>
               <div class="mt-1">
                 <?php echo get_field($field_name); ?>
               </div>
@@ -97,18 +97,20 @@
             <?php $email = get_field('general_information_email'); ?>
             <?php $website = get_field('general_information_your_website'); ?>
             <?php if($website && $email) { ?>
+              <div class="panel">
                 <?php if($email) { ?>
-                <div>
-                  <label><?php _e('Email', 'tofino'); ?></label>
-                  <div><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></div>
-                </div>
-              <?php } ?>
-              <?php if($website) { ?>
-                <div>
-                  <label><?php _e('Website', 'tofino'); ?></label>
-                  <div><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></div>
-                </div>
-              <?php } ?>
+                  <div>
+                    <h3><?php _e('Email', 'tofino'); ?></h3>
+                    <div><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></div>
+                  </div>
+                <?php } ?>
+                <?php if($website) { ?>
+                  <div class="mt-3">
+                    <h3><?php _e('Website', 'tofino'); ?></h3>
+                    <div><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></div>
+                  </div>
+                <?php } ?>
+              </div>
             <?php } ?>
 
           </aside>

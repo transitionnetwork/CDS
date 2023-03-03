@@ -24,40 +24,42 @@
           <?php set_query_var('map', $map); ?>
           <?php get_template_part('templates/partials/single-map'); ?>
           
-          <?php if(get_field('logo', $term)) { ?>
-            <p class="mt-4"><img src="<?php echo get_field('logo', $term)['sizes']['large']; ?>"></p>
-          <?php } ?>
-
-          <?php if (get_field('email', $term)) { ?>
-            <label><?php echo get_field_object('email', $term)['label']; ?></label>
-            <a href="mailto:<?php echo get_field('email', $term); ?>"><?php echo get_field('email', $term); ?></a>
-          <?php } ?>
-
-          <?php if(get_field('website', $term) || get_field('facebook', $term) || get_field('instagram', $term) || get_field('twitter', $term) || get_field('youtube', $term)) { ?>
-            <label><?php _e('Links', 'tofino'); ?></label>
-            <ul class="links">
-              <?php if (get_field('website', $term)) { ?>
-                <li><a href="<?php echo get_field('website', $term); ?>" target="_blank">Web</a></li>
-              <?php } ?>
-              <?php if (get_field('twitter', $term)) { ?>
-                <li><a href="<?php echo get_field('twitter', $term); ?>" target="_blank"><?php echo svg('twitter'); ?></a></li>
-              <?php } ?>
-              <?php if (get_field('facebook', $term)) { ?>
-                <li><a href="<?php echo get_field('facebook', $term); ?>" target="_blank"><?php echo svg('facebook'); ?></a></li>
-              <?php } ?>
-              <?php if (get_field('instagram', $term)) { ?>
-                <li><a href="<?php echo get_field('instagram', $term); ?>" target="_blank"><?php echo svg('instagram'); ?></a></li>
-              <?php } ?>
-              <?php if (get_field('youtube', $term)) { ?>
-                <li><a href="<?php echo get_field('youtube', $term); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
-              <?php } ?>
-            </ul>
-          <?php } ?>
+          <div class="panel">
+            <?php if(get_field('logo', $term)) { ?>
+              <img src="<?php echo get_field('logo', $term)['sizes']['large']; ?>">
+            <?php } ?>
+  
+            <?php if (get_field('email', $term)) { ?>
+              <h3 class="mt-3"><?php echo get_field_object('email', $term)['label']; ?></h3>
+              <a href="mailto:<?php echo get_field('email', $term); ?>"><?php echo get_field('email', $term); ?></a>
+            <?php } ?>
+  
+            <?php if(get_field('website', $term) || get_field('facebook', $term) || get_field('instagram', $term) || get_field('twitter', $term) || get_field('youtube', $term)) { ?>
+              <h3 class="mt-3"><?php _e('Links', 'tofino'); ?></h3>
+              <ul class="links">
+                <?php if (get_field('website', $term)) { ?>
+                  <li><a href="<?php echo get_field('website', $term); ?>" target="_blank">Web</a></li>
+                <?php } ?>
+                <?php if (get_field('twitter', $term)) { ?>
+                  <li><a href="<?php echo get_field('twitter', $term); ?>" target="_blank"><?php echo svg('twitter'); ?></a></li>
+                <?php } ?>
+                <?php if (get_field('facebook', $term)) { ?>
+                  <li><a href="<?php echo get_field('facebook', $term); ?>" target="_blank"><?php echo svg('facebook'); ?></a></li>
+                <?php } ?>
+                <?php if (get_field('instagram', $term)) { ?>
+                  <li><a href="<?php echo get_field('instagram', $term); ?>" target="_blank"><?php echo svg('instagram'); ?></a></li>
+                <?php } ?>
+                <?php if (get_field('youtube', $term)) { ?>
+                  <li><a href="<?php echo get_field('youtube', $term); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
+                <?php } ?>
+              </ul>
+            <?php } ?>
+          </div>
 
           <?php $additional = get_field('additional_web_addresses', $term); 
           if($additional) { ?>
             <section>
-              <h4><?php _e('More Links', 'tofino'); ?></h4>
+              <h3><?php _e('More Links', 'tofino'); ?></h3>
               <ul>
                 <?php foreach($additional as $item) { ?>
                   <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
