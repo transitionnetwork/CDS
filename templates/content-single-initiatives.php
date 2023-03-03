@@ -116,9 +116,18 @@
               <?php if(get_field('logo')) { ?>
                 <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
               <?php } ?>
+
+              <?php if(count($hubs) === 1) { ?>
+                <h3>Hub</h3>
+                <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
+              <?php } ?>
+              <?php if($topics) { ?>
+                <h3 class="mt-3">Topics</h3>
+                <strong><?php echo get_taxonomy('topic')->label; ?>:</strong> <?php echo implode(', ', $topic_names); ?>
+              <?php } ?>
     
               <?php if (get_field('email')) { ?>
-                <h3 class="mt-3"><?php echo get_field_object('email')['label']; ?></h3>
+                <h3 class="mt-3">Email</h3>
                 <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
               <?php } ?>
   
@@ -141,17 +150,6 @@
                     <li><a href="<?php echo get_field('youtube'); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
                   <?php } ?>
                 </ul>
-              <?php } ?>
-            </div>
-
-            <div class="panel">
-              <?php if(count($hubs) === 1) { ?>
-                <h3>Hub</h3>
-                <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
-              <?php } ?>
-              <?php if($topics) { ?>
-                <h3 class="mt-3">Topics</h3>
-                <strong><?php echo get_taxonomy('topic')->label; ?>:</strong> <?php echo implode(', ', $topic_names); ?>
               <?php } ?>
             </div>
 
