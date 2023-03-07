@@ -104,9 +104,6 @@
             <?php } ?>
             
             <?php $logo = get_field('logo'); ?>
-            <?php var_dump($logo); ?>
-            <?php var_dump($topic); ?>
-            <?php var_dump($topic); ?>
             <?php if($logo || $hubs || $topic) { ?>
               <div class="panel">
                 <?php if(get_field('logo')) { ?>
