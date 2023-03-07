@@ -56,7 +56,7 @@ function remove_from_murmuration_api($post) {
 }
 
 function send_murmurations_request($post_id, $post, $update) {
-  if(get_environmennt() === 'production') {
+  if(get_environment() === 'production') {
     if($post->post_status === 'publish') {
       post_to_murmuration_api($post);
     } else {
