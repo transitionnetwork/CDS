@@ -343,7 +343,6 @@ function disabling_emails( $args ){
 add_filter('wp_mail','disabling_emails', 10,1);
 
 function custom_email_send_transactional_email($email_id, $email_addresses, $language = null) {
-  
   $subject = get_field('subject', $email_id);
   $message = get_post_field('post_content', $email_id);
 
