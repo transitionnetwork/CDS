@@ -361,6 +361,22 @@ function process_post_requests() {
       wp_update_post($args);
     }
 
+    //hub access
+    if(array_key_exists('request_access', $_POST)) {
+      request_hub_access((int)$_POST['request_access']);
+    }
+
+    if(array_key_exists('confirm_hub_admin', $_POST)) {
+      //TODO: email user and tell them
+      grant_hub_access($_POST['confirm_hub_admin'], $_POST['hub_id']);
+    }
+
+    if(array_key_exists('deny_hub_admin', $_POST)) {
+      //TODO: email user and tell them
+      delete_hub_access_request($_POST['deny_hub_admin'], $_POST['hub_id']);
+    }
+    //end hub access
+
     if(array_key_exists('trainer_update', $_POST)) {
       $args = array(
         'ID' => $_POST['post_id'],

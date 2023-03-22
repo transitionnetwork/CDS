@@ -13,8 +13,18 @@
         
         <div class="mt-4"><?php echo get_field('hub_description', $term); ?></div>
 
-        <?php if(is_user_role('administrator') || is_user_role('super_hub') || can_edit_hub($term->term_id)) { ?>
+        <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
+        <?php } ?>
+
+        <?php if(is_user_logged_in() && !is_user_role(array('super_hub', 'hub', 'administrator'))) { ?>
+          <?php if(!is_hub_access_requested($term->term_id)) { ?>
+            <form action="" method="post">
+              <button class="btn btn-secondary btn-sm" name="request_access" value="<?php echo $term->term_id; ?>"><?php echo svg('plus'); ?>Request admin access to hub</button>
+            </form>
+          <?php } else { ?>
+            <p><strong>Hub admin access has been requested</strong></p>
+          <?php } ?>
         <?php } ?>
       </div>
  
@@ -67,7 +77,6 @@
               </ul>
             </section>
           <?php } ?>
-          
         </aside>
       </div>
 
