@@ -9,6 +9,7 @@
   }
 } ?>
 
+
 <section>
   <h2>Hub Admin</h2>
   <?php if ($hub_ids) { ?>
@@ -19,7 +20,7 @@
         <th></th>
         <?php if(is_user_role(array('super_hub', 'administrator'))) { ?>
           <th>Users awaiting approval</th>
-        <?php ?>
+        <?php } ?>
       </tr>
       <?php foreach ($hub_ids as $hub_id) {
         $hub = get_term_by('id', $hub_id, 'hub'); ?>
@@ -55,8 +56,7 @@
                         </form>
                     </li>
                   <?php } ?>
-                <?php }
-                }; ?>
+                <?php } ?>
               </ul>
             </td>
           <?php } ?>
@@ -64,6 +64,5 @@
       <?php } ?>
     </table>
   <?php } ?>
-
 
 </section>
