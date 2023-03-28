@@ -16,8 +16,8 @@
     <table class="item-list">
       <tr>
         <th>Hub Name</th>
-        <th></th>
-        <th></th>
+        <th>Download</th>
+        <th>Edit</th>
         <?php if(is_user_role(array('super_hub', 'administrator'))) { ?>
           <th>Users awaiting approval</th>
         <?php } ?>

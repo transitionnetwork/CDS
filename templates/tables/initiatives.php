@@ -10,7 +10,7 @@
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
       <?php } ?>
-      <th></th>
+      <th>Actions</th>
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $post = get_post($post); ?>
