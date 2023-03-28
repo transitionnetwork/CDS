@@ -68,7 +68,7 @@
             <?php $post_author = (int)$post->post_author; ?>
             <?php if($post_author !== get_current_user_id()) { // TODO: check for co-author access here and across site once plugin is installed ?>
               <?php if(!author_access_is_requested($post->ID)) { ?>
-                <form action="" method="post">
+                <form action="" method="post" class="d-none">
                   <button class="btn btn-secondary btn-sm" name="request_post_access" value="<?php echo $post->ID; ?>"><?php echo svg('pencil'); ?>Request edit access</button>
                 </form>
               <?php } else { ?>

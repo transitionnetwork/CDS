@@ -69,7 +69,7 @@ function author_access_request($post_id) {
 
 function author_access_is_requested($post_id) {
   $author_requests = get_post_meta( $post_id, 'author_requests', true);
-  if(in_array(get_current_user_id(), $author_requests)) {
+  if(is_array($author_requests) && in_array(get_current_user_id(), $author_requests)) {
     return true;
   }
 
@@ -78,9 +78,10 @@ function author_access_is_requested($post_id) {
 
 function author_access_grant($post_id, $user_id) {
   //no idea yet cos plugin not installed
-  //TODO: Add plugin code hook
+  //TODO: move id from 'author_requests' post meta into 'coauthors'
   //TODO: Alert user
   var_dump('granted');
+
 }
 
 function author_access_deny($post_id, $user_id) {

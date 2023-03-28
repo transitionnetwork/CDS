@@ -96,7 +96,7 @@
 
             <?php $email = get_field('general_information_email'); ?>
             <?php $website = get_field('general_information_your_website'); ?>
-            <?php if($website && $email) { ?>
+            <?php if($website || $email) { ?>
               <div class="panel">
                 <?php if($email) { ?>
                   <div>
