@@ -28,10 +28,10 @@
           <td>
             <?php echo $hub->name; ?>
           </td>
-          <td class="text-right">
+          <td>
             <a class="btn btn-primary btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, parse_post_link(6105)); ?>"><?php echo svg('cloud-download'); ?>CSV of group data</a>
           </td>
-          <td class="text-right">
+          <td>
             <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit</a>
           </td>
           
