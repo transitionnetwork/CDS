@@ -3,9 +3,9 @@
     <tr>
       <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
       <?php if(!is_tax()) { ?>
-        <th class="col-b"><?php _e('Hub'); ?></th>
+        <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
       <?php } ?>
-      <th class="col-b"><?php _e('Country'); ?></th>
+      <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
       <?php if(is_user_logged_in()) { ?>
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
