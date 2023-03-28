@@ -56,3 +56,42 @@ function get_initiatve_age($post = 0) {
 
   return floor($duration / 86400);
 }
+
+function author_access_request($post_id) {
+  $author_requests = get_post_meta( $post_id, 'author_requests', true);
+  if(!$author_requests) $author_requests = array();
+  
+  $author_requests[] = get_current_user_id();
+  $author_requests = array_unique($author_requests);
+  update_post_meta($post_id, 'author_requests', $author_requests);
+  //TODO: Alert author
+}
+
+function author_access_is_requested($post_id) {
+  $author_requests = get_post_meta( $post_id, 'author_requests', true);
+  if(in_array(get_current_user_id(), $author_requests)) {
+    return true;
+  }
+
+  return false;
+}
+
+function author_access_grant() {
+  //no idea yet cos plugin not installed
+  //TODO: Add plugin code hook
+  //TODO: Alert user
+}
+
+function author_access_deny($post_id, $user_id) {
+  $author_requests = get_post_meta( $post_id, 'author_requests', true);
+
+  if (($key = array_search($user_id, $author_requests)) !== false) {
+    unset($author_requests[$key]);
+  }
+
+  update_post_meta($post_id, 'author_requests', $author_requests);
+}
+
+function author_access_remove() {
+
+}

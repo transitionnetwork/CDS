@@ -377,6 +377,17 @@ function process_post_requests() {
     }
     //end hub access
 
+    //author access
+    if(array_key_exists('request_post_access', $_POST)) {
+      author_access_request($_POST['request_post_access']);
+    }
+
+    if(array_key_exists('deny_author_access', $_POST)) {
+      author_access_deny($_POST['post_id'], $_POST['deny_author_access']);
+    }
+
+    //end author access
+
     if(array_key_exists('trainer_update', $_POST)) {
       $args = array(
         'ID' => $_POST['post_id'],

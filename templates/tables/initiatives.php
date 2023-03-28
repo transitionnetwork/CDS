@@ -1,4 +1,4 @@
-<?php if($init_query->have_posts()) { ?>
+ <?php if($init_query->have_posts()) { ?>
   <table class="item-list">
     <tr>
       <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
@@ -75,6 +75,28 @@
           </div>
         </td>
       </tr>
+      <?php $author_requests = get_post_meta($post->ID, 'author_requests', true); ?>
+      <?php if((int)$post->post_author === get_current_user_id() && $author_requests) { ?>
+        <tr>
+          <td colspan="100%">
+            Edit access for <?php the_title(); ?> has been requested by
+            <ul>
+              <?php foreach($author_requests as $author_request_id) { ?>
+                <li>
+                  <?php $user = get_user_by( 'ID', $author_request_id ); ?>
+                  <?php echo $user->display_name . ' (' . $user->user_email . ')'; ?><br/>
+                  <div class="btn-group">
+                    <form action="" method="post">
+                      <button class="btn btn-sm btn-success" name="confirm_author_access" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
+                      <button class="btn btn-sm btn-danger" name="deny_author_access" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
+                      <input type="hidden" name="post_id" value="<?php echo $post->ID; ?>">
+                    </form>
+                </li>
+              <?php } ?>
+            </ul>
+          </td>
+        </tr>
+      <?php } ?>
     <?php endwhile; ?>
   </table>
 
