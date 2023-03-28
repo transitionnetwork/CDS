@@ -95,5 +95,5 @@ function author_access_deny($post_id, $user_id) {
 
 function author_access_remove($post_id, $user_id) {
   //TODO: ADD A BUTTON ON MAIN AUTHORS DASHBOARD OR ARTICLE WITH REVOKE ACCESS POWER
-  var_dump('revoked;')
+  var_dump('revoked;');
 }
