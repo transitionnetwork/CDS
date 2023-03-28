@@ -386,6 +386,10 @@ function process_post_requests() {
       author_access_deny($_POST['post_id'], $_POST['deny_author_access']);
     }
 
+    if(array_key_exists('confirm_author_access', $_POST)) {
+      author_access_grant($_POST['post_id'], $_POST['confirm_author_access']);
+    }
+
     //end author access
 
     if(array_key_exists('trainer_update', $_POST)) {

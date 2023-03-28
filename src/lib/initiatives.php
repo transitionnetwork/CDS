@@ -76,10 +76,11 @@ function author_access_is_requested($post_id) {
   return false;
 }
 
-function author_access_grant() {
+function author_access_grant($post_id, $user_id) {
   //no idea yet cos plugin not installed
   //TODO: Add plugin code hook
   //TODO: Alert user
+  var_dump('granted');
 }
 
 function author_access_deny($post_id, $user_id) {
@@ -92,6 +93,7 @@ function author_access_deny($post_id, $user_id) {
   update_post_meta($post_id, 'author_requests', $author_requests);
 }
 
-function author_access_remove() {
-
+function author_access_remove($post_id, $user_id) {
+  //TODO: ADD A BUTTON ON MAIN AUTHORS DASHBOARD OR ARTICLE WITH REVOKE ACCESS POWER
+  var_dump('revoked;')
 }
