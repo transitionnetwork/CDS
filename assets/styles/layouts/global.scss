@@ -115,6 +115,10 @@ button {
     color: $white;
     text-decoration: underline;
   }
+
+  .user-details {
+    padding: 7px 0;
+  }
 }
 
 img {
@@ -278,4 +282,16 @@ pre {
 .total {
   font-style: italic;
   color: $gray-600;
+}
+
+#lang-switch {
+  a {
+    color: $ink-black;
+    text-decoration: none;
+  }
+
+  .trp-language-switcher,
+  .trp-ls-shortcode-language {
+    z-index: 500;
+  }
 }

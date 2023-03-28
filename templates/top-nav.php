@@ -14,10 +14,13 @@ if(is_user_role('hub')) {
 }
 ?>
 
-<div class="user-details">
+<div class="user-details d-flex align-items-center">
   <?php
   if(!is_user_logged_in()) { ?>
-    <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php echo parse_post_link(459); ?>"><?php _e('Sign In', 'tofino'); ?></a>
+    <div>
+      <span class="tag beta">beta</span>
+      <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php echo parse_post_link(459); ?>"><?php _e('Sign In', 'tofino'); ?></a>
+    </div>
   <?php } else { ?>
     <?php if($user_role) : ?>
       <div class="tag role"><?php _e('Role', 'tofino'); ?>: <?php echo $user_human_role; ?></div>
@@ -32,56 +35,10 @@ if(is_user_role('hub')) {
 
 </div>
 
-<div class="d-flex">
-  <?php if(function_exists('pll_the_languages')) { ?>
+<?php if(shortcode_exists('language-switcher')) { ?>
+  <div class="d-flex align-items-center">
     <div id="lang-switch" class="mr-2">
-      <?php 
-      $languages = pll_the_languages(array('raw' => 'true'));
-      $languages_available = array();
-      foreach($languages as $language) {
-        if(!$language['no_translation'] || $language['slug'] == 'en') {
-          $languages_available[] = $language;
-        }
-      }
-      
-      $current_lang_slug = pll_current_language();
-      $current_lang_name = pll_current_language('name');
-      $current_flag_url = $languages[$current_lang_slug]['flag'];
-      ?>
-      
-      <?php if($languages_available) { ?>
-        <ul class="current">
-          <li><a class="selector" href="#" data-toggle="modal" data-target="#langModal"><img src="<?php echo $current_flag_url; ?>"><span style="margin-left: 0.3rem;"><?php echo $current_lang_name; ?></span></a></li>
-        </ul>
-      <?php } ?>
+      <?php echo do_shortcode('[language-switcher]'); ?>
     </div>
-
-
-    <?php if($languages_available) { ?>
-      <div class="modal fade" id="langModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <ul>
-                <?php foreach($languages_available as $language) { ?>
-                  <?php if(!$language['no_translation'] || $language['slug'] == 'en') { ?>
-                    <?php if($current_lang_slug == 'en' && $language['slug'] == 'en') {
-                      // fix url pointing to home when no translations exist for page
-                      $language['url'] = the_permalink();
-                    } ?>
-                    <li><a href="<?php echo $language['url']; ?>"><img src="<?php echo $language['flag']; ?>"><span style="margin-left: 0.3rem;"><?php echo $language['name']; ?></span></a></li>
-                  <?php } ?>
-                <?php } ?>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    <?php } ?>
-  <?php } ?>
-
-  <span class="tag beta">beta</span>
-</div>
+  </div>
+<?php } ?>

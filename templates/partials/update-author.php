@@ -41,7 +41,7 @@ $users = get_users($args);
 
 <?php if(get_field('private_email')) { ?>
   <div class="panel">
-    <h3><?php echo get_field_object('private_email')['label']; ?>:</h3>
+    <h3><?php echo get_field_object('private_email')['label']; ?></h3>
     <a href="mailto:<?php echo get_field('private_email'); ?>"><?php echo get_field('private_email'); ?></a>
   </div>
 <?php } ?>
