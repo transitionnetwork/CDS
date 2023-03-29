@@ -9,6 +9,7 @@
         <?php the_content(); ?>
 
         <?php if(!is_user_logged_in()) { ?>
+          <p>To fil out the form please:</p>
           <?php get_template_part('templates/partials/login-or-register'); ?>
         <?php } else { ?>
           <?php acf_form(array(
