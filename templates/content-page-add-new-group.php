@@ -13,11 +13,10 @@ if(is_user_role('initiative')) {
     <div class="row justify-content-center">	
       <div class="col-12 col-md-10 col-lg-8">
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
+        <?php the_content(); ?>
+        
         <?php if(!is_user_logged_in()) { ?>
-          <?php the_content(); ?>
-          <p>
-            <a class="btn btn-outline" href="<?php echo parse_post_link(460); ?>"><?php echo svg('key'); ?><?php _e('Register as an individual', 'tofino'); ?></a>
-          </p>
+          <?php get_template_part('templates/partials/login-or-register'); ?>
         <?php } else { ?>
           <?php acf_form(array(
             'post_id'		=> 'new_post',
