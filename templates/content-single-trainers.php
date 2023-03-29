@@ -75,6 +75,13 @@
               <?php get_template_part('templates/partials/form-toggle-trainer-state'); ?>
             </div>
           <?php } ?>
+
+          <div class="mt-5">
+            <h3>Contact <?php the_title(); ?></h3>
+            <div id="trainer-name" class="d-none" data-name="<?php the_title(); ?>"></div>
+            <div id="trainer-email" class="d-none" data-email="<?php echo get_field('general_information_email'); ?>"></div>
+            <?php echo do_shortcode('[contact-form-7 id="8688" title="Trainer Contact Form"]'); ?>
+          </div>
         </div>
 
         <div class="col-12 col-lg-4">

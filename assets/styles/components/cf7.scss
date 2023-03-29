@@ -1,0 +1,18 @@
+.wpcf7-form {
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid $gray-500;
+    border-radius: 2px;
+  }
+
+  br {
+    display: none;
+  }
+
+  sup {
+    color: red;
+  }
+}
