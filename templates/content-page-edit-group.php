@@ -18,13 +18,13 @@
 						<h1><?php echo \Tofino\Helpers\title(); ?></h1>
 						<?php
 						
-						$field_groups = array('group_5a26865e56e22', 'group_5a26865e64f00', 'group_5a26865e89711');
+						$field_groups = array('group_618ea2d8b9843', 'group_618ea05c4bba4', 'group_618ea2ea0af3e');
 						
 						if(can_write_healthcheck($post)) {
-							$field_groups[] = 'group_5b3e27aee4439';
+							$field_groups[] = 'group_618ea2ebadb1c';
 						}
 
-						$field_groups[] = 'group_606d979a4877d';
+						$field_groups[] = 'group_618ea2ebb72f5';
 
 						acf_form(array(
 							'post_id'		=> $edit_post_id,
