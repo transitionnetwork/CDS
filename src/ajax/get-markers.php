@@ -75,7 +75,8 @@ function ajax_get_post_markers($params, $cache_expiry) {
             $results[$post_type][$post->ID]['lng'] = $map['lng'];
             $results[$post_type][$post->ID]['permalink'] = parse_post_link($post->ID);
             $results[$post_type][$post->ID]['title'] = get_the_title($post->ID);
-            $results[$post_type][$post->ID]['age'] = get_initiatve_age($post->ID);
+            $results[$post_type][$post->ID]['age'] = get_initiatve_age($post->ID)['days'];
+            $results[$post_type][$post->ID]['opacity'] = get_initiatve_age($post->ID)['opacity'];
           } 
         }
 

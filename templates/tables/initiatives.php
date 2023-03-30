@@ -52,7 +52,7 @@
           </td>
           <td>
             <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_initiatve_age($post) . ' days ago'; ?>
+              <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?>
             <?php } ?>
           </td>
         <?php } ?>

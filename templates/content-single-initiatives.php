@@ -58,7 +58,7 @@
             <h1 class="mb-0"><?php echo \Tofino\Helpers\title(); ?></h1>
   
             <div>
-              <em>Last Updated: <?php echo get_initiatve_age($post) . ' days ago'; ?></em>
+              <em>Last Updated: <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?></em>
             </div>
           </div>
           

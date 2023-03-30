@@ -102,7 +102,7 @@ export default function () {
       if (response.initiatives[i].lat && response.initiatives[i].lng) {
         
         if(response.initiatives[i].type === 'initiatives') {
-          marker = L.marker([response.initiatives[i].lat, response.initiatives[i].lng], { icon: initiativeMarkerIcon });
+          marker = L.marker([response.initiatives[i].lat, response.initiatives[i].lng], { icon: initiativeMarkerIcon, opacity: response.initiatives[i].opacity });
           
           marker.bindPopup('<h5>' + response.initiatives[i].title + '</h5><div class="mt-2">Last logged in: ' + response.initiatives[i].age + ' days ago</div><div class="mt-2"><a href="' + response.initiatives[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           clusterMarkers.addLayer(marker);

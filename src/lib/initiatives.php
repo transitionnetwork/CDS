@@ -51,15 +51,25 @@ function get_initiatives_main() {
   return new WP_Query($args);
 }
 
-
 function get_initiatve_age($post = 0) {
   $post = get_post( $post );
   
   $today = (int)date('U');
   $posted = get_the_modified_date('U', $post);
   $duration = $today - $posted;
+  
+  $days = floor($duration / 86400);
 
-  return floor($duration / 86400);
+  $opacity = '0.3';
+  $opacity = ($days < 365 * 2) ? '0.45' : $opacity;
+  $opacity = ($days < 365 * 1) ? '0.6' : $opacity;
+  $opacity = ($days < 365 * 0.5) ? '0.8' : $opacity;
+  $opacity = ($days < 365 * 0.25) ? '1' : $opacity;
+  
+  return array(
+    'days' => $days,
+    'opacity' => $opacity
+  );
 }
 
 function author_access_request($post_id) {
