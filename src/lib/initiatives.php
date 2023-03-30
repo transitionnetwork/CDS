@@ -1,6 +1,10 @@
 <?php
 function get_initiatives_main() {
-  $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+  if(is_front_page()) {
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+  } else {
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+  }
   $per_page = 50;
 
   $args = array(
@@ -10,6 +14,7 @@ function get_initiatives_main() {
     'paged' => $paged,
     'posts_per_page' => $per_page
   );
+
 
   if(get_query_var('hub_name')) {
     $hub_query = array (
