@@ -1,6 +1,6 @@
 <?php
 function get_initiatives_main() {
-  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+  $paged = (get_query_var('page')) ? get_query_var('page') : 1;
   $per_page = 50;
 
   $args = array(

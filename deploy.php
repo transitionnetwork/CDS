@@ -28,12 +28,8 @@ task('deploy:upload_dist', function() {
 task('deploy:theme_composer', function() {
   cd('{{release_path}}');
   run('~/composer.phar install');
-})->desc('Remote composer install')->onStage('production');;
-
-task('deploy:theme_composer', function() {
-  cd('{{release_path}}');
-  run('composer install');
-})->desc('Remote composer install')->onStage('stage');;
+  // run('composer install');
+})->desc('Remote composer install');
 
 task('setup', [
   'deploy:prepare',

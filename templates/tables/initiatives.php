@@ -127,8 +127,6 @@
   <?php if($total_results > $per_page) { ?>
     <nav class="pagination" aria-label="contact-navigation">
       <?php echo paginate_links(array(
-        'base' => @add_query_arg('paged', '%#%'),
-        'format' => '?paged=%#%',
         'current' => $paged,
         'total' => $init_query->max_num_pages,
         'prev_text' => 'Prev',
