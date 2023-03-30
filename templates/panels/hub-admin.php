@@ -35,31 +35,29 @@
             <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit</a>
           </td>
           
-          <?php if(is_user_role(array('super_hub', 'administrator'))) { ?>
-            <?php $args = array(
-              'meta_key' => 'hub_admin_requested',
-              'meta_value' => $hub_id,
-              'meta_compare' => 'EXISTS'
-            ); ?>
-            <td>
-              <ul>
-                <?php $user_query = new WP_User_Query( $args );
-                if ( ! empty( $user_query->get_results() ) ) {
-                  foreach ( $user_query->get_results() as $user ) { ?>
-                    <li>
-                      <?php echo $user->display_name . ' (' . $user->user_email . ')'; ?><br/>
-                      <div class="btn-group">
-                        <form action="" method="post">
-                          <button class="btn btn-sm btn-success" name="confirm_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
-                          <button class="btn btn-sm btn-danger" name="deny_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
-                          <input type="hidden" name="hub_id" value="<?php echo $hub_id; ?>">
-                        </form>
-                    </li>
-                  <?php } ?>
+          <?php $args = array(
+            'meta_key' => 'hub_admin_requested',
+            'meta_value' => $hub_id,
+            'meta_compare' => 'EXISTS'
+          ); ?>
+          <td>
+            <ul>
+              <?php $user_query = new WP_User_Query( $args );
+              if ( ! empty( $user_query->get_results() ) ) {
+                foreach ( $user_query->get_results() as $user ) { ?>
+                  <li>
+                    <?php echo $user->display_name . ' (' . $user->user_email . ')'; ?><br/>
+                    <div class="btn-group">
+                      <form action="" method="post">
+                        <button class="btn btn-sm btn-success" name="confirm_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
+                        <button class="btn btn-sm btn-danger" name="deny_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
+                        <input type="hidden" name="hub_id" value="<?php echo $hub_id; ?>">
+                      </form>
+                  </li>
                 <?php } ?>
-              </ul>
-            </td>
-          <?php } ?>
+              <?php } ?>
+            </ul>
+          </td>
         </tr>
       <?php } ?>
     </table>
