@@ -13,7 +13,7 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => false,
-      'supports' => array('title', 'editor', 'author')
+      'supports' => array('title', 'editor', 'author', 'revisions')
     )
   );
 
@@ -26,7 +26,7 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => 'trainers',
-      'supports' => array('title', 'author')
+      'supports' => array('title', 'author', 'revisions')
     )
   );
 
