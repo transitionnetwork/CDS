@@ -81,7 +81,7 @@
             <div id="trainer-name" class="d-none" data-name="<?php the_title(); ?>"></div>
             <div id="trainer-email" class="d-none" data-email="<?php echo get_field('general_information_email'); ?>"></div>
             <?php echo do_shortcode('[contact-form-7 id="8688" title="Trainer Contact Form"]'); ?>
-          </div>
+          </div>  
         </div>
 
         <div class="col-12 col-lg-4">
@@ -101,22 +101,13 @@
               </div>
             <?php } ?>
 
-            <?php $email = get_field('general_information_email'); ?>
             <?php $website = get_field('general_information_your_website'); ?>
-            <?php if($website || $email) { ?>
+            <?php if($website) { ?>
               <div class="panel">
-                <?php if($email) { ?>
-                  <div>
-                    <h3><?php _e('Email', 'tofino'); ?></h3>
-                    <div><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></div>
-                  </div>
-                <?php } ?>
-                <?php if($website) { ?>
-                  <div class="mt-3">
-                    <h3><?php _e('Website', 'tofino'); ?></h3>
-                    <div><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></div>
-                  </div>
-                <?php } ?>
+                <div class="mt-3">
+                  <h3><?php _e('Website', 'tofino'); ?></h3>
+                  <div><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></div>
+                </div>
               </div>
             <?php } ?>
 
