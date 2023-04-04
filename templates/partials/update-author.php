@@ -1,7 +1,12 @@
 <?php $post_author_id = get_the_author_meta('ID'); ?>
 <div class="panel">
   <h3>Author</h3>
-  <label>Name</label><?php echo get_the_author_meta('display_name'); ?>
+  <?php if(get_environment() === 'dev') { ?>
+    <label>ID</label>
+    <div><?php echo $post_author_id; ?></div>
+  <?php } ?>
+  <label>Name</label>
+  <div><?php echo get_the_author_meta('display_name'); ?></div>
   <label>Email</label><a href="mailto:<?php echo get_the_author_meta('user_email'); ?>"><?php echo get_the_author_meta('user_email'); ?></a>
 </div>
 
