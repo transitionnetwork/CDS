@@ -63,10 +63,13 @@ $tofino_includes = [
   "src/custom/rank-math.php",
   "src/custom/register-types-tax.php",
   "src/custom/controller_trainers.php",
+  "src/custom/login.php",
   "src/custom/api-endpoints/helpers.php",
   "src/custom/api-endpoints/initiatives.php",
+  "src/custom/api-endpoints/initiatives_murmation.php",
   "src/custom/api-endpoints/trainers.php",
   "src/custom/api-endpoints/hubs.php",
+  "src/custom/api-endpoints/post_to_murmuration.php",
   // "src/custom/retention-emailing.php",
 ];
 
@@ -323,7 +326,7 @@ if (function_exists('acf_add_options_page')) {
 // set default hub value to no-hub when adding initiative
 function set_tax_default($field) {
   global $post;
-  if($post && $post->post_name == 'add-initiative') {
+  if($post && $post->post_name == 'add-new-group') {
     $field['value'] = 285;
   }
   return $field;
@@ -358,6 +361,37 @@ function process_post_requests() {
       );
       wp_update_post($args);
     }
+
+    //hub access
+    if(array_key_exists('request_access', $_POST)) {
+      request_hub_access((int)$_POST['request_access']);
+    }
+
+    if(array_key_exists('confirm_hub_admin', $_POST)) {
+      //TODO: email user and tell them
+      grant_hub_access($_POST['confirm_hub_admin'], $_POST['hub_id']);
+    }
+
+    if(array_key_exists('deny_hub_admin', $_POST)) {
+      //TODO: email user and tell them
+      delete_hub_access_request($_POST['deny_hub_admin'], $_POST['hub_id']);
+    }
+    //end hub access
+
+    //author access
+    if(array_key_exists('request_post_access', $_POST)) {
+      author_access_request($_POST['request_post_access']);
+    }
+
+    if(array_key_exists('deny_author_access', $_POST)) {
+      author_access_deny($_POST['post_id'], $_POST['deny_author_access']);
+    }
+
+    if(array_key_exists('confirm_author_access', $_POST)) {
+      author_access_grant($_POST['post_id'], $_POST['confirm_author_access']);
+    }
+
+    //end author access
 
     if(array_key_exists('trainer_update', $_POST)) {
       $args = array(

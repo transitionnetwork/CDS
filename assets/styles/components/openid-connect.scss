@@ -1,0 +1,8 @@
+.openid-connect-login-button {
+  text-align: left !important;
+
+  .button {
+    @extend .btn;
+    @extend .btn-outline;
+  }
+}

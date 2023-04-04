@@ -32,3 +32,24 @@ function get_list_terms($taxonomy, $format = null, $post = 0) {
 
   return;
 }
+
+function remove_medialibrary_tab($strings) {
+  if ( !current_user_can( 'administrator' ) ) {
+    unset($strings["mediaLibraryTitle"]);
+  return $strings;
+  }
+  else
+  {
+    return $strings;
+  }
+}
+add_filter('media_view_strings','remove_medialibrary_tab');
+
+function restrict_non_Admins(){
+  if(!current_user_can('administrator')){
+    exit;
+  }
+}
+
+add_action('wp_ajax_query-attachments','restrict_non_Admins',1);
+add_action('wp_ajax_nopriv_query-attachments','restrict_non_Admins',1);

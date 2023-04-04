@@ -4,7 +4,7 @@ function list_healthchecks($healthchecks) {
     <table class="item-list">
       <tr>
         <th>Healthcheck Date</th>
-        <th></th>
+        <th>Actions</th>
       </tr>
       <?php foreach ($healthchecks as $healthcheck) :?>
         <tr>

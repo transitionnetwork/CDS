@@ -4,8 +4,22 @@ function set_content_type($content_type) {
 }
 add_filter('wp_mail_content_type', 'set_content_type');
 
-function custom_wp_new_user_notification_email($wp_new_user_notification_email, $user, $blogname)
-{
+function custom_retrieve_password_message( $message, $key, $user_login, $user_data  ) {
+  
+  $message = '<p>Someone has requested a password reset for your account using the email address ' . sprintf(__('%s'), $user_data->user_email) . '</p>
+
+  <p>If this was a mistake, just ignore this email and nothing will happen.</p>
+
+  <p>To reset your password, please <a href="' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') .  '">click here</a> or visit the following address:</p>
+
+  <p>' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . '</p>';
+
+  return $message;
+}
+add_filter( 'retrieve_password_message', 'custom_retrieve_password_message', 10, 4 );
+
+
+function custom_wp_new_user_notification_email($wp_new_user_notification_email, $user, $blogname) {
 
   $parent_id = get_user_meta( $user->ID, 'parent_id', true);
   $parent_user = get_user_by('id', $parent_id);
@@ -18,21 +32,29 @@ function custom_wp_new_user_notification_email($wp_new_user_notification_email, 
     $message .= '<p>' . $parent_user->user_email  . ' has registered you at our website.' . '</p>';
   }
 
-  $message .= '<p>To set your password, visit the following address:' . '</p>';
+  $message .= '<p>To set your password, please <a href="' . site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login')  . '">click here</a> or visit the URL below:' . '</p>';
   $message .= '<p>' . site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login') . '</p>';
   $message .= '<p>' . 'Kind regards,' . '</p>';
   $message .= '<p>' . 'The Transition Network Team' . '</p>';
   $wp_new_user_notification_email['message'] = $message;
+
+  $wp_new_user_notification_email['headers'] = array('Content-Type: text/html; charset=UTF-8');
 
   return $wp_new_user_notification_email;
 }
 add_filter('wp_new_user_notification_email', 'custom_wp_new_user_notification_email', 10, 3);
 
 function custom_email_send_pending_alert_to_hub($user, $initiatives) {
-  $to = array(
-    // $user->user_email,
-    'mark@benewith.com'
-  );
+
+  if(get_environment() === 'production') {
+    $to = array(
+      $user->user_email,
+    );
+  } else {
+    $to = array(
+      'mark@benewith.com'
+    );
+  }
 
   $subject = 'Reminder: You have pending groups to approve';
 
@@ -104,14 +126,25 @@ function custom_email_alert_user_initiative_approved($post_id) {
   $author_id = get_post($post_id)->post_author;
   $author = get_user_by('id', $author_id);
 
-  $email_post_id = 6607; //international group
+  $email_post_id = 6607; //default international group
+
+  $welcome_email_map = array(
+    'es' => 7436,
+    'us' => 8524,
+    'de' => 7434,
+    'fr' => 7433,
+    'be' => 7435,
+    'gb' => 7381,
+    'scotland' => 7381,
+    'ie' => 7381
+  );
 
   $countries = get_the_terms($post_id, 'country');
   if($countries) {
     foreach($countries as $country) {
-      //check for united kingdom, ireland, scotland
-      if(in_array($country->term_id, array(263, 245, 117))) {
-        $email_post_id = 7381;
+      //check for custom emails
+      if(array_key_exists($country->slug, $welcome_email_map) && get_post_status($welcome_email_map[$country->slug]) === 'publish') {
+        $email_post_id = $welcome_email_map[$country->slug];
       }
     }
   }
@@ -128,9 +161,8 @@ function custom_email_alert_user_initiative_approved($post_id) {
     $message = '<p>Hi ' . $author->display_name . ',</p>';
   }
 
-  $post_content = get_post($email_post_id);
-  $content = $post_content->post_content;
-  $message .= $content;
+  $page = get_post($email_post_id);
+  $message .= apply_filters('the_content', $page->post_content);
 
   wp_mail( $to, $subject, $message);
 }
@@ -212,9 +244,8 @@ function custom_email_created_post($post_id, $type) {
     $message = '<p>Hi ' . $author->display_name . ',</p>';
   }
 
-  $post_content = get_post($email_post_id);
-  $content = $post_content->post_content;
-  $message .= $content;
+  $page = get_post($email_post_id);
+  $message .= apply_filters('the_content', $page->post_content);
 
   wp_mail( $to, $subject, $message);
   
@@ -312,7 +343,6 @@ function disabling_emails( $args ){
 add_filter('wp_mail','disabling_emails', 10,1);
 
 function custom_email_send_transactional_email($email_id, $email_addresses, $language = null) {
-  
   $subject = get_field('subject', $email_id);
   $message = get_post_field('post_content', $email_id);
 

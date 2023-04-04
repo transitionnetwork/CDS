@@ -92,7 +92,7 @@ foreach($posts as $key => $post) {
     $topic_names,
     $country,
     trim($location),
-    get_the_content(),
+    get_field('description'),
     get_field('website'),
     get_field('twitter'),
     get_field('facebook'),

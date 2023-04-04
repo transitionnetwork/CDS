@@ -1,5 +1,4 @@
-
-<?php if($init_query->have_posts()) { ?>
+ <?php if($init_query->have_posts()) { ?>
   <table class="item-list">
     <tr>
       <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
@@ -11,7 +10,7 @@
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
       <?php } ?>
-      <th></th>
+      <th>Actions</th>
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $post = get_post($post); ?>
@@ -53,7 +52,7 @@
           </td>
           <td>
             <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_initiatve_age($post) . ' days ago'; ?>
+              <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?>
             <?php } ?>
           </td>
         <?php } ?>
@@ -70,12 +69,34 @@
               <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
 
               <form action="" method="post">
-                <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
+                <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
               </form>
             <?php } ?>
           </div>
         </td>
       </tr>
+      <?php $author_requests = get_post_meta($post->ID, 'author_requests', true); ?>
+      <?php if((int)$post->post_author === get_current_user_id() && $author_requests) { ?>
+        <tr>
+          <td colspan="100%">
+            Edit access for <?php the_title(); ?> has been requested by
+            <ul>
+              <?php foreach($author_requests as $author_request_id) { ?>
+                <li>
+                  <?php $user = get_user_by( 'ID', $author_request_id ); ?>
+                  <?php echo $user->display_name . ' (' . $user->user_email . ')'; ?><br/>
+                  <div class="btn-group">
+                    <form action="" method="post">
+                      <button class="btn btn-sm btn-success" name="confirm_author_access" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
+                      <button class="btn btn-sm btn-danger" name="deny_author_access" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
+                      <input type="hidden" name="post_id" value="<?php echo $post->ID; ?>">
+                    </form>
+                </li>
+              <?php } ?>
+            </ul>
+          </td>
+        </tr>
+      <?php } ?>
     <?php endwhile; ?>
   </table>
 
@@ -106,8 +127,6 @@
   <?php if($total_results > $per_page) { ?>
     <nav class="pagination" aria-label="contact-navigation">
       <?php echo paginate_links(array(
-        'base' => @add_query_arg('paged', '%#%'),
-        'format' => '?paged=%#%',
         'current' => $paged,
         'total' => $init_query->max_num_pages,
         'prev_text' => 'Prev',
@@ -119,5 +138,5 @@
 
 
 <?php } else { ?>
-  <p><?php _e('No initaitives found', 'tofino'); ?></p>
+  <p><?php _e('No groups found', 'tofino'); ?></p>
 <?php } ?>

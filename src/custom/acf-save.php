@@ -82,7 +82,6 @@ function acf_custom_save($post_id)
 }
 add_filter('acf/save_post', 'acf_custom_save', 20);
 
-
 function validate_bio_words( $valid, $value, $field, $input_name ) {
 
   // Bail early if value is already invalid.
@@ -94,8 +93,24 @@ function validate_bio_words( $valid, $value, $field, $input_name ) {
   if(str_word_count($value) > 250 ) {
     return __('Please enter less than 250 words.', 'tofino');
   }
+  
   return $valid;
 }
 
 add_filter('acf/validate_value/name=trainer_bio', 'validate_bio_words', 10, 4);
 
+function validation_group_description( $valid, $value, $field, $input_name ) {
+
+  // Bail early if value is already invalid.
+  if( $valid !== true ) {
+    return $valid;
+  }
+
+  if(strlen($value) < 150 ) {
+    return __('Please enter more than 150 characters.' . strlen($value), 'tofino');
+  }
+  
+  return $valid;
+}
+
+add_filter('acf/validate_value/name=description', 'validation_group_description', 10, 4);

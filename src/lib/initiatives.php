@@ -1,6 +1,10 @@
 <?php
 function get_initiatives_main() {
-  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+  if(is_front_page()) {
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+  } else {
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+  }
   $per_page = 50;
 
   $args = array(
@@ -10,6 +14,7 @@ function get_initiatives_main() {
     'paged' => $paged,
     'posts_per_page' => $per_page
   );
+
 
   if(get_query_var('hub_name')) {
     $hub_query = array (
@@ -46,13 +51,65 @@ function get_initiatives_main() {
   return new WP_Query($args);
 }
 
-
 function get_initiatve_age($post = 0) {
   $post = get_post( $post );
   
   $today = (int)date('U');
   $posted = get_the_modified_date('U', $post);
   $duration = $today - $posted;
+  
+  $days = floor($duration / 86400);
 
-  return floor($duration / 86400);
+  $opacity = '0.3';
+  $opacity = ($days < 365 * 2) ? '0.45' : $opacity;
+  $opacity = ($days < 365 * 1) ? '0.6' : $opacity;
+  $opacity = ($days < 365 * 0.5) ? '0.8' : $opacity;
+  $opacity = ($days < 365 * 0.25) ? '1' : $opacity;
+  
+  return array(
+    'days' => $days,
+    'opacity' => $opacity
+  );
+}
+
+function author_access_request($post_id) {
+  $author_requests = get_post_meta( $post_id, 'author_requests', true);
+  if(!$author_requests) $author_requests = array();
+  
+  $author_requests[] = get_current_user_id();
+  $author_requests = array_unique($author_requests);
+  update_post_meta($post_id, 'author_requests', $author_requests);
+  //TODO: Alert author
+}
+
+function author_access_is_requested($post_id) {
+  $author_requests = get_post_meta( $post_id, 'author_requests', true);
+  if(is_array($author_requests) && in_array(get_current_user_id(), $author_requests)) {
+    return true;
+  }
+
+  return false;
+}
+
+function author_access_grant($post_id, $user_id) {
+  //no idea yet cos plugin not installed
+  //TODO: move id from 'author_requests' post meta into 'coauthors'
+  //TODO: Alert user
+  var_dump('granted');
+
+}
+
+function author_access_deny($post_id, $user_id) {
+  $author_requests = get_post_meta( $post_id, 'author_requests', true);
+
+  if (($key = array_search($user_id, $author_requests)) !== false) {
+    unset($author_requests[$key]);
+  }
+
+  update_post_meta($post_id, 'author_requests', $author_requests);
+}
+
+function author_access_remove($post_id, $user_id) {
+  //TODO: ADD A BUTTON ON MAIN AUTHORS DASHBOARD OR ARTICLE WITH REVOKE ACCESS POWER
+  var_dump('revoked;');
 }

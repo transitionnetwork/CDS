@@ -1,4 +1,23 @@
 <?php
+function endpoint_format_url($url) {
+  $url = trim($url);
+  $scheme = parse_url($url, PHP_URL_SCHEME);
+  if (empty($scheme)) {
+    return 'https://' . ltrim($url, '/');
+  }
+
+  return $url;
+}
+
+function add_log_message($log_msg) {
+  $log_filename = ABSPATH . "api-log.log";
+
+  $log_msg = date('Y-m-d H:i:s') . ' : ' . $log_msg;
+
+  // if you don't add `FILE_APPEND`, the file will be erased each time you add a log
+  file_put_contents($log_filename, $log_msg . "\n", FILE_APPEND);
+} 
+
 function endpoint_add_custom_routes() {
   register_rest_route( 'cds/v1', '/initiatives', array(
     'methods' => 'GET',
@@ -9,12 +28,27 @@ function endpoint_add_custom_routes() {
     'methods' => 'GET',
     'callback' => 'endpoint_get_groups',
   ));
-
+  
   register_rest_route( 'cds/v1', '/group-distance', array(
     'methods' => 'GET',
     'callback' => 'endpoint_get_groups_by_distance',
   ));
+  
+  register_rest_route( 'cds/v1', '/get_group_by_email', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_group_by_email',
+  ));
+  
+  register_rest_route( 'cds/v1', '/get-groups-murmurations', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_groups_murmurations',
+  ));
 
+  register_rest_route('cds/v1', '/get-groups-murmurations/(?P<id>\d+)', array(
+    'method' => 'GET', 
+    'callback' => 'endpoint_get_groups_murmurations_single', 
+  ));
+  
   register_rest_route( 'cds/v1', '/trainers', array(
     'methods' => 'GET',
     'callback' => 'endpoint_get_trainers',
@@ -24,6 +58,16 @@ function endpoint_add_custom_routes() {
     'methods' => 'GET',
     'callback' => 'endpoint_get_hubs',
   ));
+
+  register_rest_route( 'cds/v1', '/groups-full-info', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_groups_full_info',
+  ));
+  
+  register_rest_route( 'cds/v1', '/update-group-baserow', array(
+    'methods' => 'POST',
+    'callback' => 'endpoint_update_group_baserow',
+  ));
 }
 
 add_action( 'rest_api_init', 'endpoint_add_custom_routes');
@@ -32,16 +76,16 @@ add_action( 'rest_api_init', 'endpoint_add_custom_routes');
  * Register the /wp-json/acf/v3/posts endpoint so it will be cached.
  */
 function wprc_add_acf_posts_endpoint( $allowed_endpoints ) {
-    if ( ! isset( $allowed_endpoints[ 'cds/v1' ] ) || ! in_array( 'posts', $allowed_endpoints[ 'cds/v1' ] ) ) {
-        $allowed_endpoints[ 'cds/v1' ][] = 'initiatives';
-        $allowed_endpoints[ 'cds/v1' ][] = 'groups';
-        $allowed_endpoints[ 'cds/v1' ][] = 'trainers';
-        $allowed_endpoints[ 'cds/v1' ][] = 'hubs';
-    }
-    return $allowed_endpoints;
+  if ( ! isset( $allowed_endpoints[ 'cds/v1' ] ) || ! in_array( 'posts', $allowed_endpoints[ 'cds/v1' ] ) ) {
+      $allowed_endpoints[ 'cds/v1' ][] = 'initiatives';
+      $allowed_endpoints[ 'cds/v1' ][] = 'groups';
+      $allowed_endpoints[ 'cds/v1' ][] = 'group-distance';
+      $allowed_endpoints[ 'cds/v1' ][] = 'trainers';
+      $allowed_endpoints[ 'cds/v1' ][] = 'hubs';
+  }
+  return $allowed_endpoints;
 }
 add_filter( 'wp_rest_cache/allowed_endpoints', 'wprc_add_acf_posts_endpoint', 10, 1);
-
 
 function endpoint_get_taxonomy_terms($post, $taxonomy) {
   $terms = get_the_terms($post, $taxonomy);
@@ -58,8 +102,13 @@ function endpoint_get_taxonomy_terms($post, $taxonomy) {
   }
 }
 
-function endpoint_get_location($item, $post = true) {
-  $map = get_field('map', $item);
+function endpoint_get_location($item, $post = true, $clone_field = null) {
+
+  if($clone_field) {
+    $map = get_field($clone_field)['map'];
+  } else { 
+    $map = get_field('map', $item);
+  }
 
   $data = array(
     'address' => get_field('address_line_1', $item),
@@ -71,7 +120,6 @@ function endpoint_get_location($item, $post = true) {
   if($post) {
     $data['country'] = (get_the_terms($post, 'country')) ? get_the_terms($post, 'country')[0]->name : '';
   }
-  
 
   if($map && !empty($map['markers'])) {
     $data['lat'] = $map['markers'][0]['lat'];
@@ -97,6 +145,13 @@ function endpoint_get_contact($post) {
 function endpoint_get_pagination($post_query) {
   // dd($post_query);
   $per_page = (int)$post_query->query['posts_per_page'];
+
+  // $logged_in_status = (is_user_logged_in() ? 'logged_in' : 'not_logged_in');
+  // if($logged_in_status === 'logged_in') {
+  //   if(is_user_role('administrator')) {
+  //     $logged_in_status = 'administrator';
+  //   }
+  // }
 
   return array(
     'count' => (int)$post_query->post_count,

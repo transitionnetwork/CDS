@@ -16,7 +16,7 @@ function endpoint_get_trainers($request) {
   if($post_query->have_posts()) {
     while($post_query->have_posts()) : $post_query->the_post();
       global $post;
-      $photo = get_field('your_website_listing_training_photo', $post);
+      $photo = get_field('general_information_trainer_photo', $post);
       $photo = ($photo) ? $photo['sizes']['large'] : '';
       
       $data[] = array(
@@ -30,13 +30,10 @@ function endpoint_get_trainers($request) {
         'types' => endpoint_get_taxonomy_terms($post, 'trainer_type'),
         'languages' => endpoint_get_taxonomy_terms($post, 'trainer_language'),
 
-        'biography' => get_field('your_website_listing_training_bio', $post),
-        'coaching_format_detail' => get_field('training_information_training_format_detail', $post),
-        'regional_focus' => get_field('training_information_training_regions', $post),
-        'training_undertaken' => get_field('training_information_training_other_organisations', $post),
+        'biography' => get_field('general_information_trainer_bio', $post),
         
-        'location' => endpoint_get_location($post),
-        'contact' => endpoint_get_contact($post),
+        'location' => endpoint_get_location($post, null, 'general_information_location'),
+        'website' => get_field('your_website', $post),
       );
     endwhile;
   }

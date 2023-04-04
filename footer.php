@@ -7,7 +7,16 @@ if (get_theme_mod('footer_sticky') === 'enabled') : ?>
 
 <footer>
   <div class="container">
-    &copy <?php echo date('Y'); ?> Transition Network
+    <div class="row">
+      <div class="col-12 col-md-6">
+        &copy <?php echo date('Y'); ?> Transition Network
+      </div>
+      <div class="col-12 col-md-6 text-md-right">
+        <div id="footer-nav">
+          <?php wp_nav_menu( array('theme_location' => 'footer_menu') ); ?>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
 

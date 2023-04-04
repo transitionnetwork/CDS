@@ -26,7 +26,7 @@
 
 #map-no-results {
   position: absolute;
-  z-index: 9999;
+  z-index: 500;
   font-size: 1.125rem;
   // font-weight: bold;
   background-color: rgba($white, 0.8);
@@ -39,7 +39,7 @@
 
 #map-info {
   position: absolute;
-  z-index: 9999;
+  z-index: 500;
   top: 1rem;
   right: 1rem;
 

@@ -13,7 +13,7 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => false,
-      'supports' => array('title', 'editor', 'author')
+      'supports' => array('title', 'editor', 'author', 'revisions')
     )
   );
 
@@ -26,7 +26,7 @@ function create_posttypes() {
       ),
       'public' => true,
       'has_archive' => 'trainers',
-      'supports' => array('title', 'author')
+      'supports' => array('title', 'author', 'revisions')
     )
   );
 
@@ -226,7 +226,35 @@ function create_custom_taxonomies() {
   );
 
   register_taxonomy('trainer_topic', array('trainers'), $args);
+
+  $args = array(
+    'hierarchical' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'grant-status', 'with_front' => false),
+    'labels' => array(
+      'name' => _x('Grant Statuses', 'taxonomy general name'),
+      'singular_name' => _x('Grant Status', 'taxonomy singular name'),
+      'search_items' => __('Search Grant Statuses'),
+      'all_items' => __('All Grant Statuses'),
+      'parent_item' => __('Parent Grant Status'),
+      'parent_item_colon' => __('Parent Grant Status:'),
+      'edit_item' => __('Edit Grant Status'),
+      'update_item' => __('Update Grant Status'),
+      'add_new_item' => __('Add New Grant Status'),
+      'new_item_name' => __('New Grant Status Name'),
+      'menu_name' => __('Grant Status'),
+    )
+  );
+
+  register_taxonomy('grant_status', array('initiatives'), $args);
 }
 add_action('init', 'create_custom_taxonomies');
 
-
+function add_nav_menus() {
+  register_nav_menus( array(
+    'footer_menu'=> 'Footer Menu',
+  ));
+}
+add_action('init', 'add_nav_menus');

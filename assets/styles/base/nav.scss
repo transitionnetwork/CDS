@@ -181,3 +181,15 @@
     transform: translateY(-100%);
   }
 }
+
+#footer-nav {
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+      margin: 0 0.25rem;
+    }
+  }
+}
