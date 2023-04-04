@@ -41,6 +41,22 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('added_note')) { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('Your note has been added', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('edited_note')) { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('Your note has been updated', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php while (have_posts()) : the_post(); ?>
   <?php if(get_post_status() === 'draft') { ?>
     <div class="container">
@@ -88,6 +104,20 @@
               <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
               </form>
             </div>
+          <?php } ?>
+
+          <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
+            <div class="panel">
+              <h3>Notes</h3>
+              <?php get_template_part('templates/partials/note-list'); ?>
+              <?php wp_reset_postdata(); ?>
+              <p>
+                <a class="btn btn-sm btn-outline" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), '/add-note'); ?>">
+                  <?php echo svg('plus'); ?>Add Note
+                </a>
+              </p>
+            </div>
+          
           <?php } ?>
 
           <?php if (can_view_healthcheck($post)) { ?>

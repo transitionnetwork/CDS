@@ -16,6 +16,22 @@ function create_posttypes() {
       'supports' => array('title', 'editor', 'author', 'revisions')
     )
   );
+  
+  register_post_type(
+    'initiative_notes',
+    array(
+      'labels' => array(
+        'name' => __('Group Notes'),
+        'singular_name' => __('Group Note')
+      ),
+      'rewrite' => array(
+        'slug' => 'group-note'
+      ),
+      'public' => true,
+      'has_archive' => false,
+      'supports' => array('title')
+    )
+  );
 
   register_post_type(
     'trainers',

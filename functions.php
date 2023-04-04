@@ -158,6 +158,8 @@ function custom_query_vars_filter($vars)
   $vars[] = 'hub_id';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';
+  $vars[] = 'edited_note';
+  $vars[] = 'added_note';
 
   $vars[] = 'hub_name';
   $vars[] = 'type';

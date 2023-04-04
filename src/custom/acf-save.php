@@ -1,6 +1,5 @@
 <?php
-function acf_custom_save($post_id)
-{
+function acf_custom_save($post_id) {
   if (get_post_type($post_id) === 'healthchecks') {
 
     //ensure that hc data is stored in initiative
@@ -33,6 +32,18 @@ function acf_custom_save($post_id)
         unlink($file); // delete file
       }
     }
+  }
+
+  if (get_post_type($post_id) === 'initiative_notes') {
+    $initiative_id = $_POST['initiative_id'];
+    update_post_meta( $post_id, 'initiative_id', $initiative_id);
+
+    $args = array(
+      'ID' => $post_id,
+      'post_title' => get_the_title($initiative_id)
+    );
+
+    wp_update_post($args);
   }
 
   if(get_post_type($post_id) === 'hub_applications') { // hub_application
@@ -107,7 +118,7 @@ function validation_group_description( $valid, $value, $field, $input_name ) {
   }
 
   if(strlen($value) < 150 ) {
-    return __('Please enter more than 150 characters.' . strlen($value), 'tofino');
+    return __('Please enter more than 150 characters. ' . strlen($value) . ' characters have been entered', 'tofino');
   }
   
   return $valid;
