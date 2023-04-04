@@ -5,8 +5,6 @@ export default {
   loaded() {
     const queryString = window.location.search;
     console.log(queryString);
-
-    console.log('hello')
   },
   finalize() {
     // select2();
