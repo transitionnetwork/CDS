@@ -27,7 +27,7 @@ function create_posttypes() {
       'rewrite' => array(
         'slug' => 'group-note'
       ),
-      'public' => true,
+      'public' => false,
       'has_archive' => false,
       'supports' => array('title')
     )
