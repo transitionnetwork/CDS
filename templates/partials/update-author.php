@@ -38,6 +38,7 @@ $users = get_users($args);
           <option value="<?php echo $user->ID; ?>" <?php echo ($user->ID === $post_author_id) ? 'selected' : ''; ?>><?php echo $user->display_name; ?> | <?php echo $user->user_email; ?></option>
         <?php } ?>
       </select>
+      
       <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
     </div>
     <input type="submit" value="Change" class="mt-3">
