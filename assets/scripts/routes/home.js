@@ -5,6 +5,8 @@ export default {
   loaded() {
     const queryString = window.location.search;
     console.log(queryString);
+
+    displayMap();
   },
   finalize() {
     // select2();
