@@ -30,11 +30,10 @@ export default {
         },
         dataType: 'json',
         success: function (response) {
-          console.log('success')
           console.log(response);
-          // $('.map-loading').hide();
-          // $('#map-panel').show();
-          // displayMap(response);
+          $('.map-loading').hide();
+          $('#map-panel').show();
+          displayMap(response);
         },
         error: function (jqxhr, status, exception) {
           console.log('JQXHR:', jqxhr);
@@ -44,8 +43,5 @@ export default {
       })
     }
 
-  },
-  finalize() {
-    // select2();
   }
 };
