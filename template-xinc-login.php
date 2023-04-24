@@ -18,9 +18,6 @@
         <?php } ?>
 
         <?php the_content(); ?>
-        <?php if(!is_user_logged_in()) {
-          echo do_shortcode('[openid_connect_generic_login_button]');
-        } ?>
       <?php endwhile; ?>
     </div>
   </div>
