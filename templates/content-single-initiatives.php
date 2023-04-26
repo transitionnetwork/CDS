@@ -58,6 +58,7 @@
 <?php } ?>
 
 <?php while (have_posts()) : the_post(); ?>
+  
   <?php if(get_post_status() === 'draft') { ?>
     <div class="container">
       <div class="alert top alert-success">
@@ -65,6 +66,7 @@
       </div>
     </div>
   <?php } ?>
+
   <main>
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>

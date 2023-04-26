@@ -76,4 +76,7 @@ while ($init_query->have_posts()) : $init_query->the_post();
   $export_data[] = $export_row;
 endwhile; ?>
 
-<?php outputCsv(date('Ymd') . 'Transition_Groups_Trainers_Export.csv', $export_data); ?>
+<?php
+if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) {
+  outputCsv(date('Ymd') . 'Transition_Groups_Trainers_Export.csv', $export_data);
+} ?>
