@@ -148,8 +148,6 @@
               <?php get_template_part('templates/partials/single-map'); ?>
             <?php } ?>
             
-            <?php $logo = get_field('logo'); ?>
-
             <?php get_template_part('templates/partials/group-info-panel'); ?>
 
             <?php if (is_user_role(array('administrator', 'super_hub', 'hub') && can_write_initiative($post))) { ?>

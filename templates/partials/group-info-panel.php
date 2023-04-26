@@ -1,4 +1,7 @@
-<?php if($logo || $hubs || $topic) { ?>
+<?php $hubs = get_the_terms($post, 'hub'); ?>
+<?php $topics = get_the_terms($post, 'topic'); ?>
+
+<?php if(get_field('logo') || $hubs || $topics) { ?>
   <div class="panel">
     <?php if(get_field('logo')) { ?>
       <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
@@ -8,47 +11,65 @@
       <h3>Hub</h3>
       <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
     <?php } ?>
-    <?php if($topics) { ?>
-      <h3 class="mt-3">Topics</h3>
-      <strong><?php echo get_taxonomy('topic')->label; ?>:</strong> <?php echo implode(', ', $topic_names); ?>
-    <?php } ?>
-
-    <?php if (get_field('email')) { ?>
-      <h3 class="mt-3">Email</h3>
-      <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
-    <?php } ?>
-
-    <?php if(get_field('website') || get_field('facebook') || get_field('instagram') || get_field('twitter') || get_field('youtube')) { ?>
-    <h3 class="mt-3"><?php _e('Links', 'tofino'); ?></h3>
-    <ul class="links">
-        <?php if (get_field('website')) { ?>
-          <li><a href="<?php echo get_field('website'); ?>" target="_blank">Web</a></li>
-        <?php } ?>
-        <?php if (get_field('twitter')) { ?>
-          <li><a href="<?php echo get_field('twitter'); ?>" target="_blank"><?php echo svg('twitter'); ?></a></li>
-        <?php } ?>
-        <?php if (get_field('facebook')) { ?>
-          <li><a href="<?php echo get_field('facebook'); ?>" target="_blank"><?php echo svg('facebook'); ?></a></li>
-        <?php } ?>
-        <?php if (get_field('instagram')) { ?>
-          <li><a href="<?php echo get_field('instagram'); ?>" target="_blank"><?php echo svg('instagram'); ?></a></li>
-        <?php } ?>
-        <?php if (get_field('youtube')) { ?>
-          <li><a href="<?php echo get_field('youtube'); ?>" target="_blank"><?php echo svg('youtube'); ?></a></li>
-        <?php } ?>
-      </ul>
-    <?php } ?>
     
-    <?php $additional = get_field('additional_web_addresses'); 
-    if($additional) { ?>
-      <section>
-        <h3 class="mt-3"><?php _e('More Links', 'tofino'); ?></h3>
-        <ul>
-          <?php foreach($additional as $item) { ?>
-            <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
-          <?php } ?>
-        </ul>
-      </section>
+    <?php if($topics) { ?>
+      <?php $topic_names = array(); ?>
+      <?php foreach($topics as $topic) {
+        $topic_names[] = $topic->name;
+      } ?>
+      
+      <h3 class="mt-3">Topics</h3>
+      <?php echo implode(', ', $topic_names); ?>
     <?php } ?>
   </div>
 <?php } ?>
+
+<div class="panel">
+  <?php if (get_field('email')) { ?>
+    <h3 class="mt-3">Email</h3>
+    <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
+  <?php } ?>
+
+  <?php
+  $link_fields = array(
+    'website',
+    'twitter',
+    'facebook',
+    'instagram',
+    'youtube',
+  );
+
+  $has_links = false;
+
+  foreach($link_fields as $field) {
+    if(get_field($field)) {
+      $has_links = true;
+    }
+  } ?>
+
+  <?php if($has_links) { ?>
+    <div>
+      <h3 class="mt-3"><?php _e('Links', 'tofino'); ?></h3>
+      
+      <ul class="links">
+        <?php foreach($link_fields as $field) {
+          if(get_field($field)) { ?>
+            <li><a href="<?php echo get_field($field); ?>" target="_blank"><?php echo svg($field); ?></a></li>
+          <?php } ?>
+        <?php } ?>
+      </ul>
+    </div>
+  <?php } ?>
+
+  <?php $additional = get_field('additional_web_addresses'); 
+  if($additional) { ?>
+    <div>
+      <h3 class="mt-3"><?php _e('More Links', 'tofino'); ?></h3>
+      <ul>
+        <?php foreach($additional as $item) { ?>
+          <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
+        <?php } ?>
+      </ul>
+    </div>
+  <?php } ?>
+</div>
