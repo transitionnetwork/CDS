@@ -58,9 +58,6 @@
         <?php } ?>
         <td class="text-right">
           <div class="btn-group">
-            <?php if (can_view_healthcheck($post)) { ?>
-              <a href="<?php echo add_query_arg(array('initiative_id' => $post->ID), parse_post_link(422)); ?>" class="btn btn-success btn-sm"><?php echo svg('plus'); ?> Add Healthcheck</a>
-            <?php } ?>
 
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
             
