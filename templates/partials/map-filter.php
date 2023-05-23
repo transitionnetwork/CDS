@@ -15,11 +15,16 @@
       <div class="col-12 col-md-3 filter-col">
         <?php $terms = get_terms('hub'); ?>
         <?php $hub_name = get_query_var('hub_name'); ?>
-        <?php // deal with legacy embeds
+        <?php // deal with legacy embeds and check 
         if(get_query_var('hub_id')) {
-          $hub_name = get_term_by('id', get_query_var('hub_id'), 'hub')->slug;
+          $hub_ids = explode(',', get_query_var('hub_id'));
+
+          //dont set select for multiple values
+          if(count($hub_ids) === 1) {
+            $hub_name = get_term_by('id', get_query_var('hub_id'), 'hub')->slug;
+          }
         } ?>
-        
+
         <div id="filter-hub" class="filter-item">
           <label for="hub_name"><?php _e('Hub', 'tofino'); ?></label>
           <select name="hub_name" id="hub_name">

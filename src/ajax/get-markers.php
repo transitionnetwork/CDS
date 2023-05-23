@@ -182,7 +182,10 @@ function ajax_get_map_markers() {
 
   //handle legacy embed codes which use hub_id property instead of hub_name
   if(array_key_exists('hub_id', $params)) {
-    $params['hub_name'] = get_term_by('id', $params['hub_id'], 'hub')->slug;
+    $hub_ids = explode(',', $params['hub_id']);
+    foreach($hub_ids as $hub_id) {
+      $params['hub_name'][] = get_term_by('id', $hub_id, 'hub')->slug;
+    }
   }
 
   $post_markers = ajax_get_post_markers($params, $cache_expiry);

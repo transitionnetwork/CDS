@@ -192,8 +192,6 @@ export default function () {
   function getMarkers(params) {
     $('#map-loading').show();
 
-    console.log(params)
-    
     $.ajax({
       url: tofinoJS.ajaxUrl,
       type: 'POST',
