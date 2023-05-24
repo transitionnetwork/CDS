@@ -108,6 +108,15 @@
             </div>
           <?php } ?>
 
+          <?php if (get_field('email')) { ?>
+            <div class="mt-5">
+              <h3>Contact <?php the_title(); ?></h3>
+              <div id="group-name" class="d-none" data-name="<?php the_title(); ?>"></div>
+              <div id="group-email" class="d-none" data-email="<?php echo get_field('email'); ?>"></div>
+              <?php echo do_shortcode('[contact-form-7 id="8907" title="Group Contact Form"]'); ?>
+            </div>  
+          <?php } ?>
+
           <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
             <div class="panel">
               <h3>Notes</h3>
