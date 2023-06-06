@@ -11,26 +11,22 @@ function post_to_murmuration_api($post) {
       'Content-Type' => 'text/plain',
     ],
   ));
-
-  var_dump($response);
-  
-  $response = $response['body'];
-  
-  var_dump($response);
-  add_log_message('UPDATE post-' . $post->ID . ' ' . $response);
-
-  $response = json_decode($response);
   
   if($response->errors) {
     $errors = $response->errors;
     update_post_meta($post->ID, 'murmurations_error', json_encode($error));
+    
+    add_log_message('ERROR post-' . $post->ID . ' ' . $error);
   } else {
-    $node_id = $response->data->node_id;
-    $status = $response->data->status;
+    $body =  json_decode( wp_remote_retrieve_body( $response ), true );
+    $node_id = $body->data->node_id;
+    $status = $body->data->status;
   
     update_post_meta($post->ID, 'murmurations_node_id', $node_id);
     update_post_meta($post->ID, 'murmurations_status', $status);
     update_post_meta($post->ID, 'murmurations_error', null);
+
+    add_log_message('UPDATE post-' . $post->ID . ' ' . $body);
   }
 
   return;
