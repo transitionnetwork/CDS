@@ -33,11 +33,7 @@ $users = get_users($args);
   <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
     <h3 for="authors">Update author</h3>
     <div class="mt-3">
-      <select name="authors">
-        <?php foreach($users as $user) { ?>
-          <option value="<?php echo $user->ID; ?>" <?php echo ($user->ID === $post_author_id) ? 'selected' : ''; ?>><?php echo $user->display_name; ?> | <?php echo $user->user_email; ?></option>
-        <?php } ?>
-      </select>
+      <input type="number" name="authors" value="<?php echo $post_author_id; ?>" placeholder="Author ID" min="1">
       
       <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
     </div>
