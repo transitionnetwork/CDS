@@ -12,11 +12,11 @@ function post_to_murmuration_api($post) {
     ],
   ));
   
-  if($response->errors) {
-    $errors = $response->errors;
-    update_post_meta($post->ID, 'murmurations_error', json_encode($error));
+  if(is_wp_error( $response )) {
+    $errors = $response->get_error_message();
+    update_post_meta($post->ID, 'murmurations_error', json_encode($errors));
     
-    add_log_message('ERROR post-' . $post->ID . ' ' . $error);
+    add_log_message('ERROR post-' . $post->ID . ' ' . $errors);
   } else {
     $body =  json_decode( wp_remote_retrieve_body( $response ), true );
     $node_id = $body->data->node_id;
