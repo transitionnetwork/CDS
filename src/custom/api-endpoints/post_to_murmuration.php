@@ -10,8 +10,13 @@ function post_to_murmuration_api($post) {
     'headers' => [
       'Content-Type' => 'text/plain',
     ],
-  ))['body'];
+  ));
 
+  var_dump($response);
+  
+  $response = $response['body'];
+  
+  var_dump($response);
   add_log_message('UPDATE post-' . $post->ID . ' ' . $response);
 
   $response = json_decode($response);
