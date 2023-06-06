@@ -31,14 +31,18 @@ $users = get_users($args);
 
 <?php if($users) { ?>
   <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
-    <h3 for="authors">Update author</h3>
+    <h3 for="authors">Update author ID</h3>
+    <p><a class="btn btn-sm btn-warning mb-3" href="/wp-admin/users.php" target="_blank"><?php echo svg('eye'); ?>View user list</a></p>
     <div class="mt-3">
       <input type="number" name="authors" value="<?php echo $post_author_id; ?>" placeholder="Author ID" min="1">
       
       <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
     </div>
-    <input type="submit" value="Change" class="mt-3">
+    <input type="submit" value="Update" class="mt-3">
+    
+
   </form>
+
 <?php } ?>
 
 <?php if(get_field('private_email')) { ?>
