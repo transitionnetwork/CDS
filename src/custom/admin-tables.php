@@ -2,6 +2,7 @@
 function new_modify_user_table( $columns ) {
     unset($columns['posts']);
     $columns['hub'] = 'Hub';
+    $columns['id'] = 'User ID';
     return $columns;
 }
 add_filter( 'manage_users_columns', 'new_modify_user_table' );
@@ -21,6 +22,8 @@ function new_modify_user_table_row( $val, $column_name, $user_id ) {
 
                 return implode(', ', $output_hubs);
             }
+        case 'id' :
+            return $user_id;
         default:
     }
     return $val;
