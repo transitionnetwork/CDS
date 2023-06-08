@@ -1,6 +1,5 @@
 <div class="panel grant-status">
-  <h3>
-    Grant Status
+  <h3>Grant Status</h3>
     
     <?php acf_form(array(
         'post_id'       => $post->ID,
@@ -10,5 +9,5 @@
         'updated_message' => __('Status updated', 'acf'),
         'submit_value'  => __('Update')
     )); ?>
-  </h3>
+
 </div>
