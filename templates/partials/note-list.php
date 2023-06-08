@@ -1,13 +1,13 @@
 <?php
 $args = array(
   'post_type' => 'initiative_notes',
-  // 'meta_query' => array(
-  //   array(
-  //     'key' => 'initiative_id',
-  //     'value' => get_the_ID(),
-  //     'compare' => '='
-  //   )
-  // ),
+  'meta_query' => array(
+    array(
+      'key' => 'initiative_id',
+      'value' => get_the_ID(),
+      'compare' => '='
+    )
+  ),
   'posts_per_page' => -1,
 );
 
