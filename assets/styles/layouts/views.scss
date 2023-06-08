@@ -66,6 +66,23 @@ body.tax-hub {
     }
   }
 
+  .panel.grant-status {
+    .updated {
+      font-size: 0.875rem;
+      font-weight: normal;
+      margin-top: 0.5rem;
+    }
+
+    .acf-field {
+      padding: 0;
+      border: 0;
+    }
+
+    .acf-label {
+      display: none;
+    }
+  }
+
   .links {
     margin: 0;
     padding: 0;
