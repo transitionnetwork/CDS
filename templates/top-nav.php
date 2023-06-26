@@ -1,7 +1,7 @@
 <?php
 if(is_user_logged_in(  )) {
   $user_role = wp_get_current_user()->roles[0];
-  $user_human_role = ucwords(str_replace('_', ' ', $user_role));
+  $user_human_role = $user_role ? wp_roles()->get_names()[ $user_role ] : '';
 } else {
   $user_role = null;
 }

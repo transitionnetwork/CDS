@@ -51,16 +51,8 @@ function can_view_any_healthcheck() {
 }
 function can_view_healthcheck($post)
 {
-  if(is_user_role('administrator') || is_user_role('super_hub')) {
-    return true;
-  }
-  if(is_user_role('hub') && is_post_in_user_hub($post)) {
-    return true;
-  }
-  if(is_user_role('initiative') && is_user_post_author($post)) {
-    return true;
-  }
-  return false;
+  // same as can_write_initiative for now
+  return can_write_initiative($post);
 }
 
 function can_write_healthcheck($post) {
@@ -77,6 +69,21 @@ function can_write_initiative($post) {
   }
   if (is_user_role('initiative') && is_user_post_author($post)) {
     return true;
+  }
+
+  if (is_user_role('tt_hub')) {
+    $tt_hub_ids = array(
+      284,
+      800,
+      287
+    );
+
+    $post_hub_id = get_the_terms($post, 'hub')[0]->term_id; 
+
+    if(in_array($post_hub_id, $tt_hub_ids)) {
+      return true;
+    }
+
   }
   return false;
 }
