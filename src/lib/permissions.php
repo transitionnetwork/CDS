@@ -72,11 +72,7 @@ function can_write_initiative($post) {
   }
 
   if (is_user_role('tt_hub')) {
-    $tt_hub_ids = array(
-      284,
-      800,
-      287
-    );
+    $tt_hub_ids = get_tt_hub_ids();
 
     $post_hub_id = get_the_terms($post, 'hub')[0]->term_id; 
 
@@ -179,4 +175,12 @@ function is_my_trainer_post($post = null) {
   }
 
   return false;
+}
+
+function get_tt_hub_ids() {
+  return array(
+    284,
+    800,
+    287
+  );
 }
