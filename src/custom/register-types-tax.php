@@ -99,6 +99,21 @@ function create_posttypes() {
       'supports' => array('title', 'editor')
     )
   );
+
+  register_post_type(
+    'custom_snippets',
+    array(
+      'labels' => array(
+        'name' => __('Custom Snippets'),
+        'singular_name' => __('Custom Snippets')
+      ),
+      'show_in_nav_menus' => false,
+      'publicly_queryable' => false,
+      'has_archive' => false,
+      'show_ui' => true,
+      'supports' => array('title', 'editor')
+    )
+  );
 }
 add_action('init', 'create_posttypes');
 

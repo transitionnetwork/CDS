@@ -24,6 +24,7 @@
 							$field_groups[] = 'group_618ea2ebadb1c';
 						}
 
+						$field_groups[] = 'group_64997e4b63414';
 						$field_groups[] = 'group_618ea2ebb72f5';
 
 						acf_form(array(
