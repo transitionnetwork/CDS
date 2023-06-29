@@ -26,6 +26,16 @@
     padding: 0;
     list-style: none;
   }
+
+  .trp-language-switcher  {
+    width: auto;
+    height: auto;
+
+    & > div {
+      padding: 0;
+      border: 1px solid $black;
+    }
+  }
 }
 
 #langModal {
