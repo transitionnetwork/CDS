@@ -183,7 +183,7 @@ function custom_email_initaitive_author_updated($post_id) {
     $message = '<p>Hi ' . $author->display_name . ',</p>';
   }
 
-  $message .= 'Please log into <a href="' . home_url() . '">' . get_bloginfo('name') . '</a> and browse to your dashboard for further information.';
+  $message .= 'Please sign into <a href="' . home_url() . '">' . get_bloginfo('name') . '</a> and browse to your dashboard for further information.';
 
   wp_mail( $to, $subject, $message);
 }
@@ -222,7 +222,7 @@ function custom_email_created_post($post_id, $type) {
   
   $subject = 'A new ' . $type . ' has been created for the ' . $hub->name . ' hub';
   
-  $message = 'Please log into <a href="' . home_url() . '">' . get_bloginfo('name') . ' and browse to your dashboard for further information.';
+  $message = 'Please sign into <a href="' . home_url() . '">' . get_bloginfo('name') . ' and browse to your dashboard for further information.';
 
   wp_mail( $to, $subject, $message);
 
