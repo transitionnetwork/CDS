@@ -37,7 +37,7 @@ if(is_user_role('hub')) {
 
 </div>
 
-<?php if(shortcode_exists('language-switcher')) { ?>
+<?php if(FALSE) { ?>
   <div class="d-flex align-items-center">
     <div id="lang-switch" class="mr-2">
       <?php echo do_shortcode('[language-switcher]'); ?>

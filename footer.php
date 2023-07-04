@@ -10,9 +10,6 @@ if (get_theme_mod('footer_sticky') === 'enabled') : ?>
     <div class="row">
       <div class="col-12 col-md-6">
         <p>&copy <?php echo date('Y'); ?> Transition Network</p>
-        <?php if(shortcode_exists( 'iub-pp-button' )) { ?>
-          <?php echo do_shortcode('[iub-pp-button]'); ?>
-        <?php } ?>
       </div>
       <div class="col-12 col-md-6 text-md-right">
         <div id="footer-nav">
