@@ -10,7 +10,9 @@ export default {
       select2();
     }
     
-    singleMap()
+    if (document.getElementById('single-map') !== null) {
+      singleMap();
+    }
 
     //populate grouop email form
     const name = $('#group-name').data('name');

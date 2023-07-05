@@ -5,7 +5,9 @@ import singleMap from '../shared/single-map';
 
 export default {
   loaded() {
-    singleMap()
+    if (document.getElementById('single-map') !== null) {
+      singleMap();
+    }
 
     //populate trainer email form
     const name = $('#trainer-name').data('name');

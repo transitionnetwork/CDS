@@ -55,13 +55,22 @@ foreach($link_fields as $field) {
 <?php $topics = get_the_terms($post, 'topic'); ?>
 
 <div class="panel">
-  <?php if(get_field('logo')) { ?>
-    <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
+  <?php $logo = get_field('logo'); ?>
+  <?php if($logo) { ?>
+    <div class="mb-3">
+      <?php if(is_array($logo)) { ?>
+        <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
+      <?php } else { ?>
+        <?php echo wp_get_attachment_image( $logo, 'large' ); ?>
+      <?php } ?>
+    </div>
   <?php } ?>
 
   <?php if(count($hubs) === 1) { ?>
-    <h3>Hub</h3>
-    <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
+    <div class="mb-3">
+      <h3>Hub</h3>
+      <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
+    </div>
   <?php } ?>
   
   <?php if($topics) { ?>
@@ -70,18 +79,22 @@ foreach($link_fields as $field) {
       $topic_names[] = $topic->name;
     } ?>
     
-    <h3 class="mt-3">Topics</h3>
-    <?php echo implode(', ', $topic_names); ?>
+    <div class="mb-3">
+      <h3>Topics</h3>
+      <?php echo implode(', ', $topic_names); ?>
+    </div>
   <?php } ?>
   
   <?php $detail = get_field('group_detail'); ?>
   <?php if($detail) { ?>
     <?php $number_of_people = get_field('group_detail_number_of_people');
     if($number_of_people) { ?>
-        <h3 class="mt-3">
+      <div class="mb-3">
+        <h3>
           Number of People
         </h3>
         <?php echo $number_of_people; ?>
+      </div>
     <?php } ?>
     
     <?php $group_date = get_field('group_detail_date');
