@@ -23,13 +23,13 @@ function process_mailgun_endpoint(WP_REST_Request $request) {
       update_post_meta( $post_id, 'mail_event', $event_type);
     }
   
-    $mail_log = get_post_meta($post_id, 'mail_event', true);
+    $mail_log = get_post_meta($post_id, 'mail_log', true);
     if(!is_array($mail_log)) {
       $mail_log = array();
     }
     
     $mail_log[] = date('Y-m-d H:i:s') . ' - ' . $event_type;
-    update_post_meta( $post->ID, 'mail_event', $mail_log);
+    update_post_meta( $post->ID, 'mail_log', $mail_log);
   }
 
   return;
