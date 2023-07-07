@@ -70,6 +70,7 @@ $tofino_includes = [
   "src/custom/api-endpoints/trainers.php",
   "src/custom/api-endpoints/hubs.php",
   "src/custom/api-endpoints/post_to_murmuration.php",
+  "src/custom/api-endpoints/webhooks.php",
   // "src/custom/retention-emailing.php",
 ];
 
