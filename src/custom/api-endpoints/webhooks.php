@@ -20,7 +20,7 @@ function process_mailgun_endpoint(WP_REST_Request $request) {
   if($post_id) {
     //set mail_event field to delivered or failure for query sakes
     if(in_array($event_type, array('delivered', 'failure', 'opens', 'clicks'))) {
-      update_post_meta( $post_id, 'mail_event', $event_type);
+      update_post_meta( $post_id, 'last_mail_event', $event_type);
     }
   
     $mail_log = get_post_meta($post_id, 'mail_log', true);
@@ -29,7 +29,7 @@ function process_mailgun_endpoint(WP_REST_Request $request) {
     }
     
     $mail_log[] = date('Y-m-d H:i:s') . ' - ' . $event_type;
-    update_post_meta( $post->ID, 'mail_log', $mail_log);
+    update_post_meta( $post_id, 'mail_log', $mail_log);
   }
 
   return;
