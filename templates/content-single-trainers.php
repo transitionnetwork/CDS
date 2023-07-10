@@ -81,7 +81,11 @@
             <div id="trainer-name" class="d-none" data-name="<?php the_title(); ?>"></div>
             <div id="trainer-email" class="d-none" data-email="<?php echo get_field('general_information_email'); ?>"></div>
             <?php echo do_shortcode('[contact-form-7 id="8688" title="Trainer Contact Form"]'); ?>
-          </div>  
+          </div>
+
+          <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
+            <?php get_template_part('templates/panels/email-history'); ?>
+          <?php } ?>
         </div>
 
         <div class="col-12 col-lg-4">
