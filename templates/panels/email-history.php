@@ -14,5 +14,6 @@
     </div>
 
   <?php } else { ?>
+    <?php _e('There is no email history'); ?>
   <?php } ?>
 </div>

@@ -118,7 +118,14 @@ foreach($link_fields as $field) {
       <h3 class="mt-3">
         Legal Structure
       </h3>
-      <?php echo $legal_structure; ?>
+      <div>
+        <?php echo $legal_structure; ?>
+      </div>
+      <?php if($legal_structure === 'Other' && get_field('group_detail_legal_structure_detail')) { ?>
+        <div class="mt-3">
+          <?php echo get_field('group_detail_legal_structure_detail'); ?>
+        </div>
+      <?php } ?>
     <?php } ?>
       
     <?php $group_activity = get_field('group_detail_active'); ?>
@@ -135,10 +142,21 @@ foreach($link_fields as $field) {
         Live Projects
       </h3>
       <?php $project_list = array(); ?>
+      <?php $other_project_selected = false; ?>
       <?php foreach($live_projects as $live_project) { ?>
         <?php $project_list[] = $live_project; ?>
+        <?php if($live_project === 'Other') { 
+          $other_project_selected = true; ?>
+        } ?>
       <?php } ?>
-      <?php echo implode(', ', $project_list); ?>
+      <div>
+        <?php echo implode(', ', $project_list); ?>
+      </div>
+      <?php if($other_project_selected && get_field('group_detail_live_projects_detail')) { ?>
+        <div class="mt-3">
+          <?php echo get_field('group_detail_live_projects_detail'); ?>
+        </div>
+      <?php } ?>
     <?php } ?>
   <?php } ?>
 </div>
