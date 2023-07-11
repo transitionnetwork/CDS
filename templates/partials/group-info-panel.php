@@ -147,7 +147,7 @@ foreach($link_fields as $field) {
         <?php $project_list[] = $live_project; ?>
         <?php if($live_project === 'Other') { 
           $other_project_selected = true; ?>
-        } ?>
+        <?php } ?>
       <?php } ?>
       <div>
         <?php echo implode(', ', $project_list); ?>
