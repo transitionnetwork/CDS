@@ -260,42 +260,6 @@ function custom_email_hub_application() {
   wp_mail( $to, $subject, $message);
 }
 
-function custom_email_autologin_reminder_email($user_id) {
-  $userdata = get_userdata($user_id);
-  $to = array(
-    $userdata->user_email,
-    // 'mark@benewith.com'
-  );
-  $subject = 'Updated Links: Transition Town - Are you still the official contact for your Transition group?';
-  
-  $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin';
-  
-  $body = '
-  <p><strong>Please accept our apologies for resending this email. There may be issues with the previously included links to login to the site which have now been corrected.</strong></p>
-  <p>Hello Friends,</p>
-  <p>We are emailing you because you are listed as an official contact for a Transition group registered on the Transition Network website.</p>
-  <p>Interest in the Transition movement continues to grow and <a href="https://transitionnetwork.org/transition-near-me/">Transition Near Me</a> is one of the most visited pages on our website. We want to help you to make sure that your group’s information is up-to-date, and that Transition Network has the correct contact details for you.</p>
-  <p><strong>If your Transition group is still active:</strong></p>
-  <ul>
-    <li>If this is the correct email address to use as a primary contact for your group, please <a href="' . $link . '">check the information</a> or copy the link below into your browser:<br/>
-    ' . $link . '<br/>
-    Do make sure that all of your website and social media information is listed correctly - so that people can connect with you.</li>
-    <li>If you would like to change the contact details for your Transition group - please reply to this email and cc the person or group to whom it should be changed. If you have a shared email account such as info@yourgroup.org we would advise you to use this address.</li>
-  </ul>
-  <p><strong>If your Transition group is no longer active:</strong></p>
-  <ul><li>To remove your listing from the Transition Network website, please <a href="' . $link . '">click this link</a> or copy and paste the link below into your browser:<br/>
-  ' . $link . '</li></ul>
-  <p>If you are unable to login, <a href="https://' . $_SERVER['SERVER_NAME'] . '/member-password-lost/">please reset your password.</a></p>
-  <p>If you have any questions - reply to this email and we will do our best to help you.</p>
-  <p>Thanks!</p>
-  <p>Sam Rossiter and the Transition Network team</p>
-  <p><strong>If you wish to stop receiving these emails and/or have your account removed, please reply with "unsubscribe" or "remove" in the subject line.</strong></p>
-  ';
-
-  $headers[] = 'X-MJ-CustomID: 123987';
-  wp_mail( $to, $subject, $body, $headers);
-}
-
 function check_pending_groups() {
   // get all hub users
   $args = array(
@@ -327,10 +291,6 @@ function check_pending_groups() {
       custom_email_send_pending_alert_to_hub($user, $groups);
     }
   }
-}
-
-function check_old_healthcheck() {
-  //query initatives and find records with last_hc_date older than 11 months or non-existant
 }
 
 function disabling_emails( $args ){

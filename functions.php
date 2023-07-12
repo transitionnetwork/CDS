@@ -34,8 +34,6 @@ $tofino_includes = [
   "src/lib/hubs.php",
   "src/lib/healthchecks.php",
   "src/lib/permissions.php",
-  "src/lib/emails.php",
-  "src/lib/cron.php",
   "src/lib/output-csv.php",
   "src/shortcodes/copyright.php",
   "src/shortcodes/social-icons.php",
@@ -71,7 +69,10 @@ $tofino_includes = [
   "src/custom/api-endpoints/hubs.php",
   "src/custom/api-endpoints/post_to_murmuration.php",
   "src/custom/api-endpoints/webhooks.php",
-  // "src/custom/retention-emailing.php",
+  "src/custom/emails/emails.php",
+  "src/custom/emails/retention-email-content.php",
+  "src/custom/emails/cron.php",
+  // "src/custom/emails/retention-emailing.php",
 ];
 
 foreach ($tofino_includes as $file) {
@@ -167,6 +168,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'search';
   $vars[] = 'country';
   $vars[] = 'training';
+  $vars[] = 'last_mail_event';
   
   //api endpoints
   $vars[] = 'per_page';
