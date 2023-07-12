@@ -1,3 +1,5 @@
+<?php //could add some perms in here ?>
+
 <?php
 $last_mail_event = get_query_var( 'last_mail_event');
 if(!$last_mail_event) {
@@ -28,11 +30,14 @@ $args = array(
 $init_query = new WP_Query($args); ?>
 
 <section>
-  <ul>
-    <?php foreach($mail_events as $event) { ?>
-      <li><a href="<?php echo add_query_arg( 'last_mail_event', $event, the_permalink() ); ?>"><?php echo $event; ?></a></li>
-    <?php } ?>
-  </ul>
+  <?php $nav = array(); ?>
+  <?php foreach($mail_events as $event) { ?>
+    <?php $nav[] = '<a href="' . add_query_arg( 'last_mail_event', $event, get_permalink() ) . '">' . $event . '</a>'; ?>
+  <?php } ?>
+
+  <div class="mb-3">
+    <?php echo implode(' | ', $nav); ?>
+  </div>
   
   <h2>Last mail event: <?php echo $last_mail_event; ?></h2>
 
