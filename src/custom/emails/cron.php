@@ -22,7 +22,6 @@ if (!wp_next_scheduled('email_pending_groups_hook')) {
 add_action('email_pending_groups_hook', 'check_pending_groups');
 //
 
-
 //check for last healthcheck submission
 // if (!wp_next_scheduled('email_old_groups')) {
 //   wp_schedule_event(time(), 'four_days', 'email_old_groups');
