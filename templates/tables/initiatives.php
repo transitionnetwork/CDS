@@ -60,6 +60,12 @@
           <div class="btn-group">
 
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
+
+            <?php if(is_user_role(array('administrator', 'super_hub'))) {  ?>
+              <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), '/add-note'); ?>">
+                <?php echo svg('plus'); ?>Add Note
+              </a>
+            <?php } ?>
             
             <?php if(can_write_initiative($post)) { ?>
               <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
