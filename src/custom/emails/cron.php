@@ -22,21 +22,28 @@ if (!wp_next_scheduled('email_pending_groups_hook')) {
 add_action('email_pending_groups_hook', 'check_pending_groups');
 //
 
-//check for last healthcheck submission
-// if (!wp_next_scheduled('email_old_groups')) {
-//   wp_schedule_event(time(), 'four_days', 'email_old_groups');
+//check for inactive authors
+// if (!wp_next_scheduled('email_inactive_authors')) {
+//   wp_schedule_event(time(), 'four_days', 'email_inactive_authors');
 // }
 
-// add_action('email_old_groups', 'check_old_groups');
+// add_action('email_inactive_authors', 'check_inactive_authors');
 //
 
-function check_old_groups() {
-  $date = new DateTime("-200 days");
+function email_inactive_authors() {
+  $date = new DateTime("-1 year");
 
   $args = array(
     'post_type' => 'initiatives',
     'posts_per_page' => -1,
     'fields' => 'ids',
+    'tax_query' => array(
+      array(
+        'taxonomy' => 'hub',
+        'term_id' => 'term_id',
+        'terms' => array(800)
+      )
+    ),
     'meta_query' => array(
       'relation' => 'OR',
       array(
@@ -53,12 +60,10 @@ function check_old_groups() {
   );
 
   $post_ids = get_posts($args);
-  
+
   $results = array();
   
   foreach($post_ids as $post_id) {
     custom_email_autologin_reminder_email($post_id);
   }
-
-  die();
 }

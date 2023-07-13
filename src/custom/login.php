@@ -20,7 +20,13 @@ function update_user_and_post_metadata($user_id) {
 }
 
 function wp_login_update_metadata( $user_login, $user ) {
+  //remove autologin code
+  if(get_user_meta($user->ID, PKG_AUTOLOGIN_USER_META_KEY)) {
+    delete_user_meta( $user->ID, PKG_AUTOLOGIN_USER_META_KEY);
+  }
+  
   update_user_and_post_metadata($user->ID);
+  
 }
 
 add_action('wp_login', 'wp_login_update_metadata', 10, 2);
