@@ -137,7 +137,7 @@
               <?php get_template_part('templates/partials/note-list'); ?>
               <?php wp_reset_postdata(); ?>
               <p>
-                <a class="btn btn-sm btn-outline" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), '/add-note'); ?>">
+                <a class="btn btn-sm btn-outline" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID(), 'source' => get_the_permalink()), '/add-note'); ?>">
                   <?php echo svg('plus'); ?>Add Note
                 </a>
               </p>

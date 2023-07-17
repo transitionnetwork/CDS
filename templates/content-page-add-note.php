@@ -13,11 +13,14 @@ if (!$initiative_id || !is_user_logged_in() || !is_user_role(array('super_hub', 
       <div class="row justify-content-center">	
         <div class="col-12 col-md-10 col-lg-8">
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
+          <h4>
+            to <?php echo get_the_title(get_query_var('initiative_id')); ?>
+          </h4>
           
           <?php acf_form(array(
             'post_id'		=> 'new_post',
             'post_title'	=> false,
-            'return' => add_query_arg('added_note', 'initiative', get_the_permalink($initiative_id)),
+            'return' => add_query_arg('added_note', 'initiative', get_query_var('source')),
             'submit_value' => 'Add note',
             'uploader' => 'basic',
             'new_post'		=> array(

@@ -15,6 +15,9 @@
 				<div class="row justify-content-center">	
 					<div class="col-12 col-md-10 col-lg-8">
 						<h1><?php echo \Tofino\Helpers\title(); ?></h1>
+						<h4>
+							to <?php echo get_the_title($initiative_id); ?>
+						</h4>
 						<?php
 
 						acf_form(array(

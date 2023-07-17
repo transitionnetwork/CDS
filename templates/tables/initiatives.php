@@ -62,7 +62,10 @@
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
 
             <?php if(is_user_role(array('administrator', 'super_hub'))) {  ?>
-              <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), '/add-note'); ?>">
+
+              <?php $current_page_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
+             
+              <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID(), 'source' => $current_page_url), '/add-note'); ?>">
                 <?php echo svg('plus'); ?>Note
               </a>
             <?php } ?>

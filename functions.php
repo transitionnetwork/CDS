@@ -162,6 +162,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'added_post';
   $vars[] = 'edited_note';
   $vars[] = 'added_note';
+  $vars[] = 'source';
 
   $vars[] = 'hub_name';
   $vars[] = 'type';
