@@ -9,6 +9,12 @@
       </div>
       
       <div class="col-12 col-lg-9 order-lg-1">
+        <?php if(get_query_var('added_note')) { ?>
+          <div class="alert top alert-success">
+            <?php _e('Your note has been added', 'tofino'); ?>
+          </div>
+        <?php } ?>
+
         <?php if (get_query_var('hub_name')) :
           $term = get_term_by('slug', get_query_var('hub_name'), 'hub');
           echo '<h1>Hub: ' . $term->name . '</h1>';

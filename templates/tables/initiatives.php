@@ -64,6 +64,11 @@
             <?php if(is_user_role(array('administrator', 'super_hub'))) {  ?>
 
               <?php $current_page_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
+
+              <?php if($current_page_url === home_url() . '/') { 
+                $current_page_url .= 'search-groups';
+                //deal with redirection to homepage failing
+              } ?>
              
               <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID(), 'source' => $current_page_url), '/add-note'); ?>">
                 <?php echo svg('plus'); ?>Note
