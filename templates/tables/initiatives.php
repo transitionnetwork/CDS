@@ -58,7 +58,6 @@
         <?php } ?>
         <td class="text-right">
           <div class="btn-group">
-
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
 
             <?php if(is_user_role(array('administrator', 'super_hub'))) {  ?>

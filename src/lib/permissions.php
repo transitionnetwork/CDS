@@ -27,6 +27,7 @@ function is_user_role($queried_roles, $user = null)
 function is_post_in_user_hub($post) {
   $post_hub_id = get_the_terms($post, 'hub')[0]->term_id;
   $user_hub_ids = get_user_meta(wp_get_current_user()->ID, 'hub_user');
+
   foreach($user_hub_ids as $user_hub_id) {
     if($post_hub_id == $user_hub_id) {
       return true;
@@ -64,7 +65,7 @@ function can_write_initiative($post) {
   if (is_user_role('administrator') || is_user_role('super_hub')) {
     return true;
   }
-  if (is_user_role('hub') && is_post_in_user_hub($post)) {
+  if (is_user_role('hub') && (is_post_in_user_hub($post) || is_user_post_author($post))) {
     return true;
   }
   if (is_user_role('initiative') && is_user_post_author($post)) {
