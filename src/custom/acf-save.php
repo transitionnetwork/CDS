@@ -50,15 +50,6 @@ function acf_custom_save($post_id) {
     custom_email_hub_application();
   }
 
-  if(in_array(get_post_type($post_id), array('initaitives', 'trainers'))) {
-    //clone map latlng
-    $map = get_field('map', $post_id);
-    if($map && !empty($map['markers'])) {
-      update_post_meta( $post_id, 'cloned_lat', $map['markers'][0]['lat']);
-      update_post_meta( $post_id, 'cloned_lng', $map['markers'][0]['lng']);
-    }
-  }
-
   if(get_post_type($post_id) === 'trainers') { // hub_application
     $name = get_field('general_information_name', $post_id);
 
@@ -88,6 +79,15 @@ function acf_custom_save($post_id) {
         $trainer_admin_emails[] = $user->user_email;
       }
       custom_email_send_transactional_email(7124, $trainer_admin_emails);
+    }
+  }
+
+  if(in_array(get_post_type($post_id), array('initaitives', 'trainers'))) {
+    //clone map latlng
+    $map = get_field('map', $post_id);
+    if($map && !empty($map['markers'])) {
+      update_post_meta( $post_id, 'cloned_lat', $map['markers'][0]['lat']);
+      update_post_meta( $post_id, 'cloned_lng', $map['markers'][0]['lng']);
     }
   }
 }

@@ -4,8 +4,11 @@
 // Ensure group level posts are set to pending
 if(is_user_role('initiative')) {
   $post_status = 'pending';
+  //this deals with the publish_url which already contains query arguments
+  $return_url = '%post_url%' . '&added_post=initiative';
 } else {
   $post_status = 'publish';
+  $return_url = add_query_arg('added_post', 'initiative', '%post_url%');
 } ?>
 
 <main>
@@ -21,7 +24,7 @@ if(is_user_role('initiative')) {
           <?php acf_form(array(
             'post_id'		=> 'new_post',
             'post_title'	=> true,
-            'return' => add_query_arg('added_post', 'initiative', '%post_url%'),
+            'return' => $return_url,
             'submit_value' => 'Create Group',
             'uploader' => 'basic',
             'new_post'		=> array(
