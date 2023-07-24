@@ -1,75 +1,7 @@
+<?php //ma_add_co_author_to_post(9225, 27674); ?>
+<?php get_template_part('templates/partials/single-initiatives-messages'); ?>
+
 <?php acf_form_head(); ?>
-
-<?php $updated = get_query_var('updated'); ?>
-
-<?php if($updated) { ?>
-  <?php if($updated === 'healthcheck') { ?>
-    <div class="container">
-      <div class="alert top alert-success">
-       <?php echo get_post_field('post_content', 45); ?>
-      </div>
-    </div>
-  <?php } ?>
-  
-  <?php if($updated === 'author') { ?>
-    <div class="container">
-      <div class="alert top alert-success">
-        <?php _e('The author of this group has been updated. The new author has been emailed', 'tofino'); ?>
-        <?php custom_email_initaitive_author_updated(get_the_ID()) ?>
-      </div>
-    </div>
-  <?php } ?>
-<?php } ?>
-
-<?php if(get_query_var('edited_post')) { ?>
-  <div class="container">
-    <div class="alert top alert-success">
-      <?php _e('This group has been updated', 'tofino'); ?>
-
-      <?php $hub = get_the_terms($post, 'hub')[0]->term_id; ?>
-      <?php if(in_array($hub, get_tt_hub_ids())) { ?>
-        <div class="mt-2">
-          <?php echo apply_filters('the_content', get_post_field('post_content', 9101)); ?>
-        </div>
-      <?php } ?>
-    </div>
-  </div>
-<?php } ?>
-
-<?php if(get_query_var('added_post')) { ?>
-  <div class="container">
-    <div class="alert top alert-success">
-      <?php if (wp_get_current_user()->roles[0] === 'initiative') {
-        _e('Thank you for your submission. It is now awaiting approval by a hub user.', 'tofino');
-      } else {
-        _e('Thank you for your submission', 'tofino');
-      } ?>
-
-      <?php $hub = get_the_terms($post, 'hub')[0]->term_id; ?>
-      <?php if(in_array($hub, get_tt_hub_ids())) { ?>
-        <div class="mt-2">
-          <?php echo apply_filters('the_content', get_post_field('post_content', 9101)); ?>
-        </div>
-      <?php } ?>
-    </div>
-  </div>
-<?php } ?>
-
-<?php if(get_query_var('added_note')) { ?>
-  <div class="container">
-    <div class="alert top alert-success">
-      <?php _e('Your note has been added', 'tofino'); ?>
-    </div>
-  </div>
-<?php } ?>
-
-<?php if(get_query_var('edited_note')) { ?>
-  <div class="container">
-    <div class="alert top alert-success">
-      <?php _e('Your note has been updated', 'tofino'); ?>
-    </div>
-  </div>
-<?php } ?>
 
 <?php while (have_posts()) : the_post(); ?>
   
@@ -174,10 +106,17 @@
             <?php } ?>
             
             <?php get_template_part('templates/partials/group-info-panel'); ?>
+            
 
+            
+            <?php //display this for post owners as well as super_hub, hub and admin { ?>
+              <?php get_template_part('templates/partials/co-author-panel'); ?>
+            <?php // } ?>
+            
+            
             <?php if (is_user_role(array('administrator', 'super_hub', 'hub') && can_write_initiative($post))) { ?>
-              <?php get_template_part('templates/partials/grant-status'); ?>
               <?php get_template_part('templates/partials/update-author'); ?>
+              <?php get_template_part('templates/partials/grant-status'); ?>
             <?php } ?>
           </aside>
         </div>
