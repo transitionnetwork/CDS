@@ -72,7 +72,23 @@
 <?php if(get_query_var('deleted') === 'co_author') { ?>
   <div class="container">
     <div class="alert top alert-success">
-      <?php _e('Co-Author has been removed', 'tofino'); ?>
+      <?php _e('Co-author has been removed', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('added') === 'co_author') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('The co-author exists and has been added', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('added') === 'co_author_invited') { ?>
+  <div class="container">
+    <div class="alert top alert-info">
+      <?php _e('The requested co-author is not currently a member of <a href="https://transitiongroups.org">transitiongroups.org</a>. We have invited them to join the site in order to be added to this group', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>

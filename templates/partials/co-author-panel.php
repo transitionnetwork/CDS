@@ -1,3 +1,14 @@
+<div class="panel">
+  <h3>Add Co-Author</h3>
+  <form action="<?php the_permalink(); ?>" method="POST">
+    <input type="hidden" name="ma_post_id" value="<?php echo $post->ID; ?>">
+    <div class="d-flex align-items-center">
+      <input type="email" name="ma_add_co_author_email" placeholder="email address">
+      <button type="submit" class="btn btn-primary btn-sm">Add</button>
+    </div>
+  </form>
+</div>
+
 <?php $co_authors = ma_get_co_authors($post->ID); ?>
 <?php if($co_authors) { ?>
   <div class="panel">

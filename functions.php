@@ -158,6 +158,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'updated';
   $vars[] = 'deleted';
   $vars[] = 'failed';
+  $vars[] = 'added';
   $vars[] = 'hub_id';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';

@@ -47,6 +47,7 @@
           <?php if(can_write_initiative($post)) { ?>
             <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
             <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-group'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit group', 'tofino'); ?></a></div>
+            
             <div class="button-block">
               <form action="" method="post">
               <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete group', 'tofino'); ?></button>
@@ -107,14 +108,9 @@
             
             <?php get_template_part('templates/partials/group-info-panel'); ?>
             
-
-            
-            <?php //display this for post owners as well as super_hub, hub and admin { ?>
+            <?php if (is_user_role(array('administrator', 'super_hub')) && can_write_initiative($post)  ) { ?>
+              <?php var_dump('why'); ?>
               <?php get_template_part('templates/partials/co-author-panel'); ?>
-            <?php // } ?>
-            
-            
-            <?php if (is_user_role(array('administrator', 'super_hub', 'hub') && can_write_initiative($post))) { ?>
               <?php get_template_part('templates/partials/update-author'); ?>
               <?php get_template_part('templates/partials/grant-status'); ?>
             <?php } ?>

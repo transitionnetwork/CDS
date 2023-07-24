@@ -36,6 +36,20 @@ function ma_post_requests() {
 		ma_remove_co_author_from_post($_POST['ma_post_id'], $_POST['ma_remove_co_author_id']);
 		wp_redirect(add_query_arg('deleted', 'co_author', get_the_permalink()));
 	}
+
+	if(array_key_exists('ma_add_co_author_email', $_POST)) {
+		$user = get_user_by( 'email', $_POST['ma_add_co_author_email'] );
+		
+		if($user) {
+			//user exists
+			ma_add_co_author_to_post($_POST['ma_post_id'], $user->ID);
+			//TODO: Send notification email
+			wp_redirect(add_query_arg('added', 'co_author', get_the_permalink()));
+		} else {
+			//TODO: Send invitation email
+			wp_redirect(add_query_arg('added', 'co_author_invited', get_the_permalink()));
+		}
+	}
 }
 
 if (!is_admin()) {
@@ -50,7 +64,12 @@ function ma_remove_co_author_from_post($post_id, $user_id) {
 	wp_remove_object_terms( $post_id, strval($user_id), 'co_author');
 }
 
-function ma_is_co_author($post_id, $user_id) {
+function ma_is_co_author($post_id, $user_id = null) {
+
+	if(!$user_id) {
+		$user_id = get_current_user_id();
+	}
+	
 	$terms = get_the_terms( $post_id, 'co_author');
 	if($terms) {
 		foreach($terms as $term) {

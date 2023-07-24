@@ -13,12 +13,12 @@
 <form action="<?php the_permalink() ?>" method="POST" id="change-author" class="panel">
   <h3 for="authors">Update author ID</h3>
   <p><a class="btn btn-sm btn-warning mb-3" href="/wp-admin/users.php" target="_blank"><?php echo svg('eye'); ?>View user list</a></p>
-  <div class="mt-3">
+  <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
+  
+  <div class="mt-3 d-flex align-items-center">
     <input type="number" name="authors" value="<?php echo $post_author_id; ?>" placeholder="Author ID" min="1">
-    
-    <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
+    <button type="submit" class="btn btn-primary btn-sm">Update</button>
   </div>
-  <input type="submit" value="Update" class="mt-3">
 </form>
 
 <?php if(get_field('private_email')) { ?>
