@@ -80,7 +80,7 @@
 <?php if(get_query_var('added') === 'co_author') { ?>
   <div class="container">
     <div class="alert top alert-success">
-      <?php _e('The co-author exists and has been added', 'tofino'); ?>
+      <?php _e('The email is already registered on <a href="https://transitiongroups.org">transitiongroups.org</a> and has been added as a co-author to the group', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>
@@ -88,7 +88,7 @@
 <?php if(get_query_var('added') === 'co_author_invited') { ?>
   <div class="container">
     <div class="alert top alert-info">
-      <?php _e('The requested co-author is not currently a member of <a href="https://transitiongroups.org">transitiongroups.org</a>. We have invited them to join the site in order to be added to this group', 'tofino'); ?>
+      <?php _e('The requested email is not currently registered on <a href="https://transitiongroups.org">transitiongroups.org</a>. We have invited them to join the site in order to be added as a co-author to this group', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>
