@@ -41,12 +41,15 @@ function ma_post_requests() {
 		$user = get_user_by( 'email', $_POST['ma_add_co_author_email'] );
 		
 		if($user) {
-			//user exists
+			//user exists - add co-author
 			ma_add_co_author_to_post($_POST['ma_post_id'], $user->ID);
-			//TODO: Send notification email
+			//Send notification email
+			ma_send_notification_email(9261, $_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
 			wp_redirect(add_query_arg('added', 'co_author', get_the_permalink()));
 		} else {
-			//TODO: Send invitation email
+			//Send invitation email
+			ma_send_notification_email(9262, $_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
+			//TODO: Enqueue email somewhere in DB
 			wp_redirect(add_query_arg('added', 'co_author_invited', get_the_permalink()));
 		}
 	}
@@ -101,12 +104,29 @@ function ma_user_id_exists($user_id){
 	return false;
 }
 
-function ma_send_invite_email() {
+function ma_replace_email_tags($message, $post_id) {
+	// #post_name_link#  (linked group with name)
+	// #author_email#
+	// #post_name#
+	$message = str_replace('#post_name#', get_the_title($post_id), $message);
+	
+	$message = str_replace('#post_name_link#', '<a href="' . get_the_permalink($post_id) . '">' . get_the_title($post_id) . '</a>');
+
+	$author_id = get_post_field ('post_author', $post_id);
+	$message = str_replace('#author_email#', get_the_author_meta('user_email', $author_id), $message);
+
+	var_dump($message);
+	die();
+	return $message;
 
 }
 
-function ma_send_added_email() {
-	
+function ma_send_notification_email($email_id, $group_id, $to) {
+	$subject = get_field('subject', $email_id);
+	$body = get_post_field('post_content', $email_id);
+	$headers = 'X-Mailgun-Variables: {"post_id" : ' . $group_id . '}';
+
+	wp_mail($to, $subject, $body, $headers);
 }
 
 
