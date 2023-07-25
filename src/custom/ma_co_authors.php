@@ -46,11 +46,16 @@ function ma_post_requests() {
 			//Send notification email
 			ma_send_notification_email(9261, $_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
 			wp_redirect(add_query_arg('added', 'co_author', get_the_permalink()));
+			exit;
 		} else {
 			//Send invitation email
 			ma_send_notification_email(9262, $_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
-			//TODO: Enqueue email somewhere in DB
+			
+			//Enqueue email in options table
+			ma_option_add_co_author_queue($_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
+
 			wp_redirect(add_query_arg('added', 'co_author_invited', get_the_permalink()));
+			exit;
 		}
 	}
 }
@@ -105,20 +110,17 @@ function ma_user_id_exists($user_id){
 }
 
 function ma_replace_email_tags($message, $post_id) {
-	// #post_name_link#  (linked group with name)
-	// #author_email#
-	// #post_name#
+	// #post_name# (group name)
 	$message = str_replace('#post_name#', get_the_title($post_id), $message);
 	
-	$message = str_replace('#post_name_link#', '<a href="' . get_the_permalink($post_id) . '">' . get_the_title($post_id) . '</a>');
-
+	// #post_name_link#  (linked group with name)
+	$message = str_replace('#post_name_link#', '<a href="' . get_the_permalink($post_id) . '">' . get_the_title($post_id) . '</a>', $message);
+	
+	// #author_email# (group author)
 	$author_id = get_post_field ('post_author', $post_id);
 	$message = str_replace('#author_email#', get_the_author_meta('user_email', $author_id), $message);
 
-	var_dump($message);
-	die();
 	return $message;
-
 }
 
 function ma_send_notification_email($email_id, $group_id, $to) {
@@ -126,7 +128,75 @@ function ma_send_notification_email($email_id, $group_id, $to) {
 	$body = get_post_field('post_content', $email_id);
 	$headers = 'X-Mailgun-Variables: {"post_id" : ' . $group_id . '}';
 
+	$subject = ma_replace_email_tags($subject, $group_id);
+	$body = ma_replace_email_tags($body, $group_id);
+
 	wp_mail($to, $subject, $body, $headers);
 }
 
+function ma_option_add_co_author_queue($post_id, $user_email) {
+	add_option('waiting_co_authors');
+	
+	$list = get_option( 'waiting_co_authors');
+	if(is_string($list)) {
+		$list = array();
+	}
 
+	$list[] = array(
+		'post_id' => $post_id,
+		'user_email' => $user_email
+	);
+
+	//remove duplicate requests
+	$list = array_unique($list, SORT_REGULAR);
+	
+	update_option('waiting_co_authors', $list, false);
+}
+
+function ma_option_remove_co_author_queue($email) {
+	$list = get_option('waiting_co_authors');
+	$list = array_values($list);
+	
+	$keys = array_keys(array_column($list, 'user_email'), $email);
+
+	if($keys) {
+		foreach($keys as $key) {
+			unset($list[$key]);
+		}
+	}
+
+	update_option('waiting_co_authors', $list, false);
+}
+
+function ma_option_get_co_author_queue($email) {
+	$list = get_option('waiting_co_authors');
+
+	$keys = array_keys(array_column($list, 'user_email'), $email);
+
+	if($keys) {
+		$post_ids = array();
+		foreach($keys as $key) {
+			$post_ids[] = $list[$key]['post_id'];
+		}
+
+		return($post_ids);
+	}
+
+	return;
+}
+
+//hook into user registration
+add_action( 'user_register', 'ma_registration_save', 10, 1 );
+
+function ma_registration_save( $user_id ) {
+	$user_email = get_the_author_meta('user_email', $user_id);
+	$post_ids = ma_option_get_co_author_queue($user_email);
+	
+	if($post_ids) {
+		foreach($post_ids as $post_id) {
+			ma_add_co_author_to_post($post_id, $user_id);
+		}
+	}
+	
+	ma_option_remove_co_author_queue($user_email);
+}

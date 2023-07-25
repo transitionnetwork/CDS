@@ -109,9 +109,8 @@
             <?php get_template_part('templates/partials/group-info-panel'); ?>
             
             <?php if (is_user_role(array('administrator', 'super_hub')) && can_write_initiative($post)  ) { ?>
-              <?php var_dump('why'); ?>
-              <?php get_template_part('templates/partials/co-author-panel'); ?>
               <?php get_template_part('templates/partials/update-author'); ?>
+              <?php get_template_part('templates/partials/co-author-panel'); ?>
               <?php get_template_part('templates/partials/grant-status'); ?>
             <?php } ?>
           </aside>
