@@ -91,9 +91,26 @@ foreach($link_fields as $field) {
     if($number_of_people) { ?>
       <div class="mb-3">
         <h3>
-          Number of People
+          Number of People organising and running group & projects
         </h3>
         <?php echo $number_of_people; ?>
+      </div>
+    <?php } ?>
+
+    <?php $number_of_participants = get_field('group_detail_number_of_participants');
+    if($number_of_participants) { ?>
+      <div class="mb-3">
+        <h3>
+          Number of participants in last year
+        </h3>
+        <?php echo $number_of_participants; ?>
+      </div>
+    <?php } ?>
+
+    <?php $number_more_info = get_field('group_detail_number_more_info');
+    if($number_more_info) { ?>
+      <div class="mb-3">
+        <?php echo $number_more_info; ?>
       </div>
     <?php } ?>
     
@@ -152,7 +169,7 @@ foreach($link_fields as $field) {
       <div>
         <?php echo implode(', ', $project_list); ?>
       </div>
-      <?php if($other_project_selected && get_field('group_detail_live_projects_detail')) { ?>
+      <?php if($other_project_selected && get_field('group_detail_live_projects_detail') && is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
         <div class="mt-3">
           <?php echo get_field('group_detail_live_projects_detail'); ?>
         </div>
@@ -160,4 +177,5 @@ foreach($link_fields as $field) {
     <?php } ?>
   <?php } ?>
 </div>
+
 
