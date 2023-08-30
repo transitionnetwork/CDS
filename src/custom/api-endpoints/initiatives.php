@@ -11,7 +11,6 @@ function get_group_data($post) {
 
     'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
-    'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
 
     'description' => get_field('description', $post),
     
@@ -39,7 +38,6 @@ function get_full_group_data($post) {
     'logo' => $logo,
     'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
-    'topics' => endpoint_get_taxonomy_terms($post, 'topic'),
     'grant_status' => endpoint_get_taxonomy_terms($post, 'grant_status'),
     'description' => str_replace(array("\r", "\n"), '', $description),
     'location_address' => get_field('address_line_1', $post),
