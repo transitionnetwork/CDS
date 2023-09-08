@@ -113,10 +113,10 @@ function get_group_data_murmurations($post) {
   }
 
   $tags = array('Transition Group');
-  $topics = get_the_terms($post, 'topic');
+  $topics = get_field('group_detail_live_projects');
   if($topics) {
-    foreach($topics as $term) {
-      $tags[] = html_entity_decode($term->name);
+    foreach($topics as $item) {
+      $tags[] = $item;
     }
   };
 
