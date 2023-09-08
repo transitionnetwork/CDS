@@ -111,8 +111,9 @@
             <?php get_template_part('templates/partials/group-contact-panel'); ?>
             
             <?php if (is_user_role(array('administrator', 'super_hub')) && can_write_initiative($post)  ) { ?>
-              <?php get_template_part('templates/partials/update-author'); ?>
-              <?php get_template_part('templates/partials/co-author-panel'); ?>
+              <div class="panel">
+                <?php get_template_part('templates/partials/author-panel'); ?>
+              </div>
               <?php get_template_part('templates/partials/grant-status'); ?>
             <?php } ?>
           </aside>
