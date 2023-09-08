@@ -17,23 +17,12 @@
 					<div class="col-12 col-md-10 col-lg-8">
 						<h1><?php echo \Tofino\Helpers\title(); ?></h1>
 						<?php
-						
-						$field_groups = array('group_618ea2d8b9843', 'group_618ea05c4bba4', 'group_618ea2ea0af3e');
-						
-						if(can_write_healthcheck($post)) {
-							$field_groups[] = 'group_618ea2ebadb1c';
-						}
-
-						$field_groups[] = 'group_64997e4b63414';
-						$field_groups[] = 'group_618ea2ebb72f5';
-
 						acf_form(array(
 							'post_id'		=> $edit_post_id,
 							'post_title'	=> true,
 							'return' => add_query_arg('edited_post', 'initiative', parse_post_link($edit_post_id)),
 							'submit_value' => 'Save changes',
 							'uploader' => 'basic',
-							'field_groups' => $field_groups
 						)); ?>
 					</div>
 				</div>

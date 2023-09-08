@@ -26,7 +26,7 @@
             </div>
           </div>
           
-          <?php echo get_field('description', $post); ?>
+          <?php echo strip_tags(get_field('description', $post), '<p><em><strong>'); ?>
 
           <?php get_template_part('templates/partials/group-info-panel'); ?>
 
