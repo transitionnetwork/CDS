@@ -24,7 +24,7 @@ $selected_hub = get_query_var('hub_name');
       <div class="panel">
         <div class="row">
           <div class="col-12 col-md-3 filter-col filter-item">
-            <label>Last mail event:</label>
+            <label>Last mail event for primary author:</label>
             <select name="last_mail_event" onchange="this.form.submit()">
               <option value="">Any</option>
               <?php foreach($mail_events as $mail_event) { ?>
