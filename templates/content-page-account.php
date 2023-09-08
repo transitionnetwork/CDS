@@ -100,6 +100,8 @@
             <?php } ?>
             
             <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
+            
+            <?php get_template_part('/templates/panels/initiatives-co-authored-by-me'); ?>
           
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) {
               get_template_part('/templates/panels/initiatives-pending-approval');

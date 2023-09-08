@@ -21,7 +21,7 @@ function is_user_role($queried_roles, $user = null)
     }
   }
 
-  return;
+  return false;
 }
 
 function is_post_in_user_hub($post) {
@@ -69,6 +69,11 @@ function can_write_initiative($post) {
     return true;
   }
   if (is_user_role('initiative') && is_user_post_author($post)) {
+    return true;
+  }
+
+  //co_author perm checking
+  if (ma_is_co_author($post->ID)) {
     return true;
   }
 

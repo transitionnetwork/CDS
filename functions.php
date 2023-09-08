@@ -62,6 +62,7 @@ $tofino_includes = [
   "src/custom/register-types-tax.php",
   "src/custom/controller_trainers.php",
   "src/custom/login.php",
+  "src/custom/ma_co_authors.php",
   "src/custom/api-endpoints/helpers.php",
   "src/custom/api-endpoints/initiatives.php",
   "src/custom/api-endpoints/initiatives_murmation.php",
@@ -157,6 +158,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'updated';
   $vars[] = 'deleted';
   $vars[] = 'failed';
+  $vars[] = 'added';
   $vars[] = 'hub_id';
   $vars[] = 'edited_post';
   $vars[] = 'added_post';

@@ -1,5 +1,4 @@
 <?php
-
 $args = array(
   'post_type' => 'initiatives',
   'author' => wp_get_current_user()->ID,
