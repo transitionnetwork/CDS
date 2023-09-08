@@ -96,6 +96,8 @@
           
           <?php echo get_field('description', $post); ?>
 
+          <?php get_template_part('templates/partials/group-info-panel'); ?>
+
           <?php if(is_user_logged_in() && is_user_role(array('initiative'))) { ?>
             <?php $post_author = (int)$post->post_author; ?>
             <?php if($post_author !== get_current_user_id()) { // TODO: check for co-author access here and across site once plugin is installed ?>
@@ -172,9 +174,9 @@
             <?php if($map) { ?>
               <?php get_template_part('templates/partials/single-map'); ?>
             <?php } ?>
-            
-            <?php get_template_part('templates/partials/group-info-panel'); ?>
 
+            <?php get_template_part('templates/partials/group-contact-panel'); ?>
+            
             <?php if (is_user_role(array('administrator', 'super_hub', 'hub') && can_write_initiative($post))) { ?>
               <?php get_template_part('templates/partials/grant-status'); ?>
               <?php get_template_part('templates/partials/update-author'); ?>
