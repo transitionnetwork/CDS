@@ -15,13 +15,6 @@
    <p class="mt-2"><a class="btn btn-sm btn-warning" href="/wp-admin/users.php" target="_blank"><?php echo svg('eye'); ?>View user list</a></p>
 </form>
 
-<?php if(get_field('private_email')) { ?>
-  <div class="mt-4">
-    <label><?php echo get_field_object('private_email')['label']; ?></label>
-    <a href="mailto:<?php echo get_field('private_email'); ?>"><?php echo get_field('private_email'); ?></a>
-  </div>
-<?php } ?>
-
 <div class="mt-4">
   <label>Add co-author</label>
   <form action="<?php the_permalink(); ?>" method="POST">

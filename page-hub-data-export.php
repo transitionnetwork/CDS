@@ -55,7 +55,6 @@ while ($init_query->have_posts()) : $init_query->the_post();
     $topic_output = implode(', ', $topic_list);
   }
 
-  $private_email = get_field('private_email', $post->ID);
   $email = get_field('email', $post->ID);
 
   $address = get_field('address_line_1', $post->ID);
@@ -69,7 +68,7 @@ while ($init_query->have_posts()) : $init_query->the_post();
   $instagram = get_field('instagram', $post->ID);
   $youtube = get_field('youtube', $post->ID);
 
-  $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $private_email, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
+  $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
 
 
 endwhile; ?>

@@ -32,7 +32,6 @@ function get_full_group_data($post) {
     'group_id' => $post->ID,
     'baserow_id' => (int)get_post_meta( $post->ID, 'baserow_id', true ),
     'public_email' => get_field('email', $post),
-    'private_email' => get_field('private_email', $post),
     'user_email' => get_the_author_meta('user_email', $post->post_author),
     'url' => get_the_permalink($post),
     'logo' => $logo,
