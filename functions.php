@@ -157,6 +157,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'error_code';
   $vars[] = 'updated';
   $vars[] = 'deleted';
+  $vars[] = 'promoted';
   $vars[] = 'failed';
   $vars[] = 'added';
   $vars[] = 'hub_id';
@@ -352,10 +353,10 @@ function process_post_requests() {
       }
     }
 
-    if(array_key_exists('authors', $_POST)) {
+    if(array_key_exists('update_group_author_id', $_POST)) {
       $args = array(
         'ID' => $_POST['post_id'],
-        'post_author' => $_POST['authors']
+        'post_author' => $_POST['update_group_author_id']
       );
       wp_update_post($args);
       wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));

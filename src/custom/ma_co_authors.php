@@ -37,6 +37,18 @@ function ma_post_requests() {
 		wp_redirect(add_query_arg('deleted', 'co_author', get_the_permalink()));
 	}
 
+	if(array_key_exists('ma_make_primary_author', $_POST)) {
+		$args = array(
+			'ID' => $_POST['ma_post_id'],
+			'post_author' => $_POST['ma_make_primary_author']
+		);
+		wp_update_post($args);
+		
+		ma_remove_co_author_from_post($_POST['ma_post_id'], $_POST['ma_make_primary_author']);
+
+		wp_redirect(add_query_arg('promoted', 'co_author', get_the_permalink()));
+	}
+
 	if(array_key_exists('ma_add_co_author_email', $_POST)) {
 		$user = get_user_by( 'email', $_POST['ma_add_co_author_email'] );
 		

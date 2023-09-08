@@ -77,6 +77,14 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('promoted') === 'co_author') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('Co-author has been promoted to primary author', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php if(get_query_var('added') === 'co_author') { ?>
   <div class="container">
     <div class="alert top alert-success">

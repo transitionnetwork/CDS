@@ -6,10 +6,10 @@
 
 <form action="<?php the_permalink() ?>" method="POST" id="change-author">
   <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
-  <label for="authors">Update primary author ID</label>
+  <label for="authors">Update author ID</label>
   
   <div class="d-flex align-items-center">
-    <input type="number" name="authors" value="<?php echo $post_author_id; ?>" placeholder="Author ID" min="1">
+    <input type="number" name="update_group_author_id" value="<?php echo $post_author_id; ?>" placeholder="Author ID" min="1">
     <button type="submit" class="btn btn-primary btn-sm">Update</button>
   </div>
    <p class="mt-2"><a class="btn btn-sm btn-warning" href="/wp-admin/users.php" target="_blank"><?php echo svg('eye'); ?>View user list</a></p>
