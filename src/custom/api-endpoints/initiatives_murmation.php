@@ -112,15 +112,7 @@ function get_group_data_murmurations($post) {
     $data['image'] = $logo['sizes']['large'];
   }
 
-  $tags = array('Transition Group');
-  $topics = get_field('group_detail_live_projects');
-  if($topics) {
-    foreach($topics as $item) {
-      $tags[] = $item;
-    }
-  };
-
-  $data['tags'] = $tags;
+  $data['tags'] = get_group_tags($post);
 
   $data['metadata'] = array(
     'sources' => array(

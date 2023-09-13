@@ -19,16 +19,7 @@ function get_group_data($post) {
     'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
   );
   
-
-  $tags = array('Transition Group');
-  $topics = get_field('group_detail_live_projects');
-  if($topics) {
-    foreach($topics as $item) {
-      $tags[] = $item;
-    }
-  };
-
-  $data['tags'] = $tags;
+  $data['tags'] = get_group_tags($post);
   
   return $data;
 }
@@ -63,15 +54,7 @@ function get_full_group_data($post) {
     'contact_youtube' => get_field('youtube', $post),
   );
 
-  $tags = array('Transition Group');
-  $topics = get_field('group_detail_live_projects');
-  if($topics) {
-    foreach($topics as $item) {
-      $tags[] = $item;
-    }
-  };
-
-  $data['tags'] = $tags;
+  $data['tags'] = get_group_tags($post);
   
   return $data;
 }
@@ -116,6 +99,18 @@ function get_groups_from_request($request) {
       'body' => 'No Records Found'
     );
   }
+}
+
+function get_group_tags($post) {
+  $tags = array('Transition Group');
+  $topics = get_field('group_detail_live_projects', $post);
+  if($topics) {
+    foreach($topics as $item) {
+      $tags[] = $item;
+    }
+  };
+
+  return $tags;
 }
 
 function endpoint_get_groups_full_info(WP_REST_Request $request) {
