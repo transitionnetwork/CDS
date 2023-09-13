@@ -155,12 +155,14 @@ function ma_replace_email_tags($message, $post_id) {
 
 function ma_send_notification_email($email_id, $group_id, $to) {
 	$subject = get_field('subject', $email_id);
-	$body = get_post_field('post_content', $email_id);
+	$body = apply_filters('the_content', get_post_field('post_content', $email_id));
 	$headers = 'X-Mailgun-Variables: {"post_id" : ' . $group_id . '}';
 
 	$subject = ma_replace_email_tags($subject, $group_id);
 	$body = ma_replace_email_tags($body, $group_id);
 
+	dd($body);
+	
 	wp_mail($to, $subject, $body, $headers);
 }
 
