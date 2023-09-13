@@ -93,6 +93,14 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('failed') === 'co_author') { ?>
+  <div class="container">
+    <div class="alert top alert-danger">
+      <?php _e('The email is already the primary email of the gropup and cannot be added as a co-author', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php if(get_query_var('added') === 'co_author_invited') { ?>
   <div class="container">
     <div class="alert top alert-info">
