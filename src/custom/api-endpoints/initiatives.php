@@ -19,6 +19,17 @@ function get_group_data($post) {
     'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
   );
   
+
+  $tags = array('Transition Group');
+  $topics = get_field('group_detail_live_projects');
+  if($topics) {
+    foreach($topics as $item) {
+      $tags[] = $item;
+    }
+  };
+
+  $data['tags'] = $tags;
+  
   return $data;
 }
 
@@ -51,6 +62,16 @@ function get_full_group_data($post) {
     'contact_instagram' => get_field('instagram', $post),
     'contact_youtube' => get_field('youtube', $post),
   );
+
+  $tags = array('Transition Group');
+  $topics = get_field('group_detail_live_projects');
+  if($topics) {
+    foreach($topics as $item) {
+      $tags[] = $item;
+    }
+  };
+
+  $data['tags'] = $tags;
   
   return $data;
 }
