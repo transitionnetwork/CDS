@@ -37,17 +37,22 @@
 
 <?php $waiting_co_authors = get_option('waiting_co_authors'); ?>
 <?php if($waiting_co_authors) { ?>
-  <div class="mt-4">
-    <label>Co-authors invited to group</label>
-    <?php foreach($waiting_co_authors as $waiting_co_author) { ?>
-      <?php if((int)$waiting_co_author['post_id'] === $post->ID) { ?>
-        <div class="mt-2">
-          <?php echo $waiting_co_author['user_email']; ?>
-          <form action="<?php the_permalink(); ?>" method="POST" class="d-inline">
-            <button type="submit" name="ma_remove_co_waiting_author_email" value="<?php echo $waiting_co_author['user_email']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this user?');">Delete</button>
-          </form>
-        </div>
-      <?php } ?>
+  <?php foreach($waiting_co_authors as $waiting_co_author) { ?>
+    <?php if((int)$waiting_co_author['post_id'] === $post->ID) { ?>
+      <div class="mt-4">
+        <label>Co-authors invited to group</label>
+        <?php foreach($waiting_co_authors as $waiting_co_author) { ?>
+          <?php if((int)$waiting_co_author['post_id'] === $post->ID) { ?>
+            <div class="mt-2">
+              <?php echo $waiting_co_author['user_email']; ?>
+              <form action="<?php the_permalink(); ?>" method="POST" class="d-inline">
+                <button type="submit" name="ma_remove_co_waiting_author_email" value="<?php echo $waiting_co_author['user_email']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this user?');">Delete</button>
+              </form>
+            </div>
+          <?php } ?>
+        <?php } ?>
+      </div>
     <?php } ?>
-  </div>
+    <?php break; ?>
+  <?php } ?>
 <?php } ?>
