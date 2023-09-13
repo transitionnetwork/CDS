@@ -102,7 +102,7 @@
         </div>
         <div class="col-12 col-lg-4">
           <aside>
-             <?php if (is_user_role(array('administrator', 'super_hub')) && can_write_initiative($post)  ) { ?>
+             <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
               <div class="panel">
                 <?php get_template_part('templates/partials/primary-author-panel'); ?>
               </div>
