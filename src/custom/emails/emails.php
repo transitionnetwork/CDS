@@ -46,15 +46,9 @@ add_filter('wp_new_user_notification_email', 'custom_wp_new_user_notification_em
 
 function custom_email_send_pending_alert_to_hub($user, $initiatives) {
 
-  if(get_environment() === 'production') {
-    $to = array(
-      $user->user_email,
-    );
-  } else {
-    $to = array(
-      'mark@benewith.com'
-    );
-  }
+  $to = array(
+    $user->user_email,
+  );
 
   $subject = 'Reminder: You have pending groups to approve';
 
@@ -77,11 +71,7 @@ function custom_email_send_pending_alert_to_hub($user, $initiatives) {
 
   $message .= '<p>Thanks,<br/>Transition Network</p>';
 
-  if(get_environment() === 'production') {
-    wp_mail( $to, $subject, $message);
-  } else {
-    // wp_mail( 'mark@benewith.com', $subject, $message);
-  }
+  wp_mail( $to, $subject, $message);
 }
 
 function custom_email_send_access_request_to_hub($user_id) {
@@ -112,11 +102,7 @@ function custom_email_send_access_request_to_hub($user_id) {
     $body .= '<p>Please contact the user<p>';
     $body .= '<p>Best Wishes,<br/>Transition Network</p>';
 
-    if(get_environment() === 'production') {
-      wp_mail( $email_addresses, $subject, $body);
-    } else {
-      wp_mail( 'mark@benewith.com', $subject, $message);
-    }
+    wp_mail( $email_addresses, $subject, $body);
 
     return true;
   }
@@ -293,14 +279,14 @@ function check_pending_groups() {
   }
 }
 
-function disabling_emails( $args ){
-  if(get_environment() !== 'production') {
+function filter_dev_emails($args) {
+  if(get_environment() === 'production') {
+  } else {
     $args['to'] = 'mark@benewith.com';
-  }
-
+  } 
   return $args;
 }
-add_filter('wp_mail','disabling_emails', 10,1);
+add_filter( 'wp_mail', 'filter_dev_emails');
 
 function custom_email_send_transactional_email($email_id, $email_addresses, $language = null) {
   $subject = get_field('subject', $email_id);
