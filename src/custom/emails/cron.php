@@ -23,12 +23,12 @@ add_action('email_pending_groups_hook', 'check_pending_groups');
 //
 
 //check for inactive authors
-// if (!wp_next_scheduled('email_inactive_authors')) {
-//   wp_schedule_event(time(), 'four_days', 'email_inactive_authors');
-// }
+if (!wp_next_scheduled('email_inactive_authors')) {
+  wp_schedule_event(time(), 'four_days', 'email_inactive_authors');
+}
 
-// add_action('email_inactive_authors', 'check_inactive_authors');
-//
+add_action('email_inactive_authors', 'check_inactive_authors');
+
 
 function email_inactive_authors() {
   $date = new DateTime("-1 year");
