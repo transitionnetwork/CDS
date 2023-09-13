@@ -161,8 +161,6 @@ function ma_send_notification_email($email_id, $group_id, $to) {
 	$subject = ma_replace_email_tags($subject, $group_id);
 	$body = ma_replace_email_tags($body, $group_id);
 
-	dd($body);
-	
 	wp_mail($to, $subject, $body, $headers);
 }
 
