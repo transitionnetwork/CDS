@@ -52,7 +52,7 @@
           <?php } ?>
         <?php } ?>
       </div>
+      <?php break; ?>
     <?php } ?>
-    <?php break; ?>
   <?php } ?>
 <?php } ?>
