@@ -103,9 +103,7 @@
         <div class="col-12 col-lg-4">
           <aside>
              <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
-              <div class="panel">
-                <?php get_template_part('templates/partials/primary-author-panel'); ?>
-              </div>
+                <?php //get_template_part('templates/partials/primary-author-panel'); ?>
             <?php } ?>
             
             <?php if(is_user_logged_in() && can_write_initiative($post)) { ?>
