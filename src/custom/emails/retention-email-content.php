@@ -31,5 +31,8 @@ function custom_email_autologin_reminder_email($post_id) {
   $body = apply_filters('the_content', $page->post_content);
   $body = str_replace('#login_link#', $link, $body);
  
-  wp_mail( $to, $subject, $body, $headers);
+  if (get_environment() === 'production') {
+    //dont send cron mail in dev environments
+    wp_mail( $to, $subject, $body, $headers);
+  }
 }

@@ -71,7 +71,10 @@ function custom_email_send_pending_alert_to_hub($user, $initiatives) {
 
   $message .= '<p>Thanks,<br/>Transition Network</p>';
 
-  wp_mail( $to, $subject, $message);
+  if (get_environment() === 'production') {
+    //dont send cron mail in dev environments
+    wp_mail( $to, $subject, $message);
+  }
 }
 
 function custom_email_send_access_request_to_hub($user_id) {
