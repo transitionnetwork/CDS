@@ -1,11 +1,11 @@
-<h3>Group Authors</h3>
+<h3>Group Editors</h3>
 
-<p><strong>Please add as many group co-authors as possible.</strong></p>
-<p>These email addresses are to ensure we don't lose contract with your group<p>
+<p><strong>Please add as many group co-editors as possible.</strong></p>
+<p>These email addresses will ensure we don't lose contract with your group<p>
 <p>Author email addresses <strong>are not displayed publicly</strong></p>
 
 <div class="mt-4">
-  <label>Add co-author</label>
+  <label>Add editor</label>
   <form action="<?php the_permalink(); ?>" method="POST">
     <input type="hidden" name="ma_post_id" value="<?php echo $post->ID; ?>">
     <div class="d-flex align-items-center">
@@ -18,7 +18,7 @@
 <?php $co_authors = ma_get_co_authors($post->ID); ?>
 <?php if($co_authors) { ?>
   <div class="mt-4">
-    <label>Co-authors added to group</label>
+    <label>Co-editors added to group</label>
     <?php foreach($co_authors as $user_id) { ?>
       <?php $author_email = get_userdata($user_id)->user_email; ?>
       <div class="mt-2">
@@ -40,7 +40,7 @@
   <?php foreach($waiting_co_authors as $waiting_co_author) { ?>
     <?php if((int)$waiting_co_author['post_id'] === $post->ID) { ?>
       <div class="mt-4">
-        <label>Co-authors invited to group</label>
+        <label>Co-editors invited to group</label>
         <?php foreach($waiting_co_authors as $waiting_co_author) { ?>
           <?php if((int)$waiting_co_author['post_id'] === $post->ID) { ?>
             <div class="mt-2">
