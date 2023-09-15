@@ -1,5 +1,5 @@
 <?php
-clean_dev_log_entries();
+// clean_dev_log_entries();
 
 function clean_dev_log_entries() {
   $args = array(
