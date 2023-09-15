@@ -1,30 +1,50 @@
 <?php
-// batch process last logged in and copy to posts
-// $args = array(
-//   'fields' => 'ids'
-// );
+clean_dev_log_entries();
 
-// $user_ids = get_users($args);
+function clean_dev_log_entries() {
+  $args = array(
+    'post_type' => 'initiatives',
+    'meta_query' => array(
+      array(
+        'key' => 'mail_log',
+        'compare' => 'EXISTS'
+      )
+    ),
+    'posts_per_page' => -1
+  );
 
-// if($user_ids) {
-//   foreach($user_ids as $user_id) {
-//     $args = array (
-//       'post_type' => 'initiatives',
-//       'author' => $user_id,
-//       'posts_per_page' => -1,
-//       'post_status' => array('publish', 'pending', 'draft'),
-//       'fields' => 'ids'
-//     );
+  $posts = get_posts($args);
+  if($posts) {
+    // foreach($posts as $post) {
+    //   var_dump(get_post_meta($post->ID, 'mail_log', true));
+    // }
+    // die();
+    
+    foreach($posts as $post) {
+      $last_event = get_post_meta( $post->ID, 'last_mail_event' );
+      $log = get_post_meta($post->ID, 'mail_log', true);
+  
+      var_dump($log);
+    
+    
+      foreach($log as $key => $item) {
+        if(str_contains($item, 'benewith') || str_contains($item, 'xinc')) {
+          unset($log[$key]);
+        }
+      }
+  
+      $mail_log = array_values($log);
+      update_post_meta( $post->ID, 'mail_log', $mail_log);
+  
+      $last_time = substr($log[0], 0, 19);
+      update_post_meta( $post->ID, 'last_mail_date', $last_time);
+    
+      $split = explode(" ", $log[0]);
+      $last_word = $split[count($split)-1];
+      update_post_meta( $post->ID, 'last_mail_event', $last_word);
+    }
 
-//     $group_ids = get_posts($args);
-
-//     if($group_ids) {
-//       foreach($group_ids as $group_id) {
-//         $user_last_logged_in = get_user_meta( $user_id, 'last_logged_in', true);
-//         if($user_last_logged_in) {
-//           update_post_meta($group_id, 'author_last_logged_in', $user_last_logged_in);
-//         }
-//       }
-//     }
-//   }
-// }
+    var_dump('complete');
+  }
+  
+}
