@@ -10,6 +10,9 @@
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
       <?php } ?>
+      <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
+        <th class="col-b">Last Email Date</th>
+      <?php } ?>
       <th>Actions</th>
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
@@ -52,9 +55,12 @@
           </td>
           <td>
             <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?>
+              <?php echo get_initiatve_age($post)['days'] . ' days'; ?>
             <?php } ?>
           </td>
+        <?php } ?>
+        <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
+          <td><?php echo get_post_meta($post->ID, 'last_mail_date', true); ?></td>
         <?php } ?>
         <td class="text-right">
           <div class="btn-group">
