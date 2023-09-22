@@ -58,8 +58,9 @@
     'posts_per_page' => 50,
     'fields' => 'ids',
     'paged' => $paged,
-    'orderby' => 'meta_key=last_mail_date',
-    'order' => 'ASC'
+    'meta_key' => 'last_mail_date',
+    'orderby' => 'meta_value',
+    'order' => 'DESC'
   );  
 
   if($selected_last_mail_event) {
