@@ -1,5 +1,5 @@
 <?php
-// clean_dev_log_entries();
+clean_dev_log_entries();
 
 function clean_dev_log_entries() {
   $args = array(
@@ -34,12 +34,14 @@ function clean_dev_log_entries() {
       }
   
       $mail_log = array_values($log);
-      update_post_meta( $post->ID, 'mail_log', $mail_log);
+      // update_post_meta( $post->ID, 'mail_log', $mail_log);
   
-      $last_time = substr($log[0], 0, 19);
+      $last_key = end(array_keys($log));
+      
+      $last_time = substr($log[$last_key], 0, 19);
       update_post_meta( $post->ID, 'last_mail_date', $last_time);
     
-      $split = explode(" ", $log[0]);
+      $split = explode(" ", $log[$last_key]);
       $last_word = $split[count($split)-1];
       update_post_meta( $post->ID, 'last_mail_event', $last_word);
     }
