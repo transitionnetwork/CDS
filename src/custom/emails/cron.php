@@ -17,14 +17,14 @@ add_filter('cron_schedules', 'add_cron_intervals');
 
 //trigger email reminder for unapproved groups
 if (!wp_next_scheduled('email_pending_groups_hook')) {
-  wp_schedule_event(time(), 'four_days', 'email_pending_groups_hook');
+  wp_schedule_event(time(), 'weekly', 'email_pending_groups_hook');
 }
 add_action('email_pending_groups_hook', 'check_pending_groups');
 //
 
 //check for inactive authors
 if (!wp_next_scheduled('email_inactive_authors_hook')) {
-  wp_schedule_event(time(), 'four_days', 'email_inactive_authors_hook');
+  wp_schedule_event(time(), 'weekly', 'email_inactive_authors_hook');
 }
 
 add_action('email_inactive_authors_hook', 'email_inactive_authors');

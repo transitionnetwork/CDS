@@ -12,7 +12,7 @@ function get_group_data($post) {
     'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
 
-    'description' => get_field('description', $post),
+    'description' => strip_tags(get_field('description', $post), '<p><em><strong>'),
     
     'location' => endpoint_get_location($post, null),
     'contact' => endpoint_get_contact($post),
@@ -27,7 +27,7 @@ function get_group_data($post) {
 function get_full_group_data($post) {
   $logo = get_field('logo', $post);
   $logo = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
-  $description = strip_tags(get_field('description', $post));
+  $description = strip_tags(get_field('description', $post), '<p><em><strong>');
 
   $data = array(
     'title' => $post->post_title,
