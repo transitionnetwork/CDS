@@ -102,14 +102,14 @@
         </div>
         <div class="col-12 col-lg-4">
           <aside>
-             <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
-                <?php //get_template_part('templates/partials/primary-author-panel'); ?>
-            <?php } ?>
-            
             <?php if(is_user_logged_in() && can_write_initiative($post)) { ?>
               <div class="panel">
                 <?php get_template_part('templates/partials/co-author-panel'); ?>
               </div>
+            <?php } ?>
+
+            <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
+              <?php get_template_part('templates/partials/primary-author-panel'); ?>
             <?php } ?>
             
             <?php $map = get_field('map'); ?>
