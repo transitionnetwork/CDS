@@ -93,7 +93,7 @@
           </div>
           
           <div class="tab-pane fade" id="nav-initiative-admin" role="tabpanel" aria-labelledby="nav-initiative-admin-tab">
-             <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
+             <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
               <div class="panel">
                 <a class="btn btn-primary" href="<?php echo home_url('group-email-deliverability'); ?>">Group email deliverability report</a>
               </div>

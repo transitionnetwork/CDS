@@ -1,6 +1,5 @@
 <?php while (have_posts()) : the_post(); ?>
 	<?php
-	$hub_id = get_query_var('hub_id');
 	$hub = get_term_by('id', get_query_var('hub_id'), 'hub');
 	if(!is_user_role('administrator') && !is_user_role('super_hub') && !can_edit_hub($hub_id)) {
 		wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));

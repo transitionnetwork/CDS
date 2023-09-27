@@ -1,4 +1,4 @@
-<?php if (is_user_role(array('administrator', 'super_hub'))) { ?>  <?php if(get_query_var('added_note')) { ?>
+<?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>  <?php if(get_query_var('added_note')) { ?>
     <div class="container">
       <div class="alert top alert-success">
         <?php _e('Your note has been added', 'tofino'); ?>
@@ -33,17 +33,19 @@
                 <?php } ?>
               </select>
             </div>
-            <div class="col-12 col-md-3 filter-col filter-item">
-              <?php $hubs = get_terms('hub'); ?>
-              <label>Hub:</label>
-              <select name="hub_name" onchange="this.form.submit()">
-                <option value="">All</option>
-                <?php foreach($hubs as $hub) { ?>
-                  <?php $selected = ($selected_hub === $hub->slug) ? 'selected' : ''; ?>
-                  <option value="<?php echo $hub->slug; ?>" <?php echo $selected; ?>><?php echo $hub->name; ?></option>
-                <?php } ?>
-              </select>
-            </div>
+            <?php if (!is_user_role('hub'))  { ?>
+              <div class="col-12 col-md-3 filter-col filter-item">
+                <?php $hubs = get_terms('hub'); ?>
+                <label>Hub:</label>
+                <select name="hub_name" onchange="this.form.submit()">
+                  <option value="">All</option>
+                  <?php foreach($hubs as $hub) { ?>
+                    <?php $selected = ($selected_hub === $hub->slug) ? 'selected' : ''; ?>
+                    <option value="<?php echo $hub->slug; ?>" <?php echo $selected; ?>><?php echo $hub->name; ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            <?php } ?>
           </div>
         </div>
       </div>
@@ -80,11 +82,23 @@
   }
 
   if($selected_hub) {
+    var_dump($selected_hub);
     $args['tax_query'] = array(
       array (
         'taxonomy' => 'hub',
         'field' => 'slug',
         'terms' => $selected_hub
+      )
+    );
+  } else if (is_user_role('hub')) {
+    $user_id = get_current_user_id();
+    $hub = get_user_hub_slug($user_id);
+
+    $args['tax_query'] = array(
+      array (
+        'taxonomy' => 'hub',
+        'field' => 'slug',
+        'terms' => $hub
       )
     );
   }

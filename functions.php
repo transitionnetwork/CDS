@@ -246,13 +246,10 @@ function get_latest_healthcheck($post = 0)
   }
 }
 
-function get_user_hub_id($user_id)
-{
-  return get_term_by('slug', get_user_hub_slug($user_id), 'hub')->term_id;
-}
-
 function get_user_hub_slug($user_id) {
-  return get_usermeta($user_id, 'hub', true);
+  $hub_id = get_user_meta( $user_id, 'hub_user')[0];
+  $hub = get_term_by('id', $hub_id, 'hub');
+  return $hub->slug;
 }
 
 function get_hub_users($hub_slug)
@@ -271,7 +268,8 @@ function get_hub_users($hub_slug)
 
 function get_hub_by_id($id)
 {
-  return get_term($id, 'hub')->name;
+  var_dump($id);
+  return get_term_by('term_id', $id, 'hub')->name;
 }
 
 
