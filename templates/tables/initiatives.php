@@ -10,7 +10,7 @@
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
       <?php } ?>
-      <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
+      <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
         <th class="col-b">Last Email Date</th>
       <?php } ?>
       <th>Actions</th>
@@ -59,8 +59,12 @@
             <?php } ?>
           </td>
         <?php } ?>
-        <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
-          <td><?php echo get_post_meta($post->ID, 'last_mail_date', true); ?></td>
+        <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+          <td>
+            <?php if(can_edit_hub($hub_term->term_id)) { ?>
+              <?php echo get_post_meta($post->ID, 'last_mail_date', true); ?>
+            <?php } ?>
+          </td>
         <?php } ?>
         <td class="text-right">
           <div class="btn-group">

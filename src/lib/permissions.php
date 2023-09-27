@@ -109,6 +109,10 @@ function is_post_published($post) {
 }
 
 function can_edit_hub($term_id) {
+  if(is_user_role(array('super_hub', 'administrator'))) {
+    return true;
+  }
+  
   $user_hub = get_field('hub_user', wp_get_current_user());
   if((int)$user_hub === (int)$term_id) {
     return true;

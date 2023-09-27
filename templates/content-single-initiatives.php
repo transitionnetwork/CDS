@@ -77,9 +77,11 @@
                 </a>
               </p>
             </div>
-            
+          <?php } ?>
+
+          <?php $hubs = get_the_terms($post, 'hub'); ?>
+          <?php if(is_user_logged_in() && can_edit_hub($hubs[0]->term_id)) { ?>
             <?php get_template_part('templates/panels/email-history'); ?>
-            
           <?php } ?>
 
           <?php if (can_view_healthcheck($post)) { ?>
