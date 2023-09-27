@@ -13,7 +13,7 @@
       <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
         <th class="col-b">Last Email Date</th>
       <?php } ?>
-      <th>Actions</th>
+      <th></th>
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $post = get_post($post); ?>
