@@ -41,7 +41,7 @@ function email_inactive_authors() {
       array(
         'taxonomy' => 'hub',
         'term_id' => 'term_id',
-        'terms' => array(800)
+        'terms' => array(800, 284)
       )
     ),
     'meta_query' => array(
