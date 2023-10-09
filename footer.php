@@ -9,7 +9,7 @@ if (get_theme_mod('footer_sticky') === 'enabled') : ?>
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6">
-        <p>&copy <?php echo date('Y'); ?> Transition Network</p>
+        &copy <?php echo date('Y'); ?> Transition Network
       </div>
       <div class="col-12 col-md-6 text-md-right">
         <div id="footer-nav">
