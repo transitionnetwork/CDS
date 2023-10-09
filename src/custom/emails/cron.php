@@ -33,37 +33,42 @@ add_action('email_inactive_authors_hook', 'email_inactive_authors');
 function email_inactive_authors() {
   $date = new DateTime("-1 year");
 
-  $args = array(
-    'post_type' => 'initiatives',
-    'posts_per_page' => -1,
-    'fields' => 'ids',
-    'tax_query' => array(
-      array(
-        'taxonomy' => 'hub',
-        'term_id' => 'term_id',
-        'terms' => array(800, 284)
-      )
-    ),
-    'meta_query' => array(
-      'relation' => 'OR',
-      array(
-        'key' => 'author_last_logged_in',
-        'value' => $date->format('Y-m-d H:i:s'),
-        'compare' => '<',
-        'type' => 'DATE'
+  $selected_hubs = get_field('reminder_email_hubs', 'options');
+
+  if($selected_hubs) {
+    $args = array(
+      'post_type' => 'initiatives',
+      'posts_per_page' => -1,
+      'fields' => 'ids',
+      'tax_query' => array(
+        array(
+          'taxonomy' => 'hub',
+          'term_id' => 'term_id',
+          'terms' => $selected_hubs
+        )
       ),
-      array(
-        'key' => 'author_last_logged_in',
-        'compare' => 'NOT EXISTS'
+      'meta_query' => array(
+        'relation' => 'OR',
+        array(
+          'key' => 'author_last_logged_in',
+          'value' => $date->format('Y-m-d H:i:s'),
+          'compare' => '<',
+          'type' => 'DATE'
+        ),
+        array(
+          'key' => 'author_last_logged_in',
+          'compare' => 'NOT EXISTS'
+        )
       )
-    )
-  );
-
-  $post_ids = get_posts($args);
-
-  $results = array();
+    );
   
-  foreach($post_ids as $post_id) {
-    custom_email_autologin_reminder_email($post_id);
+    $post_ids = get_posts($args);
+  
+    $results = array();
+    
+    foreach($post_ids as $post_id) {
+      custom_email_autologin_reminder_email($post_id);
+    }
   }
+
 }
