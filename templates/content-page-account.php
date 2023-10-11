@@ -47,7 +47,9 @@
             
             <?php if(is_user_role('administrator')) { ?>
               <a class="nav-item nav-link" id="nav-reports-tab" data-toggle="tab" href="#nav-reports" role="tab" aria-controls="nav-reports" aria-selected="false">Reports</a>
-            
+            <?php } ?>
+
+            <?php if(is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
               <a class="nav-item nav-link" id="nav-healthcheck-tab" data-toggle="tab" href="#nav-healthcheck" role="tab" aria-controls="nav-healthcheck" aria-selected="false">Healthcheck Data</a>
             <?php } ?>
             
@@ -81,7 +83,7 @@
           </div>
           
           <div class="tab-pane fade" id="nav-healthcheck" role="tabpanel" aria-labelledby="nav-healthcheck-tab">
-            <?php if(is_user_role('administrator')) { ?>
+              <?php if(is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
               <?php get_template_part('/templates/panels/healthcheck-data'); ?>
             <?php } ?>
           </div>

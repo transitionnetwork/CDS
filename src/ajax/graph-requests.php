@@ -1,4 +1,5 @@
 <?php
+//NOT IN USE
 function get_question_index() {
     //build array of question ids and questions
   $acf_fields = acf_get_fields( 2068 );

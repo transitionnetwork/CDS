@@ -214,6 +214,32 @@ main.healthcheck-form {
   }
 }
 
+//healthcheck data summary
+.healthcheck-response {
+  @extend .btn;
+  @extend .btn-sm;
+
+  &.response-1 {
+    background: #ff0;
+  }
+
+  &.response-2 {
+    background: #ffa700;
+  }
+
+  &.response-3 {
+    background: #fff400;
+  }
+
+  &.response-4 {
+    background: #a3ff00;
+  }
+
+  &.response-5 {
+    background: #2cba00;
+  }
+}
+
 //healthcheck graphing
 #healthcheck-bar {
   margin-bottom: 1rem;

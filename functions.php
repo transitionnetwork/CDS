@@ -53,7 +53,7 @@ $tofino_includes = [
   "src/theme-options/theme-tracker.php",
   "src/theme-options/dashboard-widget.php",
   "src/ajax/get-markers.php",
-  "src/ajax/graph-requests.php",
+  // "src/ajax/graph-requests.php",
   "src/ajax/file-requests.php",
   "src/custom/admin-tables.php",
   "src/custom/acf-save.php",

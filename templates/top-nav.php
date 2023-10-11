@@ -8,7 +8,7 @@ if(is_user_logged_in(  )) {
 
 $hub_object = null;
 
-if(is_user_role('hub')) {
+if(is_user_role(array('hub', 'super_hub'))) {
   $hub_id = get_field('hub_user', wp_get_current_user());
   $hub_object = get_term_by('term_id', $hub_id, 'hub'); 
 }

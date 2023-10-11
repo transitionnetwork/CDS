@@ -2,13 +2,18 @@
 //Cron
 function add_cron_intervals($schedules) {
   $schedules['weekly'] = array(
-    'interval' => 604800,
+    'interval' => 86400 * 7,
     'display' => esc_html__('Weekly')
   );
 
   $schedules['four_days'] = array(
-    'interval' => 345600,
+    'interval' => 86400 * 4,
     'display' => esc_html__('Every 4 days')
+  );
+
+  $schedules['eight_days'] = array(
+    'interval' => 86400 * 8,
+    'display' => esc_html__('Every 8 days')
   );
   
   return $schedules;
@@ -17,14 +22,14 @@ add_filter('cron_schedules', 'add_cron_intervals');
 
 //trigger email reminder for unapproved groups
 if (!wp_next_scheduled('email_pending_groups_hook')) {
-  wp_schedule_event(time(), 'weekly', 'email_pending_groups_hook');
+  wp_schedule_event(time(), 'eight_days', 'email_pending_groups_hook');
 }
 add_action('email_pending_groups_hook', 'check_pending_groups');
 //
 
 //check for inactive authors
 if (!wp_next_scheduled('email_inactive_authors_hook')) {
-  wp_schedule_event(time(), 'weekly', 'email_inactive_authors_hook');
+  wp_schedule_event(time(), 'eight_days', 'email_inactive_authors_hook');
 }
 
 add_action('email_inactive_authors_hook', 'email_inactive_authors');

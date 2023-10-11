@@ -68,7 +68,8 @@ function get_initiatve_age($post = 0) {
   
   return array(
     'days' => $days,
-    'opacity' => $opacity
+    'opacity' => $opacity,
+    'modified' => get_the_modified_date('Y-m-d H:i:s')
   );
 }
 
