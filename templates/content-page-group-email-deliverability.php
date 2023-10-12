@@ -82,7 +82,6 @@
   }
 
   if($selected_hub) {
-    var_dump($selected_hub);
     $args['tax_query'] = array(
       array (
         'taxonomy' => 'hub',
