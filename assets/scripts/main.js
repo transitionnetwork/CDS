@@ -26,6 +26,8 @@ import single_healthchecks from './routes/single_healthcheck'
 import single_trainers from './routes/single_trainer';
 import tax_hub from './routes/single';
 
+import edit_group from './routes/edit_page';
+
 // Import ajaxForm
 import './ajax-form';
 
@@ -48,7 +50,8 @@ const routes = {
   single_healthchecks,
   single_trainers,
   tax_hub,
-  post_type_archive_trainers
+  post_type_archive_trainers,
+  edit_group
 };
 
 // Load Events

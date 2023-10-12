@@ -16,39 +16,6 @@ body.tax-hub {
     margin-top: 1rem;
   }
 
-  .item {
-    border-bottom: 1px solid $gray-200;
-    padding: 1rem 0;
-
-    span {
-      color: white;
-      padding: 0.25rem;
-      border-radius: 3px;
-    }
-
-    &.choice- {
-      &1 span {
-        background-color: lighten($red, 0);
-      }
-
-      &2 span {
-        background-color: lighten($red, 15);
-      }
-
-      &3 span {
-        background-color: lighten($yellow, 0);
-      }
-
-      &4 span {
-        background-color: lighten($green, 15);
-      }
-
-      &5 span {
-        background-color: lighten($green, 0);
-      }
-    }
-  }
-
   .leaflet-container {
     border-radius: 4px;
   }
@@ -118,17 +85,6 @@ body.single-healthchecks {
   label {
     margin: 0;
     padding: 0.5rem;
-  }
-
-  .item {
-    display: flex;
-    justify-content: space-between;
-
-    .response {
-      @extend .btn-sm;
-
-      white-space: nowrap;
-    }
   }
 }
 
@@ -215,28 +171,44 @@ main.healthcheck-form {
 }
 
 //healthcheck data summary
-.healthcheck-response {
-  @extend .btn;
-  @extend .btn-sm;
+body.single-healthchecks .healthcheck-choice,
+.healthcheck-choice {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $gray-200;
+  padding: 1rem 0;
 
-  &.response-1 {
-    background: #ff0;
+  label {
+    font-weight: normal;
   }
 
-  &.response-2 {
-    background: #ffa700;
+  span {
+    color: $white;
+    white-space: nowrap;
+    @extend .btn;
+    @extend .btn-sm;
   }
 
-  &.response-3 {
-    background: #fff400;
-  }
+  &.choice- {
+    &1 span {
+      background-color: lighten($red, 0);
+    }
 
-  &.response-4 {
-    background: #a3ff00;
-  }
+    &2 span {
+      background-color: lighten($red, 15);
+    }
 
-  &.response-5 {
-    background: #2cba00;
+    &3 span {
+      background-color: lighten($yellow, 0);
+    }
+
+    &4 span {
+      background-color: lighten($green, 15);
+    }
+
+    &5 span {
+      background-color: lighten($green, 0);
+    }
   }
 }
 

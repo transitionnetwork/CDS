@@ -95,22 +95,25 @@
     }
   } ?>
 
+  <?php $alphas = range('A', 'Z'); ?>
   <?php foreach($questions as $key => $group) { ?>
     <div class="panel">
-      <h3><?php echo $key + 1 . '. ' . $group['group_label']; ?></h3>
+      <h3><?php echo $alphas[$key] . '. ' . $group['group_label']; ?></h3>
 
       <div class="panel">
         <?php foreach($group as $key => $item) {
             if(is_int($key)) { ?>
               <?php $average = (int)$output_answers[$item['field_name']] / $count_results; ?>
               
-              <div class="mb-3">
+              <div class="item healthcheck-choice choice-<?php echo round($average); ?>">
                 <div class="mb-1">
                   <?php echo $key + 1 . '. ' . $item['field_label']; ?>
                 </div>
-                <span class="healthcheck-response response-<?php echo round($average); ?>">
-                  <?php echo $response_map[round($average)]; ?> [<?php echo round($average) ?>]
-                </span>
+                <div>
+                  <span class="response">
+                    <?php echo $response_map[round($average)]; ?> [<?php echo round($average) ?>]
+                  </span>
+                </div>
               </div>
             <?php }
           } ?>
