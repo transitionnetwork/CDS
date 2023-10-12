@@ -25,18 +25,18 @@ if (!wp_next_scheduled('email_pending_groups_hook')) {
   wp_schedule_event(time(), 'eight_days', 'email_pending_groups_hook');
 }
 add_action('email_pending_groups_hook', 'check_pending_groups');
-//
 
+///////////////////////////////////////////////////////////////
 //check for inactive authors
 if (!wp_next_scheduled('email_inactive_authors_hook')) {
-  wp_schedule_event(time(), 'eight_days', 'email_inactive_authors_hook');
+  wp_schedule_event(time(), 'hourly', 'email_inactive_authors_hook');
 }
 
 add_action('email_inactive_authors_hook', 'email_inactive_authors');
 
-
 function email_inactive_authors() {
-  $date = new DateTime("-1 year");
+  $date_one_year_past = new DateTime("-1 year");
+  $date_eight_days_past = new DateTime("-8 days");
 
   $selected_hubs = get_field('reminder_email_hubs', 'options');
 
@@ -53,21 +53,37 @@ function email_inactive_authors() {
         )
       ),
       'meta_query' => array(
-        'relation' => 'OR',
+        'relation' => 'AND',
         array(
-          'key' => 'author_last_logged_in',
-          'value' => $date->format('Y-m-d H:i:s'),
-          'compare' => '<',
-          'type' => 'DATE'
+          'relation' => 'OR',
+          array(
+            'key' => 'author_last_logged_in',
+            'value' => $date_one_year_past->format('Y-m-d H:i:s'),
+            'compare' => '<',
+            'type' => 'DATE'
+          ),
+          array(
+            'key' => 'author_last_logged_in',
+            'compare' => 'NOT EXISTS'
+          )
         ),
         array(
-          'key' => 'author_last_logged_in',
-          'compare' => 'NOT EXISTS'
+          'relation' => 'OR',
+          array(
+            'key' => 'last_mail_date',
+            'value' => $date_eight_days_past->format('Y-m-d H:i:s'),
+            'compare' => '<',
+            'type' => 'DATE'
+          ),
+          array(
+            'key' => 'last_mail_date',
+            'compare' => 'NOT EXISTS'
+          )
         )
       )
     );
   
-    $post_ids = get_posts($args);
+    $posts = get_posts($args);
   
     $results = array();
     
@@ -75,5 +91,4 @@ function email_inactive_authors() {
       custom_email_autologin_reminder_email($post_id);
     }
   }
-
 }
