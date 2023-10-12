@@ -1,5 +1,8 @@
 export default {
   loaded() {
-    console.log('working')
+    window.onbeforeunload = function (e) {
+      e.preventDefault();
+      return 'Are you sure you want to leave?';
+    };
   }
 }

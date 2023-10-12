@@ -1,6 +1,6 @@
 // We need jQuery
 var $ = window.jQuery;
-import displayBarGraph from '../shared/graph-all';
+// import displayBarGraph from '../shared/graph-all';
 
 export default {
   loaded() {
@@ -11,7 +11,7 @@ export default {
       $('#nav-filesharing-tab').tab('show')
     }
 
-    displayBarGraph();
+    // displayBarGraph();
 
     function incrementDownload($el) {
       const downloadCount = $el.find('.download-count').data('value')

@@ -22,11 +22,18 @@ import post_type_archive_trainers from './routes/trainer_list'
 import search_groups from './routes/map_route';
 
 import single_initiatives from './routes/single';
-import single_healthchecks from './routes/single_healthcheck'
+// import single_healthchecks from './routes/single_healthcheck'
 import single_trainers from './routes/single_trainer';
 import tax_hub from './routes/single';
 
 import edit_group from './routes/edit_page';
+import edit_hub from './routes/edit_page';
+import edit_trainer from './routes/edit_page';
+import edit_note from './routes/edit_page';
+import add_new_group from './routes/edit_page';
+import add_new_hub from './routes/edit_page';
+import add_trainer from './routes/edit_page';
+import add_note from './routes/edit_page';
 
 // Import ajaxForm
 import './ajax-form';
@@ -47,11 +54,17 @@ const routes = {
   hub_list,
   search_groups,
   single_initiatives,
-  single_healthchecks,
   single_trainers,
   tax_hub,
   post_type_archive_trainers,
-  edit_group
+  edit_group,
+  edit_hub,
+  edit_trainer,
+  edit_note,
+  add_new_group,
+  add_new_hub,
+  add_trainer,
+  add_note
 };
 
 // Load Events
