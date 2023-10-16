@@ -1,4 +1,4 @@
-<?php $term = (get_queried_object()); ?>
+<?php $term = get_queried_object(); ?>
 
 <main>
   <div class="container">
@@ -30,6 +30,8 @@
  
       <div class="col-12 col-lg-4">
         <aside>
+          <?php get_template_part('templates/partials/hub-data'); ?>
+          
           <?php $map = get_field('map', $term); ?>
           <?php set_query_var('map', $map); ?>
           <?php get_template_part('templates/partials/single-map'); ?>
