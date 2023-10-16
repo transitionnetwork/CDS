@@ -172,6 +172,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'search';
   $vars[] = 'country';
   $vars[] = 'training';
+  $vars[] = 'show_recent';
   $vars[] = 'last_mail_event';
   
   //api endpoints

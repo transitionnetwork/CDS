@@ -250,6 +250,12 @@ export default function () {
     } else {
       $('#training-toggle input').prop('checked', false)
     }
+    
+    if(params.get('show_recent')) {
+      $('#recent-toggle input').prop('checked', true)
+    } else {
+      $('#recent-toggle input').prop('checked', false)
+    }
   }
   
   function processFilter(params) {
@@ -341,6 +347,21 @@ export default function () {
         // }
       } else {
         params.delete('training')
+      }
+      
+      processFilter(params)
+    })
+    
+    $('#recent-toggle input').on('change', function() {
+      var params = getUpdateParams();
+      
+      if(this.checked) {
+        params.set('show_recent', true)
+        // if(params.get('type') === '2') {
+        //   params.set('type', '1')
+        // }
+      } else {
+        params.delete('show_recent')
       }
       
       processFilter(params)
