@@ -44,7 +44,7 @@ function ajax_get_post_markers($params, $cache_expiry) {
         )
       );
     } else if(array_key_exists('show_recent', $params)) {
-      $date_one_year_past = new DateTime("-1 year");
+      $date_one_year_past = new DateTime("-312 days");
       $args['date_query'] = array(
         array(
           'column' => 'post_modified',
