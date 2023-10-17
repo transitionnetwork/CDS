@@ -43,7 +43,9 @@ function ajax_get_post_markers($params, $cache_expiry) {
           'terms' => $countries
         )
       );
-    } else if(array_key_exists('show_recent', $params)) {
+    } 
+    
+    if(array_key_exists('show_recent', $params)) {
       $recent_day_count = (get_field('recent_day_count', 'options')) ? (get_field('recent_day_count', 'options')) : 365;
       $date_one_year_past = new DateTime('-' . $recent_day_count . 'days');
       $args['date_query'] = array(
