@@ -61,10 +61,10 @@ function get_initiatve_age($post = 0) {
   $days = floor($duration / 86400);
 
   $opacity = '0.3';
-  $opacity = ($days < 365 * 2) ? '0.45' : $opacity;
-  $opacity = ($days < 365 * 1) ? '0.6' : $opacity;
-  $opacity = ($days < 365 * 0.5) ? '0.8' : $opacity;
-  $opacity = ($days < 365 * 0.25) ? '1' : $opacity;
+  $opacity = ($days < 365 * 4) ? '0.45' : $opacity;
+  $opacity = ($days < 365 * 3) ? '0.6' : $opacity;
+  $opacity = ($days < 365 * 2) ? '0.8' : $opacity;
+  $opacity = ($days < 365 * 1) ? '1' : $opacity;
   
   return array(
     'days' => $days,

@@ -217,7 +217,7 @@ function ajax_get_map_markers() {
     'args' => $post_markers['args']
   );
   
-  //remove hubs and trainers if multi_country query
+  //remove hubs and trainers if multi_country query (for iframe usage)
   if(array_key_exists('multi_country', $params)) {
     $markers['hubs'] = array();
     $markers['trainers'] = array();
