@@ -39,22 +39,18 @@ foreach($posts as $post) {
 
 <?php if($posts) { ?>
   <div class="panel">
-    <div>
-      <strong><?php echo $active_groups; ?></strong> groups have recently been active on this site
-    </div>
-    <div>
-      from <strong><?php echo $total_groups; ?></strong> total groups
-    </div>
-    <div>
-      <strong><?php echo round($active_groups / $total_groups * 100, 1); ?></strong>% of all groups  
-    </div>
+    <p>
+      <strong><?php echo $active_groups; ?></strong> out of <strong><?php echo $total_groups; ?></strong> groups are recently active on this site (<strong><?php echo round($active_groups / $total_groups * 100, 1); ?></strong>%</strong>).
+    </p>
     <?php if($count_number_of_people) { ?>
-      <label>Number of people participating in Transition organisation:</label>
-      At least <strong><?php echo $count_number_of_people; ?></strong> people
+      <p>
+        More than <strong><?php echo $count_number_of_people; ?></strong> people are participating in Transition organisation.
+      </p>
     <?php } ?>
     <?php if($count_number_of_participants) { ?>
-      <label>Number of people reached with this work:</label>
-      At least <strong><?php echo $count_number_of_participants; ?></strong> people
+      <p>
+        More than <strong><?php echo $count_number_of_participants; ?></strong> people have been reached with this work.
+      </p>
     <?php } ?>
   </div>
 <?php } ?>
