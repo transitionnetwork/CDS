@@ -39,7 +39,7 @@ foreach($posts as $post) {
   <div class="panel">
     <h3>In the last 12 months:</h3>
     <div>
-      <strong><?php echo $active_groups; ?></strong> groups are active on this site
+      <strong><?php echo $active_groups; ?></strong> groups have been active on this site
     </div>
     <div>
       from <strong><?php echo $total_groups; ?></strong> total groups
@@ -48,11 +48,11 @@ foreach($posts as $post) {
       <strong><?php echo round($active_groups / $total_groups * 100, 1); ?></strong>% of all groups  
     </div>
     <?php if($count_number_of_people) { ?>
-      <label>People participating in transition organising</label>
+      <label>Number of people participating in Transition organisation:</label>
       At least <strong><?php echo $count_number_of_people; ?></strong> people
     <?php } ?>
     <?php if($count_number_of_participants) { ?>
-      <label>People reached with this work</label>
+      <label>Number of people reached with this work:</label>
       At least <strong><?php echo $count_number_of_participants; ?></strong> people
     <?php } ?>
   </div>
