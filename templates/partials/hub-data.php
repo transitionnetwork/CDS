@@ -39,9 +39,8 @@ foreach($posts as $post) {
 
 <?php if($posts) { ?>
   <div class="panel">
-    <h3>In the last 12 months:</h3>
     <div>
-      <strong><?php echo $active_groups; ?></strong> groups have been active on this site
+      <strong><?php echo $active_groups; ?></strong> groups have recently been active on this site
     </div>
     <div>
       from <strong><?php echo $total_groups; ?></strong> total groups
