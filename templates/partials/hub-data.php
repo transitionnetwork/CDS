@@ -18,7 +18,9 @@ $active_groups = 0;
 $count_number_of_people = 0;
 $count_number_of_participants = 0;
 
-$date_one_year_past = new DateTime("-312 days");
+$recent_day_count = (get_field('recent_day_count', 'options')) ? (get_field('recent_day_count', 'options')) : 365;
+
+$date_one_year_past = new DateTime('-' . $recent_day_count . 'days');
 foreach($posts as $post) {
   if(strtotime($post->post_modified) > $date_one_year_past->format('U')) {
     $active_groups ++;
