@@ -61,10 +61,6 @@
 
             <a class="nav-item nav-link" id="nav-trainers-tab" data-toggle="tab" href="#nav-trainers" role="tab" aria-controls="nav-trainers" aria-selected="false">My Trainer Profiles</a>
             
-            <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
-              <a class="nav-item nav-link" id="nav-filesharing-tab" data-toggle="tab" href="#nav-filesharing" role="tab" aria-controls="nav-filesharing" aria-selected="false">Filesharing</a>
-            <?php } ?>
-            
             <?php if(!is_user_role('initiative')) { ?>
               <a class="nav-item nav-link" id="nav-maps-tab" data-toggle="tab" href="#nav-maps" role="tab" aria-controls="nav-maps" aria-selected="false">Embed Maps</a>
             <?php } ?>
@@ -116,12 +112,6 @@
 
           <div class="tab-pane fade" id="nav-trainers" role="tabpanel" aria-labelledby="nav-trainers-tab">
             <?php get_template_part('/templates/panels/trainers'); ?>
-          </div>
-          
-          <div class="tab-pane fade" id="nav-filesharing" role="tabpanel" aria-labelledby="nav-filesharing-tab">
-            <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
-              <?php get_template_part('/templates/panels/file-sharing'); ?>
-            <?php } ?>
           </div>
           
           <div class="tab-pane fade" id="nav-maps" role="tabpanel" aria-labelledby="nav-maps-tab">
