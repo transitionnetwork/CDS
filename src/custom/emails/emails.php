@@ -18,7 +18,6 @@ function custom_retrieve_password_message( $message, $key, $user_login, $user_da
 }
 add_filter( 'retrieve_password_message', 'custom_retrieve_password_message', 10, 4 );
 
-
 function custom_wp_new_user_notification_email($wp_new_user_notification_email, $user, $blogname) {
 
   $parent_id = get_user_meta( $user->ID, 'parent_id', true);
@@ -45,7 +44,6 @@ function custom_wp_new_user_notification_email($wp_new_user_notification_email, 
 add_filter('wp_new_user_notification_email', 'custom_wp_new_user_notification_email', 10, 3);
 
 function custom_email_send_pending_alert_to_hub($user, $initiatives) {
-
   $to = array(
     $user->user_email,
   );
@@ -211,7 +209,7 @@ function custom_email_created_post($post_id, $type) {
   
   $subject = 'A new ' . $type . ' has been created for the ' . $hub->name . ' hub';
   
-  $message = 'Please sign into <a href="' . home_url() . '">' . get_bloginfo('name') . ' and browse to your dashboard for further information.';
+  $message = 'Please sign into <a href="' . home_url('/account#nav-initiative-admin/') . '">' . get_bloginfo('name') . ' to manage your groups.</a>';
 
   wp_mail( $to, $subject, $message);
 

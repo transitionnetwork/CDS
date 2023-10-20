@@ -1,4 +1,3 @@
-<?php //ma_add_co_author_to_post(9225, 27674); ?>
 <?php get_template_part('templates/partials/single-initiatives-messages'); ?>
 
 <?php acf_form_head(); ?>
