@@ -85,12 +85,14 @@
             <?php } ?>
             
             <?php if(can_write_initiative($post)) { ?>
-              <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
               <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
 
-              <form action="" method="post">
-                <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
-              </form>
+              <?php if(get_post_status($post) === 'publish') { ?>
+                <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
+                <form action="" method="post">
+                  <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('x'); ?><?php _e('Unpublish', 'tofino'); ?></button>
+                </form>
+              <?php } ?>
             <?php } ?>
           </div>
         </td>

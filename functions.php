@@ -365,7 +365,7 @@ function process_post_requests() {
     if(array_key_exists('unpublish', $_POST)) {
       $args = array(
         'ID' => $_POST['unpublish'],
-        'post_status' => 'draft'
+        'post_status' => 'pending'
       );
       wp_update_post($args);
     }
