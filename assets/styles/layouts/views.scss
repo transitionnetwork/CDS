@@ -30,6 +30,10 @@ body.tax-hub {
     }
   }
 
+  .panel.group-contact {
+    overflow: hidden;
+  }
+
   .panel.grant-status {
     .updated {
       margin-top: 0.5rem;
@@ -52,6 +56,7 @@ body.tax-hub {
     list-style: none;
     display: flex;
     margin-top: 0.5rem;
+    text-overflow: clip;
 
     li {
       margin-right: 0.5rem;

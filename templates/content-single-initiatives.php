@@ -112,14 +112,14 @@
             <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
               <?php get_template_part('templates/partials/primary-author-panel'); ?>
             <?php } ?>
+
+            <?php get_template_part('templates/partials/group-contact-panel'); ?>
             
             <?php $map = get_field('map'); ?>
             <?php set_query_var('map', $map); ?>
             <?php if($map) { ?>
               <?php get_template_part('templates/partials/single-map'); ?>
             <?php } ?>
-            
-            <?php get_template_part('templates/partials/group-contact-panel'); ?>
             
             <?php if (is_user_role(array('administrator', 'super_hub')) && can_write_initiative($post)  ) { ?>
               <?php get_template_part('templates/partials/grant-status'); ?>

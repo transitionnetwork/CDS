@@ -1,3 +1,13 @@
+<?php if(get_query_var('edited_post') && !get_query_var('step')) { ?>
+  <div class="container">
+    <div class="col-12 col-xl-10">
+      <div class="alert top alert-info">
+        <?php _e('<p>Thank you for updating your group record! Your information has been saved.</p><p>If you wish to, you have the option to conduct a comprehensive group health check.</p><p>It\'s crucial to understand that this is not a test with a pass or fail outcome; rather, it serves as a tool to facilitate reflection on your group\'s work.</p><p>You can complete health checks at any time. Should you decide to revisit this later, you are welcome to do so.', 'tofino'); ?>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+
 <?php while (have_posts()) : the_post(); ?>
 <?php 
 $initative_id = get_query_var('initiative_id');

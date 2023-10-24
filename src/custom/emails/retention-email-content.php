@@ -23,14 +23,24 @@ function custom_email_autologin_reminder_email($post_id) {
 
   $headers = 'X-Mailgun-Variables: {"post_id" : ' . $post_id . '}';
 
-  $email_post_id = 9182;
-  $subject = get_field('subject', $email_post_id);
+  $hub = get_the_terms($post->ID, 'hub')[0];
+  $hub_email_content = get_field('hub_emails_email_1', 'term_' . $hub->term_id);
 
-
-  $page = get_post($email_post_id);
-  $body = apply_filters('the_content', $page->post_content);
+  if($hub_email_content) {
+    $subject = $hub_email_content['subject'];
+    $body = $hub_email_content['content'];
+  } else {
+    $email_post_id = 9182;
+  
+    $subject = get_field('subject', $email_post_id);
+    $page = get_post($email_post_id);
+    $body = apply_filters('the_content', $page->post_content);
+  }
+  
+  $subject = str_replace('#post_name#', get_the_title($post_id), $subject);
+  $body = str_replace('#post_name#', get_the_title($post_id), $body);
   $body = str_replace('#login_link#', $link, $body);
- 
+
   if (get_environment() === 'production') {
     //dont send cron mail in dev environments
     wp_mail( $to, $subject, $body, $headers);

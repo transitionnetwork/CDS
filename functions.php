@@ -166,6 +166,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'edited_note';
   $vars[] = 'added_note';
   $vars[] = 'source';
+  $vars[] = 'step';
 
   $vars[] = 'hub_name';
   $vars[] = 'type';

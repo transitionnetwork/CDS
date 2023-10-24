@@ -18,15 +18,17 @@ foreach($link_fields as $field) {
 } ?>
 
 <?php if($email || $has_links || $additional) { ?>
-  <div class="panel">
+  <div class="panel group-contact">
     <?php if ($email) { ?>
-      <h3>Email</h3>
-      <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
+      <div class="mb-3">
+        <h3>Email</h3>
+        <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
+      </div>
     <?php } ?>
   
     <?php if($has_links) { ?>
       <div>
-        <h3 class="mt-3"><?php _e('Links', 'tofino'); ?></h3>
+        <h3><?php _e('Links', 'tofino'); ?></h3>
         
         <ul class="links">
           <?php foreach($link_fields as $field) {
