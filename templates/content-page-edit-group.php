@@ -20,7 +20,7 @@
 						acf_form(array(
 							'post_id'		=> $edit_post_id,
 							'post_title'	=> true,
-							'return' => add_query_arg(array('initiative_id' => get_the_ID(), 'edited_post' => 'initiative'), parse_post_link(422)),
+							'return' => add_query_arg(array('initiative_id' => $edit_post_id, 'edited_post' => 'initiative'), parse_post_link(422)),
 							'submit_value' => 'Save changes',
 							'uploader' => 'basic',
 						)); ?>
