@@ -1,5 +1,5 @@
 <?php
-function mailchimp_subscribe_author($post) {
+function mailchimp_add_author_to_list($post) {
   $hub_mailchimp_audience_map = array(
     800 => 'edd02f822a', // London and SE
     284 => '636863f48c' // England and Wales
@@ -17,6 +17,6 @@ function mailchimp_subscribe_author($post) {
   
   $response = $client->lists->addListMember($hub_mailchimp_audience_map[800], [
       "email_address" => $author->user_email,
-      "status" => "pending",
+      "status" => "subscribed",
   ]);
 }

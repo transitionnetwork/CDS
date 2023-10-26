@@ -18,7 +18,7 @@ function acf_custom_save($post_id) {
     
     if ($post->post_date === $post->post_modified) { // new post
       custom_email_created_post($post_id, 'initiative');
-      // mailchimp_subscribe_author($post);
+      mailchimp_add_author_to_list($post);
     }
     
     //purge transients
