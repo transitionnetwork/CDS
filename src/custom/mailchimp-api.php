@@ -5,18 +5,27 @@ function mailchimp_add_author_to_list($post) {
     284 => '636863f48c' // England and Wales
   );
 
+  $hub_id = get_the_terms($post, 'hub')[0]->term_id;
+
   $author = get_userdata( $post->post_author);
 
   require_once TEMPLATEPATH . '/vendor/autoload.php';
   
+  $api_key = get_field('mailchimp_api_key', 'options');
+  $region = get_field('mailchimp_region', 'options');
+  
   $client = new MailchimpMarketing\ApiClient();
   $client->setConfig([
-      'apiKey' => 'f05fe9940c9efe4a1828104b45410ed5-us16',
-      'server' => 'us16',
+      'apiKey' => $api_key,
+      'server' => $region,
   ]);
   
-  $response = $client->lists->addListMember($hub_mailchimp_audience_map[800], [
+  $response = $client->lists->addListMember($hub_mailchimp_audience_map[$hub_id], [
       "email_address" => $author->user_email,
       "status" => "subscribed",
+      "tags" => array("TGroups-org--auto-sync"),
+      "merge_fields" => array(
+        'MMERGE3' => get_the_title($post)
+      )
   ]);
 }
