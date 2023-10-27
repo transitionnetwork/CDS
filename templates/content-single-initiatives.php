@@ -25,9 +25,10 @@
             </div>
           </div>
           
+          <?php get_template_part('templates/partials/group-info-panel'); ?>
+          
           <?php echo strip_tags(get_field('description', $post), '<p><em><strong>'); ?>
 
-          <?php get_template_part('templates/partials/group-info-panel'); ?>
 
           <?php if(is_user_logged_in() && is_user_role(array('initiative'))) { ?>
             <?php $post_author = (int)$post->post_author; ?>
