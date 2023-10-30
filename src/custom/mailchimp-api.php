@@ -7,6 +7,11 @@ function mailchimp_add_author_to_list($post) {
 
   $hub_id = get_the_terms($post, 'hub')[0]->term_id;
 
+  if(!array_key_exists($hub_id, $hub_mailchimp_audience_map)) {
+    //check that audience exists
+    return;
+  }
+
   $author = get_userdata( $post->post_author);
 
   require_once TEMPLATEPATH . '/vendor/autoload.php';
