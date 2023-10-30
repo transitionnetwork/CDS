@@ -12,6 +12,7 @@
       <?php } ?>
       <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
         <th class="col-b">Last Email Date</th>
+        <th class="col-b">Last Email Event</th>
       <?php } ?>
       <th></th>
     </tr>
@@ -63,6 +64,11 @@
           <td>
             <?php if(can_edit_hub($hub_term->term_id)) { ?>
               <?php echo get_post_meta($post->ID, 'last_mail_date', true); ?>
+            <?php } ?>
+          </td>
+          <td>
+            <?php if(can_edit_hub($hub_term->term_id)) { ?>
+              <?php echo get_post_meta($post->ID, 'last_mail_event', true); ?>
             <?php } ?>
           </td>
         <?php } ?>
