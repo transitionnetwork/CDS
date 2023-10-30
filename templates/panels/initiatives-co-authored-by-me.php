@@ -26,3 +26,4 @@ $init_query = new WP_Query($args); ?>
     _e('You\'re not currently a co-author of any group', 'tofino');
   }
   ?>
+</section>

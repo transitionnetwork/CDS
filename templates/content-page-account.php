@@ -92,15 +92,11 @@
           
           <div class="tab-pane fade" id="nav-initiative-admin" role="tabpanel" aria-labelledby="nav-initiative-admin-tab">
              <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-              <div class="panel">
+              <section>
                 <a class="btn btn-primary" href="<?php echo home_url('group-email-deliverability'); ?>">Group email deliverability report</a>
-              </div>
+             </section>
             <?php } ?>
             
-            <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
-            
-            <?php get_template_part('/templates/panels/initiatives-co-authored-by-me'); ?>
-          
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) {
               get_template_part('/templates/panels/initiatives-pending-approval');
             } ?>
@@ -108,6 +104,11 @@
             <?php if (is_user_role('hub')) {
               get_template_part('/templates/panels/hub-initiatives-pending-approval');
             } ?>
+            
+            <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
+            
+            <?php get_template_part('/templates/panels/initiatives-co-authored-by-me'); ?>
+          
           </div>
 
           <div class="tab-pane fade" id="nav-trainers" role="tabpanel" aria-labelledby="nav-trainers-tab">
