@@ -17,6 +17,9 @@
                 <?php } ?>
                 <div class="col-12 col-md-8">
                   <div class="xinc-events__event_list__event_tile__details">
+                    <?php if($event['has_subevents']) { ?>
+                      <?php echo '<strong>Series</strong>'; ?>
+                    <?php } ?>
                     <h3>
                       <a href="<?php echo $event['event_url']; ?>" target="_blank"><?php echo $event['title']; ?></a>
                     </h3>

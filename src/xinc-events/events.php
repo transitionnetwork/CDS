@@ -15,8 +15,11 @@ function xinc_events_get_events($page = 1) {
 
   if(!file_exists($path)) {
     $token = 'Token ' . get_field('pretix_api_token', 'options');
-    
-    $api_url = 'https://pretix.eu/api/v1/organizers/transition-network/events/?is_future=true&ordering=date_from';
+
+    $current_datetime = new DateTimeImmutable();
+    $current_datetime = $current_datetime->format('Y-m-d\TH:i:s\Z');
+
+    $api_url = 'https://pretix.eu/api/v1/organizers/transition-network/events/?ordering=date_from&live=true&date_from_after=' . $current_datetime;
     
     $response = wp_remote_get( $api_url, array(
       'headers' => array(
@@ -29,7 +32,7 @@ function xinc_events_get_events($page = 1) {
       // $headers = $response['headers']; // array of http header lines
       $body    = json_decode($response['body']); // use the content
     }
-  
+
     $results = $body->results;
   
     if($results) {
@@ -49,7 +52,6 @@ function xinc_events_get_events($page = 1) {
         if ( is_array( $response ) && ! is_wp_error( $response ) ) {
   
           $body = json_decode($response['body']);
-          // var_dump($body);
           
           $output[] = array(
             'title' => $result->name->en,
@@ -59,13 +61,14 @@ function xinc_events_get_events($page = 1) {
             'location' => $result->location->en,
             'geo_lat' => $result->geo_lat,
             'geo_lng' => $result->geo_lng,
+            'has_subevents' => $result->has_subevents,
             'description' => $body->frontpage_text->value->en,
             'image_url' => $body->logo_image->value,
           );
         }
       }
   
-      file_put_contents($path, json_encode($output));
+      // file_put_contents($path, json_encode($output));
       
       return $output;
     }
