@@ -68,7 +68,7 @@ function xinc_events_get_events($page = 1) {
         }
       }
   
-      // file_put_contents($path, json_encode($output));
+      file_put_contents($path, json_encode($output));
       
       return $output;
     }
