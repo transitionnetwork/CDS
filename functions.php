@@ -74,6 +74,7 @@ $tofino_includes = [
   "src/custom/emails/retention-email-content.php",
   "src/custom/emails/cron.php",
   "src/custom/mailchimp-api.php",
+  "src/xinc-events/events.php"
   // "src/dev-machines/export-author-emails-by-hub.php",
 ];
 
@@ -330,7 +331,9 @@ function wpse23007_redirect()
 add_action('init', 'wpse23007_redirect');
 
 if (function_exists('acf_add_options_page')) {
-  acf_add_options_page();
+  acf_add_options_page(array(
+    'page_title' => __('General Options')
+  ));
 }
 
 // set default hub value to no-hub when adding initiative
