@@ -10,10 +10,12 @@ function xinc_events_register() {
 xinc_events_register();
 
 function xinc_events_get_events($page = 1) {
-  $time = (time() - (time() % 3600)); // rounded to nearest hour;
-  $path = TEMPLATEPATH . '/cache/events-' . $time . '-' . $page .'.json';
+  $cache_interval = (get_field('cache_time', 'options')) ? get_field('cache_time', 'options') : 1;
+  $time = (time() - (time() % $cache_interval)); // rounded to nearest hour;
+  $path = TEMPLATEPATH . '/cache/';
+  $filename = 'events-' . $time . '-' . $page .'.json';
 
-  if(!file_exists($path)) {
+  if(!file_exists($path . $filename)) {
     $token = 'Token ' . get_field('pretix_api_token', 'options');
 
     $current_datetime = new DateTimeImmutable();
@@ -68,7 +70,12 @@ function xinc_events_get_events($page = 1) {
         }
       }
   
-      file_put_contents($path, json_encode($output));
+      // unlink($path . 'events*');
+      foreach(glob($path . 'events*') as $unlink_result) { 
+        unlink($unlink_result);
+      }
+      
+      file_put_contents($path . $filename, json_encode($output));
       
       return $output;
     }
