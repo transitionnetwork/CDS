@@ -50,7 +50,7 @@
                     </div>
 
                     <div>
-                      <a class="btn btn-primary" href="<?php echo $event['event_url']; ?>" target="_blank">Buy Tickets & More Info</a>
+                      <a class="btn btn-primary" href="<?php echo $event['event_url']; ?>" target="_blank">Get Tickets & More Info</a>
                     </div>
                   </div>
                 </div>
