@@ -11,6 +11,7 @@ xinc_events_register();
 
 function xinc_events_get_events($page = 1) {
   $cache_interval = (get_field('cache_time', 'options')) ? get_field('cache_time', 'options') : 1;
+  
   $time = (time() - (time() % $cache_interval)); // rounded to nearest hour;
   $path_dir = TEMPLATEPATH . '/cache/';
   $filename = 'events-' . $time . '-' . $page .'.json';
@@ -80,7 +81,7 @@ function xinc_events_get_events($page = 1) {
     }
   
   } else {
-    return json_decode(file_get_contents($path_dir), true);
+    return json_decode(file_get_contents($path_dir . $filename), true);
   }
 
   return;
