@@ -20,16 +20,15 @@ $selected_hubs = get_field('reminder_email_hubs', 'options');
             <li><?php echo get_term_by('id', $hub_id, 'hub')->name; ?></li>
           <?php } ?>
         </ul>
-        <p>Group authors who haven't logged in since <strong><?php echo $last_login->format('Y-m-d H:i:s'); ?></strong> are emailed.</p>
-        <p>The script will email them every <strong><?php echo $days_email_frequency; ?></strong></p>
-        <p>These settings can be amended on the General settings screen in the dashboard.</p>
-        <p>These are the groups being currently send reminder emails</p>
+        <p>Group authors who haven't logged in for <strong><?php echo $days_since_author_login; ?></strong> since <strong><?php echo $last_login->format('Y-m-d H:i:s'); ?></strong> are to be emailed.</p>
+        <p>The script will email them every <strong><?php echo $days_email_frequency; ?></strong>.</p>
+        <p><strong>These settings can be amended on the <a href="<?php echo home_url('wp-admin/admin.php?page=acf-options-general-options'); ?>" target="_blank">General settings screen</a> in the dashboard.</strong></p>
+        <p>Below are the groups being currently sent reminder emails by the cron script:</p>
 
         <?php 
         $args = array(
           'post_type' => 'initiatives',
           'posts_per_page' => -1,
-          'fields' => 'ids',
           'meta_key' => 'last_mail_date',
           'orderby' => 'meta_value',
           'order' => 'DESC',
@@ -57,9 +56,7 @@ $selected_hubs = get_field('reminder_email_hubs', 'options');
           )
         );
 
-        $posts = get_posts($args);
-
-        ?>
+        $posts = get_posts($args); ?>
 
         <table class="item-list">
           <tr>
