@@ -35,9 +35,12 @@ if (!wp_next_scheduled('email_inactive_authors_hook')) {
 add_action('email_inactive_authors_hook', 'email_inactive_authors');
 
 function email_inactive_authors() {
-  $date_one_year_past = new DateTime("-1 year");
-  $date_eight_days_past = new DateTime("-8 days");
+  $days_since_author_login = (get_field('inactive_authors_days_since_author_login', 'options')) ? get_field('inactive_authors_days_since_author_login', 'options') . ' days' : '1 year';
+  $last_login = new DateTime('-' . $days_since_author_login);
 
+  $days_email_frequency = (get_field('inactive_authors_days_resend', 'options')) ? get_field('inactive_authors_days_resend', 'options') . ' days' : '1 year';
+  $last_email_sent = new DateTime('-' . $days_email_frequency);
+  
   $selected_hubs = get_field('reminder_email_hubs', 'options');
 
   if($selected_hubs) {
@@ -58,7 +61,7 @@ function email_inactive_authors() {
           'relation' => 'OR',
           array(
             'key' => 'author_last_logged_in',
-            'value' => $date_one_year_past->format('Y-m-d H:i:s'),
+            'value' => $last_login->format('Y-m-d H:i:s'),
             'compare' => '<',
             'type' => 'DATE'
           ),
@@ -71,7 +74,7 @@ function email_inactive_authors() {
           'relation' => 'OR',
           array(
             'key' => 'last_mail_date',
-            'value' => $date_eight_days_past->format('Y-m-d H:i:s'),
+            'value' => $last_email_sent->format('Y-m-d H:i:s'),
             'compare' => '<',
             'type' => 'DATE'
           ),
@@ -83,10 +86,8 @@ function email_inactive_authors() {
       )
     );
   
-    $posts = get_posts($args);
+    $post_ids = get_posts($args);
   
-    $results = array();
-    
     foreach($post_ids as $post_id) {
       custom_email_autologin_reminder_email($post_id);
     }
