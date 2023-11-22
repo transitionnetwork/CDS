@@ -29,9 +29,10 @@ $selected_hubs = get_field('reminder_email_hubs', 'options');
         $args = array(
           'post_type' => 'initiatives',
           'posts_per_page' => -1,
-          'meta_key' => 'last_mail_date',
-          'orderby' => 'meta_value',
-          'order' => 'DESC',
+          'orderby' => array(
+            'last_mail_exists' => 'ASC',
+            'last_mail_date' => 'ASC'
+          ),
           'tax_query' => array(
             array(
               'taxonomy' => 'hub',
@@ -40,9 +41,10 @@ $selected_hubs = get_field('reminder_email_hubs', 'options');
             )
           ),
           'meta_query' => array(
+            'relation' => 'AND',
             array(
               'relation' => 'OR',
-              array(
+              'last_logged_in' => array(
                 'key' => 'author_last_logged_in',
                 'value' => $last_login->format('Y-m-d H:i:s'),
                 'compare' => '<',
@@ -50,6 +52,17 @@ $selected_hubs = get_field('reminder_email_hubs', 'options');
               ),
               array(
                 'key' => 'author_last_logged_in',
+                'compare' => 'NOT EXISTS'
+              ),
+            ),
+            array(
+              'relation' => 'OR',
+              'last_mail_date' => array(
+                'key' => 'last_mail_date',
+                'compare' => 'EXISTS'
+              ),
+              'last_mail_exists' => array(
+                'key' => 'last_mail_date',
                 'compare' => 'NOT EXISTS'
               )
             )

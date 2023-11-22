@@ -47,7 +47,10 @@ function email_inactive_authors() {
     $args = array(
       'post_type' => 'initiatives',
       'posts_per_page' => -1,
-      'fields' => 'ids',
+      'orderby' => array(
+        'last_mail_exists' => 'ASC',
+        'last_mail_date' => 'ASC'
+      ),
       'tax_query' => array(
         array(
           'taxonomy' => 'hub',
@@ -59,7 +62,7 @@ function email_inactive_authors() {
         'relation' => 'AND',
         array(
           'relation' => 'OR',
-          array(
+          'last_logged_in' => array(
             'key' => 'author_last_logged_in',
             'value' => $last_login->format('Y-m-d H:i:s'),
             'compare' => '<',
@@ -68,17 +71,17 @@ function email_inactive_authors() {
           array(
             'key' => 'author_last_logged_in',
             'compare' => 'NOT EXISTS'
-          )
+          ),
         ),
         array(
           'relation' => 'OR',
-          array(
+          'last_mail_date' => array(
             'key' => 'last_mail_date',
             'value' => $last_email_sent->format('Y-m-d H:i:s'),
             'compare' => '<',
             'type' => 'DATE'
           ),
-          array(
+          'last_mail_exists' => array(
             'key' => 'last_mail_date',
             'compare' => 'NOT EXISTS'
           )
