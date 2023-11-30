@@ -1,6 +1,14 @@
 <?php $hub_slug = get_user_meta(get_current_user_id(), 'hub', true); ?>
 <?php $hub = get_term_by('slug', $hub_slug, 'hub');?>
 
+<?php if(is_user_role(array('super_hub', 'hub'))) { ?>
+  <div class="container">
+    <div class="alert top alert-info">
+      Hub organising is increasingly taking place in our online platform, we’d love it if you <a href="https://hub.transition-space.org/user/registration/by-link?token=QYGDi4kaxLoNi2&spaceId=13" target="_blank">joined us there. </a>
+    </div>
+  </div>
+<?php } ?>
+
 <?php if(get_query_var('updated') == 'hub') { ?>
   <div class="container">
     <div class="alert top alert-success">
