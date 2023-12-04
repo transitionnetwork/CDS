@@ -330,12 +330,6 @@ function wpse23007_redirect()
 }
 add_action('init', 'wpse23007_redirect');
 
-if (function_exists('acf_add_options_page')) {
-  acf_add_options_page(array(
-    'page_title' => __('General Options')
-  ));
-}
-
 // set default hub value to no-hub when adding initiative
 function set_tax_default($field) {
   global $post;

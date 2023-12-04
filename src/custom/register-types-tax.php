@@ -289,3 +289,12 @@ function add_nav_menus() {
   ));
 }
 add_action('init', 'add_nav_menus');
+
+if (function_exists('acf_add_options_page')) {
+  acf_add_options_page(array(
+    'page_title' => __('General Options')
+  ));
+  acf_add_options_page(array(
+    'page_title' => __('Custom Notifications')
+  ));
+}
