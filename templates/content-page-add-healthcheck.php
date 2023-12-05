@@ -2,7 +2,14 @@
   <div class="container">
     <div class="col-12 col-xl-10">
       <div class="alert top alert-info">
-        <?php _e('<p>Thank you for updating your group record! Your information has been saved.</p><p>If you wish to, you have the option to conduct a comprehensive group health check.</p><p>It\'s crucial to understand that this is not a test with a pass or fail outcome; rather, it serves as a tool to facilitate reflection on your group\'s work.</p><p>You can complete health checks at any time. Should you decide to revisit this later, you are welcome to do so.', 'tofino'); ?>
+        <?php $hub = get_the_terms(get_query_var('initiative_id'), 'hub')[0]->term_id; ?>
+        <div class="mt-2">
+          <?php if(in_array($hub, get_tt_hub_ids())) {
+            echo get_field('hub_edit_tt', 'options');
+          } else {
+            echo get_field('hub_edit_row', 'options');
+          } ?>
+        </div>
       </div>
     </div>
   </div>
