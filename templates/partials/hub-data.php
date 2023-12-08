@@ -21,6 +21,10 @@ $count_number_of_participants = 0;
 $recent_day_count = (get_field('recent_day_count', 'options')) ? (get_field('recent_day_count', 'options')) : 365;
 
 $date_one_year_past = new DateTime('-' . $recent_day_count . 'days');
+
+$count_projects = array();
+$total_projects = 0;
+
 foreach($posts as $post) {
   if(strtotime($post->post_modified) > $date_one_year_past->format('U')) {
     $active_groups ++;
@@ -35,7 +39,19 @@ foreach($posts as $post) {
   if($number_of_participants) { 
     $count_number_of_participants += $number_of_participants;
   }
-} ?>
+
+  $live_projects = get_field('group_detail_live_projects');
+  if($live_projects) {
+    foreach($live_projects as $project) {
+      if(array_key_exists($project, $count_projects)) {
+        $count_projects[$project] = $count_projects[$project] + 1; 
+      } else {
+        $count_projects[$project] = 0; 
+      }
+      $total_projects ++;
+    }
+  }
+}?>
 
 <?php if($posts) { ?>
   <div class="panel">
@@ -50,6 +66,20 @@ foreach($posts as $post) {
     <?php if($count_number_of_participants) { ?>
       <p>
         More than <strong><?php echo $count_number_of_participants; ?></strong> people have been reached with this work.
+      </p>
+    <?php } ?>
+
+    <?php if(!empty($count_projects)) { ?>
+      <?php arsort($count_projects); ?>
+      <p>
+        <label>Groups Project Totals:</label>
+        <ul>
+          <?php foreach($count_projects as $project => $count) { ?>
+            <?php if($count > 1) { ?>
+              <li><?php echo $project; ?>: <?php echo $count; ?> (<?php echo round($count / $total_projects * 100); ?>%)</li>
+            <?php } ?>
+          <?php } ?>
+        </ul>
       </p>
     <?php } ?>
   </div>
