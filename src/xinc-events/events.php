@@ -9,7 +9,7 @@ function xinc_events_register() {
 
 xinc_events_register();
 
-function xinc_events_get_events($page = 1) {
+function xinc_events_get_events($api_url, $page = 1) {
   $cache_interval = (get_field('cache_time', 'options')) ? get_field('cache_time', 'options') : 1;
   
   $time = (time() - (time() % $cache_interval)); // rounded to stored value in seconds
@@ -22,7 +22,7 @@ function xinc_events_get_events($page = 1) {
     $current_datetime = new DateTimeImmutable();
     $current_datetime = $current_datetime->format('Y-m-d\TH:i:s\Z');
 
-    $api_url = 'https://pretix.eu/api/v1/organizers/transition-network/events/?ordering=date_from&has_subevents=false&live=true&date_from_after=' . $current_datetime;
+    $api_url .= '/?ordering=date_from&has_subevents=false&live=true&date_from_after=' . $current_datetime;
     
     $response = wp_remote_get( $api_url, array(
       'headers' => array(
