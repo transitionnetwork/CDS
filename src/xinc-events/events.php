@@ -9,7 +9,7 @@ function xinc_events_register() {
 
 xinc_events_register();
 
-function xinc_events_get_events($api_url, $page = 1) {
+function xinc_events_get_events($api_url, $token, $page = 1) {
   $cache_interval = (get_field('cache_time', 'options')) ? get_field('cache_time', 'options') : 1;
   
   $time = (time() - (time() % $cache_interval)); // rounded to stored value in seconds
@@ -17,7 +17,7 @@ function xinc_events_get_events($api_url, $page = 1) {
   $filename = 'events-' . $time . '-' . $page .'.json';
 
   if(!file_exists($path_dir . $filename)) {
-    $token = 'Token ' . get_field('pretix_api_token', 'options');
+    $token = 'Token ' . $token;
 
     $current_datetime = new DateTimeImmutable();
     $current_datetime = $current_datetime->format('Y-m-d\TH:i:s\Z');
