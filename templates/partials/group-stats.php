@@ -86,6 +86,7 @@ foreach($groups as $group) {
         </ul>
       </p>
     <?php } ?>
+    <p><a href="https://knowledge.transition-space.org/books/transitiongroupsorg/page/hub-annual-activity-checker-email-process" target="_blank">About these numbers</a></p>
   </div>
 <?php } ?>
 
