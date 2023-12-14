@@ -214,7 +214,8 @@ function ajax_get_map_markers() {
     'initiatives' => ($post_markers['initiatives']) ? $post_markers['initiatives'] : array(),
     'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
     'hubs' => ajax_get_hub_markers($params, $cache_expiry),
-    'args' => $post_markers['args']
+    'args' => $post_markers['args'],
+    'group_count' =>count($post_markers)
   );
   
   //remove hubs and trainers if multi_country query (for iframe usage)
