@@ -1,4 +1,6 @@
 <?php
+$view = $args['view'];
+
 $args = array(
   'post_type' => 'initiatives',
   'posts_per_page' => -1,
@@ -59,6 +61,14 @@ foreach($groups as $group) {
 
 <?php if($groups) { ?>
   <div class="panel">
+    <?php if($view === 'list') { ?>
+      <?php $countries = get_terms(array(
+        'taxonomy' => 'country',
+        'hide_empty' => true
+      )); ?>
+      <p>Groups are active in <strong><?php echo count($countries); ?> countries</strong></p>
+    <?php } ?>
+    
     <p>
       <strong><?php echo $active_groups; ?></strong> out of <strong><?php echo $total_groups; ?></strong> groups are recently active on this site (<strong><?php echo round($active_groups / $total_groups * 100, 1); ?></strong>%</strong>).
     </p>
