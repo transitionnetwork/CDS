@@ -24,10 +24,6 @@
       margin: 0.125rem 0;
     }
 
-    form {
-      display: inline;
-    }
-
     .btn-group {
       white-space: nowrap;
 
@@ -35,6 +31,11 @@
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
+    }
+
+    .status {
+      display: block;
+      margin-bottom: 0.5rem;
     }
   }
 }

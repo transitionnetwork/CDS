@@ -26,12 +26,9 @@
           <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
           
           <div class="status">
-            <?php $pending_message = __('Pending', 'tofino'); ?>
-            <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-dark btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
+            <?php $pending_message = __('Group is unpublished', 'tofino'); ?>
+            <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-outline btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
           </div>
-          <?php if (can_publish_initiative($post) && !is_post_published($post)) {
-            render_publish_button($post);
-          } ?>
         </td>
         <?php if(!is_tax()) { ?>
           <td>
@@ -101,6 +98,10 @@
               <?php } ?>
             <?php } ?>
           </div>
+          
+          <?php if (can_publish_initiative($post) && !is_post_published($post)) { ?>
+            <?php get_template_part('templates/buttons/publish-delete', null, array('post_id' => $post->ID)); ?>
+          <?php } ?>
         </td>
       </tr>
       <?php $author_requests = get_post_meta($post->ID, 'author_requests', true); ?>

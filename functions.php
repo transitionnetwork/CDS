@@ -369,6 +369,26 @@ function process_post_requests() {
       wp_update_post($args);
     }
 
+    if(array_key_exists('publish', $_POST)) {
+      $args = array(
+        'ID' => $_POST['publish'],
+        'post_status' => 'publish'
+      );
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'publish', home_url('account')));
+      exit;
+    }
+
+    if(array_key_exists('trash_group_id', $_POST)) {
+      $args = array(
+        'ID' => $_POST['trash_group_id'],
+        'post_status' => 'trash'
+      );
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'trash', home_url('account')));
+      exit;
+    }
+
     //hub access
     if(array_key_exists('request_access', $_POST)) {
       request_hub_access((int)$_POST['request_access']);

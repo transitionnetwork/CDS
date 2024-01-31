@@ -120,20 +120,6 @@ function can_edit_hub($term_id) {
   return false;
 }
 
-// Publish
-function render_publish_button($post = 0)
-{
-  $post = get_post($post); ?>
-  <form name="front_end_publish" method="POST" action="">
-    <input type="hidden" name="pid" id="pid" value="<?php echo $post->ID; ?>">
-    <input type="hidden" name="FE_PUBLISH" id="FE_PUBLISH" value="FE_PUBLISH">
-    <label class="submit"><input type="submit" name="submit" id="submit" value="">
-      <?php echo svg('check'); ?> Approve
-    </label>
-  </form>
-  <?php 
-}
-
 //function to update post status
 function change_post_status($post_id, $status)
 {
@@ -143,16 +129,6 @@ function change_post_status($post_id, $status)
 }
 
 function check_post() {
-  //publish posts from dashboard
-  if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
-    if (isset($_POST['pid']) && !empty($_POST['pid'])) {
-      change_post_status((int)$_POST['pid'], 'publish');
-      custom_email_alert_user_initiative_approved($_POST['pid']);
-      wp_safe_redirect(esc_url(add_query_arg('updated', 'publish', home_url('account'))));
-      exit();
-    }
-  }
-
   //request super hub access in dashboard
   if (isset($_POST['type']) && $_POST['type'] == 'request_hub_access') {
     if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {

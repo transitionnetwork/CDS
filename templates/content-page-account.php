@@ -25,6 +25,14 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('updated') == 'trash') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+     <?php _e('Your group has been deleted.', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php if(get_query_var('updated') == 'hub_request') { ?>
   <div class="container">
     <div class="alert top alert-success">
