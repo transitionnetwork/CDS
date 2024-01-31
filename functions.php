@@ -521,3 +521,21 @@ function is_user_trainer_admin() {
 
   return false;
 }
+
+function adding_custom_meta_boxes( $post ) {
+    add_meta_box( 
+        'trainer-info',
+        __( 'Trainer Created' ),
+        'render_trainer_meta_box',
+        'trainers',
+        'core',
+        'default'
+    );
+}
+add_action( 'add_meta_boxes_trainers', 'adding_custom_meta_boxes' );
+
+function render_trainer_meta_box($post) {
+  ?>
+  <?php echo get_the_date(); ?>
+  <?php
+}
