@@ -528,7 +528,7 @@ function adding_custom_meta_boxes( $post ) {
         __( 'Trainer Created' ),
         'render_trainer_meta_box',
         'trainers',
-        'core',
+        'normal',
         'default'
     );
 }
