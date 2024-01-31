@@ -7,7 +7,7 @@ function get_trainer_status($post_status) {
     ),
     'pending' => array(
       'message' => 'Awaiting Approval',
-      'color' => 'dark'
+      'color' => 'outline'
     )
   );
 
