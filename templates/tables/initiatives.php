@@ -26,7 +26,7 @@
           <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
           
           <div class="status">
-            <?php $pending_message = __('Group is unpublished', 'tofino'); ?>
+            <?php $pending_message = __('Not published', 'tofino'); ?>
             <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-outline btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
           </div>
         </td>
