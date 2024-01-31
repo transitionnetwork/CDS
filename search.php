@@ -6,6 +6,7 @@
     <div class="row justify-content-lg-between">
       <div class="col-12 col-lg-3 order-lg-2">
         <?php get_template_part('templates/partials/group-list-sidebar'); ?>
+        <?php get_template_part('templates/partials/group-stats', null, array('view' => 'list')); ?>
       </div>
       
       <div class="col-12 col-lg-9 order-lg-1">

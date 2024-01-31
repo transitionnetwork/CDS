@@ -1,14 +1,12 @@
 <?php
-$view = $args['view'];
-
-$args = array(
+$query_args = array(
   'post_type' => 'initiatives',
   'posts_per_page' => -1,
 );
 
-if(!is_front_page()) {
+if($args['view'] !== 'list') {
   $term = get_queried_object();
-  $args['tax_query'] = array(
+  $query_args['tax_query'] = array(
     array(
       'taxonomy' => 'hub',
       'field' => 'term_id',
@@ -17,7 +15,7 @@ if(!is_front_page()) {
   );
 } 
 
-$groups = get_posts($args);
+$groups = get_posts($query_args);
 
 $total_groups = count($groups);
 $active_groups = 0;
@@ -61,7 +59,7 @@ foreach($groups as $group) {
 
 <?php if($groups) { ?>
   <div class="panel">
-    <?php if($view === 'list') { ?>
+    <?php if($args['view'] === 'list') { ?>
       <?php $countries = get_terms(array(
         'taxonomy' => 'country',
         'hide_empty' => true
