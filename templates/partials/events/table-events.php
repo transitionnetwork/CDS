@@ -42,7 +42,7 @@
               <?php } ?>
 
               <div>
-                <?php $extract = xinc_events_first_words($event['description'], 20) ?>
+                <?php $extract = xinc_events_first_words(strip_tags($event['description']), 20) ?>
                 <?php echo $extract; ?>&hellip;
               </div>
 
