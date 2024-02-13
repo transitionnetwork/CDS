@@ -11,6 +11,8 @@ xinc_events_register();
 
 function xinc_events_get_events($api_url, $token, $page = 1) {
   global $post;
+  $api_url = trim($api_url);
+  
   $cache_interval = (get_field('cache_time', 'options')) ? get_field('cache_time', 'options') : 1;
   
   $time = (time() - (time() % $cache_interval)); // rounded to stored value in seconds
@@ -48,14 +50,19 @@ function xinc_events_get_events($api_url, $token, $page = 1) {
       $output = array();
       
       foreach($results as $result) {
-        // var_dump($result);
-        $api_url = 'https://pretix.eu/api/v1/organizers/transition-network/events/' . $result->slug . '/settings?explain=true';
-        $response = wp_remote_get( $api_url, array(
+        $result_api_url = $api_url . '/' . $result->slug . '/settings';
+        $response = wp_remote_get( $result_api_url, array(
           'headers' => array(
             'Content-Type'  => 'application/json',
             'Authorization' => $token
+          ),
+          'body' => array(
+            'explain' => 'true'
           )
         ) );
+
+        // var_dump($response);
+        // die();
         
         if ( is_array( $response ) && ! is_wp_error( $response ) ) {
   
@@ -80,7 +87,7 @@ function xinc_events_get_events($api_url, $token, $page = 1) {
         unlink($unlink_result);
       }
       
-      file_put_contents($path_dir . $filename, json_encode($output));
+      // file_put_contents($path_dir . $filename, json_encode($output));
       
       return $output;
     }
