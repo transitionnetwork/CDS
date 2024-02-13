@@ -3,8 +3,12 @@
  * Template Name: Xinc Events Iframe Page
  */
 
-get_header('bare'); ?>
+get_header('bare');
 
-<?php get_template_part('templates/partials/events/list-events'); ?>
+$api_url = get_field('pretix_api_url', $post->post_parent);
+$api_key = get_field('pretix_api_key', $post->post_parent);
 
-<?php get_footer('bare');
+$events = xinc_events_get_events($api_url, $api_key);
+get_template_part('templates/partials/events/table-events', null, array('events' => $events));
+
+get_footer('bare');
