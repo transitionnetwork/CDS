@@ -10,11 +10,12 @@ function xinc_events_register() {
 xinc_events_register();
 
 function xinc_events_get_events($api_url, $token, $page = 1) {
+  global $post;
   $cache_interval = (get_field('cache_time', 'options')) ? get_field('cache_time', 'options') : 1;
   
   $time = (time() - (time() % $cache_interval)); // rounded to stored value in seconds
   $path_dir = TEMPLATEPATH . '/cache/';
-  $filename = 'events-' . $time . '-' . $page .'.json';
+  $filename = 'events-' . $time . '-' . $page . '-' . $post->post_name . '.json';
 
   if(!file_exists($path_dir . $filename)) {
     $token = 'Token ' . $token;
@@ -34,7 +35,7 @@ function xinc_events_get_events($api_url, $token, $page = 1) {
         'date_from_after' => $current_datetime
       )
     ) );
-
+    
     if ( is_array( $response ) && ! is_wp_error( $response ) ) {
       // $headers = $response['headers']; // array of http header lines
       $body = json_decode($response['body']); // use the content
