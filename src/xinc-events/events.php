@@ -22,22 +22,26 @@ function xinc_events_get_events($api_url, $token, $page = 1) {
     $current_datetime = new DateTimeImmutable();
     $current_datetime = $current_datetime->format('Y-m-d\TH:i:s\Z');
 
-    $api_url .= '/?ordering=date_from&has_subevents=false&live=true&date_from_after=' . $current_datetime;
-    
     $response = wp_remote_get( $api_url, array(
       'headers' => array(
         'Content-Type'  => 'application/json',
-        'Authorization' => $token
+        'Authorization' => $token,
+      ),
+      'body' => array(
+        'ordering' => 'date_from',
+        'has_subevents' => 'false',
+        'live' => 'true',
+        'date_from_after' => $current_datetime
       )
     ) );
-    
+
     if ( is_array( $response ) && ! is_wp_error( $response ) ) {
       // $headers = $response['headers']; // array of http header lines
-      $body    = json_decode($response['body']); // use the content
+      $body = json_decode($response['body']); // use the content
     }
 
     $results = $body->results;
-  
+
     if($results) {
   
       $output = array();
