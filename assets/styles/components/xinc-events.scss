@@ -41,3 +41,18 @@
 .xinc-events__event_list__event_tile__details__date {
   font-weight: bold;
 }
+
+.xinc-events__event_list {
+  a {
+    color: $events-color;
+  }
+
+  .btn-primary {
+    background-color: $events-color;
+    color: white;
+
+    &:hover {
+      background-color: lighten($events-color, 10);
+    }
+  }
+}
