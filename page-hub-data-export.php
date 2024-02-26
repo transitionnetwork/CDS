@@ -15,7 +15,11 @@ $args = array(
 $init_query = new WP_Query($args); ?>
 
 <?php session_start();
-$export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "Topics", "Private Email", "Email Address", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube"];
+
+ $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
+
+
+$export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "Topics", "Email", "Address", "City", "Province", "Post Code", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube"];
 
 while ($init_query->have_posts()) : $init_query->the_post();
 
