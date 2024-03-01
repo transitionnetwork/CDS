@@ -55,4 +55,6 @@
       </div>
     <?php } ?>
   </div>
+<?php } else { ?>
+  <p>There are currently no events scheduled.</p>
 <?php } ?>
