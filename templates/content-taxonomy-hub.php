@@ -85,6 +85,14 @@
       <div class="col-12">
 
         <h2>Groups</h2>
+
+        <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+          <p>
+            <a href="<?php echo add_query_arg('sort_by', 'created'); ?>" class="btn btn-primary">
+              Order by date created
+            </a>
+          </p>
+        <?php } ?>
         
         <?php $args = array(
           'post_type' => 'initiatives',
@@ -98,6 +106,11 @@
             )
           )
         ); 
+
+        if(get_query_var('sort_by') === 'created') {
+          $args['orderby'] = 'post_date';
+          $args['order'] = 'ASC';
+        }
 
         $init_query = new WP_Query($args);
         set_query_var('init_query', $init_query);

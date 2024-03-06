@@ -177,6 +177,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'training';
   $vars[] = 'show_recent';
   $vars[] = 'last_mail_event';
+  $vars[] = 'sort_by';
   
   //api endpoints
   $vars[] = 'per_page';

@@ -11,8 +11,9 @@
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
       <?php } ?>
       <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-        <th class="col-b">Last Email Date</th>
-        <th class="col-b">Last Email Event</th>
+        <th class="col-b"><?php _e('Date Created', 'tofino'); ?></th>
+        <th class="col-b"><?php _e('Last Email Date', 'tofino'); ?></th>
+        <th class="col-b"><?php _e('Last Email Event', 'tofino'); ?></th>
       <?php } ?>
       <th></th>
     </tr>
@@ -58,6 +59,9 @@
           </td>
         <?php } ?>
         <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+          <td>
+            <?php echo get_the_date('Y-m-d H:i:s'); ?>
+          </td>
           <td>
             <?php if(can_edit_hub($hub_term->term_id)) { ?>
               <?php echo get_post_meta($post->ID, 'last_mail_date', true); ?>
