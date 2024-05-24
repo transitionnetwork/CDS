@@ -9,6 +9,8 @@
     <?php
     $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($post_author_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin';
     ?>
-    <?php echo $link; ?>
+    <span id="token-login-link"><?php echo $link; ?></span>
+    <button id="token-login-button" alt="copy link"><?php echo svg('copy'); ?></button>
   <?php } ?>
 </div>
+
