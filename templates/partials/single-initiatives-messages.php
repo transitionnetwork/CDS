@@ -95,6 +95,14 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('added') === 'login_token_generated') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('A login token has been generated for the primary author', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php if(get_query_var('failed') === 'co_author') { ?>
   <div class="container">
     <div class="alert top alert-danger">
