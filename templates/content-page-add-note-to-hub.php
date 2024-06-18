@@ -3,12 +3,7 @@
 <?php acf_form_head(); ?>
 <?php while (have_posts()) : the_post();
 
-
-if (!$hub_id || !is_user_logged_in() || !is_user_role(array('super_hub', 'administrator'))) {
-  wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
-  exit;
-} else { ?>
-  <main>
+if($hub_id && is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && can_edit_hub($hub_id)))) { ?>
     <div class="container">
       <div class="row justify-content-center">	
         <div class="col-12 col-md-10 col-lg-8">
@@ -37,7 +32,9 @@ if (!$hub_id || !is_user_logged_in() || !is_user_role(array('super_hub', 'admini
       </div>
     </div>
   </main>
-
-<?php } ?>
+<?php } else {
+  wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
+  exit;
+} ?>
 
 <?php endwhile; ?>

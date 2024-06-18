@@ -23,6 +23,16 @@
             <div>
               <em>Last Updated: <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?></em>
             </div>
+
+            <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
+              <?php $published_by_id = (int)get_post_meta( $post->ID, 'last_published_by', true); ?>
+              <?php if($published_by_id) { ?>
+                <?php $published_user = get_user_by('id', $published_by_id); ?>
+                <div>
+                  <em>Last published by: <?php echo get_user_meta( $published_user->ID, 'nickname', true ); ?> <strong>[<?php echo $published_by_id; ?>]</strong></em>
+                </div>
+              <?php } ?>
+            <?php } ?>
           </div>
 
           <div class="panel">
@@ -76,7 +86,7 @@
             </div>  
           <?php } ?>
 
-          <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
+          <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
             <div class="panel">
               <h3>Notes</h3>
               <?php get_template_part('templates/partials/note-list'); ?>

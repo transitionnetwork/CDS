@@ -376,6 +376,9 @@ function process_post_requests() {
         'ID' => $_POST['publish'],
         'post_status' => 'publish'
       );
+      //keep record of who last published
+      add_post_meta( $_POST['publish'], 'last_published_by', get_current_user_id());
+      
       wp_update_post($args);
       wp_safe_redirect(add_query_arg('updated', 'publish', home_url('account')));
       exit;

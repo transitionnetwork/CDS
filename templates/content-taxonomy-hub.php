@@ -20,7 +20,7 @@
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
         <?php } ?>
 
-        <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
+        <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && can_edit_hub($term->term_id)))) { ?>
           <div class="panel">
             <h3>Notes</h3>
             <?php get_template_part('templates/partials/note-list-hub'); ?>
