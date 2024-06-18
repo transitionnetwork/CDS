@@ -1,5 +1,8 @@
 <?php $term = get_queried_object(); ?>
 
+<?php get_template_part('templates/partials/single-hubs-messages'); ?>
+
+
 <main>
   <div class="container">
     <?php $post_author = get_the_author_meta('ID'); ?>
@@ -15,6 +18,19 @@
 
         <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
+        <?php } ?>
+
+        <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
+          <div class="panel">
+            <h3>Notes</h3>
+            <?php get_template_part('templates/partials/note-list-hub'); ?>
+            <?php wp_reset_postdata(); ?>
+            <p>
+              <a class="btn btn-sm btn-outline" href="<?php echo add_query_arg(array('hub_id' => $term->term_id, 'source' => get_term_link($term, 'hub')), '/add-note-to-hub'); ?>">
+                <?php echo svg('plus'); ?>Add Note
+              </a>
+            </p>
+          </div>
         <?php } ?>
 
         <?php if(is_user_logged_in() && !is_user_role(array('super_hub', 'hub', 'administrator'))) { ?>
