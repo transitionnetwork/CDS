@@ -139,7 +139,7 @@ function missing_dist_error_notice() {
   <?php
 }
 
-function dd($string)
+function diedump($string)
 {
   die(var_dump($string));
 }
