@@ -21,7 +21,9 @@ $column_titles = array(
   'Country',
   'Location',
   'Description',
+  'Public Email',
   'Author Email',
+  'Co-Author Emails',
   'Website URL',
   'Twitter URL',
   'Facebook URL',
@@ -86,6 +88,13 @@ foreach($posts as $key => $post) {
     $location = get_field('map')['markers'][0]['default_label'];
   }
 
+  $co_authors = ma_get_co_authors($post->ID);
+  $co_author_emails = array();
+  foreach($co_authors as $co_author_id) {
+    $co_author_emails[] = get_userdata($co_author_id)->user_email;
+  }
+  $co_author_emails = implode(', ', $co_author_emails);
+
   $export_data[] = array(
     get_the_ID(),
     get_the_title(),
@@ -94,7 +103,9 @@ foreach($posts as $key => $post) {
     $country,
     trim($location),
     strip_tags(get_field('description', $post), '<p><em><strong>'),
+    get_field('email'),
     get_the_author_meta('user_email'),
+    $co_author_emails,
     get_field('website'),
     get_field('twitter'),
     get_field('facebook'),
