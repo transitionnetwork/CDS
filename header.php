@@ -28,6 +28,11 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   $body_class = null;
 } ?>
 
+<?php if(is_user_logged_in(  )) {
+  $user_role = wp_get_current_user()->roles[0];
+  $body_class .= 'user-role-' . $user_role;
+} ?>
+
 <body <?php body_class($body_class); ?> data-pid="<?php echo ($post) ? $post->ID : null; ?>">
 <div id="template-url" url="<?php echo get_template_directory_uri(); ?>"></div>
 <?php n\notification('top'); ?>
