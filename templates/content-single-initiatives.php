@@ -35,16 +35,19 @@
             <?php } ?>
           </div>
 
-          <div class="panel">
-            <div class="status">
-              <?php $pending_message = __('Group is unpublished', 'tofino'); ?>
-              <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-outline btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
-            </div>
-            
-            <?php if(!is_post_published($post)) { ?>
+         <?php if(!is_post_published($post)) { ?>
+            <div class="panel">
+              <div class="status">
+                <?php $pending_message = __('Group is unpublished', 'tofino'); ?>
+                <span class="btn btn-sm btn-outline btn-disabled">
+                  <?php echo svg('alert') . $pending_message; ?>
+                </span>
+              </div>
+              
               <?php get_template_part('templates/buttons/publish-delete', null, array('post_id' => $post->ID)); ?>
-            <?php } ?>
-          </div>
+
+            </div>
+          <?php } ?>
           
           <?php get_template_part('templates/partials/group-info-panel'); ?>
           
@@ -130,7 +133,7 @@
               </div>
             <?php } ?>
 
-            <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
+            <?php if (is_user_role(array('administrator', 'super_hub')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id))) { ?>
               <?php get_template_part('templates/partials/primary-author-panel'); ?>
             <?php } ?>
 

@@ -19,7 +19,7 @@ $init_query = new WP_Query($args); ?>
  $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
 
 
-$export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "Topics", "Hub Email", "Address", "City", "Province", "Post Code", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube"];
+$export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "Topics", "Hub Email", "Address", "City", "Province", "Post Code", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube", "Number of people organising and running", "Number of participants", "More information on these numbers", "Foundation date", "Paid roles?", "Legal structure", "Legal structure detail", "How active?", "Live projects", "Live project details.."];
 
 while ($init_query->have_posts()) : $init_query->the_post();
 
@@ -72,7 +72,27 @@ while ($init_query->have_posts()) : $init_query->the_post();
   $instagram = get_field('instagram', $post->ID);
   $youtube = get_field('youtube', $post->ID);
 
-  $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
+  $no_people = get_field('group_detail_number_of_people');
+  $no_participants = get_field('group_detail_number_of_participants');
+  $no_people_more_info = get_field('group_detail_number_more_info');
+  $date_founded = get_field('group_detail_date');
+  $paid_roles = get_field('group_detail_paid_roles');
+  $legal_structure = get_field('group_detail_legal_structure');
+  $legal_structure_detail = get_field('group_detail_legal_structure_detail');
+  $active = get_field('group_detail_active');
+  
+  $live_projects = get_field('group_detail_live_projects');
+  if($live_projects) { 
+    $project_output = [];
+    foreach ($live_projects as $project) {
+      $project_output[] = $project;
+    }
+    $live_projects = implode(' | ', $project_output);
+  }
+  
+  $live_projects_detail = get_field('group_detail_live_projects_detail');
+
+  $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube, $no_people, $no_participants, $no_people_more_info, $date_founded, $paid_roles, $legal_structure, $legal_structure_detail, $active, $live_projects, $live_projects_detail];
 
 
 endwhile; ?>

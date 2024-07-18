@@ -26,7 +26,7 @@
         $hub = get_term_by('id', $hub_id, 'hub'); ?>
         <tr>
           <td>
-            <?php echo $hub->name; ?>
+            <a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a>
           </td>
           <td>
             <a class="btn btn-primary btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, parse_post_link(6105)); ?>"><?php echo svg('cloud-download'); ?>CSV of group data</a>
