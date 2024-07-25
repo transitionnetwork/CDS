@@ -2,7 +2,10 @@
   <?php if(is_user_role('administrator') || is_user_role('super_hub')) {
     $terms = get_terms('hub');
   } else {
-    $user_hub_ids = get_user_meta(wp_get_current_user()->ID, 'hub_user');
+    $user_hub_ids = get_field('hub_user', wp_get_current_user());
+    if(!is_array($hub_ids)) {
+      $user_hub_ids[] = $hub_ids;
+    }
     foreach($user_hub_ids as $id) {
       $terms[] = get_term_by('id', $id, 'hub');
     }

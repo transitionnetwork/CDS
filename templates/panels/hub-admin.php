@@ -1,5 +1,8 @@
 <?php if(is_user_role('hub')) {
-  $hub_ids[] = get_field('hub_user', wp_get_current_user());
+  $hub_ids = get_field('hub_user', wp_get_current_user());
+  if(!is_array($hub_ids)) {
+    $hub_ids[] = $hub_ids;
+  }
 } else {
   $hubs = get_terms('hub', array(
     'hide_empty' => false

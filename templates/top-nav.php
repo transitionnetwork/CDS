@@ -8,9 +8,17 @@ if(is_user_logged_in(  )) {
 
 $hub_object = null;
 
-if(is_user_role('hub')) {
-  $hub_id = get_field('hub_user', wp_get_current_user());
-  $hub_object = get_term_by('term_id', $hub_id, 'hub'); 
+if(is_user_role(array('hub', 'super_hub'))) {
+  $hub_ids = get_field('hub_user', wp_get_current_user());
+  
+  if(is_array($hub_ids)) {
+    $hub_objects = [];
+    foreach($hub_ids as $hub_id) {
+      $hub_objects[] = get_term_by('term_id', $hub_id, 'hub'); 
+    }
+  } else {
+    $hub_objects = get_term_by('term_id', $hub_id, 'hub');
+  }
 }
 ?>
 
@@ -27,9 +35,11 @@ if(is_user_role('hub')) {
         <div class="tag role"><?php _e('Role', 'tofino'); ?>: <?php echo $user_human_role; ?></div>
       <?php endif; ?>
   
-      <?php if($hub_object) : ?>
-        <div class="tag hub"><?php echo $hub_object->name; ?></div>
-      <?php endif; ?>
+      <?php if($hub_objects) { ?>
+        <?php foreach($hub_objects as $hub_object) { ?>
+          <div class="tag hub"><?php echo $hub_object->name; ?></div>
+        <?php } ?>
+      <?php } ?>
   
       <?php _e('Logged in as', 'tofino'); ?> <?php echo wp_get_current_user()->user_email; ?> | <a href="<?php echo wp_logout_url(home_url()); ?>"><?php _e('Logout', 'tofino'); ?></a>
     </div>
