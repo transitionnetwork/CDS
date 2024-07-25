@@ -1,4 +1,3 @@
-<?php //ma_add_co_author_to_post(9225, 27674); ?>
 <?php get_template_part('templates/partials/single-initiatives-messages'); ?>
 
 <?php acf_form_head(); ?>
@@ -24,9 +23,36 @@
             <div>
               <em>Last Updated: <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?></em>
             </div>
+
+            <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
+              <?php $published_by_id = (int)get_post_meta( $post->ID, 'last_published_by', true); ?>
+              <?php if($published_by_id) { ?>
+                <?php $published_user = get_user_by('id', $published_by_id); ?>
+                <div>
+                  <em>Last published by: <?php echo get_user_meta( $published_user->ID, 'nickname', true ); ?> <strong>[<?php echo $published_by_id; ?>]</strong></em>
+                </div>
+              <?php } ?>
+            <?php } ?>
           </div>
+
+         <?php if(!is_post_published($post)) { ?>
+            <div class="panel">
+              <div class="status">
+                <?php $pending_message = __('Group is unpublished', 'tofino'); ?>
+                <span class="btn btn-sm btn-outline btn-disabled">
+                  <?php echo svg('alert') . $pending_message; ?>
+                </span>
+              </div>
+              
+              <?php get_template_part('templates/buttons/publish-delete', null, array('post_id' => $post->ID)); ?>
+
+            </div>
+          <?php } ?>
           
-          <?php echo get_field('description', $post); ?>
+          <?php get_template_part('templates/partials/group-info-panel'); ?>
+          
+          <?php echo strip_tags(get_field('description', $post), '<p><em><strong>'); ?>
+
 
           <?php if(is_user_logged_in() && is_user_role(array('initiative'))) { ?>
             <?php $post_author = (int)$post->post_author; ?>
@@ -41,18 +67,17 @@
             <?php } ?>
           <?php } ?>
 
-          <?php if (can_publish_initiative($post) && !is_post_published($post)) {
-            render_publish_button($post->ID);
-          } ?>
           <?php if(can_write_initiative($post)) { ?>
-            <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
             <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-group'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit group', 'tofino'); ?></a></div>
             
-            <div class="button-block">
-              <form action="" method="post">
-              <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete group', 'tofino'); ?></button>
-              </form>
-            </div>
+            <?php if(get_post_status($post) === 'publish') { ?>
+              <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
+              <div class="button-block">
+                <form action="" method="post">
+                <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Unpublish group', 'tofino'); ?></button>
+                </form>
+              </div>
+            <?php } ?>
           <?php } ?>
 
           <?php if (get_field('email')) { ?>
@@ -64,7 +89,7 @@
             </div>  
           <?php } ?>
 
-          <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
+          <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
             <div class="panel">
               <h3>Notes</h3>
               <?php get_template_part('templates/partials/note-list'); ?>
@@ -75,9 +100,11 @@
                 </a>
               </p>
             </div>
-            
+          <?php } ?>
+
+          <?php $hubs = get_the_terms($post, 'hub'); ?>
+          <?php if(is_user_logged_in() && can_edit_hub($hubs[0]->term_id)) { ?>
             <?php get_template_part('templates/panels/email-history'); ?>
-            
           <?php } ?>
 
           <?php if (can_view_healthcheck($post)) { ?>
@@ -100,17 +127,25 @@
         </div>
         <div class="col-12 col-lg-4">
           <aside>
+            <?php if(is_user_logged_in() && can_write_initiative($post)) { ?>
+              <div class="panel">
+                <?php get_template_part('templates/partials/co-author-panel'); ?>
+              </div>
+            <?php } ?>
+
+            <?php if (is_user_role(array('administrator', 'super_hub')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id))) { ?>
+              <?php get_template_part('templates/partials/primary-author-panel'); ?>
+            <?php } ?>
+
+            <?php get_template_part('templates/partials/group-contact-panel'); ?>
+            
             <?php $map = get_field('map'); ?>
             <?php set_query_var('map', $map); ?>
             <?php if($map) { ?>
               <?php get_template_part('templates/partials/single-map'); ?>
             <?php } ?>
             
-            <?php get_template_part('templates/partials/group-info-panel'); ?>
-            
             <?php if (is_user_role(array('administrator', 'super_hub')) && can_write_initiative($post)  ) { ?>
-              <?php get_template_part('templates/partials/update-author'); ?>
-              <?php get_template_part('templates/partials/co-author-panel'); ?>
               <?php get_template_part('templates/partials/grant-status'); ?>
             <?php } ?>
           </aside>

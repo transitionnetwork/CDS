@@ -1,3 +1,20 @@
+<?php if(get_query_var('edited_post') && !get_query_var('step')) { ?>
+  <div class="container">
+    <div class="col-12 col-xl-10">
+      <div class="alert top alert-info">
+        <?php $hub = get_the_terms(get_query_var('initiative_id'), 'hub')[0]->term_id; ?>
+        <div class="mt-2">
+          <?php if(in_array($hub, get_tt_hub_ids())) {
+            echo get_field('hub_edit_tt', 'options');
+          } else {
+            echo get_field('hub_edit_row', 'options');
+          } ?>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+
 <?php while (have_posts()) : the_post(); ?>
 <?php 
 $initative_id = get_query_var('initiative_id');

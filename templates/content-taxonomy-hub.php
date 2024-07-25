@@ -1,4 +1,7 @@
-<?php $term = (get_queried_object()); ?>
+<?php $term = get_queried_object(); ?>
+
+<?php get_template_part('templates/partials/single-hubs-messages'); ?>
+
 
 <main>
   <div class="container">
@@ -17,6 +20,19 @@
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
         <?php } ?>
 
+        <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && can_edit_hub($term->term_id)))) { ?>
+          <div class="panel">
+            <h3>Notes</h3>
+            <?php get_template_part('templates/partials/note-list-hub'); ?>
+            <?php wp_reset_postdata(); ?>
+            <p>
+              <a class="btn btn-sm btn-outline" href="<?php echo add_query_arg(array('hub_id' => $term->term_id, 'source' => get_term_link($term, 'hub')), '/add-note-to-hub'); ?>">
+                <?php echo svg('plus'); ?>Add Note
+              </a>
+            </p>
+          </div>
+        <?php } ?>
+
         <?php if(is_user_logged_in() && !is_user_role(array('super_hub', 'hub', 'administrator'))) { ?>
           <?php if(!is_hub_access_requested($term->term_id)) { ?>
             <form action="" method="post">
@@ -30,6 +46,8 @@
  
       <div class="col-12 col-lg-4">
         <aside>
+          <?php get_template_part('templates/partials/group-stats', null, array('view' => 'hub')); ?>
+          
           <?php $map = get_field('map', $term); ?>
           <?php set_query_var('map', $map); ?>
           <?php get_template_part('templates/partials/single-map'); ?>
@@ -83,6 +101,14 @@
       <div class="col-12">
 
         <h2>Groups</h2>
+
+        <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+          <p>
+            <a href="<?php echo add_query_arg('sort_by', 'created'); ?>" class="btn btn-primary">
+              Order by date created
+            </a>
+          </p>
+        <?php } ?>
         
         <?php $args = array(
           'post_type' => 'initiatives',
@@ -96,6 +122,11 @@
             )
           )
         ); 
+
+        if(get_query_var('sort_by') === 'created') {
+          $args['orderby'] = 'post_date';
+          $args['order'] = 'ASC';
+        }
 
         $init_query = new WP_Query($args);
         set_query_var('init_query', $init_query);

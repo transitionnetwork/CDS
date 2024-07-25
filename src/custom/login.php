@@ -20,21 +20,19 @@ function update_user_and_post_metadata($user_id) {
 }
 
 function wp_login_update_metadata( $user_login, $user ) {
-  //remove autologin code
-  if(get_user_meta($user->ID, PKG_AUTOLOGIN_USER_META_KEY)) {
-    delete_user_meta( $user->ID, PKG_AUTOLOGIN_USER_META_KEY);
-  }
+  // DO NOT remove autologin code
+  // if(get_user_meta($user->ID, PKG_AUTOLOGIN_USER_META_KEY)) {
+  //   delete_user_meta( $user->ID, PKG_AUTOLOGIN_USER_META_KEY);
+  // }
   
   update_user_and_post_metadata($user->ID);
   
 }
-
 add_action('wp_login', 'wp_login_update_metadata', 10, 2);
 
-
+//switch to user logins
 function switch_to_user_update_metadata($user_id) {
   update_user_and_post_metadata($user_id);
 }
 add_action( 'switch_to_user', 'switch_to_user_update_metadata', 10, 2 );
-
 ?>

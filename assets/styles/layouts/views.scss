@@ -16,39 +16,6 @@ body.tax-hub {
     margin-top: 1rem;
   }
 
-  .item {
-    border-bottom: 1px solid $gray-200;
-    padding: 1rem 0;
-
-    span {
-      color: white;
-      padding: 0.25rem;
-      border-radius: 3px;
-    }
-
-    &.choice- {
-      &1 span {
-        background-color: lighten($red, 0);
-      }
-
-      &2 span {
-        background-color: lighten($red, 15);
-      }
-
-      &3 span {
-        background-color: lighten($yellow, 0);
-      }
-
-      &4 span {
-        background-color: lighten($green, 15);
-      }
-
-      &5 span {
-        background-color: lighten($green, 0);
-      }
-    }
-  }
-
   .leaflet-container {
     border-radius: 4px;
   }
@@ -58,12 +25,13 @@ body.tax-hub {
   }
 
   .panel.healthchecks {
-    border: 0;
-    margin-top: 2rem;
-
     table {
       margin-bottom: 1rem;
     }
+  }
+
+  .panel.group-contact {
+    overflow: hidden;
   }
 
   .panel.grant-status {
@@ -88,6 +56,7 @@ body.tax-hub {
     list-style: none;
     display: flex;
     margin-top: 0.5rem;
+    text-overflow: clip;
 
     li {
       margin-right: 0.5rem;
@@ -122,16 +91,14 @@ body.single-healthchecks {
     margin: 0;
     padding: 0.5rem;
   }
+}
 
-  .item {
-    display: flex;
-    justify-content: space-between;
-
-    .response {
-      @extend .btn-sm;
-
-      white-space: nowrap;
-    }
+body.single-initiatives {
+  #email-log {
+    max-height: 400px;
+    overflow-y: scroll;
+    border: 1px solid $gray-400;
+    padding: 1rem;
   }
 }
 
@@ -208,6 +175,48 @@ main.healthcheck-form {
   }
 }
 
+//healthcheck data summary
+body.single-healthchecks .healthcheck-choice,
+.healthcheck-choice {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $gray-200;
+  padding: 1rem 0;
+
+  label {
+    font-weight: normal;
+  }
+
+  span {
+    color: $white;
+    white-space: nowrap;
+    @extend .btn;
+    @extend .btn-sm;
+  }
+
+  &.choice- {
+    &1 span {
+      background-color: lighten($red, 0);
+    }
+
+    &2 span {
+      background-color: lighten($red, 15);
+    }
+
+    &3 span {
+      background-color: lighten($yellow, 0);
+    }
+
+    &4 span {
+      background-color: lighten($green, 15);
+    }
+
+    &5 span {
+      background-color: lighten($green, 0);
+    }
+  }
+}
+
 //healthcheck graphing
 #healthcheck-bar {
   margin-bottom: 1rem;
@@ -259,4 +268,20 @@ main.healthcheck-form {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#token-login-button {
+  border: none;
+  background: transparent;
+  display: block;
+
+  svg {
+    height: 1.75rem;
+    width: 1.75rem;
+    color: $brand-primary;
+  }
+}
+
+.autologin-panel {
+  margin-top: 2rem;
 }

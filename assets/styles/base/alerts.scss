@@ -17,6 +17,10 @@
     margin: auto;
   }
 
+  p + p {
+    margin-top: 0.5rem;
+  }
+
   &.notification {
     &.bottom {
       position: fixed;
@@ -44,5 +48,9 @@
   &.browser-warning {
     text-align: center;
     width: 100%;
+  }
+
+  a {
+    text-decoration: underline;
   }
 }

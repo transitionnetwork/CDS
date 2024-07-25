@@ -1,0 +1,58 @@
+.xinc-events__event_list__event_tile {
+  --tw-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+
+  border: 1px solid $gray-300;
+  border-radius: 0.5rem;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  padding: 1.5rem;
+
+  img {
+    border-radius: 0.25rem;
+  }
+
+  & + .xinc-events__event_list__event_tile {
+    margin-top: 3rem;
+  }
+}
+
+.xinc-events__event_list__event_tile__details {
+  svg {
+    width: 17px;
+    height: 17px;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  & > div {
+    margin-top: 0.675rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 1rem;
+  }
+}
+
+.xinc-events__event_list__event_tile__details__item {
+  display: flex;
+  align-items: center;
+}
+
+.xinc-events__event_list__event_tile__details__date {
+  font-weight: bold;
+}
+
+.xinc-events__event_list {
+  a {
+    color: $events-color;
+  }
+
+  .btn-primary {
+    background-color: $events-color;
+    color: white;
+
+    &:hover {
+      background-color: lighten($events-color, 10);
+    }
+  }
+}

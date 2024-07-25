@@ -1,6 +1,14 @@
 <?php $hub_slug = get_user_meta(get_current_user_id(), 'hub', true); ?>
 <?php $hub = get_term_by('slug', $hub_slug, 'hub');?>
 
+<?php if(is_user_role(array('super_hub', 'hub'))) { ?>
+  <div class="container">
+    <div class="alert top alert-info">
+      Hub organising is increasingly taking place in our online platform, we’d love it if you <a href="https://hub.transition-space.org/user/registration/by-link?token=QYGDi4kaxLoNi2&spaceId=13" target="_blank">joined us there. </a>
+    </div>
+  </div>
+<?php } ?>
+
 <?php if(get_query_var('updated') == 'hub') { ?>
   <div class="container">
     <div class="alert top alert-success">
@@ -13,6 +21,14 @@
   <div class="container">
     <div class="alert top alert-success">
      <?php _e('Group approved and published.', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('updated') == 'trash') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+     <?php _e('Your group has been deleted.', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>
@@ -47,7 +63,9 @@
             
             <?php if(is_user_role('administrator')) { ?>
               <a class="nav-item nav-link" id="nav-reports-tab" data-toggle="tab" href="#nav-reports" role="tab" aria-controls="nav-reports" aria-selected="false">Reports</a>
-            
+            <?php } ?>
+
+            <?php if(is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
               <a class="nav-item nav-link" id="nav-healthcheck-tab" data-toggle="tab" href="#nav-healthcheck" role="tab" aria-controls="nav-healthcheck" aria-selected="false">Healthcheck Data</a>
             <?php } ?>
             
@@ -58,10 +76,6 @@
             <a class="nav-item nav-link" id="nav-initiative-admin-tab" data-toggle="tab" href="#nav-initiative-admin" role="tab" aria-controls="nav-initiative-admin" aria-selected="false">Group Admin</a>
 
             <a class="nav-item nav-link" id="nav-trainers-tab" data-toggle="tab" href="#nav-trainers" role="tab" aria-controls="nav-trainers" aria-selected="false">My Trainer Profiles</a>
-            
-            <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
-              <a class="nav-item nav-link" id="nav-filesharing-tab" data-toggle="tab" href="#nav-filesharing" role="tab" aria-controls="nav-filesharing" aria-selected="false">Filesharing</a>
-            <?php } ?>
             
             <?php if(!is_user_role('initiative')) { ?>
               <a class="nav-item nav-link" id="nav-maps-tab" data-toggle="tab" href="#nav-maps" role="tab" aria-controls="nav-maps" aria-selected="false">Embed Maps</a>
@@ -81,7 +95,7 @@
           </div>
           
           <div class="tab-pane fade" id="nav-healthcheck" role="tabpanel" aria-labelledby="nav-healthcheck-tab">
-            <?php if(is_user_role('administrator')) { ?>
+              <?php if(is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
               <?php get_template_part('/templates/panels/healthcheck-data'); ?>
             <?php } ?>
           </div>
@@ -93,16 +107,12 @@
           </div>
           
           <div class="tab-pane fade" id="nav-initiative-admin" role="tabpanel" aria-labelledby="nav-initiative-admin-tab">
-             <?php if (is_user_role(array('administrator', 'super_hub'))) { ?>
-              <div class="panel">
+             <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+              <section>
                 <a class="btn btn-primary" href="<?php echo home_url('group-email-deliverability'); ?>">Group email deliverability report</a>
-              </div>
+             </section>
             <?php } ?>
             
-            <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
-            
-            <?php get_template_part('/templates/panels/initiatives-co-authored-by-me'); ?>
-          
             <?php if (is_user_role('administrator') || is_user_role('super_hub')) {
               get_template_part('/templates/panels/initiatives-pending-approval');
             } ?>
@@ -110,16 +120,15 @@
             <?php if (is_user_role('hub')) {
               get_template_part('/templates/panels/hub-initiatives-pending-approval');
             } ?>
+            
+            <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
+            
+            <?php get_template_part('/templates/panels/initiatives-co-authored-by-me'); ?>
+          
           </div>
 
           <div class="tab-pane fade" id="nav-trainers" role="tabpanel" aria-labelledby="nav-trainers-tab">
             <?php get_template_part('/templates/panels/trainers'); ?>
-          </div>
-          
-          <div class="tab-pane fade" id="nav-filesharing" role="tabpanel" aria-labelledby="nav-filesharing-tab">
-            <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
-              <?php get_template_part('/templates/panels/file-sharing'); ?>
-            <?php } ?>
           </div>
           
           <div class="tab-pane fade" id="nav-maps" role="tabpanel" aria-labelledby="nav-maps-tab">

@@ -18,8 +18,4 @@
   <?php if(is_user_logged_in()) { ?>
     <li><a href="<?php echo parse_post_link(6185); ?>" class="btn  btn-outline"><?php echo svg('plus'); ?><?php _e('Add New Hub', 'tofino'); ?></a></li>
   <?php } ?>
-  
-  <?php if(is_user_logged_in() && is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-    <li><a class="btn btn-outline" href="<?php echo parse_post_link(6810); ?>"><?php echo svg('key'); ?><?php _e('Register New User', 'tofino'); ?></a></li>
-  <?php } ?>
 </ul>

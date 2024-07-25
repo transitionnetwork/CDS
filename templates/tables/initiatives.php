@@ -10,7 +10,12 @@
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
       <?php } ?>
-      <th>Actions</th>
+      <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+        <th class="col-b"><?php _e('Date Created', 'tofino'); ?></th>
+        <th class="col-b"><?php _e('Last Email Date', 'tofino'); ?></th>
+        <th class="col-b"><?php _e('Last Email Event', 'tofino'); ?></th>
+      <?php } ?>
+      <th></th>
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $post = get_post($post); ?>
@@ -22,12 +27,9 @@
           <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
           
           <div class="status">
-            <?php $pending_message = __('Pending', 'tofino'); ?>
-            <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-dark btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
+            <?php $pending_message = __('Not published', 'tofino'); ?>
+            <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-outline btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
           </div>
-          <?php if (can_publish_initiative($post) && !is_post_published($post)) {
-            render_publish_button($post);
-          } ?>
         </td>
         <?php if(!is_tax()) { ?>
           <td>
@@ -52,13 +54,27 @@
           </td>
           <td>
             <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?>
+              <?php echo get_initiatve_age($post)['days'] . ' days'; ?>
+            <?php } ?>
+          </td>
+        <?php } ?>
+        <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+          <td>
+            <?php echo get_the_date('Y-m-d H:i:s'); ?>
+          </td>
+          <td>
+            <?php if(can_edit_hub($hub_term->term_id)) { ?>
+              <?php echo get_post_meta($post->ID, 'last_mail_date', true); ?>
+            <?php } ?>
+          </td>
+          <td>
+            <?php if(can_edit_hub($hub_term->term_id)) { ?>
+              <?php echo get_post_meta($post->ID, 'last_mail_event', true); ?>
             <?php } ?>
           </td>
         <?php } ?>
         <td class="text-right">
           <div class="btn-group">
-
             <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
 
             <?php if(is_user_role(array('administrator', 'super_hub'))) {  ?>
@@ -76,14 +92,20 @@
             <?php } ?>
             
             <?php if(can_write_initiative($post)) { ?>
-              <?php $confirm_message = __('Are you sure you want to remove this group?', 'tofino'); ?>
               <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
 
-              <form action="" method="post">
-                <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></button>
-              </form>
+              <?php if(get_post_status($post) === 'publish') { ?>
+                <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
+                <form action="" method="post">
+                  <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('x'); ?><?php _e('Unpublish', 'tofino'); ?></button>
+                </form>
+              <?php } ?>
             <?php } ?>
           </div>
+          
+          <?php if (can_publish_initiative($post) && !is_post_published($post)) { ?>
+            <?php get_template_part('templates/buttons/publish-delete', null, array('post_id' => $post->ID)); ?>
+          <?php } ?>
         </td>
       </tr>
       <?php $author_requests = get_post_meta($post->ID, 'author_requests', true); ?>

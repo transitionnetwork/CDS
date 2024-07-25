@@ -11,6 +11,9 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   <link rel="mask-icon" href="<?php echo get_template_directory_uri(); ?>/favicon/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
+  
+  <script data-goatcounter="https://transitiongroups.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +26,11 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   $body_class = get_post($en_post_id)->post_name;
 } else {
   $body_class = null;
+} ?>
+
+<?php if(is_user_logged_in(  )) {
+  $user_role = wp_get_current_user()->roles[0];
+  $body_class .= 'user-role-' . $user_role;
 } ?>
 
 <body <?php body_class($body_class); ?> data-pid="<?php echo ($post) ? $post->ID : null; ?>">

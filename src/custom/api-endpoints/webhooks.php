@@ -21,6 +21,7 @@ function process_mailgun_endpoint(WP_REST_Request $request) {
   if($post_id) {
     //set mail_event field to delivered or failure for query sakes
     if(in_array($event_type, array('delivered', 'failure', 'opens', 'clicks'))) {
+      update_post_meta( $post_id, 'last_mail_date', date('Y-m-d H:i:s'));
       update_post_meta( $post_id, 'last_mail_event', $event_type);
     }
   

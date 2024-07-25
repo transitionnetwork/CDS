@@ -8,9 +8,11 @@
       <div class="mb-3">
         <strong>Last Event:</strong> <?php echo get_post_meta($post->ID, 'last_mail_event', true); ?>
       </div>
-      <?php foreach($email_log as $item) { ?>
-        <?php echo $item; ?></br>
-      <?php } ?>
+      <div id="email-log">
+        <?php foreach($email_log as $item) { ?>
+          <?php echo $item; ?></br>
+        <?php } ?>
+      </div>
     </div>
 
   <?php } else { ?>

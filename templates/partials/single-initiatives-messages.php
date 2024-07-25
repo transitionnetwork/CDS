@@ -44,11 +44,13 @@
       } ?>
 
       <?php $hub = get_the_terms($post, 'hub')[0]->term_id; ?>
-      <?php if(in_array($hub, get_tt_hub_ids())) { ?>
-        <div class="mt-2">
-          <?php echo apply_filters('the_content', get_post_field('post_content', 9101)); ?>
-        </div>
-      <?php } ?>
+      <div class="mt-2">
+        <?php if(in_array($hub, get_tt_hub_ids())) {
+          echo get_field('hub_add_tt', 'options');
+        } else {
+          echo get_field('hub_add_row', 'options');
+        } ?>
+      </div>
     </div>
   </div>
 <?php } ?>
@@ -77,10 +79,34 @@
   </div>
 <?php } ?>
 
+<?php if(get_query_var('promoted') === 'co_author') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('Co-author has been promoted to primary author', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
 <?php if(get_query_var('added') === 'co_author') { ?>
   <div class="container">
     <div class="alert top alert-success">
       <?php _e('The email is already registered on <a href="https://transitiongroups.org">transitiongroups.org</a> and has been added as a co-author to the group', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('added') === 'login_token_generated') { ?>
+  <div class="container">
+    <div class="alert top alert-success">
+      <?php _e('A login token has been generated for the primary author', 'tofino'); ?>
+    </div>
+  </div>
+<?php } ?>
+
+<?php if(get_query_var('failed') === 'co_author') { ?>
+  <div class="container">
+    <div class="alert top alert-danger">
+      <?php _e('The email is already the primary email of the gropup and cannot be added as a co-author', 'tofino'); ?>
     </div>
   </div>
 <?php } ?>

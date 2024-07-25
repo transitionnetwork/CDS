@@ -27,6 +27,7 @@ function is_user_role($queried_roles, $user = null)
 function is_post_in_user_hub($post) {
   $post_hub_id = get_the_terms($post, 'hub')[0]->term_id;
   $user_hub_ids = get_user_meta(wp_get_current_user()->ID, 'hub_user');
+
   foreach($user_hub_ids as $user_hub_id) {
     if($post_hub_id == $user_hub_id) {
       return true;
@@ -64,7 +65,7 @@ function can_write_initiative($post) {
   if (is_user_role('administrator') || is_user_role('super_hub')) {
     return true;
   }
-  if (is_user_role('hub') && is_post_in_user_hub($post)) {
+  if (is_user_role('hub') && (is_post_in_user_hub($post) || is_user_post_author($post))) {
     return true;
   }
   if (is_user_role('initiative') && is_user_post_author($post)) {
@@ -108,25 +109,15 @@ function is_post_published($post) {
 }
 
 function can_edit_hub($term_id) {
+  if(is_user_role(array('super_hub', 'administrator'))) {
+    return true;
+  }
+  
   $user_hub = get_field('hub_user', wp_get_current_user());
   if((int)$user_hub === (int)$term_id) {
     return true;
   } 
   return false;
-}
-
-// Publish
-function render_publish_button($post = 0)
-{
-  $post = get_post($post); ?>
-  <form name="front_end_publish" method="POST" action="">
-    <input type="hidden" name="pid" id="pid" value="<?php echo $post->ID; ?>">
-    <input type="hidden" name="FE_PUBLISH" id="FE_PUBLISH" value="FE_PUBLISH">
-    <label class="submit"><input type="submit" name="submit" id="submit" value="">
-      <?php echo svg('check'); ?> Approve
-    </label>
-  </form>
-  <?php 
 }
 
 //function to update post status
@@ -138,16 +129,6 @@ function change_post_status($post_id, $status)
 }
 
 function check_post() {
-  //publish posts from dashboard
-  if (isset($_POST['FE_PUBLISH']) && $_POST['FE_PUBLISH'] == 'FE_PUBLISH') {
-    if (isset($_POST['pid']) && !empty($_POST['pid'])) {
-      change_post_status((int)$_POST['pid'], 'publish');
-      custom_email_alert_user_initiative_approved($_POST['pid']);
-      wp_safe_redirect(esc_url(add_query_arg('updated', 'publish', home_url('account'))));
-      exit();
-    }
-  }
-
   //request super hub access in dashboard
   if (isset($_POST['type']) && $_POST['type'] == 'request_hub_access') {
     if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {

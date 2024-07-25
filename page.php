@@ -15,11 +15,22 @@
 use \Tofino\Helpers as h;
 
 $template = h\get_page_name();
+$parent_template = 'parent';
+
+if ($post->post_parent)	{
+	$ancestors = get_post_ancestors($post->ID);
+	$root = count($ancestors) - 1;
+	$parent = $ancestors[$root];
+  $parent_template = h\get_page_name($parent);
+}
+
 
 get_header();
 
 if (locate_template('templates/content-page-' . $template . '.php') != '') {
   get_template_part('templates/content-page', $template); // e.g. templates/content-page-members.php
+} else if(locate_template('templates/content-page-' . $parent_template . '.php') != '') {
+  get_template_part('templates/content-page', $parent_template); // e.g. templates/content-page-members.php
 } else {
   if (function_exists('icl_object_id')) { //WPML installed
     $original_page_id = apply_filters('wpml_object_id', get_the_ID(), 'page', false, 'en'); //Assumes english is the primary language.

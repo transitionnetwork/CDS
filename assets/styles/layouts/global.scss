@@ -42,11 +42,11 @@ a {
   font-size: 1rem;
 }
 
-@mixin button-svg {
+.button-svg {
   vertical-align: text-top;
   width: 15px;
   height: 15px;
-  margin-right: 4px;
+  margin-right: 2px;
 }
 
 a,
@@ -54,7 +54,7 @@ span,
 button {
   &.btn {
     svg {
-      @include button-svg;
+      @extend .button-svg;
     }
   }
 
@@ -70,6 +70,11 @@ button {
 
   &.btn-disabled {
     pointer-events: none;
+  }
+
+  &.btn-sm {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.375rem;
   }
 }
 
@@ -168,14 +173,15 @@ form#hub-filter input[type="submit"] {
   @extend .btn-sm;
 }
 
-form[name="front_end_publish"] label.submit {
+form[name="front_end_publish"] label.submit,
+form[name="front_end_delete"] label.submit {
   cursor: pointer;
-  @extend .btn-success;
+  margin-bottom: 0.125rem;
   @extend .btn-sm;
 
   svg {
     fill: $white;
-    @include button-svg;
+    @extend .button-svg;
   }
 
   input[type="submit"] {
@@ -185,6 +191,14 @@ form[name="front_end_publish"] label.submit {
       color: $white;
     }
   }
+}
+
+form[name="front_end_publish"] label.submit {
+  @extend .btn-success;
+}
+
+form[name="front_end_delete"] label.submit {
+  @extend .btn-danger;
 }
 
 .acf-button-group {
@@ -202,7 +216,7 @@ form[name="front_end_publish"] label.submit {
 section,
 .panel {
   background-color: $gray-100;
-  // border: 1px solid $gray-300;
+  border: 1px solid $gray-300;
   padding: 1.5rem;
   border-radius: 5px;
   margin-bottom: 2rem;
@@ -283,6 +297,10 @@ pre {
       margin-right: 0;
     }
   }
+}
+
+form.publish-delete {
+  margin: 0.5rem 0;
 }
 
 .total {

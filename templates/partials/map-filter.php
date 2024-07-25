@@ -1,7 +1,7 @@
 <div id="map-filter">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 col-md-3 filter-col">
+    <div class="row map-filter-row">
+      <div class="filter-col">
         <div id="filter-type" class="filter-item">
           <label for="type_name"><?php _e('Show', 'tofino'); ?></label>
           <select name="type_name" id="type_name">
@@ -12,7 +12,7 @@
           </select>
         </div>
       </div>
-      <div class="col-12 col-md-3 filter-col">
+      <div class="filter-col">
         <?php $terms = get_terms('hub'); ?>
         <?php $hub_name = get_query_var('hub_name'); ?>
         <?php // deal with legacy embeds and check 
@@ -41,7 +41,7 @@
           </select>
         </div>
       </div>
-      <div class="col-12 col-md-3 filter-col">
+      <div class="filter-col">
         <?php $terms = get_terms('country'); ?>
         <div id="filter-country" class="filter-item">
           <label for="country"><?php _e('Country', 'tofino'); ?></label>
@@ -58,12 +58,19 @@
           </select>
         </div>
       </div>
-      <div class="col-12 col-md-3 filter-col">
+      <div class="filter-col">
+        <div id="recent-toggle" class="filter-item">
+          <input type="checkbox" id="show_recent" name="show_recent" <?php echo (get_query_var('show_recent')) ? "checked" : null; ?>>
+          <label for="show_recent"><?php _e('Only show recently active groups'); ?></label>
+        </div>
+      </div>
+      <div class="filter-col">
         <div id="training-toggle" class="filter-item">
           <input type="checkbox" id="training" name="training" <?php echo (get_query_var('training')) ? "checked" : null; ?>>
           <label for="training"><?php _e('Only show hubs that offer training'); ?></label>
         </div>
       </div>
+
     </div>
   </div>
 </div>

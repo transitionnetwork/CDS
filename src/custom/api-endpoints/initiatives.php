@@ -12,12 +12,14 @@ function get_group_data($post) {
     'hubs' => endpoint_get_taxonomy_terms($post, 'hub'),
     'countries' => endpoint_get_taxonomy_terms($post, 'country'),
 
-    'description' => get_field('description', $post),
+    'description' => strip_tags(get_field('description', $post), '<p><em><strong>'),
     
     'location' => endpoint_get_location($post, null),
     'contact' => endpoint_get_contact($post),
     'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
   );
+  
+  $data['tags'] = get_group_tags($post);
   
   return $data;
 }
@@ -25,14 +27,13 @@ function get_group_data($post) {
 function get_full_group_data($post) {
   $logo = get_field('logo', $post);
   $logo = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
-  $description = strip_tags(get_field('description', $post));
+  $description = strip_tags(get_field('description', $post), '<p><em><strong>');
 
   $data = array(
     'title' => $post->post_title,
     'group_id' => $post->ID,
     'baserow_id' => (int)get_post_meta( $post->ID, 'baserow_id', true ),
     'public_email' => get_field('email', $post),
-    'private_email' => get_field('private_email', $post),
     'user_email' => get_the_author_meta('user_email', $post->post_author),
     'url' => get_the_permalink($post),
     'logo' => $logo,
@@ -52,6 +53,8 @@ function get_full_group_data($post) {
     'contact_instagram' => get_field('instagram', $post),
     'contact_youtube' => get_field('youtube', $post),
   );
+
+  $data['tags'] = get_group_tags($post);
   
   return $data;
 }
@@ -96,6 +99,18 @@ function get_groups_from_request($request) {
       'body' => 'No Records Found'
     );
   }
+}
+
+function get_group_tags($post) {
+  $tags = array('Transition Group');
+  $topics = get_field('group_detail_live_projects', $post);
+  if($topics) {
+    foreach($topics as $item) {
+      $tags[] = $item;
+    }
+  };
+
+  return $tags;
 }
 
 function endpoint_get_groups_full_info(WP_REST_Request $request) {

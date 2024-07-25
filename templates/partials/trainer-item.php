@@ -8,7 +8,7 @@
       <h3><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
       <?php if(is_user_trainer_admin()) {  ?>
         <p>
-          <span class="btn-sm btn-<?php echo get_trainer_status(get_post_status())['color']; ?>"><?php echo get_trainer_status(get_post_status())['message']; ?></span>
+          <span class="btn btn-sm btn-<?php echo get_trainer_status(get_post_status())['color']; ?>"><?php echo get_trainer_status(get_post_status())['message']; ?></span>
         </p>
       <?php } ?>
 

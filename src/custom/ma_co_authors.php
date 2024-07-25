@@ -35,18 +35,48 @@ function ma_post_requests() {
 	if(array_key_exists('ma_remove_co_author_id', $_POST)) {
 		ma_remove_co_author_from_post($_POST['ma_post_id'], $_POST['ma_remove_co_author_id']);
 		wp_redirect(add_query_arg('deleted', 'co_author', get_the_permalink()));
+		exit;
+	}
+
+	if(array_key_exists('ma_remove_co_waiting_author_email', $_POST)) {
+		ma_option_remove_co_author_queue($_POST['ma_remove_co_waiting_author_email']);
+		wp_redirect(add_query_arg('deleted', 'co_author', get_the_permalink()));
+		exit;
+	}
+
+	if(array_key_exists('ma_make_primary_author', $_POST)) {
+		$args = array(
+			'ID' => $_POST['ma_post_id'],
+			'post_author' => $_POST['ma_make_primary_author']
+		);
+		wp_update_post($args);
+		
+		ma_remove_co_author_from_post($_POST['ma_post_id'], $_POST['ma_make_primary_author']);
+
+		wp_redirect(add_query_arg('promoted', 'co_author', get_the_permalink()));
+		exit;
 	}
 
 	if(array_key_exists('ma_add_co_author_email', $_POST)) {
 		$user = get_user_by( 'email', $_POST['ma_add_co_author_email'] );
-		
+
 		if($user) {
-			//user exists - add co-author
-			ma_add_co_author_to_post($_POST['ma_post_id'], $user->ID);
-			//Send notification email
-			ma_send_notification_email(9261, $_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
-			wp_redirect(add_query_arg('added', 'co_author', get_the_permalink()));
-			exit;
+
+			$post_author_id = get_post_field( 'post_author', $_POST['ma_post_id'] );
+
+			if($user->ID === (int)$post_author_id) {
+				wp_redirect(add_query_arg('failed', 'co_author', get_the_permalink()));
+				exit;			
+			} else {
+				//user exists - add co-author
+				ma_add_co_author_to_post($_POST['ma_post_id'], $user->ID);
+				//Send notification email
+				ma_send_notification_email(9261, $_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
+				wp_redirect(add_query_arg('added', 'co_author', get_the_permalink()));
+				exit;
+			}
+
+			
 		} else {
 			//Send invitation email
 			ma_send_notification_email(9262, $_POST['ma_post_id'], $_POST['ma_add_co_author_email']);
@@ -125,7 +155,7 @@ function ma_replace_email_tags($message, $post_id) {
 
 function ma_send_notification_email($email_id, $group_id, $to) {
 	$subject = get_field('subject', $email_id);
-	$body = get_post_field('post_content', $email_id);
+	$body = apply_filters('the_content', get_post_field('post_content', $email_id));
 	$headers = 'X-Mailgun-Variables: {"post_id" : ' . $group_id . '}';
 
 	$subject = ma_replace_email_tags($subject, $group_id);

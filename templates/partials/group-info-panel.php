@@ -1,56 +1,3 @@
-<?php $email = get_field('email'); ?>
-<?php $additional = get_field('additional_web_addresses'); ?>
-<?php
-$link_fields = array(
-  'website',
-  'twitter',
-  'facebook',
-  'instagram',
-  'youtube',
-);
-
-$has_links = false;
-
-foreach($link_fields as $field) {
-  if(get_field($field)) {
-    $has_links = true;
-  }
-} ?>
-
-<?php if($email || $has_links || $additional) { ?>
-  <div class="panel">
-    <?php if ($email) { ?>
-      <h3>Email</h3>
-      <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
-    <?php } ?>
-  
-    <?php if($has_links) { ?>
-      <div>
-        <h3 class="mt-3"><?php _e('Links', 'tofino'); ?></h3>
-        
-        <ul class="links">
-          <?php foreach($link_fields as $field) {
-            if(get_field($field)) { ?>
-              <li><a href="<?php echo get_field($field); ?>" target="_blank"><?php echo svg($field); ?></a></li>
-            <?php } ?>
-          <?php } ?>
-        </ul>
-      </div>
-    <?php } ?>
-    
-    <?php if($additional) { ?>
-      <div>
-        <h3 class="mt-3"><?php _e('More Links', 'tofino'); ?></h3>
-        <ul>
-          <?php foreach($additional as $item) { ?>
-            <li><a href="<?php echo $item['address']; ?>" target="_blank"><?php echo $item['label']; ?></a></li>
-          <?php } ?>
-        </ul>
-      </div>
-    <?php } ?>
-  </div>
-<?php } ?>
-
 <?php $hubs = get_the_terms($post, 'hub'); ?>
 <?php $topics = get_the_terms($post, 'topic'); ?>
 
@@ -68,113 +15,47 @@ foreach($link_fields as $field) {
 
   <?php if(count($hubs) === 1) { ?>
     <div class="mb-3">
-      <h3>Hub</h3>
+      <label>Hub</label>
       <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
-    </div>
-  <?php } ?>
-  
-  <?php if($topics) { ?>
-    <?php $topic_names = array(); ?>
-    <?php foreach($topics as $topic) {
-      $topic_names[] = $topic->name;
-    } ?>
-    
-    <div class="mb-3">
-      <h3>Topics</h3>
-      <?php echo implode(', ', $topic_names); ?>
     </div>
   <?php } ?>
   
   <?php $detail = get_field('group_detail'); ?>
   <?php if($detail) { ?>
-    <?php $number_of_people = get_field('group_detail_number_of_people');
-    if($number_of_people) { ?>
-      <div class="mb-3">
-        <h3>
-          Number of People organising and running group & projects
-        </h3>
-        <?php echo $number_of_people; ?>
-      </div>
-    <?php } ?>
+    <?php $fields = array(
+      'number_of_people' => 'Number of people in group:',
+      'number_of_participants' =>  'Active participants in last year:',
+      'number_more_info' => null,
+      'date' => 'Group started:',
+      'paid_roles' => 'Paid roles?',
+      'legal_structure' => 'Legal Structure:',
+      'legal_structure_detail' => null,
+      'active' => 'How active is your group?',
+      'live_projects' => 'Live Projects:',
+      'live_projects_detail' => null
+    );
 
-    <?php $number_of_participants = get_field('group_detail_number_of_participants');
-    if($number_of_participants) { ?>
-      <div class="mb-3">
-        <h3>
-          Number of participants in last year
-        </h3>
-        <?php echo $number_of_participants; ?>
-      </div>
-    <?php } ?>
-
-    <?php $number_more_info = get_field('group_detail_number_more_info');
-    if($number_more_info) { ?>
-      <div class="mb-3">
-        <?php echo $number_more_info; ?>
-      </div>
-    <?php } ?>
-    
-    <?php $group_date = get_field('group_detail_date');
-    if($group_date) { ?>
-        <h3 class="mt-3">
-          Group founded
-        </h3>
-        <?php echo $group_date; ?>
-    <?php } ?>
-    
-    <?php $paid_roles = get_field('group_detail_paid_roles'); ?>
-    <?php if($paid_roles) { ?>
-      <h3 class="mt-3">
-        Paid Roles?
-      </h3>
-      <?php echo $paid_roles; ?>
-    <?php } ?>
-  
-    <?php $legal_structure = get_field('group_detail_legal_structure'); ?>
-    <?php if($legal_structure) { ?>
-      <h3 class="mt-3">
-        Legal Structure
-      </h3>
-      <div>
-        <?php echo $legal_structure; ?>
-      </div>
-      <?php if($legal_structure === 'Other' && get_field('group_detail_legal_structure_detail')) { ?>
-        <div class="mt-3">
-          <?php echo get_field('group_detail_legal_structure_detail'); ?>
-        </div>
-      <?php } ?>
-    <?php } ?>
-      
-    <?php $group_activity = get_field('group_detail_active'); ?>
-    <?php if($group_activity) { ?>
-      <h3 class="mt-3">
-        Group Activity
-      </h3>
-      <?php echo $group_activity; ?>
-    <?php } ?>
-    
-    <?php $live_projects = get_field('group_detail_live_projects'); ?>
-    <?php if($live_projects) { ?>
-      <h3 class="mt-3">
-        Live Projects
-      </h3>
-      <?php $project_list = array(); ?>
-      <?php $other_project_selected = false; ?>
-      <?php foreach($live_projects as $live_project) { ?>
-        <?php $project_list[] = $live_project; ?>
-        <?php if($live_project === 'Other') { 
-          $other_project_selected = true; ?>
+    foreach($fields as $key => $label) {
+      $acf_value = get_field('group_detail_' . $key);
+      if($acf_value) {
+        if($fields[$key]) { ?>
+          <label><?php echo $fields[$key]; ?></label>
         <?php } ?>
-      <?php } ?>
-      <div>
-        <?php echo implode(', ', $project_list); ?>
-      </div>
-      <?php if($other_project_selected && get_field('group_detail_live_projects_detail') && is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
-        <div class="mt-3">
-          <?php echo get_field('group_detail_live_projects_detail'); ?>
+
+        <div>
+          <?php if(is_array($acf_value)) { ?>
+            <ul>
+              <?php foreach($acf_value as $item) { ?>
+                <li><?php echo $item; ?></li>
+              <?php } ?>
+            </ul>
+          <?php } else {
+            echo $acf_value;
+          } ?>
         </div>
       <?php } ?>
     <?php } ?>
+    
   <?php } ?>
 </div>
 

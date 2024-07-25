@@ -36,18 +36,34 @@ function ajax_get_post_markers($params, $cache_expiry) {
       //custom query for multi country maps only
       $countries = explode(',', $params['multi_country']);
 
-      $args['tax_query'] =  array(
+      $args['tax_query'] = array(
         array (
           'taxonomy' => 'country',
           'field' => 'slug',
           'terms' => $countries
         )
       );
+    } 
+    
+    if(array_key_exists('show_recent', $params)) {
+      $recent_day_count = (get_field('recent_day_count', 'options')) ? (get_field('recent_day_count', 'options')) : 365;
+      $date_one_year_past = new DateTime('-' . $recent_day_count . 'days');
+      $args['date_query'] = array(
+        array(
+          'column' => 'post_modified',
+          'after' => array(
+            'year' => (int)$date_one_year_past->format('Y'),
+            'month' => (int)$date_one_year_past->format('m'),
+            'day' => (int)$date_one_year_past->format('d'),
+          )
+        )
+      );
     }
-  
+    
     if(!empty($_POST['value']['search'])) {
       $args['s'] = $_POST['value']['search'];
     }
+
 
     $path = TEMPLATEPATH . '/cache/' . md5(serialize($args)) . '.json';
 
@@ -79,6 +95,9 @@ function ajax_get_post_markers($params, $cache_expiry) {
             $results[$post_type][$post->ID]['opacity'] = get_initiatve_age($post->ID)['opacity'];
           } 
         }
+
+        //for debugging args
+        $results['args'] = $args;
 
         file_put_contents($path, json_encode($results));
         
@@ -195,9 +214,11 @@ function ajax_get_map_markers() {
     'initiatives' => ($post_markers['initiatives']) ? $post_markers['initiatives'] : array(),
     'trainers' => ($post_markers['trainers']) ? $post_markers['trainers'] : array(),
     'hubs' => ajax_get_hub_markers($params, $cache_expiry),
+    'args' => $post_markers['args'],
+    'group_count' =>count($post_markers)
   );
   
-  //remove hubs and trainers if multi_country query
+  //remove hubs and trainers if multi_country query (for iframe usage)
   if(array_key_exists('multi_country', $params)) {
     $markers['hubs'] = array();
     $markers['trainers'] = array();

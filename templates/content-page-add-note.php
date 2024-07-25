@@ -3,11 +3,7 @@
 <?php acf_form_head(); ?>
 <?php while (have_posts()) : the_post();
 
-
-if (!$initiative_id || !is_user_logged_in() || !is_user_role(array('super_hub', 'administrator'))) {
-  wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
-  exit;
-} else { ?>
+if ($initiative_id && is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
   <main>
     <div class="container">
       <div class="row justify-content-center">	
@@ -36,7 +32,9 @@ if (!$initiative_id || !is_user_logged_in() || !is_user_role(array('super_hub', 
       </div>
     </div>
   </main>
-
+<?php } else {
+  wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
+  exit; ?>
 <?php } ?>
 
 <?php endwhile; ?>

@@ -18,7 +18,6 @@ function custom_retrieve_password_message( $message, $key, $user_login, $user_da
 }
 add_filter( 'retrieve_password_message', 'custom_retrieve_password_message', 10, 4 );
 
-
 function custom_wp_new_user_notification_email($wp_new_user_notification_email, $user, $blogname) {
 
   $parent_id = get_user_meta( $user->ID, 'parent_id', true);
@@ -45,16 +44,9 @@ function custom_wp_new_user_notification_email($wp_new_user_notification_email, 
 add_filter('wp_new_user_notification_email', 'custom_wp_new_user_notification_email', 10, 3);
 
 function custom_email_send_pending_alert_to_hub($user, $initiatives) {
-
-  if(get_environment() === 'production') {
-    $to = array(
-      $user->user_email,
-    );
-  } else {
-    $to = array(
-      'mark@benewith.com'
-    );
-  }
+  $to = array(
+    $user->user_email,
+  );
 
   $subject = 'Reminder: You have pending groups to approve';
 
@@ -77,10 +69,9 @@ function custom_email_send_pending_alert_to_hub($user, $initiatives) {
 
   $message .= '<p>Thanks,<br/>Transition Network</p>';
 
-  if(get_environment() === 'production') {
+  if (get_environment() === 'production') {
+    //dont send cron mail in dev environments
     wp_mail( $to, $subject, $message);
-  } else {
-    // wp_mail( 'mark@benewith.com', $subject, $message);
   }
 }
 
@@ -112,11 +103,7 @@ function custom_email_send_access_request_to_hub($user_id) {
     $body .= '<p>Please contact the user<p>';
     $body .= '<p>Best Wishes,<br/>Transition Network</p>';
 
-    if(get_environment() === 'production') {
-      wp_mail( $email_addresses, $subject, $body);
-    } else {
-      wp_mail( 'mark@benewith.com', $subject, $message);
-    }
+    wp_mail( $email_addresses, $subject, $body);
 
     return true;
   }
@@ -222,7 +209,7 @@ function custom_email_created_post($post_id, $type) {
   
   $subject = 'A new ' . $type . ' has been created for the ' . $hub->name . ' hub';
   
-  $message = 'Please sign into <a href="' . home_url() . '">' . get_bloginfo('name') . ' and browse to your dashboard for further information.';
+  $message = 'Please sign into <a href="' . home_url('/account#nav-initiative-admin/') . '">' . get_bloginfo('name') . ' to manage your groups.</a>';
 
   wp_mail( $to, $subject, $message);
 
@@ -293,14 +280,14 @@ function check_pending_groups() {
   }
 }
 
-function disabling_emails( $args ){
-  if(get_environment() !== 'production') {
+function filter_dev_emails($args) {
+  if(get_environment() === 'production') {
+  } else {
     $args['to'] = 'mark@benewith.com';
-  }
-
+  } 
   return $args;
 }
-add_filter('wp_mail','disabling_emails', 10,1);
+add_filter( 'wp_mail', 'filter_dev_emails');
 
 function custom_email_send_transactional_email($email_id, $email_addresses, $language = null) {
   $subject = get_field('subject', $email_id);

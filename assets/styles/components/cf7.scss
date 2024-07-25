@@ -17,6 +17,12 @@
   }
 }
 
+body.user-role-initiative {
+  .wpcf7-form .your-subject {
+    display: none;
+  }
+}
+
 .grecaptcha-badge {
   display: none;
 }

@@ -19,12 +19,6 @@
                 </div>
               </div>
 
-              <h2><?php _e('Summary', 'tofino'); ?></h2>
-              <div id="healthcheck-bar"></div>
-                <div id="graph-loading-wrapper">
-                <div class="graph-loading"><div class="lds-dual-ring"></div></div>
-              </div>
-
               <?php
               $alphas = range('A', 'Z');
               $fields = get_field_objects();
@@ -43,9 +37,9 @@
                           $question_num = $key + 1;
                           $choice = get_field($group . '_' . $sub_field['name']);
                           
-                          echo '<div class="item choice-' . $choice . '">';
+                          echo '<div class="item healthcheck-choice choice-' . $choice . '">';
                           echo '<div><label>' . $question_num . ': '. $sub_field['label'].'</label></div>';
-                          echo '<div><span class="response">' . $sub_field['choices'][$choice] . '</span></div>';
+                          echo '<div><span class="response">' . $sub_field['choices'][$choice] . ' [' . $choice . ']' . '</span></div>';
                           echo '</div>';
                         }
                       } ?>

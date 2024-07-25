@@ -53,7 +53,7 @@ $tofino_includes = [
   "src/theme-options/theme-tracker.php",
   "src/theme-options/dashboard-widget.php",
   "src/ajax/get-markers.php",
-  "src/ajax/graph-requests.php",
+  // "src/ajax/graph-requests.php",
   "src/ajax/file-requests.php",
   "src/custom/admin-tables.php",
   "src/custom/acf-save.php",
@@ -63,6 +63,7 @@ $tofino_includes = [
   "src/custom/controller_trainers.php",
   "src/custom/login.php",
   "src/custom/ma_co_authors.php",
+  "src/custom/generate_login_token.php",
   "src/custom/api-endpoints/helpers.php",
   "src/custom/api-endpoints/initiatives.php",
   "src/custom/api-endpoints/initiatives_murmation.php",
@@ -73,7 +74,9 @@ $tofino_includes = [
   "src/custom/emails/emails.php",
   "src/custom/emails/retention-email-content.php",
   "src/custom/emails/cron.php",
-  // "src/custom/emails/retention-emailing.php",
+  "src/custom/mailchimp-api.php",
+  "src/xinc-events/events.php"
+  // "src/dev-machines/export-author-emails-by-hub.php",
 ];
 
 foreach ($tofino_includes as $file) {
@@ -136,7 +139,7 @@ function missing_dist_error_notice() {
   <?php
 }
 
-function dd($string)
+function diedump($string)
 {
   die(var_dump($string));
 }
@@ -157,6 +160,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'error_code';
   $vars[] = 'updated';
   $vars[] = 'deleted';
+  $vars[] = 'promoted';
   $vars[] = 'failed';
   $vars[] = 'added';
   $vars[] = 'hub_id';
@@ -165,13 +169,16 @@ function custom_query_vars_filter($vars)
   $vars[] = 'edited_note';
   $vars[] = 'added_note';
   $vars[] = 'source';
+  $vars[] = 'step';
 
   $vars[] = 'hub_name';
   $vars[] = 'type';
   $vars[] = 'search';
   $vars[] = 'country';
   $vars[] = 'training';
+  $vars[] = 'show_recent';
   $vars[] = 'last_mail_event';
+  $vars[] = 'sort_by';
   
   //api endpoints
   $vars[] = 'per_page';
@@ -245,13 +252,10 @@ function get_latest_healthcheck($post = 0)
   }
 }
 
-function get_user_hub_id($user_id)
-{
-  return get_term_by('slug', get_user_hub_slug($user_id), 'hub')->term_id;
-}
-
 function get_user_hub_slug($user_id) {
-  return get_usermeta($user_id, 'hub', true);
+  $hub_id = get_user_meta( $user_id, 'hub_user')[0];
+  $hub = get_term_by('id', $hub_id, 'hub');
+  return $hub->slug;
 }
 
 function get_hub_users($hub_slug)
@@ -270,7 +274,8 @@ function get_hub_users($hub_slug)
 
 function get_hub_by_id($id)
 {
-  return get_term($id, 'hub')->name;
+  var_dump($id);
+  return get_term_by('term_id', $id, 'hub')->name;
 }
 
 
@@ -327,10 +332,6 @@ function wpse23007_redirect()
 }
 add_action('init', 'wpse23007_redirect');
 
-if (function_exists('acf_add_options_page')) {
-  acf_add_options_page();
-}
-
 // set default hub value to no-hub when adding initiative
 function set_tax_default($field) {
   global $post;
@@ -352,10 +353,10 @@ function process_post_requests() {
       }
     }
 
-    if(array_key_exists('authors', $_POST)) {
+    if(array_key_exists('update_group_author_id', $_POST)) {
       $args = array(
         'ID' => $_POST['post_id'],
-        'post_author' => $_POST['authors']
+        'post_author' => $_POST['update_group_author_id']
       );
       wp_update_post($args);
       wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));
@@ -365,9 +366,32 @@ function process_post_requests() {
     if(array_key_exists('unpublish', $_POST)) {
       $args = array(
         'ID' => $_POST['unpublish'],
-        'post_status' => 'draft'
+        'post_status' => 'pending'
       );
       wp_update_post($args);
+    }
+
+    if(array_key_exists('publish', $_POST)) {
+      $args = array(
+        'ID' => $_POST['publish'],
+        'post_status' => 'publish'
+      );
+      //keep record of who last published
+      add_post_meta( $_POST['publish'], 'last_published_by', get_current_user_id());
+      
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'publish', home_url('account')));
+      exit;
+    }
+
+    if(array_key_exists('trash_group_id', $_POST)) {
+      $args = array(
+        'ID' => $_POST['trash_group_id'],
+        'post_status' => 'trash'
+      );
+      wp_update_post($args);
+      wp_safe_redirect(add_query_arg('updated', 'trash', home_url('account')));
+      exit;
     }
 
     //hub access
@@ -501,4 +525,22 @@ function is_user_trainer_admin() {
   }
 
   return false;
+}
+
+function adding_custom_meta_boxes( $post ) {
+    add_meta_box( 
+        'trainer-info',
+        __( 'Trainer Created' ),
+        'render_trainer_meta_box',
+        'trainers',
+        'normal',
+        'default'
+    );
+}
+add_action( 'add_meta_boxes_trainers', 'adding_custom_meta_boxes' );
+
+function render_trainer_meta_box($post) {
+  ?>
+  <?php echo get_the_date(); ?>
+  <?php
 }
