@@ -1,10 +1,14 @@
 //modifications to description wysiwig editor
 .acf-field[data-key=field_638f5611b310a] {
-  #mceu_60, //strikethrough
-  #mceu_63, //align left
-  #mceu_64, //align center
-  #mceu_65, //align right
-  #mceu_68 { //link
-    display: none;
+  .mce-container.mce-flow-layout-item.mce-first.mce-last.mce-btn-group {
+    .mce-btn:has([type=button]) {
+      &:has(.mce-i-strikethrough),
+      &:has(.mce-i-alignleft),
+      &:has(.mce-i-alignright),
+      &:has(.mce-i-aligncenter),
+      &:has(.mce-i-link) {
+        display: none;
+      }
+    }
   }
 }
