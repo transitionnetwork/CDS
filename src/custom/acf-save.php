@@ -126,3 +126,12 @@ function validation_group_description( $valid, $value, $field, $input_name ) {
 }
 
 add_filter('acf/validate_value/name=description', 'validation_group_description', 10, 4);
+
+function amend_description_buttons( $field ) { 
+  if($field['type'] == 'wysiwyg') {
+    // var_dump($field);
+    // die();
+  }
+  return $field;
+}
+add_filter( 'acf/get_valid_field', 'amend_description_buttons');

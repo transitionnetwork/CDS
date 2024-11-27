@@ -1,0 +1,10 @@
+//modifications to description wysiwig editor
+.acf-field[data-key=field_638f5611b310a] {
+  #mceu_60-button, //strikethrough
+  #mceu_63-button, //align left
+  #mceu_64-button, //align center
+  #mceu_65-button, //align right
+  #mceu_68-button { //link
+    display: none;
+  }
+}
