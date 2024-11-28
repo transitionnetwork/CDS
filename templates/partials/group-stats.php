@@ -62,7 +62,8 @@ foreach($groups as $group) {
     <?php if($args['view'] === 'list') { ?>
       <?php $countries = get_terms(array(
         'taxonomy' => 'country',
-        'hide_empty' => true
+        'hide_empty' => true,
+        'post_type' => 'initiatives'
       )); ?>
       <p>Groups are active in <strong><?php echo count($countries); ?> countries</strong></p>
     <?php } ?>
