@@ -74,6 +74,7 @@ $tofino_includes = [
   "src/custom/emails/emails.php",
   "src/custom/emails/retention-email-content.php",
   "src/custom/emails/cron.php",
+  "src/custom/vive-cron.php",
   "src/custom/mailchimp-api.php",
   "src/xinc-events/events.php"
   // "src/dev-machines/export-author-emails-by-hub.php",
