@@ -24,6 +24,12 @@
               <em>Last Updated: <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?></em>
             </div>
 
+            <?php if(get_post_meta( $post->ID, 'vive', true )) { ?>
+              <div>
+                <a class="btn-primary btn-sm" href="https://vive.transitiontogether.org.uk/s/transition-together/" target="_blank">Vive</a>
+              </div>
+            <?php } ?>
+
             <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
               <?php $published_by_id = (int)get_post_meta( $post->ID, 'last_published_by', true); ?>
               <?php if($published_by_id) { ?>
