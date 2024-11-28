@@ -456,7 +456,8 @@ if (!is_admin()) {
 }
 
 function get_environment() {
-  if(strpos(get_site_url(), 'transitiongroups.org') !== false) {
+  if((strpos(get_site_url(), 'transitiongroups.org') !== false) || 
+  (strpos(get_site_url(), 'maps.transitionnetwork.org') !== false)) {
     return 'production';
   }
   

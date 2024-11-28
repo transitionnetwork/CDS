@@ -30,5 +30,5 @@
 </section>
 
 
-<iframe style="display: block; max-width: 100%; max-height: 6270px;" src="https://transitiongroups.org/map/?hub_name=croatia" width="100%" height="550px" frameborder="0" scrolling="yes" class="iframe-class" allow="geolocation 'src'"></iframe>
+<iframe style="display: block; max-width: 100%; max-height: 6270px;" src="https://maps.transitionnetwork.org/map/?hub_name=croatia" width="100%" height="550px" frameborder="0" scrolling="yes" class="iframe-class" allow="geolocation 'src'"></iframe>
   
