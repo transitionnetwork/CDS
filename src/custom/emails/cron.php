@@ -93,6 +93,9 @@ function email_inactive_authors() {
   
     foreach($posts as $post) {
       custom_email_autologin_reminder_email($post->ID);
+
+      //leave this in here to prevent spamming our users
+      update_post_meta( $post->ID, 'last_mail_date', date('Y-m-d H:i:s'));
     }
   }
 

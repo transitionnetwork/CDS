@@ -11,7 +11,6 @@ function process_mailgun_endpoint(WP_REST_Request $request) {
   $body = $request->get_body();
   $body = json_decode($body, TRUE);
 
-  
   $query_params = $request->get_query_params();
   $event_type = array_key_first($query_params);
   
