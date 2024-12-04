@@ -1,5 +1,4 @@
 <?php get_template_part('templates/partials/map-display'); ?>
-<?php var_dump(get_environment()); ?>
 
 <main>
   <div class="container-fluid">
