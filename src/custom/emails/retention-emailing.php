@@ -1,5 +1,4 @@
 <?php
-
 function retention_emailing_get_authors() {
   $args = array(
     'post_type' => 'initiatives',
