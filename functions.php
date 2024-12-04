@@ -23,8 +23,6 @@ ob_start();
  *
  */
 $tofino_includes = [
-  // 'src/data-tables/contact-form-data.php',
-  // "src/forms/contact-form.php",
   "src/lib/nav-walker.php",
   "src/lib/init.php",
   "src/lib/assets.php",

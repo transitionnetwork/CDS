@@ -32,13 +32,13 @@
 <?php if(array_key_exists('ret_emails', $_POST)) {
   switch($_POST['ret_emails']) {
     case 'build' :
-      retention_emailing_get_authors();
+      // retention_emailing_get_authors();
       break;
     case 'send' :
-      retention_emailing_send_emails();
+      // retention_emailing_send_emails();
       break;
     case 'bounce' :
-      retention_save_bounce_emails();
+      // retention_save_bounce_emails();
       break;
   }
 } ?>
