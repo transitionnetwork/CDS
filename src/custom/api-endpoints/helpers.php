@@ -28,6 +28,11 @@ function endpoint_add_custom_routes() {
     'methods' => 'GET',
     'callback' => 'endpoint_get_groups',
   ));
+
+  register_rest_route( 'cds/v1', '/group-totals', array(
+    'methods' => 'GET',
+    'callback' => 'endpoint_get_group_totals',
+  ));
   
   register_rest_route( 'cds/v1', '/group-distance', array(
     'methods' => 'GET',
