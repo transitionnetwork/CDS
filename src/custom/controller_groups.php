@@ -72,7 +72,7 @@ function get_group_totals($args) {
     'total_participants' => $count_number_of_participants,
     'total_projects' => $total_projects
   );
-
+  
   if(!empty($count_projects)) {
     foreach($count_projects as $project => $count) {
       if($count > 1) {
@@ -83,6 +83,9 @@ function get_group_totals($args) {
       }
     }
   }
+
+  $array_project_count = array_column($data['projects'], 'number_of_projects');
+  array_multisort($array_project_count, SORT_DESC, $data['projects']);
 
   return $data;
 }

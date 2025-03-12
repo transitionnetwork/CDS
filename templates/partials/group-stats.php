@@ -23,8 +23,6 @@ $data = get_group_totals($args);
 
   <?php $projects = $data['projects']; ?>
   <?php if(!empty($projects)) { ?>
-    <?php $array_project_count = array_column($projects, 'number_of_projects'); ?>
-    <?php array_multisort($array_project_count, SORT_DESC, $projects); ?>
     <p>
       <label>Group projects include:</label>
       <ul>
