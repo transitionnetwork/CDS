@@ -4,9 +4,9 @@
       <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
       <?php if(!is_tax()) { ?>
         <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
-        <th class="col-b"><?php _e('Tags', 'tofino'); ?></th>
       <?php } ?>
       <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
+      <th class="col-b"><?php _e('Tags', 'tofino'); ?></th>
       <?php if(is_user_logged_in()) { ?>
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
@@ -39,22 +39,21 @@
               <a href="<?php echo get_term_link($hub_term); ?>"><?php echo $hub_term->name; ?></a>
             <?php } ?>
           </td>
-          <td>
-            <?php if($topics) { ?>
-              <?php $topics_list = array(); ?>
-              <?php foreach($topics as $topic) { ?>
-                <?php $topics_list[] = $topic->name; ?>
-              <?php } ?>
-              <?php echo implode(', ', $topics_list); ?>
-            <?php } ?>
-          </td>
         <?php } ?>
         <td>
           <?php if($country_term) { ?>
             <?php echo $country_term->name; ?>
           <?php } ?>
         </td>
-
+        <td>
+          <?php if($topics) { ?>
+            <?php $topics_list = array(); ?>
+            <?php foreach($topics as $topic) { ?>
+              <?php $topics_list[] = $topic->name; ?>
+            <?php } ?>
+            <?php echo implode(', ', $topics_list); ?>
+          <?php } ?>
+        </td>
         <?php if(is_user_logged_in()) { ?>
           <td>
             <?php if(can_view_healthcheck($post)) { ?>

@@ -98,7 +98,7 @@
         </aside>
       </div>
 
-      <div class="col-12">
+      <div class="col-12" id="hub-filter">
 
         <h2>Groups</h2>
 
@@ -109,12 +109,26 @@
             </a>
           </p>
         <?php } ?>
+
+        <label>Filter by Tag</label>
+        <?php $topic_selected = get_query_var('topic'); ?>
+        <form action="#hub-filter" method="GET" class="mt-2 mb-4">
+          <select name="topic" onchange="this.form.submit()">
+            <option value="">Any</a>
+            <?php $topics = get_terms('topic'); ?>
+            <?php foreach($topics as $topic) { ?>
+              <?php $selected = ($topic_selected === $topic->slug) ? 'selected' : ''; ?>
+              <option value="<?php echo $topic->slug; ?>" <?php echo $selected; ?>><?php echo $topic->name; ?></option>
+            <?php } ?>
+          </select>
+        </form>
         
         <?php $args = array(
           'post_type' => 'initiatives',
           'fields' => 'ids',
           'posts_per_page' => -1,
           'tax_query' => array(
+            'AND',
             array(
               'taxonomy' => 'hub',
               'field' => 'term_id',
@@ -122,6 +136,10 @@
             )
           )
         ); 
+
+        if(get_query_var('topic')) {
+          $args['tax_query'][] = array('taxonomy' => 'topic', 'field' => 'slug', 'terms' => get_query_var('topic'));
+        }
 
         if(get_query_var('sort_by') === 'created') {
           $args['orderby'] = 'post_date';
