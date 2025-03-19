@@ -4,6 +4,7 @@
       <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
       <?php if(!is_tax()) { ?>
         <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
+        <th class="col-b"><?php _e('Tags', 'tofino'); ?></th>
       <?php } ?>
       <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
       <?php if(is_user_logged_in()) { ?>
@@ -21,6 +22,7 @@
       <?php $post = get_post($post); ?>
       <?php $country_term = get_the_terms($post, 'country')[0]; ?>
       <?php $hub_term = get_the_terms($post, 'hub')[0]; ?>
+      <?php $topics = get_the_terms($post, 'topic'); ?>
       
       <tr>
         <td>
@@ -35,6 +37,15 @@
           <td>
             <?php if($hub_term) { ?>
               <a href="<?php echo get_term_link($hub_term); ?>"><?php echo $hub_term->name; ?></a>
+            <?php } ?>
+          </td>
+          <td>
+            <?php if($topics) { ?>
+              <?php $topics_list = array(); ?>
+              <?php foreach($topics as $topic) { ?>
+                <?php $topics_list[] = $topic->name; ?>
+              <?php } ?>
+              <?php echo implode(', ', $topics_list); ?>
             <?php } ?>
           </td>
         <?php } ?>

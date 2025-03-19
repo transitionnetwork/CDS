@@ -20,6 +20,17 @@
     </div>
   <?php } ?>
   
+  <?php if($topics) { ?>
+    <?php $topics_list = array(); ?>
+    <?php foreach($topics as $topic) { ?>
+      <?php $topics_list[] = '<li>' . $topic->name . '</li>'; ?>
+    <?php } ?>
+    <div class="mb-3">
+      <label>Tags</label>
+      <ul><?php echo implode('', $topics_list); ?></ul>
+    </div>
+  <?php } ?>
+  
   <?php $detail = get_field('group_detail'); ?>
   <?php if($detail) { ?>
     <?php $fields = array(
