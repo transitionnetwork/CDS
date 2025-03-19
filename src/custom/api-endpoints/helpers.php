@@ -184,6 +184,10 @@ function endpoint_get_params_args($request) {
 		$args['offset'] = 0;
 	}
 
+  if(!empty($request['orderby'])) {
+    $args['orderby'] = $request['orderby'];
+  }
+
   $tax_queries = array();
   
   if(!empty($request['hub_name'])) {
