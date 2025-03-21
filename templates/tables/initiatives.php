@@ -22,7 +22,7 @@
       <?php $post = get_post($post); ?>
       <?php $country_term = get_the_terms($post, 'country')[0]; ?>
       <?php $hub_term = get_the_terms($post, 'hub')[0]; ?>
-      <?php $topics = get_the_terms($post, 'topic'); ?>
+      <?php $tags = get_group_tags($post); ?>
       
       <tr>
         <td>
@@ -46,12 +46,8 @@
           <?php } ?>
         </td>
         <td>
-          <?php if($topics) { ?>
-            <?php $topics_list = array(); ?>
-            <?php foreach($topics as $topic) { ?>
-              <?php $topics_list[] = $topic->name; ?>
-            <?php } ?>
-            <?php echo implode(', ', $topics_list); ?>
+          <?php if($tags) { ?>
+            <?php echo implode(', ', $tags); ?>
           <?php } ?>
         </td>
         <?php if(is_user_logged_in()) { ?>

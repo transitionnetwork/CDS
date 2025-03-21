@@ -111,15 +111,11 @@
         <?php } ?>
 
         <label>Filter by Tag</label>
-        <?php $topic_selected = get_query_var('topic'); ?>
+        <?php $tag_selected = get_group_tags('tag'); ?>
         <form action="#hub-filter" method="GET" class="mt-2 mb-4">
           <select name="topic" onchange="this.form.submit()">
             <option value="">Any</a>
-            <?php $topics = get_terms('topic'); ?>
-            <?php foreach($topics as $topic) { ?>
-              <?php $selected = ($topic_selected === $topic->slug) ? 'selected' : ''; ?>
-              <option value="<?php echo $topic->slug; ?>" <?php echo $selected; ?>><?php echo $topic->name; ?></option>
-            <?php } ?>
+
           </select>
         </form>
         

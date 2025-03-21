@@ -1,5 +1,4 @@
 <?php $hubs = get_the_terms($post, 'hub'); ?>
-<?php $topics = get_the_terms($post, 'topic'); ?>
 
 <div class="panel">
   <?php $logo = get_field('logo'); ?>
@@ -20,16 +19,18 @@
     </div>
   <?php } ?>
   
-  <?php if($topics) { ?>
-    <?php $topics_list = array(); ?>
-    <?php foreach($topics as $topic) { ?>
-      <?php $topics_list[] = '<li>' . $topic->name . '</li>'; ?>
-    <?php } ?>
+  <?php $tags = get_group_tags($post); ?>
+  <?php if($tags) { ?>
     <div class="mb-3">
       <label>Tags</label>
-      <ul><?php echo implode('', $topics_list); ?></ul>
+      <ul>
+        <?php foreach($tags as $tag) { ?>
+          <li><?php echo $tag; ?></li>
+        <?php } ?>
+      </ul>
     </div>
   <?php } ?>
+
   
   <?php $detail = get_field('group_detail'); ?>
   <?php if($detail) { ?>

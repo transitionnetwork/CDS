@@ -16,10 +16,10 @@ $init_query = new WP_Query($args); ?>
 
 <?php session_start();
 
- $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
+ $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $tag_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
 
 
-$export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "Topics", "Hub Email", "Address", "City", "Province", "Post Code", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube", "Number of people organising and running", "Number of participants", "More information on these numbers", "Foundation date", "Paid roles?", "Legal structure", "Legal structure detail", "How active?", "Live projects", "Live project details.."];
+$export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "tags", "Hub Email", "Address", "City", "Province", "Post Code", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube", "Number of people organising and running", "Number of participants", "More information on these numbers", "Foundation date", "Paid roles?", "Legal structure", "Legal structure detail", "How active?", "Live projects", "Live project details.."];
 
 while ($init_query->have_posts()) : $init_query->the_post();
 
@@ -47,16 +47,11 @@ while ($init_query->have_posts()) : $init_query->the_post();
     $latest_healthcheck = $latest_healthcheck_post[0]->post_date;
   }
 
-  $topics = get_the_terms($post, 'topic');
-  $topic_output = '';
+  $tags = get_group_tags($post); 
+  $tag_output = '';
   
-  if($topics) {
-    $topic_list = array();
-    foreach($topics as $topic) {
-      $topic_list[] = $topic->name;
-    }
-
-    $topic_output = implode(', ', $topic_list);
+  if($tags) {
+    $tag_output = implode(', ', $tags);
   }
 
   $email = get_field('email', $post->ID);
@@ -92,7 +87,7 @@ while ($init_query->have_posts()) : $init_query->the_post();
   
   $live_projects_detail = get_field('group_detail_live_projects_detail');
 
-  $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $topic_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube, $no_people, $no_participants, $no_people_more_info, $date_founded, $paid_roles, $legal_structure, $legal_structure_detail, $active, $live_projects, $live_projects_detail];
+  $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $tag_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube, $no_people, $no_participants, $no_people_more_info, $date_founded, $paid_roles, $legal_structure, $legal_structure_detail, $active, $live_projects, $live_projects_detail];
 
 
 endwhile; ?>

@@ -17,7 +17,7 @@ $column_titles = array(
   'ID',
   'Name',
   'Hub',
-  'Topics',
+  'Tags',
   'Country',
   'Location',
   'Description',
@@ -51,17 +51,12 @@ foreach($posts as $key => $post) {
     $country = null;
   }
 
-  $topics = get_the_terms($post, 'topic');
-  if($topics) {
-    $topic_names = [];
-    foreach ($topics as $topic) {
-      $topic_names[] = $topic->name;
-    }
-    $topic_names = implode(', ', $topic_names);
-  } else {
-    $topic_names = null;
-  }
 
+  $tags = get_group_tags($post); ;
+  if($tags) {
+    $tags = implode(', ', $tags);
+  }
+  
   //Location
   $location = null;
   if (get_field('address_line_1')) {
@@ -99,7 +94,7 @@ foreach($posts as $key => $post) {
     get_the_ID(),
     get_the_title(),
     $hub,
-    $topic_names,
+    $tags,
     $country,
     trim($location),
     strip_tags(get_field('description', $post), '<p><em><strong>'),
