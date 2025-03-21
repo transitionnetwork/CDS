@@ -47,8 +47,12 @@
         </td>
         <td>
           <?php if($tags) { ?>
-            <?php echo implode(', ', $tags); ?>
+            <?php $labels = []; ?>
+            <?php foreach($tags as $tag) {
+              $labels[] = $tag['label'];
+            } ?>
           <?php } ?>
+          <?php echo implode(', ', $labels); ?>
         </td>
         <?php if(is_user_logged_in()) { ?>
           <td>

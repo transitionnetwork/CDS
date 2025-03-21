@@ -109,13 +109,19 @@
             </a>
           </p>
         <?php } ?>
-
+        
+        <?php $acf_field = get_field_object('field_64997d90a9aa1', false); ?>
+        <?php $tags = $acf_field['choices']; ?>
+        
         <label>Filter by Tag</label>
-        <?php $tag_selected = get_group_tags('tag'); ?>
+        <?php $tag_selected = get_query_var('topic'); ?>
         <form action="#hub-filter" method="GET" class="mt-2 mb-4">
           <select name="topic" onchange="this.form.submit()">
             <option value="">Any</a>
-
+            <?php foreach($tags as $value => $label) { ?>
+              <?php $selected = ($tag_selected === $value) ? 'selected' : ''; ?>
+              <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $label; ?></option>
+            <?php } ?>
           </select>
         </form>
         
@@ -134,7 +140,7 @@
         ); 
 
         if(get_query_var('topic')) {
-          $args['tax_query'][] = array('taxonomy' => 'topic', 'field' => 'slug', 'terms' => get_query_var('topic'));
+          $args['meta_query'][] = array('key' => 'group_detail_live_projects', 'compare' => 'LIKE', 'value' => get_query_var('topic'));
         }
 
         if(get_query_var('sort_by') === 'created') {

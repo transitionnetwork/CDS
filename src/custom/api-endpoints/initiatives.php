@@ -18,8 +18,17 @@ function get_group_data($post) {
     'contact' => endpoint_get_contact($post),
     'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
   );
+
+  $tags = get_group_tags($post); 
+  $tag_output = array();
   
-  $data['tags'] = get_group_tags($post);
+  if($tags) {
+    foreach($tags as $tag) {
+      $tag_output[] = $tag['label'];
+    }
+  }
+  
+  $data['tags'] = $tag_output;
   
   return $data;
 }
@@ -54,7 +63,15 @@ function get_full_group_data($post) {
     'contact_youtube' => get_field('youtube', $post),
   );
 
-  $data['tags'] = get_group_tags($post);
+  $tags = get_group_tags($post); 
+  $tag_output = '';
+  
+  if($tags) {
+    foreach($tags as $tag) {
+      $tag_output[] = $tag['label'];
+    }
+  }
+  $data['tags'] = $tag_output;
   
   return $data;
 }
@@ -102,7 +119,13 @@ function get_groups_from_request($request) {
 }
 
 function get_group_tags($post) {
-  $tags = array('Transition Group');
+  $tags = array(
+    array(
+     'value' => 'transition-group',
+     'label' => 'Transition Group'
+    )
+  );
+  
   $topics = get_field('group_detail_live_projects', $post);
   if($topics) {
     foreach($topics as $item) {

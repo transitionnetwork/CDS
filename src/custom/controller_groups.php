@@ -48,10 +48,10 @@ function get_group_totals($args) {
     $live_projects = get_field('group_detail_live_projects', $group);
     if($live_projects) {
       foreach($live_projects as $project) {
-        if(array_key_exists($project, $count_projects)) {
-          $count_projects[$project] = $count_projects[$project] + 1; 
+        if(array_key_exists($project['label'], $count_projects)) {
+          $count_projects[$project['label']] = $count_projects[$project['label']] + 1; 
         } else {
-          $count_projects[$project] = 0; 
+          $count_projects[$project['label']] = 0; 
         }
         $total_projects ++;
       }
@@ -75,17 +75,18 @@ function get_group_totals($args) {
   
   if(!empty($count_projects)) {
     foreach($count_projects as $project => $count) {
-      if($count > 1) {
+      if($count > 0) {
         $data['projects'][] = array(
           'name' => $project,
           'number_of_projects' => $count
         );
       }
     }
+
+    $array_project_count = array_column($data['projects'], 'number_of_projects');
+    array_multisort($array_project_count, SORT_DESC, $data['projects']);
   }
 
-  $array_project_count = array_column($data['projects'], 'number_of_projects');
-  array_multisort($array_project_count, SORT_DESC, $data['projects']);
 
   return $data;
 }

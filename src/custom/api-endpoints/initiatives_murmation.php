@@ -112,7 +112,17 @@ function get_group_data_murmurations($post) {
     $data['image'] = $logo['sizes']['large'];
   }
 
-  $data['tags'] = get_group_tags($post);
+  $tags = get_group_tags($post); 
+  $tag_output = '';
+  
+  if($tags) {
+    foreach($tags as $tag) {
+      $tag_output[] = $tag['label'];
+    }
+    $tag_output = implode(', ', $tag_output);
+  }
+
+  $data['tags'] = $tag_output;
 
   $data['metadata'] = array(
     'sources' => array(

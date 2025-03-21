@@ -18,18 +18,6 @@
       <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
     </div>
   <?php } ?>
-  
-  <?php $tags = get_group_tags($post); ?>
-  <?php if($tags) { ?>
-    <div class="mb-3">
-      <label>Tags</label>
-      <ul>
-        <?php foreach($tags as $tag) { ?>
-          <li><?php echo $tag; ?></li>
-        <?php } ?>
-      </ul>
-    </div>
-  <?php } ?>
 
   
   <?php $detail = get_field('group_detail'); ?>
@@ -58,7 +46,7 @@
           <?php if(is_array($acf_value)) { ?>
             <ul>
               <?php foreach($acf_value as $item) { ?>
-                <li><?php echo $item; ?></li>
+                <li><?php echo $item['label']; ?></li>
               <?php } ?>
             </ul>
           <?php } else {

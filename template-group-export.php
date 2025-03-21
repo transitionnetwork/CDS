@@ -52,9 +52,14 @@ foreach($posts as $key => $post) {
   }
 
 
-  $tags = get_group_tags($post); ;
+  $tags = get_group_tags($post); 
+  $tag_output = '';
+  
   if($tags) {
-    $tags = implode(', ', $tags);
+    foreach($tags as $tag) {
+      $tag_output[] = $tag['label'];
+    }
+    $tag_output = implode(', ', $tag_output);
   }
   
   //Location
@@ -94,7 +99,7 @@ foreach($posts as $key => $post) {
     get_the_ID(),
     get_the_title(),
     $hub,
-    $tags,
+    $tag_output,
     $country,
     trim($location),
     strip_tags(get_field('description', $post), '<p><em><strong>'),

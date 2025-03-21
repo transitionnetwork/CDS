@@ -51,7 +51,10 @@ while ($init_query->have_posts()) : $init_query->the_post();
   $tag_output = '';
   
   if($tags) {
-    $tag_output = implode(', ', $tags);
+    foreach($tags as $tag) {
+      $tag_output[] = $tag['label'];
+    }
+    $tag_output = implode(', ', $tag_output);
   }
 
   $email = get_field('email', $post->ID);
@@ -80,7 +83,7 @@ while ($init_query->have_posts()) : $init_query->the_post();
   if($live_projects) { 
     $project_output = [];
     foreach ($live_projects as $project) {
-      $project_output[] = $project;
+      $project_output[] = $project['label'];
     }
     $live_projects = implode(' | ', $project_output);
   }

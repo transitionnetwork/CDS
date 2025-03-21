@@ -27,7 +27,7 @@ $data = get_group_totals($args);
       <label>Group projects include:</label>
       <ul>
         <?php foreach($projects as $project) { ?>
-          <?php if($project['number_of_projects'] > 1) { ?>
+          <?php if($project['number_of_projects'] > 0) { ?>
             <li><?php echo $project['name']; ?>: <strong><?php echo $project['number_of_projects']; ?></strong> (<?php echo round($project['number_of_projects'] / $data['total_projects'] * 100); ?>%)</li>
           <?php } ?>
         <?php } ?>
