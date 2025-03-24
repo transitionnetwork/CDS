@@ -6,7 +6,7 @@
         <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
       <?php } ?>
       <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
-      <th class="col-b"><?php _e('Tags', 'tofino'); ?></th>
+      <th class="col-b"><?php _e('Live Projects', 'tofino'); ?></th>
       <?php if(is_user_logged_in()) { ?>
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>

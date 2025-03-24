@@ -113,7 +113,7 @@
         <?php $acf_field = get_field_object('field_64997d90a9aa1', false); ?>
         <?php $tags = $acf_field['choices']; ?>
         
-        <label>Filter by Tag</label>
+        <label>Filter by Live Projects</label>
         <?php $tag_selected = get_query_var('topic'); ?>
         <form action="#hub-filter" method="GET" class="mt-2 mb-4">
           <select name="topic" onchange="this.form.submit()">
