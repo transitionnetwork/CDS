@@ -8,9 +8,13 @@
     <li><a class="btn btn-outline" href="<?php echo parse_post_link(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a></li>
   <?php } else { ?>
     <li>
-      <?php _e('To add a group or hub please', 'tofino'); ?><br/>
+      <div class="mb-2">
+        <?php _e('To add a group or hub please:', 'tofino'); ?><br/>
+      </div>
       <a class="btn btn-outline" href="<?php echo parse_post_link(459); ?>"><?php echo svg('key'); ?><?php _e('Sign in', 'tofino'); ?></a>
-      <?php _e('or', 'tofino'); ?>
+      <span class="mx-1">
+        <?php _e('or', 'tofino'); ?>
+      </span>
       <a class="btn btn-outline" href="<?php echo parse_post_link(460); ?>"><?php echo svg('key'); ?><?php _e('Register', 'tofino'); ?></a>
     </li>
   <?php } ?>

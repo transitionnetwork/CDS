@@ -27,6 +27,7 @@
     }
 
     &.button {
+      @extend .btn;
       @extend .btn-primary;
     }
   }
