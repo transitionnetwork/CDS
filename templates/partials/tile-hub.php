@@ -10,7 +10,7 @@
   <div class="hub-item">
     <a class="thumbnail-bg" href="<?php echo get_term_link($hub); ?>" style="background-image: url(<?php echo $url; ?>)"></a>
     <div class="content">
-      <h3><a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a></h3>
+      <h3 class="h2 mt-1"><a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a></h3>
       
       <?php $status = get_field('status', $term); ?>
       <?php $status_color = get_status_tag($status); ?>

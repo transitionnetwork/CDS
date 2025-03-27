@@ -4,12 +4,12 @@
   <div class="container-fluid">
 
     <div class="row justify-content-lg-between">
-      <div class="col-12 col-lg-3 order-lg-2">
+      <div class="col-12 col-xl-3 order-xl-2">
         <?php get_template_part('templates/partials/group-list-sidebar'); ?>
         <?php get_template_part('templates/partials/group-stats', null, array('view' => 'list')); ?>
       </div>
       
-      <div class="col-12 col-lg-9 order-lg-1">
+      <div class="col-12 col-xl-9 order-xl-1">
         <?php if(get_query_var('added_note')) { ?>
           <div class="alert top alert-success">
             <?php _e('Your note has been added', 'tofino'); ?>

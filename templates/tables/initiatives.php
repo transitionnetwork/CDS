@@ -34,7 +34,7 @@
       <tr class="group-row">
         <tr>
           <td>
-            <a href="<?php the_permalink(); ?>"><span class="group-title"><?php the_title(); ?></span></a>
+            <a href="<?php the_permalink(); ?>"><span class="h3"><?php the_title(); ?></span></a>
             
             <div class="status">
               <?php $pending_message = __('Not published', 'tofino'); ?>

@@ -5,7 +5,7 @@
     <a class="thumbnail-bg" href="<?php echo get_the_permalink(); ?>" style="background-image: url(<?php echo $photo; ?>)"></a>
     
     <div class="content">
-      <h3><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+      <h3 class="h2 mt-1"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
       <?php if(is_user_trainer_admin()) {  ?>
         <p>
           <span class="btn btn-sm btn-<?php echo get_trainer_status(get_post_status())['color']; ?>"><?php echo get_trainer_status(get_post_status())['message']; ?></span>
