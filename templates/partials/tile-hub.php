@@ -23,7 +23,7 @@
         <p><?php echo get_words($hub_excerpt, 15); ?>...</p>
       <?php } ?>
         
-      <p><a href="<?php echo get_term_link($hub); ?>" class="btn btn-outline">&raquo; More</a></p>
+      <p><a href="<?php echo get_term_link($hub); ?>" class="btn btn-outline">More</a></p>
       
       <?php if(get_field('training', $term)) { ?>
         <p><span class="btn-sm btn-success"><?php _e('We Offer Training', 'tofino'); ?></span></p>

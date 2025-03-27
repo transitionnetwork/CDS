@@ -2,7 +2,7 @@
 
 // Override classes for responsive menu
 .navbar {
-  background-color: $white;
+  background-color: $brand-white;
   width: 100%;
 
   @include media-breakpoint-up(sm) {

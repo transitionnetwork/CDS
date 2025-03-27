@@ -86,7 +86,7 @@ button {
 
   &.btn-sm {
     font-size: 0.875rem;
-    padding: 0.25rem 0.375rem;
+    padding: 0.25rem 0.75rem;
   }
 }
 
@@ -106,9 +106,13 @@ button {
   color: $brand-primary;
 
   &:hover {
-    background-color: $gray-100;
+    background-color: $brand-primary;
     border-color: darken($brand-primary, 5);
-    color: darken($brand-primary, 5);
+    color: $white;
+
+    svg {
+      fill: $white;
+    }
   }
 
   svg {
@@ -201,9 +205,12 @@ main {
 }
 
 .btn {
-  border-radius: $border-radius;
   display: inline-flex;
   align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .acf-form input[type="submit"],

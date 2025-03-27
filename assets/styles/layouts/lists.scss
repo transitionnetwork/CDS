@@ -86,7 +86,7 @@ nav.pagination {
 }
 
 nav .page-numbers {
-  border-radius: $border-radius;
+  border-radius: 1.5rem;
   font-size: 1.125rem;
   @extend .pagination;
 
@@ -97,6 +97,7 @@ nav .page-numbers {
   li a,
   li span {
     color: $brand-primary;
+    padding: 0.5rem 1rem;
     @extend .page-link;
 
     &.current {

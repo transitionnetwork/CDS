@@ -19,7 +19,7 @@
 
       <p><?php echo strip_tags($summary); ?>&hellip;</p>
 
-      <p><a href="<?php echo get_the_permalink(); ?>" class="btn btn-outline">&raquo; More</a></p>
+      <p><a href="<?php echo get_the_permalink(); ?>" class="btn btn-outline">More</a></p>
 
       <?php get_template_part('templates/partials/edit-trainer-button'); ?>
       <?php get_template_part('templates/partials/form-toggle-trainer-state'); ?>
