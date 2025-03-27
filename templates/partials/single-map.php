@@ -15,11 +15,12 @@ if(get_post_type() === 'trainers') {
 } ?>
 
 
-<?php if($map && $map['markers']) { ?>
-  <div id="single-map" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $lng; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
-<?php } ?>
 
 <div class="panel">
+  <?php if($map && $map['markers']) { ?>
+    <div id="single-map" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $lng; ?>" data-zoom="<?php echo $map['zoom']; ?>"></div>
+  <?php } ?>
+  
   <?php if (get_field('address_line_1', $object)) { ?>
     <h3><?php _e('Location', 'tofino'); ?></h3>
     <?php echo get_field('address_line_1', $object); ?><br/>

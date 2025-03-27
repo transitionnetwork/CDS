@@ -1,8 +1,11 @@
 .xinc-login {
-  border: 1px solid $gray-400;
   padding: 3rem 4rem;
   border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  outline: $outline;
+  outline-offset: -1px;
   margin-top: 3rem;
+  background: $white;
 
   h1 {
     text-align: left;

@@ -2,7 +2,7 @@
 
 // Override classes for responsive menu
 .navbar {
-  background-color: $gray-100;
+  background-color: $white;
   width: 100%;
 
   @include media-breakpoint-up(sm) {
@@ -192,5 +192,23 @@
     li {
       margin: 0 0.25rem;
     }
+  }
+}
+
+.account-nav {
+  .nav-tabs {
+    border-bottom: 0;
+
+    .nav-link {
+      border: 0;
+      outline: $outline;
+      outline-offset: -1px;
+    }
+  }
+}
+
+.account-content {
+  section {
+    border-top-left-radius: 0;
   }
 }

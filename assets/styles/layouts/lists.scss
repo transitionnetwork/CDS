@@ -1,8 +1,13 @@
 .item-list {
   width: 100%;
+  background-color: $white;
+  box-shadow: $box-shadow;
+  outline: $outline;
+  outline-offset: -1px;
+  border-radius: 1rem;
   font-size: 0.875rem;
 
-  tr {
+  tr.group-row {
     border-bottom: 1px solid $gray-200;
 
     &:last-of-type {
@@ -10,9 +15,14 @@
     }
   }
 
+  span.group-title {
+    font-family: $font-header;
+    font-size: 1.25rem;
+  }
+
   td,
   th {
-    padding: 0.25rem 0.35rem;
+    padding: 1rem;
 
     .status {
       span {
@@ -81,8 +91,13 @@ nav.pagination {
 }
 
 nav .page-numbers {
-  border-radius: 0;
+  border-radius: $border-radius;
+  font-size: 1.125rem;
   @extend .pagination;
+
+  li + li {
+    margin-left: 0.5rem;
+  }
 
   li a,
   li span {
@@ -92,10 +107,15 @@ nav .page-numbers {
     &.current {
       background-color: $brand-primary;
       color: $white;
+
+      &:hover {
+        color: $white;
+      }
     }
 
     &:hover {
-      color: $brand-primary;
+      color: $white;
+      background-color: $brand-v3;
     }
   }
 }

@@ -1,5 +1,12 @@
+@font-face {
+  font-family: 'Roca Bold';
+  src: url('../fonts/Roca-Bold.woff2') format('woff2'),
+    url('../fonts/Roca-Bold.woff') format('woff');
+}
+
 body {
   font-family: $font-body;
+  background-color: $brand-white;
 }
 
 h1,
@@ -7,8 +14,13 @@ h1,
 h2,
 .h2,
 h3,
-.h3 {
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
   font-weight: bold;
+  font-family: $font-header;
 }
 
 h1,
@@ -83,8 +95,8 @@ button {
   border-color: $brand-primary;
 
   &:hover {
-    background-color: darken($brand-primary, 5);
-    border-color: darken($brand-primary, 5);
+    background-color: lighten($brand-primary, 5);
+    border-color: lighten($brand-primary, 5);
   }
 }
 
@@ -101,6 +113,46 @@ button {
 
   svg {
     fill: $brand-primary;
+  }
+}
+
+.btn-secondary {
+  background-color: $brand-v3;
+  border-color: $brand-v3;
+
+  &:hover {
+    background-color: lighten($brand-v3, 5);
+    border-color: lighten($brand-v3, 5);
+  }
+}
+
+.btn-warning {
+  background-color: $brand-tertiary;
+  border-color: $brand-tertiary;
+
+  &:hover {
+    background-color: lighten($brand-tertiary, 5);
+    border-color: lighten($brand-tertiary, 5);
+  }
+}
+
+.btn-danger {
+  background-color: $brand-secondary;
+  border-color: $brand-secondary;
+
+  &:hover {
+    background-color: lighten($brand-secondary, 5);
+    border-color: lighten($brand-secondary, 5);
+  }
+}
+
+.btn-success {
+  background-color: $brand-v3;
+  border-color: $brand-v3;
+
+  &:hover {
+    background-color: lighten($brand-v3, 5);
+    border-color: lighten($brand-v3, 5);
   }
 }
 
@@ -140,12 +192,16 @@ main {
   height: 400px;
   overflow-y: scroll;
   margin-bottom: 2rem;
-  border: 1px solid $gray-400;
+  box-shadow: $box-shadow;
+  outline: $outline;
+  outline-offset: -1px;
   padding: 2rem;
+  background: $white;
+  border-radius: $border-radius;
 }
 
 .btn {
-  border-radius: 3px;
+  border-radius: $border-radius;
   display: inline-flex;
   align-items: center;
 }
@@ -215,11 +271,13 @@ form[name="front_end_delete"] label.submit {
 
 section,
 .panel {
-  background-color: $gray-100;
-  border: 1px solid $gray-300;
+  background-color: $white;
   padding: 1.5rem;
-  border-radius: 5px;
   margin-bottom: 2rem;
+  box-shadow: $box-shadow;
+  outline: $outline;
+  outline-offset: -1px;
+  border-radius: 1rem;
 
   & > h2:first-of-type {
     margin-top: 0;

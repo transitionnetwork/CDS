@@ -57,7 +57,7 @@
       <div class="container">
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
 
-        <nav>
+        <nav class="account-nav">
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-account-details-tab" data-toggle="tab" href="#nav-account-details" role="tab" aria-controls="nav-account-details" aria-selected="true">Account Details</a>
             
@@ -83,7 +83,7 @@
           </div>
         </nav>
         
-        <div class="tab-content" id="nav-tabContent">
+        <div class="account-content tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-account-details" role="tabpanel" aria-labelledby="nav-account-details-tab">
             <?php get_template_part('/templates/panels/account-details'); ?>
           </div>

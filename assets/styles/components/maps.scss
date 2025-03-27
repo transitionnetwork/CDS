@@ -20,7 +20,7 @@
   }
 
   h5 {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -155,42 +155,42 @@
 }
 
 .marker-cluster-large {
-  background-color: rgba($brand-primary, 0.75);
+  background-color: rgba($brand-v3, 0.75);
 
   div {
-    background-color: darken($brand-primary, 5);
+    background-color: darken($brand-v3, 5);
   }
 }
 
 .marker-cluster-medium {
-  background-color: rgba(lighten($brand-primary, 5), 0.75);
+  background-color: rgba(lighten($brand-v3, 5), 0.75);
+
+  div {
+    background-color: $brand-v3;
+  }
+}
+
+.marker-cluster-small {
+  background-color: rgba(lighten($brand-v3, 10), 0.75);
+
+  div {
+    background-color: lighten($brand-v3, 5);
+  }
+}
+
+.hub-cluster {
+  background-color: rgba($brand-primary, 0.75);
 
   div {
     background-color: $brand-primary;
   }
 }
 
-.marker-cluster-small {
-  background-color: rgba(lighten($brand-primary, 10), 0.75);
-
-  div {
-    background-color: lighten($brand-primary, 5);
-  }
-}
-
-.hub-cluster {
-  background-color: rgba($black, 0.75);
-
-  div {
-    background-color: $black;
-  }
-}
-
 .trainer-cluster {
-  background-color: rgba($brand-trainer, 0.75);
+  background-color: rgba($brand-tertiary, 0.75);
 
   div {
-    background-color: $brand-trainer;
+    background-color: $brand-tertiary;
   }
 }
 

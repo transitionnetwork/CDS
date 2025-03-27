@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 col-lg-4">
+<div class="col-12 col-md-6 col-lg-6">
   <div class="trainer-item">
     <?php $photo = (get_field('general_information_trainer_photo')) ? get_field('general_information_trainer_photo')['sizes']['large'] : get_field('placeholder', 'options')['sizes']['large']; ?>
     
@@ -17,9 +17,9 @@
       $summary = strrev(implode(strrev(''), explode(strrev('</p>'), strrev($summary), 2))); //remove last </p>
       ?>
 
-      <?php echo strip_tags($summary); ?>&hellip;
+      <p><?php echo strip_tags($summary); ?>&hellip;</p>
 
-      <p class="mb-0"><a href="<?php echo get_the_permalink(); ?>">&raquo; Read More</a></p>
+      <p><a href="<?php echo get_the_permalink(); ?>" class="btn btn-outline">&raquo; More</a></p>
 
       <?php get_template_part('templates/partials/edit-trainer-button'); ?>
       <?php get_template_part('templates/partials/form-toggle-trainer-state'); ?>

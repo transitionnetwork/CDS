@@ -17,15 +17,17 @@
       <p><span class="btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
       
       <?php $hub_excerpt = strip_tags(get_field('hub_description', $term)); ?>
+
+      
       <?php if($hub_excerpt && ($hub->slug != 'japan')) { ?>
         <p><?php echo get_words($hub_excerpt, 15); ?>...</p>
       <?php } ?>
+        
+      <p><a href="<?php echo get_term_link($hub); ?>" class="btn btn-outline">&raquo; More</a></p>
       
       <?php if(get_field('training', $term)) { ?>
         <p><span class="btn-sm btn-success"><?php _e('We Offer Training', 'tofino'); ?></span></p>
       <?php } ?>
-
-      <p class="mb-0"><a href="<?php echo get_term_link($hub); ?>">&raquo; Read More</a></p>
     </div>
   </div>
 </div>

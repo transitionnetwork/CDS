@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700');
 
-$border-radius: 0;
+$border-radius: 1rem;
 
 // Hamburger Icon
 $bar-width: 1.2rem;
@@ -27,15 +27,25 @@ $socialColours:
 
 $border-radius: 5px;
 
-$brand-primary: #005e66;
-$primary: $brand-primary;
-$brand-trainer: #d3d432;
+$brand-primary: #003d5b;
+$brand-secondary: #d1495b;
+$brand-tertiary: #edae46;
+$brand-v2: #30638e;
+$brand-v3: #00798c;
+$brand-white: #fbf8ef;
 
 $events-color: #444359;
 
 $sea-blue: #a8d3e0;
-$background-light: #f8f9fa;
 
 $ink-black: #212529;
 
-$font-body: 'Roboto', sans-serif;
+$background-light: $brand-white;
+$primary: $brand-primary;
+$brand-trainer: $brand-tertiary;
+
+$font-body: 'Instrument Sans', sans-serif;
+$font-header: 'Roca Bold', serif;
+
+$box-shadow: 0 4px 6px -1px #0000001a;
+$outline:  1px solid #d1d5db;

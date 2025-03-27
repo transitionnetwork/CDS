@@ -8,8 +8,13 @@
 .trainer-item {
   flex: 0 1 100%;
   margin-bottom: $grid-gutter-width;
-  background-color: $background-light;
+  background-color: $white;
   border: 1px solid $gray-200;
+  box-shadow: $box-shadow;
+  outline: $outline;
+  outline-offset: -1px;
+  border-radius: 1rem;
+  overflow: hidden;
 
   h3 {
     font-size: 1.25rem;

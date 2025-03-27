@@ -1,4 +1,13 @@
- <?php if($init_query->have_posts()) { ?>
+<?php if (is_user_logged_in()) {
+  $num_cols = 3;
+  if(is_user_role(array('administrator', 'super_hub', 'hub'))) {
+    $num_cols = 4;
+  }
+} else {
+  $num_cols = 2;
+} ?>
+
+<?php if($init_query->have_posts()) { ?>
   <table class="item-list">
     <tr>
       <th class="col-a"><?php _e('Group', 'tofino'); ?></th>
@@ -6,7 +15,6 @@
         <th class="col-b"><?php _e('Hub', 'tofino'); ?></th>
       <?php } ?>
       <th class="col-b"><?php _e('Country', 'tofino'); ?></th>
-      <th class="col-b"><?php _e('Live Projects', 'tofino'); ?></th>
       <?php if(is_user_logged_in()) { ?>
         <th class="col-b"><?php _e('Last Healthcheck', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Updated', 'tofino'); ?></th>
@@ -16,7 +24,6 @@
         <th class="col-b"><?php _e('Last Email Date', 'tofino'); ?></th>
         <th class="col-b"><?php _e('Last Email Event', 'tofino'); ?></th>
       <?php } ?>
-      <th></th>
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $post = get_post($post); ?>
@@ -24,99 +31,70 @@
       <?php $hub_term = get_the_terms($post, 'hub')[0]; ?>
       <?php $tags = get_group_tags($post); ?>
       
-      <tr>
-        <td>
-          <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-          
-          <div class="status">
-            <?php $pending_message = __('Not published', 'tofino'); ?>
-            <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-outline btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
-          </div>
-        </td>
-        <?php if(!is_tax()) { ?>
+      <tr class="group-row">
+        <tr>
           <td>
-            <?php if($hub_term) { ?>
-              <a href="<?php echo get_term_link($hub_term); ?>"><?php echo $hub_term->name; ?></a>
-            <?php } ?>
-          </td>
-        <?php } ?>
-        <td>
-          <?php if($country_term) { ?>
-            <?php echo $country_term->name; ?>
-          <?php } ?>
-        </td>
-        <td>
-          <?php if($tags) { ?>
-            <?php $labels = []; ?>
-            <?php foreach($tags as $tag) {
-              $labels[] = $tag['label'];
-            } ?>
-          <?php } ?>
-          <?php echo implode(', ', $labels); ?>
-        </td>
-        <?php if(is_user_logged_in()) { ?>
-          <td>
-            <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_latest_healthcheck($post); ?>
-            <?php } else { ?>
-              <?php echo '-'; ?>
-            <?php } ?>
-          </td>
-          <td>
-            <?php if(can_view_healthcheck($post)) { ?>
-              <?php echo get_initiatve_age($post)['days'] . ' days'; ?>
-            <?php } ?>
-          </td>
-        <?php } ?>
-        <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-          <td>
-            <?php echo get_the_date('Y-m-d H:i:s'); ?>
-          </td>
-          <td>
-            <?php if(can_edit_hub($hub_term->term_id)) { ?>
-              <?php echo get_post_meta($post->ID, 'last_mail_date', true); ?>
-            <?php } ?>
-          </td>
-          <td>
-            <?php if(can_edit_hub($hub_term->term_id)) { ?>
-              <?php echo get_post_meta($post->ID, 'last_mail_event', true); ?>
-            <?php } ?>
-          </td>
-        <?php } ?>
-        <td class="text-right">
-          <div class="btn-group">
-            <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
-
-            <?php if(is_user_role(array('administrator', 'super_hub'))) {  ?>
-
-              <?php $current_page_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
-
-              <?php if($current_page_url === home_url() . '/') { 
-                $current_page_url .= 'search-groups';
-                //deal with redirection to homepage failing
-              } ?>
-             
-              <a class="btn btn-sm btn-secondary" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID(), 'source' => $current_page_url), '/add-note'); ?>">
-                <?php echo svg('plus'); ?>Note
-              </a>
-            <?php } ?>
+            <a href="<?php the_permalink(); ?>"><span class="group-title"><?php the_title(); ?></span></a>
             
-            <?php if(can_write_initiative($post)) { ?>
-              <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
-
-              <?php if(get_post_status($post) === 'publish') { ?>
-                <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
-                <form action="" method="post">
-                  <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('x'); ?><?php _e('Unpublish', 'tofino'); ?></button>
-                </form>
+            <div class="status">
+              <?php $pending_message = __('Not published', 'tofino'); ?>
+              <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-outline btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
+            </div>
+          </td>
+          <?php if(!is_tax()) { ?>
+            <td>
+              <?php if($hub_term) { ?>
+                <a href="<?php echo get_term_link($hub_term); ?>"><?php echo $hub_term->name; ?></a>
               <?php } ?>
-            <?php } ?>
-          </div>
-          
-          <?php if (can_publish_initiative($post) && !is_post_published($post)) { ?>
-            <?php get_template_part('templates/buttons/publish-delete', null, array('post_id' => $post->ID)); ?>
+            </td>
           <?php } ?>
-        </td>
+          <td>
+            <?php if($country_term) { ?>
+              <?php echo $country_term->name; ?>
+            <?php } ?>
+          </td>
+          <?php if(is_user_logged_in()) { ?>
+            <td>
+              <?php if(can_view_healthcheck($post)) { ?>
+                <?php echo get_latest_healthcheck($post); ?>
+              <?php } ?>
+            </td>
+            <td>
+              <?php if(can_view_healthcheck($post)) { ?>
+                <?php echo get_initiatve_age($post)['days'] . ' days'; ?>
+              <?php } ?>
+            </td>
+          <?php } ?>
+          <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+            <td>
+              <?php echo get_the_date('Y-m-d H:i:s'); ?>
+            </td>
+            <td>
+              <?php if(can_edit_hub($hub_term->term_id)) { ?>
+                <?php echo get_post_meta($post->ID, 'last_mail_date', true); ?>
+              <?php } ?>
+            </td>
+            <td>
+              <?php if(can_edit_hub($hub_term->term_id)) { ?>
+                <?php echo get_post_meta($post->ID, 'last_mail_event', true); ?>
+              <?php } ?>
+            </td>
+          <?php } ?>
+        </tr>
+        <tr>
+          <td colspan="<?php echo $num_cols; ?>">
+            <?php if($tags) { ?>
+              <?php $labels = []; ?>
+              <?php foreach($tags as $tag) {
+                $labels[] = $tag['label'];
+              } ?>
+              <span class="tag-list">Tags: <?php echo implode(', ', $labels); ?></span>
+            <?php } ?>
+          </td>
+          <td colspan="<?php echo $num_cols; ?>" class="text-right">
+            <?php get_template_part('templates/partials/item-button-group'); ?>
+          </td>
+        </tr>
       </tr>
       <?php $author_requests = get_post_meta($post->ID, 'author_requests', true); ?>
       <?php if((int)$post->post_author === get_current_user_id() && $author_requests) { ?>
