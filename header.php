@@ -53,7 +53,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   <div class="container">
     <div class="flex-shrink-0 flex items-center mr-6">
       <a href="<?php echo home_url(); ?>">
-        <img src="<?php echo get_template_directory_uri() . '/dist/img/tn-logo.png'; ?>" class="navbar-brand">
+        <img src="<?php echo get_template_directory_uri() . '/dist/img/tn-logo.png'; ?>" class="navbar-brand" alt="Transition Network International Logo" title="Transition Network International Logo">
       </a>
     </div>
 
