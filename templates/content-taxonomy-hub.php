@@ -50,7 +50,7 @@
               }
               wp_reset_postdata();
             } ?>
-            <div id="group-name" class="" data-name="<?php echo strip_tags( \Tofino\Helpers\title()); ?>"></div>
+            <div id="group-name" class="" data-name="Member of <?php echo strip_tags( \Tofino\Helpers\title()); ?>"></div>
             <div id="group-email" class="" data-email="<?php echo implode(', ', $email_addresses); ?>"></div>
             <?php echo do_shortcode('[contact-form-7 id="8907" title="Group Contact Form"]'); ?>
           </div>
