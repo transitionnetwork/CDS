@@ -2,6 +2,7 @@
 
 <?php get_template_part('templates/partials/single-hubs-messages'); ?>
 
+<?php acf_form_head(); ?>
 
 <main>
   <div class="container">
@@ -18,6 +19,41 @@
 
         <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
+        <?php } ?>
+
+
+        <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
+          <div class="mt-5">
+            <h3>Contact all groups in <?php echo \Tofino\Helpers\title(); ?></h3>
+
+            <?php $email_addresses = array() ?>
+            <?php $args = array(
+              'post_type' => 'initiatives',
+              'fields' => 'ids',
+              'posts_per_page' => -1,
+              'tax_query' => array(
+                'AND',
+                array(
+                  'taxonomy' => 'hub',
+                  'field' => 'term_id',
+                  'terms' => $term->term_id
+                )
+              )
+            );
+            $posts = get_posts($args);
+            if($posts) {
+              foreach($posts as $post) {
+                setup_postdata( $post );
+                if(get_field('email')) {
+                  $email_addresses[] = get_field('email');
+                }
+              }
+              wp_reset_postdata();
+            } ?>
+            <div id="group-name" class="" data-name="<?php echo strip_tags( \Tofino\Helpers\title()); ?>"></div>
+            <div id="group-email" class="" data-email="<?php echo implode(', ', $email_addresses); ?>"></div>
+            <?php echo do_shortcode('[contact-form-7 id="8907" title="Group Contact Form"]'); ?>
+          </div>
         <?php } ?>
 
         <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && can_edit_hub($term->term_id)))) { ?>
@@ -116,7 +152,7 @@
         <label>Filter by Live Projects</label>
         <?php $tag_selected = get_query_var('topic'); ?>
         <form action="#hub-filter" method="GET" class="mt-2 mb-4">
-          <select name="topic" onchange="this.form.submit()">
+          <select name="topic" id="topic-select" onchange="this.form.submit()">
             <option value="">Any</a>
             <?php foreach($tags as $value => $label) { ?>
               <?php $selected = ($tag_selected === $value) ? 'selected' : ''; ?>
