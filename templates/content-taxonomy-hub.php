@@ -47,9 +47,19 @@
                 if(get_field('email')) {
                   $email_addresses[] = get_field('email');
                 }
+
+                $email_addresses[] = get_the_author_meta('user_email');
+
+                $co_authors = ma_get_co_authors($post->ID);
+                if($co_authors) {
+                  foreach($co_authors as $user_id) {
+                    $email_addresses[] = get_userdata($user_id)->user_email;
+                  }
+                }
               }
               wp_reset_postdata();
             } ?>
+            <?php $email_addresses = array_unique($email_addresses); ?>
             <div id="group-name" class="" data-name="Member of <?php echo strip_tags( \Tofino\Helpers\title()); ?>"></div>
             <div id="group-email" class="" data-email="<?php echo implode(', ', $email_addresses); ?>"></div>
             <?php echo do_shortcode('[contact-form-7 id="8907" title="Group Contact Form"]'); ?>
