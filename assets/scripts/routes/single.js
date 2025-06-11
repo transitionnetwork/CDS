@@ -19,7 +19,7 @@ export default {
     const email = $('#group-email').data('email');
 
     $('input[name="group-name"]').val(name);
-    $('input[name="group-email"]').val(email);
+    $('[name="group-email"]').val(email);
 
     document.getElementById('token-login-button').addEventListener('click', () => {
       const text = document.getElementById('token-login-link').innerHTML;

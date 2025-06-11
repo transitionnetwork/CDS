@@ -2,5 +2,14 @@ footer {
   padding: 1rem 0;
   margin-top: 3rem;
   font-size: 0.875rem;
-  background-color: $white;
+  background-color: $brand-primary;
+  color: $white;
+
+  a {
+    color: $brand-white;
+  }
+
+  a:hover {
+    color: $brand-tertiary;
+  }
 }

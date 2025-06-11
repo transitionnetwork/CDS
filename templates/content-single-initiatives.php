@@ -91,7 +91,7 @@
               <h3>Contact <?php the_title(); ?></h3>
               <div id="group-name" class="d-none" data-name="<?php the_title(); ?>"></div>
               <div id="group-email" class="d-none" data-email="<?php echo get_field('email'); ?>"></div>
-              <?php echo do_shortcode('[contact-form-7 id="8907" title="Group Contact Form"]'); ?>
+              <?php echo do_shortcode('[contact-form-7 id="971d56c" title="Group Contact Form"]'); ?>
             </div>  
           <?php } ?>
 
@@ -101,7 +101,7 @@
               <?php get_template_part('templates/partials/note-list'); ?>
               <?php wp_reset_postdata(); ?>
               <p>
-                <a class="btn btn-sm btn-outline" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID(), 'source' => get_the_permalink()), '/add-note'); ?>">
+                <a class="btn btn-sm btn-outline" href="<?php echo add_query_arg(array('initiative_id' => get_the_ID()), '/add-note'); ?>">
                   <?php echo svg('plus'); ?>Add Note
                 </a>
               </p>

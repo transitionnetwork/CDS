@@ -27,8 +27,8 @@
     </tr>
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $post = get_post($post); ?>
-      <?php $country_term = get_the_terms($post, 'country')[0]; ?>
-      <?php $hub_term = get_the_terms($post, 'hub')[0]; ?>
+      <?php $country_term = (get_the_terms($post, 'country')) ? get_the_terms($post, 'country')[0] : null; ?>
+      <?php $hub_term = (get_the_terms($post, 'hub')) ? get_the_terms($post, 'hub')[0] : null; ?>
       <?php $tags = get_group_tags($post); ?>
       
       <tr class="group-row">
@@ -70,7 +70,7 @@
               <?php echo get_the_date('Y-m-d H:i:s'); ?>
             </td>
             <td>
-              <?php if(can_edit_hub($hub_term->term_id)) { ?>
+              <?php if($hub_term && can_edit_hub($hub_term->term_id)) { ?>
                 <?php echo get_post_meta($post->ID, 'last_mail_date', true); ?>
               <?php } ?>
             </td>

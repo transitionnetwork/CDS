@@ -21,51 +21,6 @@
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
         <?php } ?>
 
-
-        <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
-          <div class="mt-5">
-            <h3>Contact all groups in <?php echo \Tofino\Helpers\title(); ?></h3>
-
-            <?php $email_addresses = array() ?>
-            <?php $args = array(
-              'post_type' => 'initiatives',
-              'fields' => 'ids',
-              'posts_per_page' => -1,
-              'tax_query' => array(
-                'AND',
-                array(
-                  'taxonomy' => 'hub',
-                  'field' => 'term_id',
-                  'terms' => $term->term_id
-                )
-              )
-            );
-            $posts = get_posts($args);
-            if($posts) {
-              foreach($posts as $post) {
-                setup_postdata( $post );
-                if(get_field('email')) {
-                  $email_addresses[] = get_field('email');
-                }
-
-                $email_addresses[] = get_the_author_meta('user_email');
-
-                $co_authors = ma_get_co_authors($post->ID);
-                if($co_authors) {
-                  foreach($co_authors as $user_id) {
-                    $email_addresses[] = get_userdata($user_id)->user_email;
-                  }
-                }
-              }
-              wp_reset_postdata();
-            } ?>
-            <?php $email_addresses = array_unique($email_addresses); ?>
-            <div id="group-name" class="" data-name="Member of <?php echo strip_tags( \Tofino\Helpers\title()); ?>"></div>
-            <div id="group-email" class="" data-email="<?php echo implode(', ', $email_addresses); ?>"></div>
-            <?php echo do_shortcode('[contact-form-7 id="8907" title="Group Contact Form"]'); ?>
-          </div>
-        <?php } ?>
-
         <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && can_edit_hub($term->term_id)))) { ?>
           <div class="panel">
             <h3>Notes</h3>
