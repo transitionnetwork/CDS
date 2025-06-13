@@ -47,6 +47,19 @@ function create_posttypes() {
   );
 
   register_post_type(
+    'speakers',
+    array(
+      'labels' => array(
+        'name' => __('Speakers'),
+        'singular_name' => __('Speaker')
+      ),
+      'public' => true,
+      'has_archive' => 'speakers',
+      'supports' => array('title', 'author', 'revisions')
+    )
+  );
+
+  register_post_type(
     'healthchecks',
     array(
       'labels' => array(
