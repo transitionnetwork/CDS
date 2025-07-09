@@ -39,7 +39,7 @@ function filter_backend_by_taxonomies( $post_type, $which ) {
         return;
 
     // A list of custom taxonomy slugs to filter by
-    $taxonomies = array( 'hub' );
+    $taxonomies = array( 'hub', 'country' );
 
     foreach ( $taxonomies as $taxonomy_slug ) {
 

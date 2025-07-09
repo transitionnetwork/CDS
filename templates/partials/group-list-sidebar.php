@@ -20,6 +20,7 @@
   <?php } ?>
     
   <?php if(is_user_logged_in()) { ?>
-    <li><a href="<?php echo parse_post_link(6185); ?>" class="btn  btn-outline"><?php echo svg('plus'); ?><?php _e('Add New Hub', 'tofino'); ?></a></li>
+    <?php $hub_register_url = get_field('hub_signup_link', 'options'); ?>
+    <li><a href="<?php echo ($hub_register_url) ? $hub_register_url : parse_post_link(6185); ?>"  target="<?php echo ($hub_register_url) ? 'blank' : null; ?>" class="btn  btn-outline"><?php echo svg('plus'); ?><?php _e('Add New Hub', 'tofino'); ?></a></li>
   <?php } ?>
 </ul>
