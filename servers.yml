@@ -9,5 +9,4 @@ stage.xinc.digital:
   user: stage
   stage: stage
   deploy_path: ~/web/groups.stage.xinc.digital/public_html/wp-content/themes
-  #branch: dev
   api_key: #

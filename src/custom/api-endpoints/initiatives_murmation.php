@@ -119,7 +119,7 @@ function get_group_data_murmurations($post) {
     foreach($tags as $tag) {
       $tag_output[] = $tag['label'];
     }
-    $tag_output = implode(', ', $tag_output);
+    // $tag_output = implode(', ', $tag_output);
   }
 
   $data['tags'] = $tag_output;
