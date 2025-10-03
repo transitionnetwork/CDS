@@ -53,7 +53,7 @@ foreach($posts as $key => $post) {
 
 
   $tags = get_group_tags($post); 
-  $tag_output = '';
+  $tag_output = array();
   
   if($tags) {
     foreach($tags as $tag) {
