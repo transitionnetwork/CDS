@@ -1,7 +1,13 @@
 <?php
 function get_group_data($post) {
   $logo = get_field('logo', $post);
-  $logo = ($logo && $logo['type'] === 'image') ? $logo['sizes']['large'] : '';
+  if(is_int($logo)) {
+    $logo = wp_get_attachment_image_src( $logo, 'large' );
+  } else if (is_array($logo) && array_key_exists('ID', $logo)) {
+    $logo = $logo['sizes']['large'];
+  } else {
+    $logo = '';
+  }
 
   $data = array(
     'id' => $post->ID,
