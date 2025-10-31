@@ -244,6 +244,12 @@ export default function () {
     } else {
       $('#filter-country select').val('');
     }
+
+    if(params.get('topic')) {
+      $('#filter-topic select').val(params.get('topic'))
+    } else {
+      $('#filter-topic select').val('');
+    }
     
     if(params.get('training')) {
       $('#training-toggle input').prop('checked', true)
@@ -320,6 +326,21 @@ export default function () {
         params.set('country', $('#filter-country select').val());
       } else {
         params.delete('country');
+      }
+
+      processFilter(params);
+    })
+
+    $('#filter-topic select').on('change', function() {
+      var params = getUpdateParams();
+
+      console.log('change topic')
+
+      //update
+      if ($('#filter-topic select').val().length) {
+        params.set('topic', $('#filter-topic select').val());
+      } else {
+        params.delete('topic');
       }
 
       processFilter(params);

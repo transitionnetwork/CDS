@@ -44,6 +44,10 @@ function ajax_get_post_markers($params, $cache_expiry) {
         )
       );
     } 
+
+    if(array_key_exists('topic', $params)) {
+       $args['meta_query'][] = array('key' => 'group_detail_live_projects', 'compare' => 'LIKE', 'value' => $params['topic']);
+    }
     
     if(array_key_exists('show_recent', $params)) {
       $recent_day_count = (get_field('recent_day_count', 'options')) ? (get_field('recent_day_count', 'options')) : 365;

@@ -177,6 +177,7 @@ function custom_query_vars_filter($vars)
   $vars[] = 'search';
   $vars[] = 'country';
   $vars[] = 'training';
+  $vars[] = 'topic';
   $vars[] = 'show_recent';
   $vars[] = 'last_mail_event';
   $vars[] = 'sort_by';

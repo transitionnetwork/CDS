@@ -157,27 +157,27 @@ function create_custom_taxonomies() {
 
   register_taxonomy('hub', array('initiatives', 'trainers'), $args);
  
-  $args = array(
-    'hierarchical' => true,
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array('slug' => 'topic', 'with_front' => false),
-    'labels' => array(
-      'name' => _x('Topics', 'taxonomy general name'),
-      'singular_name' => _x('Topic', 'taxonomy singular name'),
-      'search_items' => __('Search Topics'),
-      'all_items' => __('All Topics'),
-      'parent_item' => __('Parent Topic'),
-      'parent_item_colon' => __('Parent Topic:'),
-      'edit_item' => __('Edit Topic'),
-      'update_item' => __('Update Topic'),
-      'add_new_item' => __('Add New Topic'),
-      'new_item_name' => __('New Topic Name'),
-      'menu_name' => __('Topic'),
-    )
-  );
-  register_taxonomy('topic', array('initiatives'), $args);
+  // $args = array(
+  //   'hierarchical' => true,
+  //   'show_ui' => true,
+  //   'show_admin_column' => true,
+  //   'query_var' => true,
+  //   'rewrite' => array('slug' => 'topic', 'with_front' => false),
+  //   'labels' => array(
+  //     'name' => _x('Topics', 'taxonomy general name'),
+  //     'singular_name' => _x('Topic', 'taxonomy singular name'),
+  //     'search_items' => __('Search Topics'),
+  //     'all_items' => __('All Topics'),
+  //     'parent_item' => __('Parent Topic'),
+  //     'parent_item_colon' => __('Parent Topic:'),
+  //     'edit_item' => __('Edit Topic'),
+  //     'update_item' => __('Update Topic'),
+  //     'add_new_item' => __('Add New Topic'),
+  //     'new_item_name' => __('New Topic Name'),
+  //     'menu_name' => __('Topic'),
+  //   )
+  // );
+  // register_taxonomy('topic', array('initiatives'), $args);
 
   $args = array(
     'hierarchical' => true,

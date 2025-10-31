@@ -59,6 +59,21 @@
         </div>
       </div>
       <div class="filter-col">
+        <?php $acf_field = get_field_object('field_64997d90a9aa1', false); ?>
+        <?php $tags = $acf_field['choices']; ?>
+        <?php $tag_selected = get_query_var('topic'); ?>
+        <div id="filter-topic" class="filter-item">
+          <label for="topic"><?php _e('Topic', 'tofino'); ?></label>
+          <select name="topic" id="topic">
+            <option value="">All</option>
+            <?php foreach ($tags as $value => $label) { ?>
+              <?php $selected = ($tag_selected === $value) ? 'selected' : ''; ?>
+              <option value="<?php echo $value; ?>" <?php echo  $selected; ?>><?php echo $label; ?></option>
+            <?php } ?>
+          </select>
+        </div>
+      </div>
+      <div class="filter-col">
         <div id="recent-toggle" class="filter-item">
           <input type="checkbox" id="show_recent" name="show_recent" <?php echo (get_query_var('show_recent')) ? "checked" : null; ?>>
           <label for="show_recent"><?php _e('Only show recently active groups'); ?></label>

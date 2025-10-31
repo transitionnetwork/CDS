@@ -44,6 +44,10 @@ function get_initiatives_main() {
     );
   }
 
+  if(get_query_var('topic')) {
+    $args['meta_query'][] = array('key' => 'group_detail_live_projects', 'compare' => 'LIKE', 'value' => get_query_var('topic'));
+  }
+
   if(get_query_var('s')) { 
     $args['s'] = get_query_var('s');
   }

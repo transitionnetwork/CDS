@@ -27,7 +27,7 @@ if(get_post_type() === 'trainers') {
     <?php echo get_field('city', $object); ?><br/>
     <?php echo get_field('province', $object); ?><br/>
     <?php echo strtoupper(get_field('postal_code', $object)); ?><br/>
-    <?php echo get_term_by('id', get_field('country', $object), 'country')->name; ?><br/>
+    <?php echo (is_object(get_field('country', $object))) ? get_term_by('id', get_field('country', $object), 'country')->name : ''; ?><br/>
     <div id="marker-address" data-address="<?php echo get_field('address_line_1', $object); ?>"></div>
   <?php } else if ($map && $map['markers'] && get_post_type() !== 'trainers') { ?>
     <h3><?php _e('Location', 'tofino'); ?></h3>

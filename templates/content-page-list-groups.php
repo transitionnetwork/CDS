@@ -16,19 +16,26 @@
           </div>
         <?php } ?>
 
+        <h1><?php echo \Tofino\Helpers\title(); ?></h1>
+
         <?php if (get_query_var('hub_name')) :
           $term = get_term_by('slug', get_query_var('hub_name'), 'hub');
-          echo '<h1>Hub: ' . $term->name . '</h1>';
+          echo '<h2>Hub: ' . $term->name . '</h2>';
           echo $term->description;
         endif; ?>
         
         <?php if (get_query_var('country')) :
           $term = get_term_by('slug', get_query_var('country'), 'country');
-          echo '<h1>Country: ' . $term->name . '</h1>';
+          echo '<h2>Country: ' . $term->name . '</h2>';
           echo $term->description;
         endif; ?>
+        
+        <?php if (get_query_var('topic')) :
+          $acf_field = get_field_object('field_64997d90a9aa1', false);
+          $choices = $acf_field['choices'];
+          echo '<h2>Topic: ' . $choices[get_query_var('topic')] . '</h2>';
+        endif; ?>
     
-        <h1><?php echo \Tofino\Helpers\title(); ?></h1>
 
         <?php while (have_posts()) : the_post(); ?>
           <?php if (!is_user_logged_in() && !empty(get_the_content())) { ?>
