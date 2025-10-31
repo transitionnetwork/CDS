@@ -16,8 +16,7 @@ $init_query = new WP_Query($args); ?>
 
 <?php session_start();
 
- $export_data[] = [$name, $status, $hub, $country, $latest_healthcheck, $tag_output, $email, $address, $city, $province, $postal_code, $website, $twitter, $facebook, $instagram, $youtube];
-
+$export_data = array();
 
 $export_data[] = ["Name", "Status", "Hub", "Country", "Last Healthcheck Date", "tags", "Hub Email", "Address", "City", "Province", "Post Code", "Website URL", "Twitter", "Facebook", "Instagram", "Youtube", "Number of people organising and running", "Number of participants", "More information on these numbers", "Foundation date", "Paid roles?", "Legal structure", "Legal structure detail", "How active?", "Live projects", "Live project details.."];
 
@@ -48,9 +47,9 @@ while ($init_query->have_posts()) : $init_query->the_post();
   }
 
   $tags = get_group_tags($post); 
-  $tag_output = '';
+  $tag_output = array();
   
-  if($tags) {
+  if(is_array($tags)) {
     foreach($tags as $tag) {
       $tag_output[] = $tag['label'];
     }
