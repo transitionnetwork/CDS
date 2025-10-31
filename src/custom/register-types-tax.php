@@ -196,10 +196,16 @@ function create_custom_taxonomies() {
       'update_item' => __('Update Language'),
       'add_new_item' => __('Add New Language'),
       'new_item_name' => __('New Language Name'),
-      'menu_name' => __('Language'),
+      'menu_name' => __('Languages'),
     )
   );
   register_taxonomy('language', array('initiatives'), $args);
+
+  // Optional: Run once manually by visiting yoursite.com/?populate_languages=1
+  if (isset($_GET['populate_languages']) && current_user_can('manage_options')) {
+      add_top_50_languages_to_taxonomy();
+      wp_die('Languages populated successfully!');
+  }
 
   $args = array(
     'hierarchical' => true,
