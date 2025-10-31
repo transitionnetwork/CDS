@@ -135,3 +135,9 @@ function amend_description_buttons( $field ) {
   return $field;
 }
 add_filter( 'acf/get_valid_field', 'amend_description_buttons');
+
+
+//allow HTML in feild labels
+add_filter('acf/get_field_label', function($label, $field, $context) {
+    return html_entity_decode($label);
+}, 10, 3);
