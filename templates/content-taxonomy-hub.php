@@ -59,7 +59,7 @@
             <?php } ?>
   
             <?php if (get_field('email', $term)) { ?>
-              <h3 class="mt-3"><?php echo get_field_object('email', $term)['label']; ?></h3>
+              <h3 class="mt-3">Email</h3>
               <a href="mailto:<?php echo get_field('email', $term); ?>"><?php echo get_field('email', $term); ?></a>
             <?php } ?>
   
