@@ -58,7 +58,7 @@ function endpoint_get_groups_murmurations(WP_REST_Request $request) {
 
 function get_group_data_murmurations($post) {
   $map = get_field('map');
-  $logo = get_field('logo');
+  $logo = get_logo('logo', $post);
 
   $link_fields = array('twitter', 'facebook', 'instagram', 'youtube');
   $links = array();

@@ -41,7 +41,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
                         <description><![CDATA[<?php the_excerpt_rss() ?>]]></description>
                         <content:encoded><![CDATA[<?php the_excerpt_rss() ?>]]></content:encoded>
                         <?php if(get_field('logo')) { ?>
-                          <image><?php echo wp_get_attachment_url(get_post_meta($post_id, 'logo', true)); ?></image>
+                          <image><img src="<?php echo get_logo('logo', $post); ?>"></image>
                         <?php } ?>
                         <?php rss_enclosure(); ?>
                         <?php do_action('rss2_item'); ?>

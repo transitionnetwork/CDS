@@ -118,3 +118,16 @@ function author_access_remove($post_id, $user_id) {
   //TODO: ADD A BUTTON ON MAIN AUTHORS DASHBOARD OR ARTICLE WITH REVOKE ACCESS POWER
   var_dump('revoked;');
 }
+
+function get_logo($field_name, $post = 0) {
+  $logo = get_field($field_name, $post);
+  if(is_int($logo)) {
+    $logo = wp_get_attachment_image_src( $logo, 'large' );
+  } else if (is_array($logo) && array_key_exists('ID', $logo)) {
+    $logo = $logo['sizes']['large'];
+  } else {
+    $logo = '';
+  }
+
+  return $logo;
+}

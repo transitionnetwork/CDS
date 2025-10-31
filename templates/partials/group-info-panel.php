@@ -4,11 +4,7 @@
   <?php $logo = get_field('logo'); ?>
   <?php if($logo) { ?>
     <div class="mb-3">
-      <?php if(is_array($logo)) { ?>
-        <img src="<?php echo get_field('logo')['sizes']['large']; ?>">
-      <?php } else { ?>
-        <?php echo wp_get_attachment_image( $logo, 'large' ); ?>
-      <?php } ?>
+      <img src="<?php echo get_logo('logo', $post); ?>">
     </div>
   <?php } ?>
 
