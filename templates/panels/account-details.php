@@ -13,9 +13,9 @@ $user_human_role = ucwords(str_replace('_', ' ', $user_role));
     <?php endif; ?>
 </ul>
   <ul class="button-group">
-    <li><a href="<?php echo parse_post_link(467); ?>" class="btn btn-primary btn-sm"><?php echo svg('pencil'); ?><?php _e('Edit Account Details', 'tofino'); ?></a></li>
+    <li><a href="<?php echo get_the_permalink(467); ?>" class="btn btn-primary btn-sm"><?php echo svg('pencil'); ?><?php _e('Edit Account Details', 'tofino'); ?></a></li>
     <?php if (is_user_role('super_hub')) : ?>
-      <li><a href="<?php echo parse_post_link(270); ?>" class="btn btn-primary btn-sm"><?php _e('View All Hub Users', 'tofino'); ?></a></li>
+      <li><a href="<?php echo get_the_permalink(270); ?>" class="btn btn-primary btn-sm"><?php _e('View All Hub Users', 'tofino'); ?></a></li>
     <?php endif; ?>
   </ul>
 </section>

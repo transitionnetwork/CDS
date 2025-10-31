@@ -23,7 +23,7 @@
 						acf_form(array(
 							'post_id'		=> $post_id,
 							'post_title'	=> false,
-							'return' => add_query_arg('edited_note', 'initiative', parse_post_link($initiative_id)),
+							'return' => add_query_arg('edited_note', 'initiative', get_the_permalink($initiative_id)),
 							'submit_value' => 'Save changes',
 							'uploader' => 'basic',
 						));

@@ -16,7 +16,7 @@
     <?php } ?>
     
     <?php if(can_write_initiative($post)) { ?>
-      <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, parse_post_link(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
+      <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('edit_post', $post->ID, get_the_permalink(69)); ?>"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a>
 
       <?php if(get_post_status($post) === 'publish') { ?>
         <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>

@@ -40,7 +40,7 @@
             <p><?php _e('There are no other users registered to this hub', 'tofino'); ?></p>
           <?php } ?>
         <ul class="button-group">
-          <li><a href="<?php echo parse_post_link(24); ?>" class="btn btn-primary">&laquo <?php _e('Back to dashboard', 'tofino'); ?></a></li>
+          <li><a href="<?php echo get_the_permalink(24); ?>" class="btn btn-primary">&laquo <?php _e('Back to dashboard', 'tofino'); ?></a></li>
         </ul> 
         <?php endwhile; ?>
       </div>

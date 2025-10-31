@@ -184,6 +184,28 @@ function create_custom_taxonomies() {
     'show_ui' => true,
     'show_admin_column' => true,
     'query_var' => true,
+    'rewrite' => array('slug' => 'language', 'with_front' => false),
+    'labels' => array(
+      'name' => _x('Languages', 'taxonomy general name'),
+      'singular_name' => _x('Language', 'taxonomy singular name'),
+      'search_items' => __('Search Languages'),
+      'all_items' => __('All Languages'),
+      'parent_item' => __('Parent Language'),
+      'parent_item_colon' => __('Parent Language:'),
+      'edit_item' => __('Edit Language'),
+      'update_item' => __('Update Language'),
+      'add_new_item' => __('Add New Language'),
+      'new_item_name' => __('New Language Name'),
+      'menu_name' => __('Language'),
+    )
+  );
+  register_taxonomy('language', array('initiatives'), $args);
+
+  $args = array(
+    'hierarchical' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
     'rewrite' => array('slug' => 'country', 'with_front' => false),
     'labels' => array(
       'name' => _x('Countries', 'taxonomy general name'),

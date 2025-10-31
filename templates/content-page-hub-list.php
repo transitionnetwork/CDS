@@ -23,7 +23,7 @@
     <?php endwhile; ?>
     <?php if(is_user_logged_in()) { ?>
       <?php $hub_register_url = get_field('hub_signup_link', 'options'); ?>
-      <a href="<?php echo ($hub_register_url) ? $hub_register_url : parse_post_link(6185); ?>"  target="<?php echo ($hub_register_url) ? 'blank' : null; ?>" class="btn  btn-outline"><?php echo svg('plus'); ?><?php _e('Add New Hub', 'tofino'); ?></a>
+      <a href="<?php echo ($hub_register_url) ? $hub_register_url : get_the_permalink(6185); ?>"  target="<?php echo ($hub_register_url) ? 'blank' : null; ?>" class="btn  btn-outline"><?php echo svg('plus'); ?><?php _e('Add New Hub', 'tofino'); ?></a>
     <?php } ?>
   </div>
 </main>

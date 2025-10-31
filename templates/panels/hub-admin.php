@@ -29,10 +29,10 @@
             <a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a>
           </td>
           <td>
-            <a class="btn btn-primary btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, parse_post_link(6105)); ?>"><?php echo svg('cloud-download'); ?>CSV of group data</a>
+            <a class="btn btn-primary btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, get_the_permalink(6105)); ?>"><?php echo svg('cloud-download'); ?>CSV of group data</a>
           </td>
           <td>
-            <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, parse_post_link(5414)); ?>"><?php echo svg('pencil'); ?>Edit</a>
+            <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, get_the_permalink(5414)); ?>"><?php echo svg('pencil'); ?>Edit</a>
           </td>
           
           <?php $args = array(

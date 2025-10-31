@@ -192,7 +192,7 @@ add_filter('query_vars', 'custom_query_vars_filter');
 //Redirect after post deletion
 function wpse132196_redirect_after_trashing($post_id) {
   if(get_post_type($post_id) === 'files') {
-    wp_redirect(add_query_arg('tab', 'file', parse_post_link(24)));
+    wp_redirect(add_query_arg('tab', 'file', get_the_permalink(24)));
     exit;
   }
 }
@@ -361,7 +361,7 @@ function process_post_requests() {
         'post_author' => $_POST['update_group_author_id']
       );
       wp_update_post($args);
-      wp_safe_redirect(add_query_arg('updated', 'author', parse_post_link($_POST['post_id'])));
+      wp_safe_redirect(add_query_arg('updated', 'author', get_the_permalink($_POST['post_id'])));
       exit();
     }
 
@@ -468,44 +468,6 @@ function get_environment() {
   }
 
   return 'dev';
-}
-
-// Polylang helpers
-function preserve_query_args( $url, $slug ) {
-  $permitted_vars = array(
-    'initiative_id',
-    'post_id',
-    'step',
-    'token',
-    'hub_name',
-    'country',
-    'search',
-    'error_code'
-  );
-
-  // die(var_dump($permitted_vars));
-
-  $args = array();
-  foreach($permitted_vars as $var) {
-    if(array_key_exists($var, $_GET) && $_GET[$var]) {
-      $args[$var] = $_GET[$var];
-    }
-  }
-
-  $url = add_query_arg($args, $url);
-
-  return $url === null ? home_url( '?lang=' . $slug ) : $url;
-}
-
-add_filter( 'pll_the_language_link', 'preserve_query_args', 10, 2 );
-
-function parse_post_link($post_id) {
-  if(function_exists('pll_get_post')) {
-    if(pll_get_post($post_id)) {
-      return get_the_permalink(pll_get_post($post_id));
-    };
-  }
-  return get_the_permalink($post_id);
 }
 
 function get_words($sentence, $count = 10) {

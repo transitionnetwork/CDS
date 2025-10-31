@@ -70,7 +70,7 @@
           
           <?php if(is_user_trainer_admin()) { ?>
             <div class="mt-5">
-              <p><a href="<?php echo add_query_arg('edit_post', get_the_ID(), parse_post_link(6741)); ?>" class="btn btn-dark btn-sm"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a></p>
+              <p><a href="<?php echo add_query_arg('edit_post', get_the_ID(), get_the_permalink(6741)); ?>" class="btn btn-dark btn-sm"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a></p>
           
               <?php get_template_part('templates/partials/form-toggle-trainer-state'); ?>
             </div>

@@ -7,8 +7,8 @@
     <h1>Trainers</h1>
     <?php if(is_user_logged_in() && is_user_role(array('super_hub', 'administrator'))) { ?>
       <p>
-        <a class="btn btn-primary btn-sm" href="<?php echo parse_post_link(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a>
-        <a class="btn btn-primary btn-sm" href="<?php echo parse_post_link(7097); ?>"><?php echo svg('cloud-download'); ?>Export CSV of trainer data</a>
+        <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a>
+        <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(7097); ?>"><?php echo svg('cloud-download'); ?>Export CSV of trainer data</a>
       </p>
     <?php } ?>
     <div class="row mt-4">

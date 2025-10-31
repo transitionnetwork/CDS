@@ -19,7 +19,7 @@ if(is_user_role(array('hub', 'super_hub'))) {
   if(!is_user_logged_in()) { ?>
     <div>
       <span class="tag beta">beta</span>
-      <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php echo parse_post_link(459); ?>"><?php _e('Sign in', 'tofino'); ?></a> | <a href="<?php echo parse_post_link(460); ?>"> <?php _e('Register', 'tofino'); ?></a>
+      <?php _e('Not logged in', 'tofino'); ?> | <a href="<?php echo get_the_permalink(459); ?>"><?php _e('Sign in', 'tofino'); ?></a> | <a href="<?php echo get_the_permalink(460); ?>"> <?php _e('Register', 'tofino'); ?></a>
     </div>
   <?php } else { ?>
     <div>
