@@ -83,3 +83,19 @@ function df_terms_clauses( $clauses, $taxonomy, $args ) {
 }
 
 add_filter( 'terms_clauses', 'df_terms_clauses', 10, 3 );
+
+
+function is_group_in_greylist($post_id) {
+  $grey_list = get_field('greylist', 'options');
+  $countries = get_the_terms($post_id, 'country');
+
+  if($countries && is_array($grey_list['countries'])) {
+    foreach($countries as $country) {
+      if(in_array($country->term_id, $grey_list['countries'])) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}

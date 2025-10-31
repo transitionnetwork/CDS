@@ -19,7 +19,7 @@
         <div class="col-12 col-lg-7">
           <div class="mb-3">
             <h1 class="mb-0"><?php echo \Tofino\Helpers\title(); ?></h1>
-  
+
             <div>
               <em>Last Updated: <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?></em>
             </div>
@@ -75,7 +75,7 @@
 
           <?php if(can_write_initiative($post)) { ?>
             <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-group'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit group', 'tofino'); ?></a></div>
-            
+          
             <?php if(get_post_status($post) === 'publish') { ?>
               <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
               <div class="button-block">
@@ -84,7 +84,7 @@
                 </form>
               </div>
             <?php } ?>
-          <?php } ?>
+         <?php } ?>
 
           <?php if (get_field('email')) { ?>
             <div class="mt-5">

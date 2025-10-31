@@ -199,11 +199,19 @@ function custom_email_created_post($post_id, $type) {
   );
 
   // The Query
+  $to = array();
+  
   $user_query = new WP_User_Query( $args );
   if($user_query->results) {
-    $to = array();
     foreach($user_query->results as $user) {
       $to[] = $user->user_email;
+    }
+  }
+
+  if(is_group_in_greylist($initiative_id)) {
+    $greylist_email = get_field('greylist_greylist_admin_email', 'options');
+    if($greylist_email) {
+      $to[] = $greylist_email;
     }
   }
   
