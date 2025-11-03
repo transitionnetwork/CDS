@@ -75,9 +75,18 @@ function get_group_totals($args) {
   );
   
   if(!empty($count_projects)) {
-    $count = array_column($count_projects, 'number_of_projects');
-    array_multisort($count, SORT_DESC, $count_projects);
-    $data['projects']= $count_projects;
+    foreach($count_projects as $project => $info) {
+      if($info['number_of_projects'] > 0) {
+        $data['projects'][] = array(
+          'name' => $info['name'],
+          'slug' => $project,
+          'number_of_projects' => $info['number_of_projects']
+        );
+      }
+    }
+
+    $count = array_column($data['projects'], 'number_of_projects');
+    array_multisort($count, SORT_DESC, $data['projects']);
   }
 
 
