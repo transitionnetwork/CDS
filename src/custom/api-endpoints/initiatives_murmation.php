@@ -60,6 +60,14 @@ function get_group_data_murmurations($post) {
   $map = get_field('map');
   $logo = get_logo('logo', $post);
 
+  if(is_int($logo)) {
+    $logo = wp_get_attachment_image_src( $logo, 'large' );
+  } else if (is_array($logo) && array_key_exists('ID', $logo)) {
+    $logo = $logo['sizes']['large'];
+  } else {
+    $logo = '';
+  }
+
   $link_fields = array('twitter', 'facebook', 'instagram', 'youtube');
   $links = array();
   foreach($link_fields as $link_field) {
