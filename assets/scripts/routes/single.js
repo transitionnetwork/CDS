@@ -14,7 +14,7 @@ export default {
       singleMap();
     }
 
-    //populate grouop email form
+    //populate group email form
     const name = $('#group-name').data('name');
     const email = $('#group-email').data('email');
 

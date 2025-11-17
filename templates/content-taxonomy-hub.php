@@ -43,6 +43,10 @@
             <p><strong>Hub admin access has been requested</strong></p>
           <?php } ?>
         <?php } ?>
+
+        <?php if(is_user_logged_in() && (is_user_role('administrator') || is_user_role('super_hub'))) { ?>
+          <?php get_template_part('templates/partials/hub-contact-form'); ?>
+        <?php } ?>
       </div>
  
       <div class="col-12 col-lg-4">
