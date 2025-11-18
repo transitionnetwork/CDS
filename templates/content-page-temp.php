@@ -17,6 +17,15 @@
 // remove_country_terms_from_trainer_posts();
 
 
+function url_get_contents ($Url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $Url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+
 function copy_location_to_country_tax() {
   $args = array(
     'post_type' => 'trainers',
@@ -35,17 +44,17 @@ function copy_location_to_country_tax() {
       
       if($markers && !$post_term) {
 
-        $lng = $markers[0]['lng'];
         $lat = $markers[0]['lat'];
+        $lng = $markers[0]['lng'];
         
         $url = 'https://api.opencagedata.com/geocode/v1/json?q=' . $lat . '%2C+' . $lng . '&key=df2d93044deb4b8e950c8cb028adb508';
         var_dump('Fetching URL: ' . $url);
         
-        $data = file_get_contents($url);
-        var_dump($data);
+        $data = @url_get_contents($url);
         
         if($data) {
           $data = json_decode($data, true);
+          var_dump($data);
           $country_code = $data['results'][0]['components']['country_code'];
           $country_term = get_term_by('slug', strtolower($country_code), 'country');
 
