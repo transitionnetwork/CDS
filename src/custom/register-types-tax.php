@@ -229,6 +229,28 @@ function create_custom_taxonomies() {
     'show_ui' => true,
     'show_admin_column' => true,
     'query_var' => true,
+    'rewrite' => array('slug' => 'in_person_country', 'with_front' => false),
+    'labels' => array(
+      'name' => _x('Target Countries', 'taxonomy general name'),
+      'singular_name' => _x('Target Country', 'taxonomy singular name'),
+      'search_items' => __('Search Target Countries'),
+      'all_items' => __('All Target Countries'),
+      'parent_item' => __('Parent Target Country'),
+      'parent_item_colon' => __('Parent Target Country:'),
+      'edit_item' => __('Edit Target Country'),
+      'update_item' => __('Update Target Country'),
+      'add_new_item' => __('Add New Target Country'),
+      'new_item_name' => __('New Target Country Name'),
+      'menu_name' => __('Target Country'),
+    )
+  );
+  register_taxonomy('in_person_country', array('trainers'), $args);
+
+  $args = array(
+    'hierarchical' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
     'rewrite' => array('slug' => 'language', 'with_front' => false),
     'labels' => array(
       'name' => _x('Trainer Languages', 'taxonomy general name'),
