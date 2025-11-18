@@ -39,6 +39,7 @@ function copy_location_to_country_tax() {
         $lat = $markers[0]['lat'];
         
         $url = 'https://api.opencagedata.com/geocode/v1/json?q=' . $lat . '%2C+' . $lng . '&key=df2d93044deb4b8e950c8cb028adb508';
+        var_dump('Fetching URL: ' . $url);
         
         $data = file_get_contents($url);
         
