@@ -2,7 +2,8 @@
 function remove_country_terms_from_trainer_posts() {
   $args = array(
     'post_type' => 'trainers',
-    'posts_per_page' => -1
+    'posts_per_page' => -1,
+    'post_status' => 'any'
   );
 
   $posts = get_posts($args);
