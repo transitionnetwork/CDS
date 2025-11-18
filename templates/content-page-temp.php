@@ -42,6 +42,7 @@ function copy_location_to_country_tax() {
         var_dump('Fetching URL: ' . $url);
         
         $data = file_get_contents($url);
+        var_dump($data);
         
         if($data) {
           $data = json_decode($data, true);
