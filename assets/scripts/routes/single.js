@@ -18,6 +18,8 @@ export default {
     const name = $('#group-name').data('name');
     const email = $('#group-email').data('email');
 
+    console.log(name);
+
     $('input[name="group-name"]').val(name);
     $('[name="group-email"]').val(email);
 
