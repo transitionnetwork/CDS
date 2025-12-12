@@ -1,6 +1,8 @@
 <?php
 function endpoint_format_url($url) {
   $url = trim($url);
+  $url = preg_match_all('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $url, $match);
+  $url = $match[0][0];
   $scheme = parse_url($url, PHP_URL_SCHEME);
   if (empty($scheme)) {
     return 'https://' . ltrim($url, '/');
