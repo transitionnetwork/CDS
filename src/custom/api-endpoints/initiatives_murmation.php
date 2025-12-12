@@ -135,7 +135,8 @@ function get_group_data_murmurations($post) {
   $data['metadata'] = array(
     'sources' => array(
       'name' => 'Transition Groups',
-      'profile_data_url' => get_the_permalink()
+      'profile_data_url' => get_the_permalink(),
+      'last_updated' => get_the_modified_date('Y-m-d H:i:s', $post)
     )
   );
 
