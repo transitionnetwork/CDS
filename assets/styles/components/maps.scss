@@ -44,10 +44,11 @@
   right: 1rem;
 
   svg.logo {
-    width: 150px;
+    width: 148px;
     height: 48px;
     background-color: rgba($white, 0.8);
     fill: $brand-primary;
+    padding: 0.125rem;
   }
 }
 
