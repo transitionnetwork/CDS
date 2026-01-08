@@ -86,8 +86,17 @@ add_filter( 'terms_clauses', 'df_terms_clauses', 10, 3 );
 
 
 function is_group_in_greylist($post_id) {
-  $grey_list = get_field('greylist', 'options');
-  $countries = get_the_terms($post_id, 'country');
+  $gl_field_object = acf_get_field( 'gl_additional_info' );
+  $conditional_logic = $gl_field_object['conditional_logic'];
+
+  $countries = array();
+  foreach($conditional_logic as $logic_group) {
+    foreach($logic_group as $logic) {
+      if($logic['field'] == 'field_618ea05c4bd16') { // field_643d3f4e1f5b2 is gl_greylist
+        $countries[] = (int)$logic['value'];
+      }
+    }
+  }
 
   if($countries && is_array($grey_list['countries'])) {
     foreach($countries as $country) {
