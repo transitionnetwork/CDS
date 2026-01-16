@@ -89,20 +89,21 @@ function is_group_in_greylist($post_id) {
   $gl_field_object = acf_get_field( 'gl_additional_info' );
   $conditional_logic = $gl_field_object['conditional_logic'];
 
-  $countries = array();
+  $greylist_countries = array();
   foreach($conditional_logic as $logic_group) {
     foreach($logic_group as $logic) {
-      if($logic['field'] == 'field_618ea05c4bd16') { // field_643d3f4e1f5b2 is gl_greylist
-        $countries[] = (int)$logic['value'];
+      if($logic['field'] == 'field_618ea05c4bd16') { //   field_643d3f4e1f5b2 is gl_greylist
+        $greylist_countries[] = (int)$logic['value'];
       }
     }
   }
 
-  if($countries && is_array($grey_list['countries'])) {
-    foreach($countries as $country) {
-      if(in_array($country->term_id, $grey_list['countries'])) {
-        return true;
-      }
+  $group_countries = get_the_terms( $post_id, 'country' );
+  
+  foreach($group_countries as $country) {
+    $group_country_terms[] = $country->term_id;
+    if(in_array($country->term_id, $greylist_countries)) {
+      return true;
     }
   }
 

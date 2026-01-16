@@ -24,13 +24,24 @@ function mailchimp_add_author_to_list($post) {
       'apiKey' => $api_key,
       'server' => $region,
   ]);
-  
-  $response = $client->lists->addListMember($hub_mailchimp_audience_map[$hub_id], [
-      "email_address" => $author->user_email,
-      "status" => "subscribed",
-      "tags" => array("TGroups-org--auto-sync"),
-      "merge_fields" => array(
-        'MMERGE3' => get_the_title($post)
-      )
-  ]);
+
+  $response = $client->searchMembers->search(
+    array(
+      "email_address" => $author->user_email
+    )
+  );
+
+  if($response->exact_matches->total_items > 0) {
+    //already in list
+    return;
+  } else {
+    $response = $client->lists->addListMember($hub_mailchimp_audience_map[$hub_id], [
+        "email_address" => $author->user_email,
+        "status" => "subscribed",
+        "tags" => array("TGroups-org--auto-sync"),
+        "merge_fields" => array(
+          'MMERGE3' => get_the_title($post)
+        )
+    ]);
+  }
 }

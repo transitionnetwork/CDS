@@ -33,6 +33,18 @@ function acf_custom_save($post_id) {
         unlink($file); // delete file
       }
     }
+
+    if(get_field('gl_additional_info', $post_id)) {
+      if(get_field('gl_additional_info_photo_id', $post_id)) {
+        $image_id = get_field('gl_additional_info_photo_id', $post_id)['id'];
+        xinc_dropbox_upload($image_id);
+      }
+
+      if(get_field('gl_additional_info_postal_letter', $post_id)) {
+        $image_id = get_field('gl_additional_info_postal_letter', $post_id)['id'];
+        xinc_dropbox_upload($image_id);
+      }
+    }
   }
 
   if (get_post_type($post_id) === 'initiative_notes') {
