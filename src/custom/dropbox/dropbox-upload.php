@@ -3,9 +3,7 @@
 function xinc_drobox_get_token() {
   $key = get_field('dropbox_access_key', 'option');
   $secret = get_field('dropbox_access_secret', 'option');
-  // $refresh_token = get_field('dropbox_refresh_token', 'option');
-
-  $refresh_token = 'ZPJdc7OYoe4AAAAAAAAAAf4ou9aylCWLtuHY7IsZrflvjvtaVewEtUt4kTJBpK0q'; // temp override for testing
+  $refresh_token = get_field('dropbox_refresh_token', 'option');
 
   if($key && $secret && $refresh_token) {
     $arr = [];
@@ -23,12 +21,13 @@ function xinc_drobox_get_token() {
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $result = curl_exec($ch);
     $result_arr = json_decode($result, true);
-    var_dump($result_arr);
   
     if (curl_errno($ch)) {
       $arr = ['status'=>'error','token'=>null];
     } else if(isset($result_arr['access_token'])) {
       $arr = ['status'=>'ok','token'=>$result_arr['access_token']];
+    } else {
+      $arr = ['status'=>'error','token'=>null];
     }
     
     curl_close($ch);
@@ -60,9 +59,11 @@ function xinc_dropbox_upload(int $image_id) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($ch);
     
-    echo $response;
-  
     curl_close($ch);
     fclose($fp);
+    
+    // echo $response;
   }
+
+  wp_delete_attachment( $image_id, true );
 }

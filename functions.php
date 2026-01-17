@@ -209,6 +209,15 @@ function prepare_post_content($field)
 }
 add_filter('acf/prepare_field/name=_post_content', 'prepare_post_content');
 
+// Hide the greylist field on front-end group edit screen
+add_filter('acf/prepare_field', 'my_acf_prepare_field', 10, 1);
+function my_acf_prepare_field($field) {
+  if ( ! is_admin() && $field['key'] == 'field_695e763a53af4' && is_page('edit-group')) {
+    return false;
+  }
+  return $field;
+}
+
 function change_post_content_type( $field ) { 
   //disable wysiwyg fancies
   if($field['type'] == 'wysiwyg') { 
