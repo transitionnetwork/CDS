@@ -1,3 +1,4 @@
+<?php $user = wp_get_current_user(); ?>
 <main>
   <div class="container">
     <div class="row justify-content-center">

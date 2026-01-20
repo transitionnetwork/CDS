@@ -23,11 +23,11 @@ function xinc_drobox_get_token() {
     $result_arr = json_decode($result, true);
   
     if (curl_errno($ch)) {
-      $arr = ['status'=>'error','token'=>null];
+      $arr = ['status' => 'error', 'token' => null];
     } else if(isset($result_arr['access_token'])) {
-      $arr = ['status'=>'ok','token'=>$result_arr['access_token']];
+      $arr = ['status' => 'ok', 'token' => $result_arr['access_token']];
     } else {
-      $arr = ['status'=>'error','token'=>null];
+      $arr = ['status' => 'error', 'token' => null];
     }
     
     curl_close($ch);
