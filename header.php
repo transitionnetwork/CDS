@@ -15,6 +15,8 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   <script data-goatcounter="https://transitiongroups.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="b+sXmeHi26Fyp3pKXV0AFQ" async></script>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
