@@ -13,6 +13,7 @@ function acf_custom_save($post_id) {
   }
   
   if (get_post_type($post_id) === 'initiatives') {
+
     $post = get_post($post_id);
     $author = get_userdata($post->post_author);
     
@@ -153,3 +154,23 @@ add_filter( 'acf/get_valid_field', 'amend_description_buttons');
 add_filter('acf/get_field_label', function($label, $field, $context) {
     return html_entity_decode($label);
 }, 10, 3);
+
+
+//this function prevents post modfied dates of groups being updated when edited from the dashboard
+function stop_modified_date_update( $data, $postarr ) {
+  if(is_admin() && get_post_type($postarr['ID']) === 'initiatives') {
+    // Only apply to existing posts (not new creations)
+    if ( ! empty( $postarr['ID'] ) ) {
+        $old_post = get_post( $postarr['ID'] );
+        
+        // Ensure we have a previous post object
+        if ( ! empty( $old_post ) ) {
+            $data['post_modified'] = $old_post->post_modified;
+            $data['post_modified_gmt'] = $old_post->post_modified_gmt;
+        }
+    }
+    return $data;
+  }
+}
+
+add_filter( 'wp_insert_post_data', 'stop_modified_date_update', 10, 2 );
