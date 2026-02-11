@@ -157,8 +157,8 @@ add_filter('acf/get_field_label', function($label, $field, $context) {
 
 
 //this function prevents post modfied dates of groups being updated when edited from the dashboard
-function stop_modified_date_update( $data, $postarr ) {
-  if(is_admin() && get_post_type($postarr['ID']) === 'initiatives') {
+function filter_group_modified_date( $data, $postarr ) {
+  if(is_admin()) {
     // Only apply to existing posts (not new creations)
     if ( ! empty( $postarr['ID'] ) ) {
         $old_post = get_post( $postarr['ID'] );
@@ -169,8 +169,9 @@ function stop_modified_date_update( $data, $postarr ) {
             $data['post_modified_gmt'] = $old_post->post_modified_gmt;
         }
     }
+    var_dump($data);
     return $data;
   }
 }
 
-add_filter( 'wp_insert_post_data', 'stop_modified_date_update', 10, 2 );
+add_filter( 'wp_insert_post_data', 'filter_group_modified_date', 10, 3 );
