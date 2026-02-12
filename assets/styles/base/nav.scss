@@ -19,7 +19,20 @@
     }
   }
 
-  @include media-breakpoint-down(xs) {
+  .navbar-nav .nav-item:last-of-type { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.75rem;
+
+    .nav-link {
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .btn-sm;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
     clear: both;
 
     .navbar-nav {
@@ -40,7 +53,7 @@
   }
 
   .dropdown-menu {
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(md) {
       float: none;
       position: relative;
     }
