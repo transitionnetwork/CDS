@@ -169,9 +169,8 @@ function filter_group_modified_date( $data, $postarr ) {
             $data['post_modified_gmt'] = $old_post->post_modified_gmt;
         }
     }
-    var_dump($data);
-    return $data;
   }
+  return $data;
 }
 
 add_filter( 'wp_insert_post_data', 'filter_group_modified_date', 10, 3 );
