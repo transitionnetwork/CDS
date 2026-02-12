@@ -33,9 +33,16 @@
       foreach($posts as $key => $post) {
         //clean all non hub results from posts array
         $group_id = (int)$post->post_title;
-        $hub_id = get_the_terms($group_id, 'hub')[0]->term_id;
-
-        if($user_hub_id !== $hub_id) {
+        $terms = get_the_terms($group_id, 'hub');
+        
+        if($terms && !is_wp_error($terms) && isset($terms[0])) {
+          $hub_id = $terms[0]->term_id;
+          
+          if($user_hub_id !== $hub_id) {
+            unset($posts[$key]);
+          }
+        } else {
+          // Remove posts without valid hub terms
           unset($posts[$key]);
         }
       }
@@ -83,12 +90,18 @@
       break;
     }
 
-
+    $output_answers = array();
     foreach($posts as $post) {
       foreach($questions as $group) {
         foreach($group as $key => $item) {
           if(is_int($key)) {
-            $output_answers[$item['field_name']] += get_field($item['field_name']);
+            // Initialize array key if not exists
+            if(!isset($output_answers[$item['field_name']])) {
+              $output_answers[$item['field_name']] = 0;
+            }
+            
+            $field_value = get_field($item['field_name']);
+            $output_answers[$item['field_name']] += $field_value ? (int)$field_value : 0;
           }
         }
       }
@@ -103,15 +116,22 @@
       <div class="panel">
         <?php foreach($group as $key => $item) {
             if(is_int($key)) { ?>
-              <?php $average = (int)$output_answers[$item['field_name']] / $count_results; ?>
+              <?php 
+              $field_total = isset($output_answers[$item['field_name']]) ? (int)$output_answers[$item['field_name']] : 0;
+              $average = $count_results > 0 ? $field_total / $count_results : 0;
+              $rounded_average = round($average);
+              ?>
               
-              <div class="item healthcheck-choice choice-<?php echo round($average); ?>">
+              <div class="item healthcheck-choice choice-<?php echo $rounded_average; ?>">
                 <div class="mb-1">
                   <?php echo $key + 1 . '. ' . $item['field_label']; ?>
                 </div>
                 <div>
                   <span class="response">
-                    <?php echo $response_map[round($average)]; ?> [<?php echo round($average) ?>]
+                    <?php 
+                    $response_text = isset($response_map[$rounded_average]) ? $response_map[$rounded_average] : 'No Response';
+                    echo $response_text . ' [' . $rounded_average . ']';
+                    ?>
                   </span>
                 </div>
               </div>
