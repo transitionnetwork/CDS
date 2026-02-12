@@ -9,7 +9,7 @@
       <?php $args = array(
         'taxonomy' => 'hub',
         'hide_empty' => false,
-        'exclude' => array(285)
+        'exclude' => array(285, 284)
       ); ?>
       <?php $hubs = get_terms($args); ?>
       <?php if($hubs) { ?>
