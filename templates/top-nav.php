@@ -39,6 +39,6 @@ if(is_user_role(array('hub', 'super_hub'))) {
 
 <?php if(is_user_logged_in(  )) { ?>
   <div class="d-flex align-items-center">
-    <a href="">Dashboard</a>
+    <a href="<?php echo home_url('account'); ?>">My Dashboard</a>
   </div>
 <?php } ?>
