@@ -13,7 +13,7 @@ if (get_theme_mod('footer_sticky') === 'enabled') : ?>
       </div>
       <div class="col-12 col-md-6 text-md-right">
         <div id="footer-nav">
-          <?php wp_nav_menu( array('theme_location' => 'footer_menu') ); ?>
+          <?php wp_nav_menu( array('theme_location' => 'footer_nav') ); ?>
         </div>
       </div>
     </div>

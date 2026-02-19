@@ -340,13 +340,6 @@ function create_custom_taxonomies() {
 }
 add_action('init', 'create_custom_taxonomies');
 
-function add_nav_menus() {
-  register_nav_menus( array(
-    'footer_menu'=> 'Footer Menu',
-  ));
-}
-add_action('init', 'add_nav_menus');
-
 if (function_exists('acf_add_options_page')) {
   acf_add_options_page(array(
     'page_title' => __('General Options')

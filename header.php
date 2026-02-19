@@ -78,37 +78,20 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
       <span class="sr-only"><?php _e('Toggle Navigation Button', 'tofino'); ?></span>
     </button>
     <div class="collapse navbar-collapse" id="main-menu">
-      <?php if(is_user_logged_in()) : ?>
-        <?php
-        if (has_nav_menu('primary_navigation_loggedin')) :
-          wp_nav_menu([
-            'menu'            => 'nav_menu',
-            'theme_location'  => 'primary_navigation_loggedin',
-            'depth'           => 2,
-            'container'       => '',
-            'container_class' => '',
-            'container_id'    => '',
-            'menu_class'      => 'navbar-nav',
-            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-            'walker'          => new Tofino\Nav\NavWalker()
-          ]);
-        endif; ?>
-      <?php else : ?>
-        <?php
-        if (has_nav_menu('primary_navigation_loggedout')) :
-          wp_nav_menu([
-            'menu'            => 'nav_menu',
-            'theme_location'  => 'primary_navigation_loggedout',
-            'depth'           => 2,
-            'container'       => '',
-            'container_class' => '',
-            'container_id'    => '',
-            'menu_class'      => 'navbar-nav',
-            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-            'walker'          => new Tofino\Nav\NavWalker()
-          ]);
-        endif; ?>
-      <?php endif; ?>
+      <?php
+      if (has_nav_menu('primary_nav')) :
+        wp_nav_menu([
+          'menu'            => 'nav_menu',
+          'theme_location'  => 'primary_nav',
+          'depth'           => 2,
+          'container'       => '',
+          'container_class' => '',
+          'container_id'    => '',
+          'menu_class'      => 'navbar-nav',
+          'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+          'walker'          => new Tofino\Nav\NavWalker()
+        ]);
+      endif; ?>
     </div>
   </div>
 </nav>
