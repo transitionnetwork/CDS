@@ -37,10 +37,8 @@ if(is_user_role(array('hub', 'super_hub'))) {
 
 </div>
 
-<?php if(FALSE) { ?>
+<?php if(is_user_logged_in(  )) { ?>
   <div class="d-flex align-items-center">
-    <div id="lang-switch" class="mr-2">
-      <?php echo do_shortcode('[language-switcher]'); ?>
-    </div>
+    <a href="">Dashboard</a>
   </div>
 <?php } ?>
