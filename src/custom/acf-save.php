@@ -48,6 +48,35 @@ function acf_custom_save($post_id) {
     }
   }
 
+  // Handle Dropbox uploads without creating permanent posts
+  if(get_post_type($post_id) === 'post' && strpos(get_the_title($post_id), 'dropbox-upload-') !== false) {
+    
+    // Get all ACF fields for this post
+    $fields = get_fields($post_id);
+    
+    if($fields) {
+      foreach($fields as $field_name => $field_value) {
+        // Check if field contains file data
+        if(is_array($field_value) && isset($field_value['id'])) {
+          // Single file upload
+          xinc_dropbox_upload($field_value['id']);
+        } elseif(is_array($field_value)) {
+          // Check for multiple files or gallery
+          foreach($field_value as $item) {
+            if(is_array($item) && isset($item['id'])) {
+              xinc_dropbox_upload($item['id']);
+            }
+          }
+        }
+      }
+    }
+    
+    // Delete the temporary post after processing
+    wp_delete_post($post_id, true);
+    
+    return; // Exit early to prevent further processing
+  }
+
   if (get_post_type($post_id) === 'initiative_notes') {
     $initiative_id = $_POST['initiative_id'];
     update_post_meta( $post_id, 'initiative_id', $initiative_id);

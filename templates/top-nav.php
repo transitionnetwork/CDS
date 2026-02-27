@@ -23,15 +23,11 @@ if(is_user_role(array('hub', 'super_hub'))) {
     </div>
   <?php } else { ?>
     <div>
-      <?php if($user_role) : ?>
-        <div class="tag role"><?php _e('Role', 'tofino'); ?>: <?php echo $user_human_role; ?></div>
-      <?php endif; ?>
-  
       <?php if($hub_object) : ?>
         <div class="tag hub"><?php echo $hub_object->name; ?></div>
       <?php endif; ?>
   
-      <?php _e('Logged in as', 'tofino'); ?> <?php echo wp_get_current_user()->user_email; ?> | <a href="<?php echo wp_logout_url(home_url()); ?>"><?php _e('Logout', 'tofino'); ?></a>
+      <?php _e('Logged in as', 'tofino'); ?> <?php echo wp_get_current_user()->user_email; ?> <?php echo ($user_role) ? '(' . $user_role . ')' : ''; ?> | <a href="<?php echo wp_logout_url(home_url()); ?>"><?php _e('Logout', 'tofino'); ?></a>
     </div>
   <?php } ?>
 
