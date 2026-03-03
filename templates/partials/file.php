@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-6 col-md-3">
+<div>
   <div class="file-tile" data-id="<?php echo get_the_ID(); ?>">
     <?php $file = get_field('file'); ?>
     <?php if($file) { ?>
@@ -23,7 +23,7 @@
       <?php } ?>
     </ul>
     <?php if(get_current_user_id() == get_the_author_meta('ID')) { ?>
-      <a class="btn btn-sm btn-danger" href="<?php echo get_delete_post_link(); ?>" onclick="return confirm('<?php echo 'Are you sure?'; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
+      <a class="btn btn-sm btn-error" href="<?php echo get_delete_post_link(); ?>" onclick="return confirm('<?php echo 'Are you sure?'; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete', 'tofino'); ?></a>
     <?php } ?>
   </div>
 </div>

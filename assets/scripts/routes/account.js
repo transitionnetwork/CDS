@@ -1,21 +1,49 @@
-// We need jQuery
+// account.js — vanilla JS tab switching (replaces Bootstrap jQuery .tab() plugin)
+// jQuery still available via window.jQuery for AJAX calls below.
 var $ = window.jQuery;
-// import displayBarGraph from '../shared/graph-all';
+
+/**
+ * Activate a Bootstrap-style tab by its href target (e.g. "#nav-account-details")
+ * Works with .nav-tabs / .tab-content / .tab-pane markup.
+ */
+function showTab(targetId) {
+  // targetId may be passed with or without the leading '#'
+  const id = targetId.startsWith('#') ? targetId.slice(1) : targetId;
+
+  // Deactivate all tab links
+  document.querySelectorAll('[data-toggle="tab"]').forEach(function(link) {
+    link.classList.remove('active');
+    link.setAttribute('aria-selected', 'false');
+  });
+
+  // Deactivate all tab panels
+  document.querySelectorAll('.tab-pane').forEach(function(pane) {
+    pane.classList.remove('show', 'active');
+  });
+
+  // Activate the matching tab link
+  const activeLink = document.querySelector('[data-toggle="tab"][href="#' + id + '"]');
+  if (activeLink) {
+    activeLink.classList.add('active');
+    activeLink.setAttribute('aria-selected', 'true');
+  }
+
+  // Activate the matching tab panel
+  const activePane = document.getElementById(id);
+  if (activePane) {
+    activePane.classList.add('show', 'active');
+  }
+}
 
 export default {
   loaded() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-
-    if(urlParams.get('tab') == 'file') {
-      $('#nav-filesharing-tab').tab('show')
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') === 'file') {
+      showTab('nav-filesharing');
     }
 
-    // displayBarGraph();
-
     function incrementDownload($el) {
-      const downloadCount = $el.find('.download-count').data('value')
-      
+      const downloadCount = $el.find('.download-count').data('value');
       $.ajax({
         url: tofinoJS.ajaxUrl,
         type: 'POST',
@@ -28,51 +56,48 @@ export default {
           }
         },
         dataType: 'json',
-        success: function (response) {
-          console.log(response)
-          $el.find('.download-count').text(downloadCount + 1)
-          $el.find('.download-count').data('value', downloadCount + 1)
-          //update in the DOM
-          $el.find('.download-count').attr('data-value', downloadCount + 1)
+        success: function(response) {
+          console.log(response);
+          $el.find('.download-count').text(downloadCount + 1);
+          $el.find('.download-count').data('value', downloadCount + 1);
+          $el.find('.download-count').attr('data-value', downloadCount + 1);
         },
-        error: function (jqxhr, status, exception) {
+        error: function(jqxhr, status, exception) {
           console.log('JQXHR:', jqxhr);
           console.log('Status:', status);
           console.log('Exception:', exception);
         }
-      })
+      });
     }
 
-    $('.download-file').on('click', function() {
-      incrementDownload($(this).closest('.file-tile'))
-    })
-
+    document.querySelectorAll('.download-file').forEach(function(el) {
+      el.addEventListener('click', function() {
+        incrementDownload($(this).closest('.file-tile'));
+      });
+    });
   },
-  finalize() {
-    let url = location.href.replace(/\/$/, "");
-    
-    //open tab from loaded url
-    if (location.hash) {
-      const hash = url.split("#");
-      $('#nav-tab a[href="#'+hash[1]+'"]').tab("show");
-      url = location.href.replace(/\/#/, "#");
-      history.replaceState(null, null, url);
-      setTimeout(() => {
-        $(window).scrollTop(0);
-      }, 400);
-    } 
 
-    //show hash links on tabs
-    $('a[data-toggle="tab"]').on("click", function() {
-      let newUrl;
-      const hash = $(this).attr("href");
-      if(hash == "#home") {
-        newUrl = url.split("#")[0];
-      } else {
-        newUrl = url.split("#")[0] + hash;
-      }
-      newUrl += "/";
-      history.replaceState(null, null, newUrl);
+  finalize() {
+    const baseUrl = location.href.replace(/\/$/, '').split('#')[0];
+
+    // On page load, open tab matching URL hash
+    if (location.hash) {
+      showTab(location.hash);
+      history.replaceState(null, null, baseUrl + location.hash + '/');
+      setTimeout(function() { window.scrollTo(0, 0); }, 400);
+    }
+
+    // On tab click: switch panel + update URL hash
+    document.querySelectorAll('[data-toggle="tab"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const hash = this.getAttribute('href'); // e.g. "#nav-account-details"
+        showTab(hash);
+        const newUrl = hash === '#home'
+          ? baseUrl + '/'
+          : baseUrl + hash + '/';
+        history.replaceState(null, null, newUrl);
+      });
     });
   }
 };

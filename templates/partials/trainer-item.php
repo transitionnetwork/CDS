@@ -1,10 +1,10 @@
-<div class="col-12 col-md-6 col-lg-6">
+<div>
   <div class="trainer-item">
     <?php $photo = (get_field('general_information_trainer_photo')) ? get_field('general_information_trainer_photo')['sizes']['large'] : get_field('placeholder', 'options')['sizes']['large']; ?>
     
     <a class="thumbnail-bg" href="<?php echo get_the_permalink(); ?>" style="background-image: url(<?php echo $photo; ?>)"></a>
     
-    <div class="content">
+    <div class="content space-y-4">
       <h3 class="h2 mt-1"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
       <?php if(is_user_trainer_admin()) {  ?>
         <p>

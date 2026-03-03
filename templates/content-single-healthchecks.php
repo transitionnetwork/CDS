@@ -10,8 +10,8 @@
     <?php wp_reset_postdata(); ?>
     <main>
       <div class="container">
-        <div class="row">
-          <div class="col-12">
+        <div>
+          <div class="w-full">
               <div class="header">
                 <h1><?php _e('Healthcheck', 'tofino'); ?>: <a href="<?php echo get_the_permalink($initiative_id); ?>"><?php echo get_the_title($initiative_id); ?></a></h1>
                 <div class="date">

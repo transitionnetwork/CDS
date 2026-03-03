@@ -112,9 +112,8 @@ class NavWalker extends \Walker_Nav_Menu {
       $classes[] = 'nav-link';
 
       if ($args->walker->has_children) {
-        $atts['data-toggle']   = 'dropdown';
-        $classes[]             = 'dropdown-toggle';
-        $atts['aria-haspopup'] = 'true';
+        $classes[]              = 'dropdown-toggle';
+        $atts['aria-expanded']  = 'false';
       }
 
       if (strcasecmp($item->attr_title, 'disabled') == 0) {

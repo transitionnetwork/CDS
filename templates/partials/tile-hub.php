@@ -1,6 +1,6 @@
 <?php $term = 'term_' . $hub->term_id; ?>
 
-<div class="col-12 col-sm-6 col-lg-4 hub-col">
+<div class="hub-col">
   <?php if(get_field('logo', $term)) {
     $url = get_field('logo', $term)['sizes']['large'];
   } else {
@@ -9,7 +9,7 @@
   
   <div class="hub-item">
     <a class="thumbnail-bg" href="<?php echo get_term_link($hub); ?>" style="background-image: url(<?php echo $url; ?>)"></a>
-    <div class="content">
+    <div class="content space-y-4">
       <h3 class="h2 mt-1"><a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a></h3>
       
       <?php $status = get_field('status', $term); ?>

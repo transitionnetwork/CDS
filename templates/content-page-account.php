@@ -43,7 +43,7 @@
 
 <?php if(get_query_var('failed') == 'hub_request') { ?>
   <div class="container">
-    <div class="alert top alert-danger">
+    <div class="alert top alert-error">
      <?php _e('Cannot request hub access. Your current hub, "' . $hub->name . '", has no super hub users. Please email <a href="mailto:websupport@transitionnetwork.org">websupport@transitionnetwork.org</a> for further information', 'tofino'); ?>
     </div>
   </div>

@@ -1,0 +1,39 @@
+/* lists-hub.css — hub and trainer card grid */
+
+.hub-col,
+.trainer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.hub-item,
+.trainer-item {
+  flex: 0 1 100%;
+  margin-bottom: 1.875rem; /* grid-gutter-width: 30px */
+  background-color: #fff;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 6px -1px #0000001a;
+  outline: 1px solid #d1d5db;
+  outline-offset: -1px;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.hub-item .thumbnail-bg,
+.trainer-item .thumbnail-bg {
+  padding-top: 66%;
+  background-position: 50%;
+  background-size: cover;
+  display: block;
+}
+
+.hub-item .content,
+.trainer-item .content {
+  padding: 1rem;
+}
+
+.trainer-created {
+  font-size: 0.875rem;
+  font-style: italic;
+  margin-top: 1rem;
+}

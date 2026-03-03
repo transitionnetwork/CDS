@@ -18,7 +18,7 @@
     </div>
     <div class="button-block">
       <form action="" method="post">
-        <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete note', 'tofino'); ?></button>
+        <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-error btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Delete note', 'tofino'); ?></button>
       </form>
     </div>
   </div>

@@ -13,7 +13,7 @@
       ); ?>
       <?php $hubs = get_terms($args); ?>
       <?php if($hubs) { ?>
-        <div class="row">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <?php foreach ($hubs as $hub) { ?> 
             <?php set_query_var('hub', $hub); ?>
             <?php get_template_part('templates/partials/tile-hub'); ?>

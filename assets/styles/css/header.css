@@ -1,0 +1,25 @@
+/* header.css — bar-info top bar, sticky footer structure */
+
+html {
+  height: 100%;
+}
+
+/* Navbar brand SVG */
+.navbar-brand svg {
+  width: 160px;
+  height: 52px;
+  fill: var(--color-brand-primary);
+}
+
+/* Required form field indicator */
+.form-group.required .form-control-label::after,
+.checkbox.required .form-control-label::after {
+  content: "*";
+  padding-left: 2px;
+  color: #dc3545;
+}
+
+.form-group.required.has-success .form-control-label::after,
+.checkbox.required.has-success .form-control-label::after {
+  color: #28a745;
+}

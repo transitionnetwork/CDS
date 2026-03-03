@@ -1,7 +1,7 @@
 <div id="map-info">
   <a href="<?php echo home_url(); ?>" target="_parent">
     <span class="sr-only">Transiton Network website</span>
-    <?php echo svg(array('sprite' => 'tn-int-logo', 'class' => 'logo')); ?>
+    <?php echo svg(array('sprite' => 'tn-int-logo', 'class' => 'logo', 'viewBox' => '0 0 5274 1642')); ?>
   </a>
   <div id="map-info-panel">
     <button class="close" aria-label="close panel">

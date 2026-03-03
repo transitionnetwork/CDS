@@ -1,0 +1,280 @@
+/* views.css — single/tax-hub page, healthcheck forms and graphs */
+
+body.single h1,
+body.tax-hub h1 {
+  margin-bottom: 1rem;
+}
+
+body.single h4,
+body.tax-hub h4 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+body.single label,
+body.tax-hub label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+body.single .leaflet-container,
+body.tax-hub .leaflet-container {
+  border-radius: 4px;
+}
+
+body.single .meta,
+body.tax-hub .meta {
+  padding-left: 1rem;
+}
+
+body.single .panel.healthchecks table,
+body.tax-hub .panel.healthchecks table {
+  margin-bottom: 1rem;
+}
+
+body.single .panel.group-contact,
+body.tax-hub .panel.group-contact {
+  overflow: hidden;
+}
+
+body.single .panel.grant-status .updated,
+body.tax-hub .panel.grant-status .updated {
+  margin-top: 0.5rem;
+}
+
+body.single .panel.grant-status .acf-field,
+body.tax-hub .panel.grant-status .acf-field {
+  padding: 0;
+  border: 0;
+  margin-top: 1rem;
+}
+
+body.single .panel.grant-status .acf-label,
+body.tax-hub .panel.grant-status .acf-label {
+  display: none;
+}
+
+body.single .links,
+body.tax-hub .links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  margin-top: 0.5rem;
+  text-overflow: clip;
+}
+
+body.single .links li,
+body.tax-hub .links li {
+  margin-right: 0.5rem;
+}
+
+body.single .links svg,
+body.tax-hub .links svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+body.single section,
+body.tax-hub section {
+  margin: 1rem 0;
+}
+
+/* Healthcheck single page */
+body.single-healthchecks .header {
+  margin-bottom: 2rem;
+}
+
+body.single-healthchecks .header h1 {
+  margin-top: 0;
+}
+
+body.single-healthchecks h3 {
+  margin-bottom: 1rem;
+}
+
+body.single-healthchecks label {
+  margin: 0;
+  padding: 0.5rem;
+}
+
+/* Initiatives email log */
+body.single-initiatives #email-log {
+  max-height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #ced4da;
+  padding: 1rem;
+}
+
+/* Single map */
+#single-map {
+  width: 100%;
+  height: 300px;
+  background-color: #a8d3e0;
+  margin-bottom: 1rem;
+}
+
+#single-map .leaflet-popup-content {
+  max-width: 140px;
+}
+
+/* Healthcheck form */
+main.healthcheck-form .header {
+  margin-bottom: 1rem;
+}
+
+main.healthcheck-form .header h2 {
+  margin-bottom: 0;
+}
+
+main.healthcheck-form .header .date {
+  font-style: italic;
+}
+
+main.healthcheck-form .steps span {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.step-bar-container {
+  width: 100%;
+  display: flex;
+  height: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+  margin-bottom: 1rem;
+}
+
+.step-bar-container .step-bar {
+  background-color: var(--color-brand-primary);
+  border-radius: 5px;
+}
+
+main.healthcheck-form form.acf-form {
+  margin-top: 2rem;
+}
+
+main.healthcheck-form .acf-field-group {
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+main.healthcheck-form .acf-field-group > .acf-label {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+main.healthcheck-form .acf-button-group label.selected {
+  background-color: var(--color-brand-primary);
+  border-color: #002c42;
+}
+
+main.healthcheck-form .acf-form-submit {
+  text-align: center;
+}
+
+main.healthcheck-form .acf-form-submit .acf-button {
+  font-size: 1.125rem;
+  padding: 0.875rem 1.5rem;
+}
+
+/* Healthcheck data summary */
+body.single-healthchecks .healthcheck-choice,
+.healthcheck-choice {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem 0;
+}
+
+body.single-healthchecks .healthcheck-choice label,
+.healthcheck-choice label {
+  font-weight: normal;
+}
+
+body.single-healthchecks .healthcheck-choice span,
+.healthcheck-choice span {
+  color: #fff;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.healthcheck-choice.choice-1 span { background-color: #dc3545; }
+.healthcheck-choice.choice-2 span { background-color: #e8637a; }
+.healthcheck-choice.choice-3 span { background-color: #ffc107; }
+.healthcheck-choice.choice-4 span { background-color: #5dd879; }
+.healthcheck-choice.choice-5 span { background-color: #28a745; }
+
+/* Healthcheck graphing */
+#healthcheck-bar {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+#healthcheck-bar .ytick tspan {
+  display: none;
+}
+
+#graph-loading-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 4rem;
+}
+
+#map-loading,
+.graph-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+}
+
+/* Dual ring loader */
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-dual-ring::after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid var(--color-brand-primary);
+  border-color: var(--color-brand-primary) transparent var(--color-brand-primary) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Token login */
+#token-login-button {
+  border: none;
+  background: transparent;
+  display: block;
+  cursor: pointer;
+}
+
+#token-login-button svg {
+  height: 1.75rem;
+  width: 1.75rem;
+  color: var(--color-brand-primary);
+}
+
+.autologin-panel {
+  margin-top: 2rem;
+}

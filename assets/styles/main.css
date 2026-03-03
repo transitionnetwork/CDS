@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700');
+@import "tailwindcss";
+@plugin "daisyui";
+
+@font-face {
+  font-family: 'Roca Bold';
+  src: url('../fonts/Roca-Bold.woff2') format('woff2'),
+       url('../fonts/Roca-Bold.woff') format('woff');
+}
+
+/* Leaflet */
+@import "leaflet/dist/leaflet.css";
+@import "leaflet.markercluster/dist/MarkerCluster.css";
+@import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+
+/* ─── Design tokens ─────────────────────────────────────────────────────────── */
+@theme {
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-header: 'Roca Bold', serif;
+
+  --color-brand-primary:   #003d5b;
+  --color-brand-secondary: #d1495b;
+  --color-brand-tertiary:  #edae46;
+  --color-brand-v2:        #30638e;
+  --color-brand-v3:        #00798c;
+  --color-brand-white:     #fbf8ef;
+  --color-sea-blue:        #a8d3e0;
+  --color-events:          #444359;
+  --color-ink-black:       #212529;
+
+  --shadow-card: 0 4px 6px -1px #0000001a;
+  --border-outline: 1px solid #d1d5db;
+}
+
+/* ─── DaisyUI theme overrides ───────────────────────────────────────────────── */
+:root,
+[data-theme] {
+  --color-primary:           #003d5b;
+  --color-primary-content:   #ffffff;
+  --color-secondary:         #00798c;
+  --color-secondary-content: #ffffff;
+  --color-accent:            #edae46;
+  --color-accent-content:    #000000;
+  --color-error:             #d1495b;
+  --color-error-content:     #ffffff;
+  --color-warning:           #edae46;
+  --color-warning-content:   #000000;
+  --color-success:           #00798c;
+  --color-success-content:   #ffffff;
+  --color-base-100:          #fbf8ef;
+  --color-base-200:          #f0ece0;
+  --color-base-300:          #e0d9c8;
+  --color-base-content:      #212529;
+  --color-neutral:           #003d5b;
+  --color-neutral-content:   #ffffff;
+}
+
+/* ─── Partials ───────────────────────────────────────────────────────────────── */
+@import "./css/compat.css";
+@import "./css/alerts.css";
+@import "./css/global.css";
+@import "./css/nav.css";
+@import "./css/header.css";
+@import "./css/footer.css";
+@import "./css/forms.css";
+@import "./css/lists.css";
+@import "./css/lists-hub.css";
+@import "./css/views.css";
+@import "./css/add-edit.css";
+@import "./css/login.css";
+@import "./css/maps.css";
+@import "./css/files.css";
+@import "./css/search.css";
+@import "./css/cf7.css";
+@import "./css/xinc-events.css";
+@import "./css/wp-classes.css";
+@import "./css/social-icons.css";

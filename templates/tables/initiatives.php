@@ -35,11 +35,14 @@
         <tr>
           <td>
             <a href="<?php the_permalink(); ?>"><span class="h3"><?php the_title(); ?></span></a>
+
+            <?php if(get_post_status() !== 'publish') { ?>
+              <div class="status">
+                <?php $pending_message = __('Not published', 'tofino'); ?>
+                <span class="btn btn-sm btn-outline btn-disabled"><?php echo svg('alert') .  $pending_message; ?></span>
+              </div>
+            <?php } ?>
             
-            <div class="status">
-              <?php $pending_message = __('Not published', 'tofino'); ?>
-              <?php echo (get_post_status() === 'publish') ? '' : '<span class="btn btn-sm btn-outline btn-disabled">' . svg('alert') . $pending_message . '</span>'; ?>
-            </div>
           </td>
           <?php if(!is_tax()) { ?>
             <td>
@@ -106,10 +109,10 @@
                 <li>
                   <?php $user = get_user_by( 'ID', $author_request_id ); ?>
                   <?php echo $user->display_name . ' (' . $user->user_email . ')'; ?><br/>
-                  <div class="btn-group">
+                  <div class="flex gap-1 items-start flex-wrap">
                     <form action="" method="post">
                       <button class="btn btn-sm btn-success" name="confirm_author_access" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
-                      <button class="btn btn-sm btn-danger" name="deny_author_access" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
+                      <button class="btn btn-sm btn-error" name="deny_author_access" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
                       <input type="hidden" name="post_id" value="<?php echo $post->ID; ?>">
                     </form>
                 </li>
@@ -143,7 +146,7 @@
   $label = get_post_type_object($init_query->query['post_type'])->label;
   ?>
   
-  <p class="mt-3"><em>Displaying <?php echo $from; ?>-<?php echo $to; ?> of <?php echo $total_results; ?>. Ordered by most recently updated.</em></p>
+  <p class="mt-4"><em>Displaying <?php echo $from; ?>-<?php echo $to; ?> of <?php echo $total_results; ?>. Ordered by most recently updated.</em></p>
 
   <?php if($total_results > $per_page) { ?>
     <nav class="pagination" aria-label="contact-navigation">

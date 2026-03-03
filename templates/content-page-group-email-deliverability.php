@@ -22,8 +22,8 @@
     <form action="<?php echo get_the_permalink(); ?>" method="GET" id="map-filter">
       <div class="container-fluid">
         <div class="panel">
-          <div class="row">
-            <div class="col-12 col-md-3 filter-col filter-item">
+          <div class="flex flex-wrap gap-4">
+            <div class="filter-col filter-item">
               <label>Last mail event for primary author:</label>
               <select name="last_mail_event" onchange="this.form.submit()">
                 <option value="">Any</option>
@@ -34,7 +34,7 @@
               </select>
             </div>
             <?php if (!is_user_role('hub'))  { ?>
-              <div class="col-12 col-md-3 filter-col filter-item">
+              <div class="filter-col filter-item">
                 <?php $hubs = get_terms('hub'); ?>
                 <label>Hub:</label>
                 <select name="hub_name" onchange="this.form.submit()">

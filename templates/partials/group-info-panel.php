@@ -3,13 +3,13 @@
 <div class="panel">
   <?php $logo = get_field('logo'); ?>
   <?php if($logo) { ?>
-    <div class="mb-3">
+    <div class="mb-4">
       <img src="<?php echo get_logo('logo', $post); ?>">
     </div>
   <?php } ?>
 
   <?php if(count($hubs) === 1) { ?>
-    <div class="mb-3">
+    <div class="mb-4">
       <label>Hub</label>
       <a href="<?php echo get_term_link($hubs[0]); ?>"><?php echo $hubs[0]->name; ?></a>
     </div>

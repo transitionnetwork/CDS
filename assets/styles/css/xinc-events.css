@@ -1,0 +1,55 @@
+/* xinc-events.css — XINC event tiles */
+
+.xinc-events__event_list__event_tile {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.xinc-events__event_list__event_tile img {
+  border-radius: 0.25rem;
+}
+
+.xinc-events__event_list__event_tile + .xinc-events__event_list__event_tile {
+  margin-top: 3rem;
+}
+
+.xinc-events__event_list__event_tile__details svg {
+  width: 17px;
+  height: 17px;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.xinc-events__event_list__event_tile__details > div {
+  margin-top: 0.675rem;
+}
+
+@media (max-width: 767px) {
+  .xinc-events__event_list__event_tile__details {
+    margin-top: 1rem;
+  }
+}
+
+.xinc-events__event_list__event_tile__details__item {
+  display: flex;
+  align-items: center;
+}
+
+.xinc-events__event_list__event_tile__details__date {
+  font-weight: bold;
+}
+
+.xinc-events__event_list a {
+  color: #444359;
+}
+
+.xinc-events__event_list .btn-primary {
+  background-color: #444359;
+  color: #fff;
+}
+
+.xinc-events__event_list .btn-primary:hover {
+  background-color: #5a5873;
+}

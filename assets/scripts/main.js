@@ -1,3 +1,6 @@
+// Import main CSS — Vite processes this and outputs to dist/css/main.css
+import '../styles/main.css';
+
 // Import router
 import Router from './router';
 
@@ -38,14 +41,8 @@ import add_note from './routes/edit_page';
 // Import ajaxForm
 import './ajax-form';
 
-// Boostrap
-// import 'bootstrap/dist/js/bootstrap.js'; // All of Bootstrap JS
-
 // Use this variable to set up the common and page specific functions. If you
 // rename this variable, you will also need to rename the namespace below.
-// You add additional pages to this array by referencing the the body class
-// and creating the js file in the routes directory. Remember to import the
-// file as per the common example near the top of this file.
 const routes = {
   common,
   account,

@@ -1,5 +1,5 @@
 <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
-    <div class="mt-5">
+    <div class="mt-12">
       <h3>Contact all groups in <?php echo \Tofino\Helpers\title(); ?></h3>
 
       <?php $email_addresses = array() ?>
@@ -54,7 +54,7 @@
           <textarea name="hub_email_message" id="hub_email_message"></textarea>
         </div>
         <input type="hidden" name="hub_email_source" value="<?php echo \Tofino\Helpers\title(); ?>">
-        <button type="submit" name="hub_email_submit" value="Submit" class="btn btn-danger btn-sm">Send Email</button>
+        <button type="submit" name="hub_email_submit" value="Submit" class="btn btn-error btn-sm">Send Email</button>
       </form>
     </div>
   <?php } ?>

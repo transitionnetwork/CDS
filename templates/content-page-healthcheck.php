@@ -1,7 +1,7 @@
 <main>
   <div class="container">
-    <div class="row">
-      <div class="col-12 col-lg-8">
+    <div class="flex justify-center">
+      <div class="w-full max-w-3xl">
         <?php while (have_posts()) : the_post(); ?>
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
           <p><a href="<?php echo get_field('healthcheck_pdf') ?>" onclick="gtag('event', 'PDF Download', {'event_category' : 'downloads', 'event_label' : '<?php echo get_locale(); ?>' });">

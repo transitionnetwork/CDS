@@ -1,0 +1,29 @@
+/* footer.css — footer layout and link colors */
+
+footer {
+  padding: 1rem 0;
+  margin-top: 3rem;
+  font-size: 0.875rem;
+  background-color: var(--color-brand-primary);
+  color: #fff;
+}
+
+footer a {
+  color: var(--color-brand-white);
+}
+
+footer a:hover {
+  color: var(--color-brand-tertiary);
+}
+
+/* Sticky footer support (body.footer-sticky set by theme option) */
+body.footer-sticky {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+body.footer-sticky .wrapper {
+  flex: 1 0 auto;
+  width: 100%;
+}

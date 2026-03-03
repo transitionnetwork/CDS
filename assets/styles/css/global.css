@@ -1,0 +1,425 @@
+/* global.css — typography, buttons, layout utilities */
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-brand-white);
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5 {
+  font-weight: bold;
+  font-family: var(--font-header);
+}
+
+h1, .h1 {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+}
+
+h2, .h2 {
+  font-size: 1.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h3, .h3 {
+  font-size: 1.5rem;
+}
+
+a {
+  color: var(--color-brand-primary);
+}
+
+a:hover {
+  color: #002c42; /* darken brand-primary ~10% */
+}
+
+.normal-size {
+  font-size: 1rem;
+}
+
+.button-svg {
+  vertical-align: text-top;
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
+}
+
+/* Base .btn overrides — DaisyUI btn is already styled; augment here */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  padding: 0.675rem 1.25rem;
+}
+
+.btn svg {
+  vertical-align: text-top;
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
+}
+
+.btn-danger svg,
+.btn-primary svg,
+.btn-success svg,
+.btn-dark svg,
+.btn-secondary svg {
+  fill: #fff;
+}
+
+.btn-disabled {
+  pointer-events: none;
+}
+
+.btn-sm {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.btn-primary {
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #004d72;
+  border-color: #004d72;
+  color: #fff;
+}
+
+.btn-outline {
+  background-color: #fff;
+  border: 1px solid var(--color-brand-primary);
+  border-radius: 1.5rem;
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  padding: 0.675rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-brand-primary);
+  border-color: #002c42;
+  color: #fff;
+}
+
+.btn-outline:hover svg {
+  fill: #fff;
+}
+
+.btn-outline svg {
+  fill: var(--color-brand-primary);
+}
+
+.btn-secondary {
+  background-color: var(--color-brand-v3);
+  border-color: var(--color-brand-v3);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #008fa5;
+  border-color: #008fa5;
+  color: #fff;
+}
+
+.btn-warning {
+  background-color: var(--color-brand-tertiary);
+  border-color: var(--color-brand-tertiary);
+  color: #fff;
+}
+
+.btn-warning:hover {
+  background-color: #f0ba5e;
+  border-color: #f0ba5e;
+}
+
+.btn-success {
+  background-color: var(--color-brand-v3);
+  border-color: var(--color-brand-v3);
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #008fa5;
+  border-color: #008fa5;
+  color: #fff;
+}
+
+/* btn-danger is in compat.css */
+
+.bar-info {
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+  font-size: 0.875em;
+  padding: 0.25rem 0;
+}
+
+.bar-info .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar-info a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.bar-info .user-details {
+  padding: 7px 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  margin-bottom: 5rem;
+  margin-top: 2rem;
+}
+
+.scrollbox {
+  height: 400px;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px #0000001a;
+  outline: 1px solid #d1d5db;
+  outline-offset: -1px;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 5px;
+}
+
+/* Form inputs — Tailwind v4 Preflight sets background-color: transparent;
+   Bootstrap reset had #fff; restore white background for all text-like inputs */
+input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+textarea,
+select {
+  background-color: #fff;
+}
+
+/* Submit buttons — styled as btn-primary */
+.acf-form input[type="submit"],
+input[type="submit"] {
+  line-height: 1.6;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  padding: 0.675rem 1.25rem;
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.button.button-large {
+  line-height: 1.6;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  padding: 0.675rem 1.25rem;
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+}
+
+form#hub-filter input[type="submit"],
+form#gdpr input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  padding: 0.675rem 1.25rem;
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+form#hub-filter input[type="submit"] {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+}
+
+form[name="front_end_publish"] label.submit,
+form[name="front_end_delete"] label.submit {
+  cursor: pointer;
+  margin-bottom: 0.125rem;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+}
+
+form[name="front_end_publish"] label.submit svg,
+form[name="front_end_delete"] label.submit svg {
+  fill: #fff;
+  vertical-align: text-top;
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
+}
+
+form[name="front_end_publish"] label.submit input[type="submit"],
+form[name="front_end_delete"] label.submit input[type="submit"] {
+  display: none;
+}
+
+form[name="front_end_publish"] label.submit {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  background-color: var(--color-brand-v3);
+  border-color: var(--color-brand-v3);
+  color: #fff;
+}
+
+form[name="front_end_delete"] label.submit {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  background-color: var(--color-brand-secondary);
+  border-color: var(--color-brand-secondary);
+  color: #fff;
+}
+
+.acf-button-group {
+  width: 100%;
+}
+
+.acf-button-group label {
+  white-space: normal !important;
+  display: flex !important;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+section,
+.panel {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px #0000001a;
+  outline: 1px solid #d1d5db;
+  outline-offset: -1px;
+  border-radius: 1rem;
+}
+
+section > h2:first-of-type,
+.panel > h2:first-of-type {
+  margin-top: 0;
+}
+
+.panel .panel {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+#message {
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#message.updated {
+  background-color: #28a745;
+  color: #fff;
+}
+
+#message p {
+  margin-bottom: 0;
+}
+
+pre {
+  background-color: #e9ecef;
+  color: #dc3545;
+  padding: 0.25rem;
+}
+
+.tag {
+  border-radius: 5px;
+  padding: 0.25rem;
+  line-height: 1;
+  margin: 0 0.1rem;
+  display: inline-block;
+  color: #fff;
+}
+
+.tag.role {
+  background-color: #6f42c1;
+}
+
+.tag.hub {
+  background-color: #dc3545;
+}
+
+.tag.beta {
+  background-color: var(--color-brand-primary);
+}
+
+.button-group,
+.button-block {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.button-group li,
+.button-block li {
+  margin-bottom: 1rem;
+}
+
+.btn-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-list li {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.btn-list li:last-of-type {
+  margin-right: 0;
+}
+
+form.publish-delete {
+  margin: 0.5rem 0;
+}
+
+.total {
+  font-style: italic;
+  color: #6c757d;
+}
+
+#lang-switch a {
+  color: #212529;
+  text-decoration: none;
+}
+
+#lang-switch .trp-language-switcher,
+#lang-switch .trp-ls-shortcode-language {
+  z-index: 600;
+}
+
+/* btn-lg (for healthcheck form) */
+.btn-lg {
+  font-size: 1.125rem;
+  padding: 0.875rem 1.5rem;
+}

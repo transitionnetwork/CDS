@@ -20,7 +20,14 @@ function svg($atts) {
     'title'               => '',
     'id'                  => '',
     'sprite'              => '',
-    'preserveAspectRatio' => ''
+    'fill'                => 'currentColor',
+    'preserveAspectRatio' => '',
+    'viewBox'             => '',
+    'width'               => '',
+    'height'              => '',
+    'aria-hidden'         => '',
+    'aria-label'          => '',
+    'role'                => '',
   ], $atts, 'svg');
 
   if (!$atts['sprite']) {
@@ -41,6 +48,6 @@ function svg($atts) {
     $atr_str .= ' ' . $key . '="' . esc_attr($value) . '"';
   }
 
-  return '<svg' . $atr_str . '>' . (!empty($title) ? '<title>' . $title . '</title>' : '') . '<use xlink:href="' . $theme_config['svg']['sprite_file'] . '#' . $sprite . '" /></svg>';
+  return '<svg' . $atr_str . '>' . (!empty($title) ? '<title>' . $title . '</title>' : '') . '<use href="' . $theme_config['svg']['sprite_file'] . '#' . $sprite . '" /></svg>';
 }
 add_shortcode('svg', 'svg');

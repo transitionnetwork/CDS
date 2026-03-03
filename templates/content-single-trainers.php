@@ -30,8 +30,8 @@
   <main>
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
-      <div class="row justify-content-between">
-        <div class="col-12 col-lg-7">
+      <div class="flex flex-col lg:flex-row gap-6 lg:items-start">
+        <div class="w-full lg:w-7/12">
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
           <?php $languages = get_list_terms('trainer_language'); ?>
           <?php $topics = get_list_terms('trainer_topic'); ?>
@@ -59,7 +59,7 @@
 
           <?php foreach($field_names as $field_name) {
             if(get_field($field_name)) { ?>
-            <div class="mt-4">
+            <div class="mt-6">
               <h3><?php echo get_field_object($field_name)['label']; ?></h3>
               <div class="mt-1">
                 <?php echo get_field($field_name); ?>
@@ -69,17 +69,17 @@
           } ?>
           
           <?php if(is_user_trainer_admin()) { ?>
-            <div class="mt-5">
+            <div class="mt-12">
               <p><a href="<?php echo add_query_arg('edit_post', get_the_ID(), get_the_permalink(6741)); ?>" class="btn btn-dark btn-sm"><?php echo svg('pencil'); ?><?php _e('Edit', 'tofino'); ?></a></p>
           
               <?php get_template_part('templates/partials/form-toggle-trainer-state'); ?>
             </div>
           <?php } ?>
 
-          <div class="mt-5">
+          <div class="mt-12">
             <h3>Contact <?php the_title(); ?></h3>
-            <div id="trainer-name" class="d-none" data-name="<?php the_title(); ?>"></div>
-            <div id="trainer-email" class="d-none" data-email="<?php echo get_field('general_information_email'); ?>"></div>
+            <div id="trainer-name" class="hidden" data-name="<?php the_title(); ?>"></div>
+            <div id="trainer-email" class="hidden" data-email="<?php echo get_field('general_information_email'); ?>"></div>
             <?php echo do_shortcode('[contact-form-7 id="8688" title="Trainer Contact Form"]'); ?>
           </div>
 
@@ -88,7 +88,7 @@
           <?php } ?>
         </div>
 
-        <div class="col-12 col-lg-4">
+        <div class="w-full lg:w-5/12">
           <aside>
             <?php $training_photo = get_field('general_information_trainer_photo'); ?>
             <div>
@@ -100,7 +100,7 @@
             <?php $map = get_field('general_information_location')['map']; ?>
             <?php set_query_var('map', $map); ?>
             <?php if(!empty($map)) { ?>
-              <div class="mt-4">
+              <div class="mt-6">
                 <?php get_template_part('templates/partials/single-map'); ?>
               </div>
             <?php } ?>
@@ -108,7 +108,7 @@
             <?php $website = get_field('general_information_your_website'); ?>
             <?php if($website) { ?>
               <div class="panel">
-                <div class="mt-3">
+                <div class="mt-4">
                   <h3><?php _e('Website', 'tofino'); ?></h3>
                   <div><a href="<?php echo $website; ?>" target="_blank"><?php echo $website; ?></a></div>
                 </div>

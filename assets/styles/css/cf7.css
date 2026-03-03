@@ -1,0 +1,26 @@
+/* cf7.css — Contact Form 7 styles */
+
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #adb5bd;
+  border-radius: 2px;
+}
+
+.wpcf7-form br {
+  display: none;
+}
+
+.wpcf7-form sup {
+  color: red;
+}
+
+body.user-role-initiative .wpcf7-form .your-subject {
+  display: none;
+}
+
+.grecaptcha-badge {
+  display: none;
+}

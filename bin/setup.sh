@@ -2,4 +2,4 @@
 
 composer install
 npm install
-gulp
+npm run build

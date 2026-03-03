@@ -123,6 +123,16 @@ function main_script() {
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\main_script');
 
+/**
+ * Add type="module" to Vite-bundled main JS (ES module output).
+ */
+add_filter('script_loader_tag', function($tag, $handle) {
+  if ($handle === 'tofino/js') {
+    return str_replace('<script ', '<script type="module" ', $tag);
+  }
+  return $tag;
+}, 10, 2);
+
 
 /**
  * Head JS script

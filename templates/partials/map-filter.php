@@ -1,6 +1,6 @@
 <div id="map-filter">
   <div class="container-fluid">
-    <div class="row map-filter-row">
+    <div class="flex flex-wrap map-filter-row">
       <div class="filter-col">
         <div id="filter-type" class="filter-item">
           <label for="type_name"><?php _e('Show', 'tofino'); ?></label>

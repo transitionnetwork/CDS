@@ -50,7 +50,7 @@
       $tab_title = 'Mean Healthcheck Data: All hubs';
     }
 
-    echo '<h2 class="mb-3">' . $tab_title . '</h2>';
+    echo '<h2 class="mb-4">' . $tab_title . '</h2>';
     
     $count_results = count($posts);
     

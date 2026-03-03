@@ -3,13 +3,13 @@
 <main>
   <div class="container-fluid">
 
-    <div class="row justify-content-lg-between">
-      <div class="col-12 col-xl-3 order-xl-2">
+    <div class="flex flex-col xl:flex-row gap-6">
+      <div class="w-full xl:w-3/12 xl:order-2">
         <?php get_template_part('templates/partials/group-list-sidebar'); ?>
         <?php get_template_part('templates/partials/group-stats', null, array('view' => 'list')); ?>
       </div>
       
-      <div class="col-12 col-xl-9 order-xl-1">
+      <div class="w-full xl:w-9/12 xl:order-1">
         <?php if(get_query_var('added_note')) { ?>
           <div class="alert top alert-success">
             <?php _e('Your note has been added', 'tofino'); ?>
@@ -39,7 +39,7 @@
 
         <?php while (have_posts()) : the_post(); ?>
           <?php if (!is_user_logged_in() && !empty(get_the_content())) { ?>
-            <div class="panel mt-3">
+            <div class="panel mt-4">
               <?php the_content(); ?>
             </div>
           <?php } ?>

@@ -69,7 +69,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
       </a>
     </div>
 
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler collapsed" type="button" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="bar-wrapper">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -77,7 +77,7 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
       </span>
       <span class="sr-only"><?php _e('Toggle Navigation Button', 'tofino'); ?></span>
     </button>
-    <div class="collapse navbar-collapse" id="main-menu">
+    <div class="navbar-collapse" id="main-menu">
       <?php
       if (has_nav_menu('primary_nav')) :
         wp_nav_menu([

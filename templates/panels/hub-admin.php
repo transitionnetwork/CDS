@@ -47,10 +47,10 @@
                 foreach ( $user_query->get_results() as $user ) { ?>
                   <li>
                     <?php echo $user->display_name . ' (' . $user->user_email . ')'; ?><br/>
-                    <div class="btn-group">
+                    <div class="flex gap-1 items-start flex-wrap">
                       <form action="" method="post">
                         <button class="btn btn-sm btn-success" name="confirm_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
-                        <button class="btn btn-sm btn-danger" name="deny_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
+                        <button class="btn btn-sm btn-error" name="deny_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
                         <input type="hidden" name="hub_id" value="<?php echo $hub_id; ?>">
                       </form>
                   </li>

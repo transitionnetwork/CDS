@@ -1,0 +1,42 @@
+/* wp-admin.css — WordPress admin styles (loaded only in admin) */
+
+.maintenance-mode-alert {
+  background-color: #aa0000;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 999999;
+  padding: 20px;
+  text-align: center;
+}
+
+.maintenance-mode-alert p {
+  font-size: 18px;
+}
+
+.wp-list-table.contactforms .column-id {
+  width: 5%;
+}
+
+.wp-list-table.contactforms .column-date_time {
+  width: 10%;
+}
+
+.wp-list-table.contactforms .column-name {
+  width: 15%;
+}
+
+.wp-list-table.contactforms .column-email {
+  width: 25%;
+}
+
+.wp-list-table.contactforms .column-message {
+  width: 45%;
+}
+
+table.form-table .term-description-wrap {
+  display: none;
+}

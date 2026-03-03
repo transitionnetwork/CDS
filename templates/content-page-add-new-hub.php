@@ -2,8 +2,8 @@
 
 <main>
   <div class="container">
-    <div class="row justify-content-center">	
-      <div class="col-12 col-md-10 col-lg-8">
+    <div class="flex justify-center">	
+      <div class="w-full max-w-3xl">
         <?php while (have_posts()) : the_post(); ?>
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
 

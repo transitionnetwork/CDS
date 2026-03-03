@@ -5,7 +5,7 @@
   <?php if($email_log) { ?>
     <?php $email_log = array_reverse($email_log); ?>
     <div class="panel">
-      <div class="mb-3">
+      <div class="mb-4">
         <strong>Last Event:</strong> <?php echo get_post_meta($post->ID, 'last_mail_event', true); ?>
       </div>
       <div id="email-log">

@@ -1,4 +1,4 @@
-  <div class="btn-group">
+  <div class="flex gap-1 items-start flex-wrap">
     <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(); ?>"><?php echo svg('eye'); ?><?php _e('View', 'tofino'); ?></a>
 
     <?php if(is_user_role(array('administrator', 'super_hub'))) {  ?>
@@ -21,7 +21,7 @@
       <?php if(get_post_status($post) === 'publish') { ?>
         <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
         <form action="" method="post">
-          <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-danger btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('x'); ?><?php _e('Unpublish', 'tofino'); ?></button>
+          <button name="unpublish" value="<?php echo $post->ID; ?>" class="btn btn-error btn-sm btn-last" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('x'); ?><?php _e('Unpublish', 'tofino'); ?></button>
         </form>
       <?php } ?>
     <?php } ?>

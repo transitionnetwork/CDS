@@ -1,0 +1,133 @@
+/* lists.css — item-list table, filter form, pagination */
+
+.item-list {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 6px -1px #0000001a;
+  outline: 1px solid #d1d5db;
+  outline-offset: -1px;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+}
+
+.item-list tr.group-row {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.item-list tr.group-row:last-of-type {
+  border: 0;
+}
+
+.item-list td,
+.item-list th {
+  padding: 1rem;
+}
+
+.item-list td .status span,
+.item-list th .status span {
+  white-space: nowrap;
+}
+
+.item-list td .btn,
+.item-list th .btn {
+  margin: 0.125rem 0;
+}
+
+.item-list td .btn-group,
+.item-list th .btn-group {
+  white-space: nowrap;
+}
+
+.item-list td .btn-group button.btn-last,
+.item-list th .btn-group button.btn-last {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.item-list td .status,
+.item-list th .status {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+form.filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+form.filter input[type="text"] {
+  margin-right: 0.25rem;
+  padding: 0.35rem;
+}
+
+form.filter .search-wrap {
+  display: flex;
+  align-items: center;
+}
+
+form.filter label {
+  margin: 0;
+  margin-right: 0.25rem;
+}
+
+@media (max-width: 991px) {
+  form.filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+ul.account-details label {
+  font-weight: bold;
+  margin: 0;
+  margin-right: 0.25rem;
+}
+
+/* Pagination */
+nav.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+nav .page-numbers {
+  border-radius: 1.5rem;
+  font-size: 1.125rem;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav .page-numbers li + li {
+  margin-left: 0.5rem;
+}
+
+nav .page-numbers li a,
+nav .page-numbers li span {
+  color: var(--color-brand-primary);
+  padding: 0.5rem 1rem;
+  display: block;
+  text-decoration: none;
+  border: 1px solid #dee2e6;
+  border-radius: 1.5rem;
+}
+
+nav .page-numbers li a.current,
+nav .page-numbers li span.current {
+  background-color: var(--color-brand-primary);
+  color: #fff;
+}
+
+nav .page-numbers li a.current:hover,
+nav .page-numbers li span.current:hover {
+  color: #fff;
+}
+
+nav .page-numbers li a:hover,
+nav .page-numbers li span:hover {
+  color: #fff;
+  background-color: var(--color-brand-v3);
+  border-color: var(--color-brand-v3);
+}

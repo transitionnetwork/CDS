@@ -13,8 +13,7 @@ if(is_user_role('initiative')) {
 
 <main>
   <div class="container">
-    <div class="row justify-content-center">	
-      <div class="col-12 col-md-10 col-lg-8">
+    <div class="mx-auto max-w-3xl w-full">
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
         
         <?php if(!is_user_logged_in()) { ?>
@@ -34,7 +33,6 @@ if(is_user_role('initiative')) {
           ));
           echo '<div class="button-block"><a class="btn btn-secondary" href="javascript:history.go(-1)">Cancel</a></div>'; ?>
         <?php } ?>
-      </div>
     </div>
   </div>
 </main>

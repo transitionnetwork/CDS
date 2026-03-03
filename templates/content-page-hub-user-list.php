@@ -5,8 +5,8 @@
 
 <main>
   <div class="container">
-    <div class="row">
-      <div class="col-12">
+    <div>
+      <div class="w-full">
         <?php while (have_posts()) : the_post(); ?>
           <h1><?php echo \Tofino\Helpers\title(); ?> - <?php echo get_the_terms(wp_get_current_user(), 'hub')[0]->name; ?></h1>
           <?php $user_hub_id = get_the_terms(wp_get_current_user(), 'hub')[0]->term_id; 

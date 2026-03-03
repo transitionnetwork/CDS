@@ -105,7 +105,7 @@
 
 <?php if(get_query_var('failed') === 'co_author') { ?>
   <div class="container">
-    <div class="alert top alert-danger">
+    <div class="alert top alert-error">
       <?php _e('The email is already the primary email of the gropup and cannot be added as a co-author', 'tofino'); ?>
     </div>
   </div>

@@ -1,0 +1,48 @@
+/* login.css — xinc login form */
+
+.xinc-login {
+  padding: 3rem 4rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px -1px #0000001a;
+  outline: 1px solid #d1d5db;
+  outline-offset: -1px;
+  margin-top: 3rem;
+  background: #fff;
+}
+
+.xinc-login h1 {
+  text-align: left;
+  margin-top: 0;
+}
+
+.xinc-login label {
+  display: block;
+}
+
+.xinc-login input {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+.xinc-login input[type="text"],
+.xinc-login input[type="password"] {
+  width: 100%;
+}
+
+.xinc-login input.button {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  padding: 0.675rem 1.25rem;
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.recaptcha-container {
+  margin-bottom: 1rem;
+}

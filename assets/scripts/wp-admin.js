@@ -1,3 +1,6 @@
+// Import wp-admin CSS — Vite processes this and outputs to dist/css/wp-admin.css
+import '../styles/css/wp-admin.css';
+
 import Cookies from 'js-cookie';
 
 (function($) {
