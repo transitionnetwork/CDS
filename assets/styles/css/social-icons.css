@@ -1,19 +1,17 @@
 /* social-icons.css */
 
 .social-icons {
-  list-style-type: none;
-  padding-left: 0;
+  @apply list-none pl-0;
 }
 
 .social-icons li {
-  display: inline-block;
+  @apply inline-block;
 }
 
 .social-icons svg {
-  width: 24px;
-  height: 24px;
+  @apply size-6;
 }
 
 .social-icons a {
-  display: block;
+  @apply block;
 }

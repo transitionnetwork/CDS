@@ -519,3 +519,12 @@ function render_trainer_meta_box($post) {
   <?php echo get_the_date(); ?>
   <?php
 }
+
+// Wrap the_content() output in .rich-text so Tailwind Preflight doesn't strip
+// paragraph and list spacing from WYSIWYG / editor content.
+add_filter('the_content', function($content) {
+  if (empty($content)) {
+    return $content;
+  }
+  return '<div class="rich-text">' . $content . '</div>';
+});

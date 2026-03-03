@@ -2,38 +2,29 @@
 
 .hub-col,
 .trainer-col {
-  display: flex;
-  flex-direction: column;
+  @apply flex flex-col;
 }
 
 .hub-item,
 .trainer-item {
   flex: 0 1 100%;
-  margin-bottom: 1.875rem; /* grid-gutter-width: 30px */
-  background-color: #fff;
+  @apply mb-8 bg-white shadow-md rounded-2xl overflow-hidden;
   border: 1px solid #e9ecef;
-  box-shadow: 0 4px 6px -1px #0000001a;
   outline: 1px solid #d1d5db;
   outline-offset: -1px;
-  border-radius: 1rem;
-  overflow: hidden;
 }
 
 .hub-item .thumbnail-bg,
 .trainer-item .thumbnail-bg {
   padding-top: 66%;
-  background-position: 50%;
-  background-size: cover;
-  display: block;
+  @apply bg-center bg-cover block;
 }
 
 .hub-item .content,
 .trainer-item .content {
-  padding: 1rem;
+  @apply p-4;
 }
 
 .trainer-created {
-  font-size: 0.875rem;
-  font-style: italic;
-  margin-top: 1rem;
+  @apply text-sm italic mt-4;
 }

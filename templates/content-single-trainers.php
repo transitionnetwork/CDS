@@ -39,19 +39,21 @@
           <?php $regions = get_field('additional_information_trainer_regions'); ?>
 
           <div class="panel">
-            <?php if($languages) { ?>
-              <div><strong>Languages:</strong>&nbsp;<?php echo $languages; ?></div>
-            <?php } ?>
-            <?php if($topics) { ?>
-              <div><strong>Topics:</strong>&nbsp;<?php echo $topics; ?></div>
-            <?php } ?>
-            <?php if($countries) { ?>
-              <div><strong>Countries:</strong>&nbsp;<?php echo $countries; ?></div>
-            <?php } ?>
-            <?php if($regions) { ?>
-              <div><strong>Regions:</strong>&nbsp;<?php echo $regions; ?></div>
-            <?php } ?>
-            </div>
+            <ul class="space-y-2">
+              <?php if($languages) { ?>
+                <li><strong>Languages:</strong>&nbsp;<?php echo $languages; ?></li>
+              <?php } ?>
+              <?php if($topics) { ?>
+                <li><strong>Topics:</strong>&nbsp;<?php echo $topics; ?></li>
+              <?php } ?>
+              <?php if($countries) { ?>
+                <li><strong>Countries:</strong>&nbsp;<?php echo $countries; ?></li>
+              <?php } ?>
+              <?php if($regions) { ?>
+                <li><strong>Regions:</strong>&nbsp;<?php echo $regions; ?></li>
+              <?php } ?>
+            </ul>
+          </div>
 
           <?php $field_names = array(
             'general_information_trainer_bio',
@@ -61,7 +63,7 @@
             if(get_field($field_name)) { ?>
             <div class="mt-6">
               <h3><?php echo get_field_object($field_name)['label']; ?></h3>
-              <div class="mt-1">
+              <div class="mt-1 rich-text">
                 <?php echo get_field($field_name); ?>
               </div>
             </div>

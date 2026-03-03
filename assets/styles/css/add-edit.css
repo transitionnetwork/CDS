@@ -2,49 +2,36 @@
 
 #acf-form .acf-input-wrap > input[type="text"],
 #acf-form .acf-input-wrap > input[type="email"] {
-  padding: 1rem 0.5rem;
+  @apply py-4 px-2 rounded;
   border: 1px solid #ced4da;
-  border-radius: 3px;
 }
 
 body:not(.single) #acf-form .acf-form-submit {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
+  @apply fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-center z-[1002];
   border-top: 1px solid #ced4da;
-  z-index: 1002;
 }
 
 body.single #acf-form .acf-form-submit {
-  margin-top: 1rem;
+  @apply mt-4;
 }
 
 .leaflet-control-geocoder {
+  @apply mb-4;
   border: 1px solid #ced4da;
-  margin-bottom: 1rem;
 }
 
 .leaflet-control-layers {
-  display: none;
+  @apply hidden;
 }
 
 /* User profile form */
 body.user-profile label {
-  display: block;
-  font-weight: bold;
+  @apply block font-bold;
 }
 
 body.user-profile input[type="text"],
 body.user-profile input[type="password"] {
-  padding: 1rem 0.5rem;
-  border: 1px solid #e9ecef;
-  border-radius: 3px;
+  @apply py-4 px-2 rounded box-border w-full;
   height: 28px;
-  box-sizing: border-box;
-  width: 100%;
+  border: 1px solid #e9ecef;
 }

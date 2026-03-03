@@ -2,6 +2,42 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* ─── CDS theme ──────────────────────────────────────────────────────────────── */
+@plugin "daisyui/theme" {
+  name: "cds";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-primary:           #003d5b;
+  --color-primary-content:   #ffffff;
+  --color-secondary:         #00798c;
+  --color-secondary-content: #ffffff;
+  --color-accent:            #edae46;
+  --color-accent-content:    #000000;
+  --color-neutral:           #003d5b;
+  --color-neutral-content:   #ffffff;
+  --color-base-100:          #fbf8ef;
+  --color-base-200:          #f0ece0;
+  --color-base-300:          #e0d9c8;
+  --color-base-content:      #212529;
+  --color-info:              #30638e;
+  --color-info-content:      #ffffff;
+  --color-success:           #00798c;
+  --color-success-content:   #ffffff;
+  --color-warning:           #edae46;
+  --color-warning-content:   #000000;
+  --color-error:             #d1495b;
+  --color-error-content:     #ffffff;
+
+  --radius-selector: 1rem;
+  --radius-field:    0.25rem;
+  --radius-box:      0.5rem;
+  --border:          1px;
+  --depth:           1;
+  --noise:           0;
+}
+
 @font-face {
   font-family: 'Roca Bold';
   src: url('../fonts/Roca-Bold.woff2') format('woff2'),
@@ -18,41 +54,19 @@
   --font-body: 'Instrument Sans', sans-serif;
   --font-header: 'Roca Bold', serif;
 
-  --color-brand-primary:   #003d5b;
-  --color-brand-secondary: #d1495b;
-  --color-brand-tertiary:  #edae46;
+  /* Brand aliases — reference the DaisyUI theme (single source of truth) */
+  --color-brand-primary:   var(--color-primary);
+  --color-brand-secondary: var(--color-error);
+  --color-brand-tertiary:  var(--color-accent);
   --color-brand-v2:        #30638e;
-  --color-brand-v3:        #00798c;
-  --color-brand-white:     #fbf8ef;
+  --color-brand-v3:        var(--color-secondary);
+  --color-brand-white:     var(--color-base-100);
   --color-sea-blue:        #a8d3e0;
   --color-events:          #444359;
-  --color-ink-black:       #212529;
+  --color-ink-black:       var(--color-base-content);
 
-  --shadow-card: 0 4px 6px -1px #0000001a;
+  --shadow-card:    0 4px 6px -1px #0000001a;
   --border-outline: 1px solid #d1d5db;
-}
-
-/* ─── DaisyUI theme overrides ───────────────────────────────────────────────── */
-:root,
-[data-theme] {
-  --color-primary:           #003d5b;
-  --color-primary-content:   #ffffff;
-  --color-secondary:         #00798c;
-  --color-secondary-content: #ffffff;
-  --color-accent:            #edae46;
-  --color-accent-content:    #000000;
-  --color-error:             #d1495b;
-  --color-error-content:     #ffffff;
-  --color-warning:           #edae46;
-  --color-warning-content:   #000000;
-  --color-success:           #00798c;
-  --color-success-content:   #ffffff;
-  --color-base-100:          #fbf8ef;
-  --color-base-200:          #f0ece0;
-  --color-base-300:          #e0d9c8;
-  --color-base-content:      #212529;
-  --color-neutral:           #003d5b;
-  --color-neutral-content:   #ffffff;
 }
 
 /* ─── Partials ───────────────────────────────────────────────────────────────── */

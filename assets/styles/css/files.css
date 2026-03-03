@@ -1,31 +1,26 @@
 /* files.css — file upload tile styles */
 
 .files-row {
-  margin-bottom: 1.5rem;
+  @apply mb-6;
 }
 
 .file-tile {
-  padding: 1.5rem;
+  @apply p-6 rounded;
   border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
 }
 
 .file-tile ul {
-  padding-left: 1rem;
-  font-size: 0.875rem;
+  @apply pl-4 text-sm;
 }
 
 .file-tile ul label {
-  font-weight: bold;
-  margin: 0;
-  display: block;
+  @apply font-bold m-0 block;
 }
 
 .file-tile img {
-  width: 100%;
+  @apply w-full;
 }
 
 .file-tile h4 {
-  font-weight: bold;
-  font-size: 1.125rem;
+  @apply font-bold text-lg;
 }

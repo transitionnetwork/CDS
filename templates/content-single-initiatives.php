@@ -57,7 +57,7 @@
           
           <?php get_template_part('templates/partials/group-info-panel'); ?>
           
-          <?php echo strip_tags(get_field('description', $post), '<p><em><strong><u><ol><ul><li><blockquote>'); ?>
+          <div class="rich-text"><?php echo strip_tags(get_field('description', $post), '<p><em><strong><u><ol><ul><li><blockquote>'); ?></div>
 
 
           <?php if(is_user_logged_in() && is_user_role(array('initiative'))) { ?>

@@ -2,118 +2,104 @@
 
 body.single h1,
 body.tax-hub h1 {
-  margin-bottom: 1rem;
+  @apply mb-4;
 }
 
 body.single h4,
 body.tax-hub h4 {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  @apply mt-2 mb-4;
 }
 
 body.single label,
 body.tax-hub label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0;
-  margin-top: 1rem;
+  @apply block font-bold mb-0 mt-4;
 }
 
 body.single .leaflet-container,
 body.tax-hub .leaflet-container {
-  border-radius: 4px;
+  @apply rounded;
 }
 
 body.single .meta,
 body.tax-hub .meta {
-  padding-left: 1rem;
+  @apply pl-4;
 }
 
 body.single .panel.healthchecks table,
 body.tax-hub .panel.healthchecks table {
-  margin-bottom: 1rem;
+  @apply mb-4;
 }
 
 body.single .panel.group-contact,
 body.tax-hub .panel.group-contact {
-  overflow: hidden;
+  @apply overflow-hidden;
 }
 
 body.single .panel.grant-status .updated,
 body.tax-hub .panel.grant-status .updated {
-  margin-top: 0.5rem;
+  @apply mt-2;
 }
 
 body.single .panel.grant-status .acf-field,
 body.tax-hub .panel.grant-status .acf-field {
-  padding: 0;
-  border: 0;
-  margin-top: 1rem;
+  @apply p-0 border-0 mt-4;
 }
 
 body.single .panel.grant-status .acf-label,
 body.tax-hub .panel.grant-status .acf-label {
-  display: none;
+  @apply hidden;
 }
 
 body.single .links,
 body.tax-hub .links {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  margin-top: 0.5rem;
+  @apply m-0 p-0 list-none flex mt-2;
   text-overflow: clip;
 }
 
 body.single .links li,
 body.tax-hub .links li {
-  margin-right: 0.5rem;
+  @apply mr-2;
 }
 
 body.single .links svg,
 body.tax-hub .links svg {
-  width: 1.75rem;
-  height: 1.75rem;
+  @apply size-7;
 }
 
 body.single section,
 body.tax-hub section {
-  margin: 1rem 0;
+  @apply my-4;
 }
 
 /* Healthcheck single page */
 body.single-healthchecks .header {
-  margin-bottom: 2rem;
+  @apply mb-8;
 }
 
 body.single-healthchecks .header h1 {
-  margin-top: 0;
+  @apply mt-0;
 }
 
 body.single-healthchecks h3 {
-  margin-bottom: 1rem;
+  @apply mb-4;
 }
 
 body.single-healthchecks label {
-  margin: 0;
-  padding: 0.5rem;
+  @apply m-0 p-2;
 }
 
 /* Initiatives email log */
 body.single-initiatives #email-log {
   max-height: 400px;
-  overflow-y: scroll;
+  @apply overflow-y-scroll p-4;
   border: 1px solid #ced4da;
-  padding: 1rem;
 }
 
 /* Single map */
 #single-map {
-  width: 100%;
   height: 300px;
+  @apply w-full mb-4;
   background-color: #a8d3e0;
-  margin-bottom: 1rem;
 }
 
 #single-map .leaflet-popup-content {
@@ -122,88 +108,70 @@ body.single-initiatives #email-log {
 
 /* Healthcheck form */
 main.healthcheck-form .header {
-  margin-bottom: 1rem;
+  @apply mb-4;
 }
 
 main.healthcheck-form .header h2 {
-  margin-bottom: 0;
+  @apply mb-0;
 }
 
 main.healthcheck-form .header .date {
-  font-style: italic;
+  @apply italic;
 }
 
 main.healthcheck-form .steps span {
-  font-weight: bold;
-  font-size: 1.25rem;
+  @apply font-bold text-xl;
 }
 
 .step-bar-container {
-  width: 100%;
-  display: flex;
-  height: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 5px;
+  @apply w-full flex h-4 bg-gray-50 rounded mb-4;
   border: 1px solid #dee2e6;
-  margin-bottom: 1rem;
 }
 
 .step-bar-container .step-bar {
-  background-color: var(--color-brand-primary);
-  border-radius: 5px;
+  @apply bg-brand-primary rounded;
 }
 
 main.healthcheck-form form.acf-form {
-  margin-top: 2rem;
+  @apply mt-8;
 }
 
 main.healthcheck-form .acf-field-group {
-  padding: 0;
-  margin-bottom: 2rem;
+  @apply p-0 mb-8;
 }
 
 main.healthcheck-form .acf-field-group > .acf-label {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  @apply text-2xl mb-6;
 }
 
 main.healthcheck-form .acf-button-group label.selected {
-  background-color: var(--color-brand-primary);
+  @apply bg-brand-primary;
   border-color: #002c42;
 }
 
 main.healthcheck-form .acf-form-submit {
-  text-align: center;
+  @apply text-center;
 }
 
 main.healthcheck-form .acf-form-submit .acf-button {
-  font-size: 1.125rem;
-  padding: 0.875rem 1.5rem;
+  @apply text-lg py-3.5 px-6;
 }
 
 /* Healthcheck data summary */
 body.single-healthchecks .healthcheck-choice,
 .healthcheck-choice {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #e9ecef;
-  padding: 1rem 0;
+  @apply flex justify-between border-b py-4;
+  border-color: #e9ecef;
 }
 
 body.single-healthchecks .healthcheck-choice label,
 .healthcheck-choice label {
-  font-weight: normal;
+  @apply font-normal;
 }
 
 body.single-healthchecks .healthcheck-choice span,
 .healthcheck-choice span {
-  color: #fff;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 1.5rem;
-  font-size: 0.875rem;
-  padding: 0.25rem 0.75rem;
+  @apply text-white whitespace-nowrap inline-flex items-center rounded-3xl text-sm py-1 px-3;
 }
 
 .healthcheck-choice.choice-1 span { background-color: #dc3545; }
@@ -214,43 +182,36 @@ body.single-healthchecks .healthcheck-choice span,
 
 /* Healthcheck graphing */
 #healthcheck-bar {
-  margin-bottom: 1rem;
-  margin-top: 2rem;
+  @apply mb-4 mt-8;
 }
 
 #healthcheck-bar .ytick tspan {
-  display: none;
+  @apply hidden;
 }
 
 #graph-loading-wrapper {
-  position: relative;
-  width: 100%;
-  padding: 4rem;
+  @apply relative w-full p-16;
 }
 
 #map-loading,
 .graph-loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  @apply absolute top-1/2 left-1/2 z-[500];
   transform: translate(-50%, -50%);
-  z-index: 500;
 }
 
 /* Dual ring loader */
 .lds-dual-ring {
-  display: inline-block;
+  @apply inline-block;
   width: 64px;
   height: 64px;
 }
 
 .lds-dual-ring::after {
   content: " ";
-  display: block;
+  @apply block rounded-full;
   width: 46px;
   height: 46px;
   margin: 1px;
-  border-radius: 50%;
   border: 5px solid var(--color-brand-primary);
   border-color: var(--color-brand-primary) transparent var(--color-brand-primary) transparent;
   animation: lds-dual-ring 1.2s linear infinite;
@@ -263,18 +224,13 @@ body.single-healthchecks .healthcheck-choice span,
 
 /* Token login */
 #token-login-button {
-  border: none;
-  background: transparent;
-  display: block;
-  cursor: pointer;
+  @apply border-0 bg-transparent block cursor-pointer;
 }
 
 #token-login-button svg {
-  height: 1.75rem;
-  width: 1.75rem;
-  color: var(--color-brand-primary);
+  @apply size-7 text-brand-primary;
 }
 
 .autologin-panel {
-  margin-top: 2rem;
+  @apply mt-8;
 }

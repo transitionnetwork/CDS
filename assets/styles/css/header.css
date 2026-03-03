@@ -1,7 +1,7 @@
 /* header.css — bar-info top bar, sticky footer structure */
 
 html {
-  height: 100%;
+  @apply h-full;
 }
 
 /* Navbar brand SVG */
@@ -15,11 +15,10 @@ html {
 .form-group.required .form-control-label::after,
 .checkbox.required .form-control-label::after {
   content: "*";
-  padding-left: 2px;
-  color: #dc3545;
+  @apply pl-0.5 text-red-600;
 }
 
 .form-group.required.has-success .form-control-label::after,
 .checkbox.required.has-success .form-control-label::after {
-  color: #28a745;
+  @apply text-green-600;
 }

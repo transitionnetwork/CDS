@@ -2,7 +2,7 @@
 use \Tofino\ThemeOptions\Menu as m;
 use \Tofino\ThemeOptions\Notifications as n; ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> data-theme="cds">
 <head>
   <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="<?php echo get_template_directory_uri(); ?>/favicon/favicon.svg" />

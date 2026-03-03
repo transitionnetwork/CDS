@@ -15,7 +15,7 @@
         <?php $status_color = get_status_tag($status); ?>
         <p><span class="btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
         
-        <div class="mt-6"><?php echo get_field('hub_description', $term); ?></div>
+        <div class="mt-6 rich-text"><?php echo get_field('hub_description', $term); ?></div>
 
         <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, get_the_permalink(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>

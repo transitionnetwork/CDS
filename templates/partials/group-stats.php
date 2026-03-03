@@ -2,7 +2,7 @@
 $data = get_group_totals($args);
 ?>
 
-<div class="panel">
+<div class="panel rich-text">
   <?php if($args['view'] === 'list') { ?>
     <p>Groups are active in <strong><?php echo $data['total_countries']; ?> countries</strong></p>
   <?php } ?>

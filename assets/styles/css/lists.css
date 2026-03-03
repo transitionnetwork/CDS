@@ -1,13 +1,9 @@
 /* lists.css — item-list table, filter form, pagination */
 
 .item-list {
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0 4px 6px -1px #0000001a;
+  @apply w-full bg-white shadow-md rounded-2xl text-sm;
   outline: 1px solid #d1d5db;
   outline-offset: -1px;
-  border-radius: 1rem;
-  font-size: 0.875rem;
 }
 
 .item-list tr.group-row {
@@ -15,119 +11,96 @@
 }
 
 .item-list tr.group-row:last-of-type {
-  border: 0;
+  @apply border-0;
 }
 
 .item-list td,
 .item-list th {
-  padding: 1rem;
+  @apply p-4;
 }
 
 .item-list td .status span,
 .item-list th .status span {
-  white-space: nowrap;
+  @apply whitespace-nowrap;
 }
 
 .item-list td .btn,
 .item-list th .btn {
-  margin: 0.125rem 0;
+  @apply my-0.5;
 }
 
 .item-list td .btn-group,
 .item-list th .btn-group {
-  white-space: nowrap;
+  @apply whitespace-nowrap;
 }
 
 .item-list td .btn-group button.btn-last,
 .item-list th .btn-group button.btn-last {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  @apply rounded-tl-none rounded-bl-none;
 }
 
 .item-list td .status,
 .item-list th .status {
-  display: block;
-  margin-bottom: 0.5rem;
+  @apply block mb-2;
 }
 
 form.filter {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
+  @apply flex items-center mb-2;
 }
 
 form.filter input[type="text"] {
-  margin-right: 0.25rem;
+  @apply mr-1;
   padding: 0.35rem;
 }
 
 form.filter .search-wrap {
-  display: flex;
-  align-items: center;
+  @apply flex items-center;
 }
 
 form.filter label {
-  margin: 0;
-  margin-right: 0.25rem;
+  @apply m-0 mr-1;
 }
 
 @media (max-width: 991px) {
   form.filter {
-    flex-direction: column;
-    align-items: flex-start;
+    @apply flex-col items-start;
   }
 }
 
 ul.account-details label {
-  font-weight: bold;
-  margin: 0;
-  margin-right: 0.25rem;
+  @apply font-bold m-0 mr-1;
 }
 
 /* Pagination */
 nav.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
+  @apply flex justify-center mt-8;
 }
 
 nav .page-numbers {
-  border-radius: 1.5rem;
-  font-size: 1.125rem;
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  @apply rounded-3xl text-lg flex list-none m-0 p-0;
 }
 
 nav .page-numbers li + li {
-  margin-left: 0.5rem;
+  @apply ml-2;
 }
 
 nav .page-numbers li a,
 nav .page-numbers li span {
-  color: var(--color-brand-primary);
-  padding: 0.5rem 1rem;
-  display: block;
-  text-decoration: none;
-  border: 1px solid #dee2e6;
-  border-radius: 1.5rem;
+  @apply text-brand-primary py-2 px-4 block no-underline border rounded-3xl;
+  border-color: #dee2e6;
 }
 
 nav .page-numbers li a.current,
 nav .page-numbers li span.current {
-  background-color: var(--color-brand-primary);
-  color: #fff;
+  @apply bg-brand-primary text-white;
 }
 
 nav .page-numbers li a.current:hover,
 nav .page-numbers li span.current:hover {
-  color: #fff;
+  @apply text-white;
 }
 
 nav .page-numbers li a:hover,
 nav .page-numbers li span:hover {
-  color: #fff;
-  background-color: var(--color-brand-v3);
-  border-color: var(--color-brand-v3);
+  @apply text-white bg-brand-v3 border-brand-v3;
 }

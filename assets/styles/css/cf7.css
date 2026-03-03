@@ -3,24 +3,22 @@
 .wpcf7-form input[type="text"],
 .wpcf7-form input[type="email"],
 .wpcf7-form textarea {
-  width: 100%;
-  padding: 0.5rem;
+  @apply w-full p-2 rounded;
   border: 1px solid #adb5bd;
-  border-radius: 2px;
 }
 
 .wpcf7-form br {
-  display: none;
+  @apply hidden;
 }
 
 .wpcf7-form sup {
-  color: red;
+  @apply text-red-600;
 }
 
 body.user-role-initiative .wpcf7-form .your-subject {
-  display: none;
+  @apply hidden;
 }
 
 .grecaptcha-badge {
-  display: none;
+  @apply hidden;
 }
