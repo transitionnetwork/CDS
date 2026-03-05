@@ -1,6 +1,6 @@
 <?php if (!is_user_logged_in()) { ?>
   <?php
-    wp_redirect(home_url('member-login'));
+    wp_redirect(esc_url(add_query_arg('redirect_to', home_url('identify'), '/member-login')));
     exit;
   ?>
 <?php } else { ?>
