@@ -1,6 +1,6 @@
 <?php if (!is_user_logged_in()) { ?>
   <?php
-    wp_redirect(esc_url(add_query_arg('error_code', '1', '/error')));
+    wp_redirect(esc_url(add_query_arg('error_code', '1', '/member-login')));
     exit;
   ?>
 <?php } else { ?>
