@@ -18,9 +18,21 @@ const symbols = readdirSync(srcDir)
     const id  = basename(file, '.svg');
     let   src = readFileSync(join(srcDir, file), 'utf8');
 
-    // Extract viewBox
-    const vbMatch = src.match(/viewBox="([^"]+)"/);
-    const viewBox = vbMatch ? ` viewBox="${vbMatch[1]}"` : '';
+    // Extract attributes from root <svg> to carry through to <symbol>
+    const vbMatch   = src.match(/viewBox="([^"]+)"/);
+    const viewBox   = vbMatch ? ` viewBox="${vbMatch[1]}"` : '';
+
+    const fillMatch = src.match(/<svg[^>]*\sfill="([^"]+)"/);
+    const fill      = fillMatch ? ` fill="${fillMatch[1]}"` : '';
+
+    // Carry fill-rule / clip-rule from root style="" into symbol style=""
+    const styleMatch    = src.match(/<svg[^>]*\sstyle="([^"]+)"/);
+    const rootStyle     = styleMatch ? styleMatch[1] : '';
+    const svgStyleProps = ['fill-rule', 'clip-rule', 'stroke-linejoin', 'stroke-miterlimit'];
+    const keptStyle     = svgStyleProps
+      .map(p => { const m = rootStyle.match(new RegExp(`${p}:[^;]+`)); return m ? m[0] : null; })
+      .filter(Boolean).join(';');
+    const style         = keptStyle ? ` style="${keptStyle}"` : '';
 
     // Strip XML declaration, DOCTYPE, comments, and outer <svg ...> wrapper tags
     src = src
@@ -31,7 +43,7 @@ const symbols = readdirSync(srcDir)
       .replace(/<\/svg>\s*$/, '')
       .trim();
 
-    return `  <symbol id="${id}"${viewBox}>\n    ${src}\n  </symbol>`;
+    return `  <symbol id="${id}"${viewBox}${fill}${style}>\n    ${src}\n  </symbol>`;
   });
 
 const sprite = `<svg xmlns="http://www.w3.org/2000/svg" style="display:none">\n${symbols.join('\n')}\n</svg>\n`;

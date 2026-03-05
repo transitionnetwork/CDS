@@ -56,6 +56,10 @@
   @apply m-0 p-0 list-none font-body flex flex-col text-sm;
 }
 
+#map-info-panel .key li {
+  @apply flex items-center;
+}
+
 #map-info-panel .key li + li {
   @apply mt-2;
 }
