@@ -189,9 +189,68 @@ export default function () {
     // $('#filter-type option[value="3"]').html('Hubs (' + countHubs + ')')
   }
   
-  function getMarkers(params) {
-    $('#map-loading').show();
+  var CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
+  function cacheKey(params) {
+    return 'mapMarkers:' + JSON.stringify(params, Object.keys(params).sort());
+  }
+
+  function getCached(params) {
+    try {
+      var raw = sessionStorage.getItem(cacheKey(params));
+      if (!raw) return null;
+      var entry = JSON.parse(raw);
+      if (Date.now() - entry.ts > CACHE_TTL) {
+        sessionStorage.removeItem(cacheKey(params));
+        return null;
+      }
+      return entry.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setCache(params, data) {
+    try {
+      sessionStorage.setItem(cacheKey(params), JSON.stringify({ ts: Date.now(), data: data }));
+    } catch (e) {
+      // sessionStorage full — silently ignore
+    }
+  }
+
+  function renderResponse(response) {
+    $('#map-no-results').hide();
+    clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
+    hubMarkers = L.markerClusterGroup({ chunkedLoading: true });
+    trainerMarkers = L.markerClusterGroup({ chunkedLoading: true });
+
+    if (Object.keys(response.initiatives).length > 0 || Object.keys(response.hubs).length > 0 || Object.keys(response.trainers).length > 0) {
+      displayMarkers(response);
+    } else {
+      $('#map-no-results').show();
+    }
+  }
+
+  function getMarkers(params) {
+    var cached = getCached(params);
+
+    if (cached) {
+      renderResponse(cached);
+
+      // revalidate in background
+      fetchMarkers(params, function (response) {
+        setCache(params, response);
+      });
+      return;
+    }
+
+    fetchMarkers(params, function (response) {
+      setCache(params, response);
+      renderResponse(response);
+    });
+  }
+
+  function fetchMarkers(params, callback) {
     $.ajax({
       url: tofinoJS.ajaxUrl,
       type: 'POST',
@@ -204,19 +263,7 @@ export default function () {
       },
       dataType: 'json',
       success: function (response) {
-        console.log(response)
-        
-        $('#map-loading').hide();
-        $('#map-no-results').hide();
-        clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
-        hubMarkers = L.markerClusterGroup({ chunkedLoading: true });
-        trainerMarkers = L.markerClusterGroup({ chunkedLoading: true });
-        
-        if (Object.keys(response.initiatives).length > 0 || Object.keys(response.hubs).length > 0 || Object.keys(response.trainers).length > 0) {
-          displayMarkers(response);
-        } else {
-          $('#map-no-results').show();
-        }
+        callback(response);
       },
       error: function (jqxhr, status, exception) {
         console.log('JQXHR:', jqxhr);
