@@ -15,7 +15,11 @@ body.tax-hub label {
 
 /* Standardised info rows for single views (group, trainer, hub) */
 .info-row {
-  @apply flex flex-col gap-1 py-3 border-b border-gray-100;
+  @apply flex flex-col gap-0.5 pb-2 border-b border-gray-100;
+}
+
+.info-row:first-child {
+  @apply pt-0;
 }
 
 .info-row:last-child {

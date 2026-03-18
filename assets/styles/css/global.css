@@ -278,7 +278,7 @@ section .panel,
 
 /* Lighter panel variant — outline border, no shadow, transparent bg */
 .panel-dash {
-  @apply p-6 mb-6 border border-gray-400;
+  @apply flex flex-col gap-2 px-4 py-3 mb-6 border border-gray-400;
 }
 
 #message {
