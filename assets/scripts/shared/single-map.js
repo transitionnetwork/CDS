@@ -1,10 +1,10 @@
-var $ = window.jQuery;
 import L from 'leaflet';
 
 export default function () {
-  var lat = $('#single-map').data('lat');
-  var lng = $('#single-map').data('lng');
-  var zoom = $('#single-map').data('zoom');
+  var mapEl = document.getElementById('single-map');
+  var lat = parseFloat(mapEl.dataset.lat);
+  var lng = parseFloat(mapEl.dataset.lng);
+  var zoom = parseInt(mapEl.dataset.zoom, 10);
 
   var map = L.map('single-map').setView([lat, lng], zoom);
 
@@ -15,7 +15,7 @@ export default function () {
 
   var markerIcon;
 
-  if ($('body').hasClass('tax-hub')) {
+  if (document.body.classList.contains('tax-hub')) {
     markerIcon = L.icon({
       iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub.png',
       iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-hub-2x.png',
@@ -26,7 +26,7 @@ export default function () {
       tooltipAnchor: [16, -28],
       shadowSize: [41, 41]
     });
-  } else if ($('body').hasClass('single-trainers')) {
+  } else if (document.body.classList.contains('single-trainers')) {
     markerIcon = L.icon({
       iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-trainer.png',
       iconRetinaUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-trainer-2x.png',
@@ -52,7 +52,8 @@ export default function () {
 
   var marker = L.marker([lat, lng], { icon: markerIcon }).addTo(map);
 
-  if ($('#marker-address').length) {
-    marker.bindPopup($('#marker-address').data('address'));
+  var addressEl = document.getElementById('marker-address');
+  if (addressEl) {
+    marker.bindPopup(addressEl.dataset.address);
   }
 }

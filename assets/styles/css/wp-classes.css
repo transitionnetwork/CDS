@@ -1,0 +1,44 @@
+/* WordPress Generated Classes */
+
+/* Media alignment */
+.alignnone {
+  @apply ml-0 mr-0 max-w-full;
+}
+
+.aligncenter {
+  @apply block mx-auto h-auto;
+}
+
+.alignleft,
+.alignright {
+  @apply mb-3;
+}
+
+@media (min-width: 640px) {
+  .alignleft {
+    @apply mr-3 float-left;
+  }
+
+  .alignright {
+    @apply ml-3 float-right;
+  }
+}
+
+/* Responsive images in WP content */
+img[class*='wp-image-'] {
+  @apply max-w-full h-auto;
+}
+
+/* Captions */
+.wp-caption {
+  @apply inline-block max-w-full p-1 bg-white rounded border border-gray-200;
+}
+
+.wp-caption-text {
+  @apply p-1;
+}
+
+/* Screen reader text */
+.screen-reader-text {
+  @apply sr-only;
+}

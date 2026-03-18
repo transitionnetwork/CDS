@@ -1,0 +1,40 @@
+.notification-use-js #tofino-notification {
+  @apply hidden;
+}
+
+.alert {
+  @apply rounded-none border-0 mb-0 p-1;
+}
+
+.alert p {
+  @apply m-auto;
+}
+
+.alert p + p {
+  @apply mt-2;
+}
+
+.alert.notification.bottom {
+  @apply fixed bottom-0 left-0 right-0;
+}
+
+.alert.notification.top {
+  @apply relative;
+}
+
+.alert.notification .close {
+  @apply absolute right-4;
+  top: calc(50% - 10px);
+}
+
+.alert.notification .close svg {
+  @apply size-5;
+}
+
+.alert.browser-warning {
+  @apply text-center w-full;
+}
+
+.alert a {
+  @apply underline;
+}

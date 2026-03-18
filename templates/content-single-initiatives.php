@@ -15,20 +15,17 @@
   <main>
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
-      <div class="row justify-content-between">
-        <div class="col-12 col-lg-7">
-          <div class="mb-3">
-            <h1 class="mb-0"><?php echo \Tofino\Helpers\title(); ?></h1>
+      <div class="flex flex-col lg:flex-row justify-between gap-6">
+        <div class="w-full lg:w-7/12">
+          <div class="mb-6">
+            <h1 class="mb-2"><?php echo \Tofino\Helpers\title(); ?></h1>
 
-            <div>
-              <em>Last Updated: <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?></em>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="badge badge-outline badge-neutral"><?php _e('Updated', 'tofino'); ?>: <?php echo get_initiatve_age($post)['days'] . ' days ago'; ?></span>
+              <?php if(get_post_meta( $post->ID, 'vive', true )) { ?>
+                <a class="badge badge-primary no-underline" href="https://vive.transitiontogether.org.uk/s/transition-together/" target="_blank">Vive</a>
+              <?php } ?>
             </div>
-
-            <?php if(get_post_meta( $post->ID, 'vive', true )) { ?>
-              <div>
-                <a class="btn-primary btn-sm" href="https://vive.transitiontogether.org.uk/s/transition-together/" target="_blank">Vive</a>
-              </div>
-            <?php } ?>
 
             <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
               <?php $published_by_id = (int)get_post_meta( $post->ID, 'last_published_by', true); ?>
@@ -57,14 +54,16 @@
           
           <?php get_template_part('templates/partials/group-info-panel'); ?>
           
-          <?php echo strip_tags(get_field('description', $post), '<p><em><strong><u><ol><ul><li><blockquote>'); ?>
+          <div class="rich-text">
+            <?php echo strip_tags(get_field('description', $post), '<p><em><strong><u><ol><ul><li><blockquote>'); ?>
+          </div>
 
 
           <?php if(is_user_logged_in() && is_user_role(array('initiative'))) { ?>
             <?php $post_author = (int)$post->post_author; ?>
             <?php if($post_author !== get_current_user_id()) { // TODO: check for co-author access here and across site once plugin is installed ?>
               <?php if(!author_access_is_requested($post->ID)) { ?>
-                <form action="" method="post" class="d-none">
+                <form action="" method="post" class="hidden">
                   <button class="btn btn-secondary btn-sm" name="request_post_access" value="<?php echo $post->ID; ?>"><?php echo svg('pencil'); ?>Request edit access</button>
                 </form>
               <?php } else { ?>
@@ -80,17 +79,17 @@
               <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
               <div class="button-block">
                 <form action="" method="post">
-                <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Unpublish group', 'tofino'); ?></button>
+                <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-error btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Unpublish group', 'tofino'); ?></button>
                 </form>
               </div>
             <?php } ?>
          <?php } ?>
 
           <?php if (get_field('email')) { ?>
-            <div class="mt-5">
+            <div class="mt-12">
               <h3>Contact <?php the_title(); ?></h3>
-              <div id="group-name" class="d-none" data-name="<?php the_title(); ?>"></div>
-              <div id="group-email" class="d-none" data-email="<?php echo get_field('email'); ?>"></div>
+              <div id="group-name" class="hidden" data-name="<?php the_title(); ?>"></div>
+              <div id="group-email" class="hidden" data-email="<?php echo get_field('email'); ?>"></div>
               <?php echo do_shortcode('[contact-form-7 id="971d56c" title="Group Contact Form"]'); ?>
             </div>  
           <?php } ?>
@@ -131,7 +130,7 @@
             </div>
           <?php } ?>
         </div>
-        <div class="col-12 col-lg-4">
+        <div class="w-full lg:w-4/12">
           <aside>
             <?php if(is_user_logged_in() && can_write_initiative($post)) { ?>
               <div class="panel">

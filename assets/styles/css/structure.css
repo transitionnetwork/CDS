@@ -1,0 +1,32 @@
+html {
+  @apply h-full;
+}
+
+body.footer-sticky {
+  @apply flex flex-col min-h-screen;
+}
+
+body.footer-sticky .wrapper {
+  flex: 1 0 auto;
+  @apply w-full;
+}
+
+body.no-fout {
+  @apply invisible;
+}
+
+.wf-inactive body.no-fout,
+.wf-active body.no-fout {
+  @apply visible;
+}
+
+.form-group.required .form-control-label::after,
+.checkbox.required .form-control-label::after {
+  content: "*";
+  @apply pl-0.5 text-error;
+}
+
+.form-group.required.has-success .form-control-label::after,
+.checkbox.required.has-success .form-control-label::after {
+  @apply text-success;
+}

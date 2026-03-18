@@ -1,0 +1,46 @@
+.xinc-events__event_list__event_tile {
+  @apply p-6 rounded-lg border border-gray-200 shadow-md;
+}
+
+.xinc-events__event_list__event_tile img {
+  @apply rounded;
+}
+
+.xinc-events__event_list__event_tile + .xinc-events__event_list__event_tile {
+  @apply mt-12;
+}
+
+.xinc-events__event_list__event_tile__details svg {
+  @apply size-4 mr-1.5 shrink-0;
+}
+
+.xinc-events__event_list__event_tile__details > div {
+  @apply mt-3;
+}
+
+@media (max-width: 639px) {
+  .xinc-events__event_list__event_tile__details {
+    @apply mt-4;
+  }
+}
+
+.xinc-events__event_list__event_tile__details__item {
+  @apply flex items-center;
+}
+
+.xinc-events__event_list__event_tile__details__date {
+  @apply font-bold;
+}
+
+.xinc-events__event_list a {
+  color: var(--color-events);
+}
+
+.xinc-events__event_list .btn-primary {
+  background-color: var(--color-events);
+  @apply text-white;
+}
+
+.xinc-events__event_list .btn-primary:hover {
+  background-color: color-mix(in srgb, var(--color-events) 80%, #fff);
+}

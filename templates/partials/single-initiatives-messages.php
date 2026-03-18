@@ -26,7 +26,7 @@
 
       <?php $hub = get_the_terms($post, 'hub')[0]->term_id; ?>
       <?php if(in_array($hub, get_tt_hub_ids())) { ?>
-        <div class="mt-2">
+        <div class="mt-2 rich-text">
           <?php echo apply_filters('the_content', get_post_field('post_content', 9101)); ?>
         </div>
       <?php } ?>
@@ -105,7 +105,7 @@
 
 <?php if(get_query_var('failed') === 'co_author') { ?>
   <div class="container">
-    <div class="alert top alert-danger">
+    <div class="alert top alert-error">
       <?php _e('The email is already the primary email of the gropup and cannot be added as a co-author', 'tofino'); ?>
     </div>
   </div>

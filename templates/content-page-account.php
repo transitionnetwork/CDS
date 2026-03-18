@@ -4,7 +4,7 @@
 <?php if(is_user_role(array('super_hub', 'hub'))) { ?>
   <div class="container">
     <div class="alert top alert-info">
-      Hub organising is increasingly taking place in our online platform, we’d love it if you <a href="https://hub.transition-space.org/user/registration/by-link?token=QYGDi4kaxLoNi2&spaceId=13" target="_blank">joined us there. </a>
+      Hub organising is increasingly taking place in our online platform, we'd love it if you <a href="https://hub.transition-space.org/user/registration/by-link?token=QYGDi4kaxLoNi2&spaceId=13" target="_blank">joined us there. </a>
     </div>
   </div>
 <?php } ?>
@@ -43,7 +43,7 @@
 
 <?php if(get_query_var('failed') == 'hub_request') { ?>
   <div class="container">
-    <div class="alert top alert-danger">
+    <div class="alert top alert-error">
      <?php _e('Cannot request hub access. Your current hub, "' . $hub->name . '", has no super hub users. Please email <a href="mailto:websupport@transitionnetwork.org">websupport@transitionnetwork.org</a> for further information', 'tofino'); ?>
     </div>
   </div>
@@ -55,88 +55,131 @@
   <?php } else { ?>
     <main>
       <div class="container">
-        <h1><?php echo \Tofino\Helpers\title(); ?></h1>
 
-        <nav class="account-nav">
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-account-details-tab" data-toggle="tab" href="#nav-account-details" role="tab" aria-controls="nav-account-details" aria-selected="true">Account Details</a>
-            
+        <?php
+          // Pre-query trainer posts so we can conditionally show the tab
+          $trainer_args = array(
+            'author' => get_current_user_id(),
+            'post_type' => 'trainers',
+          );
+          $my_trainer_posts = get_posts($trainer_args);
+        ?>
+
+        <div class="flex flex-col lg:flex-row gap-6" id="account-dashboard">
+          <!-- Sidebar nav -->
+          <nav class="shrink-0 lg:w-56">
+            <ul class="dashboard-nav flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible">
+              <li>
+                <a href="#nav-account-details" class="dashboard-nav-link active" data-panel="panel-account-details">
+                  Account Details
+                </a>
+              </li>
+
+              <?php if(is_user_role('administrator')) { ?>
+                <li>
+                  <a href="#nav-reports" class="dashboard-nav-link" data-panel="panel-reports">
+                    Reports
+                  </a>
+                </li>
+              <?php } ?>
+
+              <?php if(is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+                <li>
+                  <a href="#nav-healthcheck" class="dashboard-nav-link" data-panel="panel-healthcheck">
+                    Healthcheck Data
+                  </a>
+                </li>
+              <?php } ?>
+
+              <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
+                <li>
+                  <a href="#nav-hub-admin" class="dashboard-nav-link" data-panel="panel-hub-admin">
+                    Hub Admin
+                  </a>
+                </li>
+              <?php } ?>
+
+              <li>
+                <a href="#nav-initiative-admin" class="dashboard-nav-link" data-panel="panel-initiative-admin">
+                  Group Admin
+                </a>
+              </li>
+
+              <?php if (!empty($my_trainer_posts)) : ?>
+                <li>
+                  <a href="#nav-trainers" class="dashboard-nav-link" data-panel="panel-trainers">
+                    Trainer Profiles
+                  </a>
+                </li>
+              <?php endif; ?>
+
+              <?php if(!is_user_role('initiative')) { ?>
+                <li>
+                  <a href="#nav-maps" class="dashboard-nav-link" data-panel="panel-maps">
+                    Embed Maps
+                  </a>
+                </li>
+              <?php } ?>
+            </ul>
+          </nav>
+
+          <!-- Content panels -->
+          <div class="flex-1 min-w-0">
+            <div class="dashboard-panel active" id="panel-account-details">
+              <?php get_template_part('/templates/panels/account-details'); ?>
+            </div>
+
             <?php if(is_user_role('administrator')) { ?>
-              <a class="nav-item nav-link" id="nav-reports-tab" data-toggle="tab" href="#nav-reports" role="tab" aria-controls="nav-reports" aria-selected="false">Reports</a>
+              <div class="dashboard-panel" id="panel-reports">
+                <?php get_template_part('/templates/panels/reporting'); ?>
+              </div>
             <?php } ?>
 
             <?php if(is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-              <a class="nav-item nav-link" id="nav-healthcheck-tab" data-toggle="tab" href="#nav-healthcheck" role="tab" aria-controls="nav-healthcheck" aria-selected="false">Healthcheck Data</a>
+              <div class="dashboard-panel" id="panel-healthcheck">
+                <?php get_template_part('/templates/panels/healthcheck-data'); ?>
+              </div>
             <?php } ?>
-            
-            <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
-              <a class="nav-item nav-link" id="nav-hub-admin-tab" data-toggle="tab" href="#nav-hub-admin" role="tab" aria-controls="nav-hub-admin" aria-selected="false">Hub Admin</a>
-            <?php } ?>
-            
-            <a class="nav-item nav-link" id="nav-initiative-admin-tab" data-toggle="tab" href="#nav-initiative-admin" role="tab" aria-controls="nav-initiative-admin" aria-selected="false">Group Admin</a>
 
-            <a class="nav-item nav-link" id="nav-trainers-tab" data-toggle="tab" href="#nav-trainers" role="tab" aria-controls="nav-trainers" aria-selected="false">My Trainer Profiles</a>
-            
+            <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
+              <div class="dashboard-panel" id="panel-hub-admin">
+                <?php get_template_part('/templates/panels/hub-admin'); ?>
+              </div>
+            <?php } ?>
+
+            <div class="dashboard-panel" id="panel-initiative-admin">
+              <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+                <section>
+                  <a class="btn btn-primary" href="<?php echo home_url('group-email-deliverability'); ?>">Group email deliverability report</a>
+                </section>
+              <?php } ?>
+
+              <?php if (is_user_role('administrator') || is_user_role('super_hub')) {
+                get_template_part('/templates/panels/initiatives-pending-approval');
+              } ?>
+
+              <?php if (is_user_role('hub')) {
+                get_template_part('/templates/panels/hub-initiatives-pending-approval');
+              } ?>
+
+              <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
+              <?php get_template_part('/templates/panels/initiatives-co-authored-by-me'); ?>
+            </div>
+
+            <?php if (!empty($my_trainer_posts)) : ?>
+              <div class="dashboard-panel" id="panel-trainers">
+                <?php get_template_part('/templates/panels/trainers'); ?>
+              </div>
+            <?php endif; ?>
+
             <?php if(!is_user_role('initiative')) { ?>
-              <a class="nav-item nav-link" id="nav-maps-tab" data-toggle="tab" href="#nav-maps" role="tab" aria-controls="nav-maps" aria-selected="false">Embed Maps</a>
+              <div class="dashboard-panel" id="panel-maps">
+                <?php get_template_part('/templates/panels/maps'); ?>
+              </div>
             <?php } ?>
-          </div>
-        </nav>
-        
-        <div class="account-content tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-account-details" role="tabpanel" aria-labelledby="nav-account-details-tab">
-            <?php get_template_part('/templates/panels/account-details'); ?>
-          </div>
-          
-          <div class="tab-pane fade" id="nav-reports" role="tabpanel" aria-labelledby="nav-reports-tab">
-            <?php if(is_user_role('administrator')) { ?>
-              <?php get_template_part('/templates/panels/reporting'); ?>
-            <?php } ?>
-          </div>
-          
-          <div class="tab-pane fade" id="nav-healthcheck" role="tabpanel" aria-labelledby="nav-healthcheck-tab">
-              <?php if(is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-              <?php get_template_part('/templates/panels/healthcheck-data'); ?>
-            <?php } ?>
-          </div>
-          
-          <div class="tab-pane fade" id="nav-hub-admin" role="tabpanel" aria-labelledby="nav-hub-admin-tab">
-            <?php if(is_user_role('administrator') || is_user_role('super_hub') || is_user_role('hub')) { ?>
-              <?php get_template_part('/templates/panels/hub-admin'); ?>
-            <?php } ?>
-          </div>
-          
-          <div class="tab-pane fade" id="nav-initiative-admin" role="tabpanel" aria-labelledby="nav-initiative-admin-tab">
-             <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-              <section>
-                <a class="btn btn-primary" href="<?php echo home_url('group-email-deliverability'); ?>">Group email deliverability report</a>
-             </section>
-            <?php } ?>
-            
-            <?php if (is_user_role('administrator') || is_user_role('super_hub')) {
-              get_template_part('/templates/panels/initiatives-pending-approval');
-            } ?>
-
-            <?php if (is_user_role('hub')) {
-              get_template_part('/templates/panels/hub-initiatives-pending-approval');
-            } ?>
-            
-            <?php get_template_part('/templates/panels/initiatives-created-by-me'); ?>
-            
-            <?php get_template_part('/templates/panels/initiatives-co-authored-by-me'); ?>
-          
-          </div>
-
-          <div class="tab-pane fade" id="nav-trainers" role="tabpanel" aria-labelledby="nav-trainers-tab">
-            <?php get_template_part('/templates/panels/trainers'); ?>
-          </div>
-          
-          <div class="tab-pane fade" id="nav-maps" role="tabpanel" aria-labelledby="nav-maps-tab">
-            <?php if(!is_user_role('initiative')) {
-              get_template_part('/templates/panels/maps');
-            } ?>
           </div>
         </div>
+
       </div>
     </main>
   <?php } ?>

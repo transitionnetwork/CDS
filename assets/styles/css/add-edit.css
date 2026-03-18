@@ -1,0 +1,30 @@
+#acf-form .acf-input-wrap > input[type="text"],
+#acf-form .acf-input-wrap > input[type="email"] {
+  @apply py-4 px-2 border border-gray-300 rounded;
+}
+
+body:not(.single) #acf-form .acf-form-submit {
+  @apply fixed bottom-0 left-0 right-0 flex justify-center bg-white p-4 border-t border-gray-300;
+  z-index: 1002;
+}
+
+body.single #acf-form .acf-form-submit {
+  @apply mt-4;
+}
+
+.leaflet-control-geocoder {
+  @apply border border-gray-300 mb-4;
+}
+
+.leaflet-control-layers {
+  @apply hidden;
+}
+
+body.user-profile label {
+  @apply block font-bold;
+}
+
+body.user-profile input[type="text"],
+body.user-profile input[type="password"] {
+  @apply py-4 px-2 w-full border border-gray-200 rounded h-7 box-border;
+}

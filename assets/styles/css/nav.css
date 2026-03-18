@@ -1,0 +1,263 @@
+/* Navbar — Bootstrap's .navbar was display: flex + flex-wrap + align-items: center */
+.navbar {
+  @apply w-full bg-base-200;
+}
+
+.navbar > .container {
+  @apply flex items-center flex-wrap w-full;
+}
+
+/* Navbar nav base styles (Tailwind v4 resets all list styles) */
+.navbar-nav {
+  @apply flex list-none p-0 m-0;
+}
+
+.nav-link {
+  @apply block py-2 px-4 no-underline text-base-content;
+}
+
+.nav-link:hover {
+  @apply text-primary;
+}
+
+/* Centered menu (desktop) */
+@media (min-width: 640px) {
+  .menu-center .navbar {
+    @apply flex justify-center;
+  }
+
+  .menu-center .navbar .nav.navbar-nav {
+    @apply flex;
+  }
+}
+
+/* Last nav item styled as button */
+.navbar .navbar-nav .nav-item:last-of-type {
+  @apply flex items-center justify-center ml-3;
+}
+
+.navbar .navbar-nav .nav-item:last-of-type .nav-link,
+.navbar .navbar-nav .nav-item:last-of-type .nav-link:hover {
+  @apply btn btn-primary text-primary-content;
+}
+
+/* Mobile nav */
+@media (max-width: 1023px) {
+  .navbar {
+    @apply clear-both;
+  }
+
+  .navbar .navbar-nav {
+    @apply w-full mb-8;
+  }
+
+  .navbar .navbar-nav .nav-item {
+    @apply float-none;
+  }
+
+  .navbar .navbar-nav .nav-item + .nav-item {
+    @apply ml-0;
+  }
+
+  .navbar .navbar-nav .nav-link {
+    @apply text-center;
+  }
+
+  .navbar .dropdown-menu {
+    @apply float-none relative;
+  }
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  @apply hidden absolute p-0 bg-white border border-gray-200 rounded min-w-40;
+  z-index: 1000;
+}
+
+/* Desktop hover */
+@media (min-width: 1024px) {
+  .nav-item.dropdown:hover > .dropdown-menu {
+    @apply block;
+  }
+}
+
+/* Mobile hover disabled */
+@media (max-width: 1023px) {
+  .nav-item.dropdown:hover > .dropdown-menu {
+    @apply hidden;
+  }
+}
+
+/* Mobile JS toggle */
+.dropdown-menu.show {
+  @apply block;
+}
+
+.dropdown-header h6 {
+  @apply mb-0 py-1;
+}
+
+/* Menu center helper */
+.menu-center .navbar-collapse {
+  @apply relative;
+}
+
+.menu-center .navbar-collapse .nav-link {
+  @apply text-center;
+}
+
+@media (min-width: 1024px) {
+  .menu-center .navbar-collapse {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+.menu-center .navbar-nav {
+  @apply mx-auto;
+}
+
+/* Menu right */
+.menu-right .navbar-nav {
+  @apply ml-auto;
+}
+
+.menu-right .dropdown-menu {
+  @apply right-0 left-auto;
+}
+
+/* Navbar collapse */
+.navbar-collapse {
+  @apply hidden;
+}
+
+@media (min-width: 1024px) {
+  .navbar-collapse {
+    @apply flex flex-1 justify-end;
+  }
+}
+
+.navbar-collapse.show {
+  @apply flex flex-col;
+}
+
+/* Hamburger toggler — hidden on desktop (Bootstrap navbar-expand-lg behaviour) */
+.navbar-toggler {
+  @apply w-10;
+}
+
+@media (min-width: 1024px) {
+  .navbar-toggler {
+    @apply hidden;
+  }
+}
+
+.navbar-light .navbar-toggler {
+  @apply bg-none border-0;
+}
+
+.navbar-toggler:focus {
+  @apply outline-0;
+}
+
+/* Hamburger bar animation — precise px values required for alignment */
+.navbar-toggler .bar-wrapper {
+  @apply block mx-auto w-5;
+  height: calc(3px * 3 + 3px * 2);
+}
+
+.navbar-toggler .bar {
+  @apply block relative bg-gray-700 w-5;
+  height: 3px;
+  transition: top 250ms ease, transform 250ms ease 250ms, opacity 100ms ease 250ms;
+  transform: translate3d(0, 0, 0);
+}
+
+.navbar-toggler .bar:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+.navbar-toggler .bar:nth-child(2) {
+  top: 3px;
+  @apply opacity-0;
+}
+
+.navbar-toggler .bar:nth-child(3) {
+  @apply top-0;
+  transform: rotate(-45deg);
+}
+
+.navbar-toggler.collapsed .bar {
+  transition: transform 250ms ease, top 250ms ease 250ms, opacity 100ms ease 250ms;
+}
+
+.navbar-toggler.collapsed .bar:nth-child(1) {
+  @apply top-0;
+  transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .bar:nth-child(2) {
+  top: 3px;
+  @apply opacity-100;
+}
+
+.navbar-toggler.collapsed .bar:nth-child(3) {
+  top: 6px;
+  transform: rotate(0);
+}
+
+/* Headroom */
+.headroom {
+  @apply sticky z-10 right-0 left-0 top-0 transition-transform duration-300 ease-in-out;
+  will-change: transform;
+}
+
+.headroom.headroom--pinned {
+  @apply translate-y-0;
+}
+
+.headroom.headroom--unpinned {
+  @apply -translate-y-full;
+}
+
+/* Footer nav — override DaisyUI .menu (flex-direction: column) which conflicts
+   with WordPress wp_nav_menu() adding class="menu" to the <ul>.
+   Use #footer-nav ul specificity to beat DaisyUI's layered .menu without !important. */
+#footer-nav ul.menu,
+#footer-nav ul {
+  @apply flex flex-row flex-wrap justify-end mb-0 list-none p-0 w-auto gap-0;
+}
+
+#footer-nav ul li {
+  @apply inline mx-1 p-0;
+}
+
+/* Account dashboard — sidebar nav + content panels */
+.dashboard-nav {
+  @apply list-none p-0 m-0;
+}
+
+.dashboard-nav-link {
+  @apply flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold no-underline whitespace-nowrap;
+  @apply text-base-content/70 hover:bg-base-200 hover:text-base-content transition-colors duration-150;
+}
+
+.dashboard-nav-link.active {
+  @apply bg-primary/10 text-primary;
+}
+
+/* Panels: hidden by default, shown when active */
+.dashboard-panel {
+  @apply hidden;
+}
+
+.dashboard-panel.active {
+  @apply block;
+}
+
+/* Mobile: horizontal scroll nav with bottom border */
+@media (max-width: 1023px) {
+  .dashboard-nav {
+    @apply border-b border-base-300 pb-2 mb-2;
+  }
+}

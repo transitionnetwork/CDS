@@ -10,8 +10,8 @@
 		<?php wp_reset_postdata(); ?>
 		<main>
 			<div class="container">
-				<div class="row justify-content-center">	
-					<div class="col-12 col-md-10 col-lg-8">
+				<div class="mx-auto max-w-3xl w-full">
+					<div>
 						<h1>Edit Trainer: <?php echo get_the_title(get_query_var('edit_post')); ?></h1>
 						
 						<?php 

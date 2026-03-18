@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-10 col-md-8 xinc-login">
+  <div class="mx-auto max-w-3xl w-full">
+    <div class="xinc-login">
       <?php while (have_posts()) : the_post(); ?>
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
 
@@ -11,4 +11,3 @@
       <?php endwhile; ?>
     </div>
   </div>
-</div>

@@ -1,11 +1,10 @@
-var $ = window.jQuery;
 import Plotly from 'plotly.js';
 
 export default function() {
   //graph
   function plotData(data) {
     var myPlot = document.getElementById('healthcheck-bar');
-    
+
     var holdData = [
       {
         x: data.averages.reverse(),
@@ -44,34 +43,34 @@ export default function() {
   }
 
   function countData(data) {
-    $('#healthcheck-data-count').append('<p>Number of submissions: ' + data.count + '</p>')
+    var countEl = document.getElementById('healthcheck-data-count');
+    if (countEl) {
+      countEl.insertAdjacentHTML('beforeend', '<p>Number of submissions: ' + data.count + '</p>');
+    }
   }
 
   var container = document.getElementById('healthcheck-bar');
-  
+
   if (typeof (container) != 'undefined' && container != null) {
-    $.ajax({
-      url: tofinoJS.ajaxUrl,
-      type: 'POST',
-      cache: false,
-      data: {
-        action: 'getHealthcheckData',
-        value: {
-          submitted: true
-        }
-      },
-      dataType: 'json',
-      success: function (response) {
-        console.log(response);
-        $('#graph-loading-wrapper').hide();
-        plotData(response)
-        countData(response)
-      },
-      error: function (jqxhr, status, exception) {
-        console.log('JQXHR:', jqxhr);
-        console.log('Status:', status);
-        console.log('Exception:', exception);
-      }
+    var formData = new URLSearchParams();
+    formData.append('action', 'getHealthcheckData');
+    formData.append('value[submitted]', 'true');
+
+    fetch(tofinoJS.ajaxUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
     })
+    .then(function(res) { return res.json(); })
+    .then(function(response) {
+      console.log(response);
+      var loadingEl = document.getElementById('graph-loading-wrapper');
+      if (loadingEl) loadingEl.style.display = 'none';
+      plotData(response)
+      countData(response)
+    })
+    .catch(function(err) {
+      console.log('Error:', err);
+    });
   }
 }

@@ -14,7 +14,7 @@ if(is_user_role(array('hub', 'super_hub'))) {
 }
 ?>
 
-<div class="user-details d-flex align-items-center">
+<div class="user-details flex items-center">
   <?php
   if(!is_user_logged_in()) { ?>
     <div>
@@ -34,7 +34,7 @@ if(is_user_role(array('hub', 'super_hub'))) {
 </div>
 
 <?php if(is_user_logged_in(  )) { ?>
-  <div class="d-flex align-items-center">
+  <div class="flex items-center">
     <a href="<?php echo home_url('account'); ?>">My Dashboard</a>
   </div>
 <?php } ?>

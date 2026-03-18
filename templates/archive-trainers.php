@@ -11,8 +11,8 @@
         <a class="btn btn-primary btn-sm" href="<?php echo get_the_permalink(7097); ?>"><?php echo svg('cloud-download'); ?>Export CSV of trainer data</a>
       </p>
     <?php } ?>
-    <div class="row mt-4">
-      <div class="col-12 col-lg-3">
+    <div class="flex flex-col lg:flex-row mt-6 gap-6">
+      <div class="w-full lg:w-3/12">
         <div>
           <h3>Language</h3>
           <?php echo do_shortcode('[facetwp facet="trainer_language"]'); ?>
@@ -26,9 +26,9 @@
           <?php echo do_shortcode('[facetwp facet="trainer_course"]'); ?>
         </div>
       </div>
-      <div class="col-12 col-lg-9">
+      <div class="w-full lg:w-9/12">
         <?php if ( have_posts() ) : ?>
-          <div class="row">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <?php while ( have_posts() ) : the_post(); ?>
               <?php get_template_part('templates/partials/trainer-item'); ?>
             <?php endwhile; ?>

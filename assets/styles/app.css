@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700');
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: false;
+}
+
+/* Tom Select (vanilla Select2 replacement) */
+@import "../../node_modules/tom-select/dist/css/tom-select.css";
+
+/* Leaflet + MarkerCluster base CSS (was in old main.scss) */
+@import "../../node_modules/leaflet/dist/leaflet.css";
+@import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
+@import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
+
+/* DaisyUI named theme — must add data-theme="cds" to <html> */
+@plugin "daisyui/theme" {
+  name: "cds";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-primary: #003d5b;
+  --color-primary-content: #ffffff;
+  --color-secondary: #00798c;
+  --color-secondary-content: #ffffff;
+  --color-accent: #edae46;
+  --color-accent-content: #212529;
+  --color-neutral: #444359;
+  --color-neutral-content: #ffffff;
+  --color-base-100: #ffffff;
+  --color-base-200: #fbf8ef;
+  --color-base-300: #e8e3d6;
+  --color-base-content: #212529;
+  --color-info: #30638e;
+  --color-info-content: #ffffff;
+  --color-success: #198754;
+  --color-success-content: #ffffff;
+  --color-warning: #edae46;
+  --color-warning-content: #212529;
+  --color-error: #d1495b;
+  --color-error-content: #ffffff;
+  --radius-selector: 1rem;
+  --radius-field: 1.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Brand colour aliases and design tokens */
+@theme {
+  --color-brand-primary: #003d5b;
+  --color-brand-secondary: #d1495b;
+  --color-brand-tertiary: #edae46;
+  --color-brand-v2: #30638e;
+  --color-brand-v3: #00798c;
+  --color-brand-white: #fbf8ef;
+  --color-sea-blue: #a8d3e0;
+  --color-events: #444359;
+  --color-ink-black: #212529;
+  --font-header: 'Roca Bold', serif;
+  --font-body: 'Instrument Sans', sans-serif;
+}
+
+/* Base */
+@import "./css/structure.css";
+@import "./css/nav.css";
+@import "./css/alerts.css";
+@import "./css/wp-classes.css";
+@import "./css/social-icons.css";
+
+/* Layouts */
+@import "./css/header.css";
+@import "./css/footer.css";
+@import "./css/global.css";
+@import "./css/page.css";
+@import "./css/login.css";
+@import "./css/lists.css";
+@import "./css/lists-hub.css";
+@import "./css/views.css";
+@import "./css/add-edit.css";
+
+/* Components */
+@import "./css/maps.css";
+@import "./css/files.css";
+@import "./css/search.css";
+@import "./css/events-plugin.css";
+@import "./css/openid-connect.css";
+@import "./css/cf7.css";
+@import "./css/forms.css";
+@import "./css/xinc-events.css";

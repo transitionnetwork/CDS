@@ -1,6 +1,6 @@
 <?php if(get_query_var('edited_post') && !get_query_var('step')) { ?>
   <div class="container">
-    <div class="col-12 col-xl-10">
+    <div class="w-full xl:w-10/12">
       <div class="alert top alert-info">
         <?php $hub = get_the_terms(get_query_var('initiative_id'), 'hub')[0]->term_id; ?>
         <div class="mt-2">
@@ -29,10 +29,10 @@ if (!is_user_logged_in() || (!can_view_healthcheck($post)) || !get_query_var('in
   <?php wp_reset_postdata(); ?>
     <main class="healthcheck-form">
       <div class="container">
-        <div class="row justify-content-center">	
-          <div class="col-12 col-xl-10">
+        <div class="mx-auto max-w-5xl w-full">
+          <div>
             <h1><?php echo \Tofino\Helpers\title(); ?></h1>
-            <?php the_content(); ?>
+            <div class="rich-text"><?php the_content(); ?></div>
             <div class="header">
               <h2><a href="<?php echo get_the_permalink($initiative_id); ?>"><?php echo get_the_title($initiative_id); ?></a></h2>
               <div class="date"><?php echo date('l jS F Y'); ?></div>

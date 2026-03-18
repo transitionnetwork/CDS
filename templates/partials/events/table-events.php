@@ -3,13 +3,13 @@
   <div class="xinc-events__event_list">
     <?php foreach($events as $event) { ?>
       <div class="xinc-events__event_list__event_tile">
-        <div class="row">
+        <div class="flex flex-col md:flex-row gap-6">
           <?php if($event['image_url']) { ?>
-            <div class="col-12 col-md-4">
+            <div class="w-full md:w-4/12">
               <img src="<?php echo $event['image_url']; ?>" alt="<?php echo $event['title']; ?>" title="<?php echo $event['title']; ?>">
             </div>
           <?php } ?>
-          <div class="col-12 col-md-8">
+          <div class="w-full md:w-8/12">
             <div class="xinc-events__event_list__event_tile__details">
             <?php if($event['has_subevents']) { ?>
                 <?php echo '<strong>Series</strong>'; ?>

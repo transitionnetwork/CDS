@@ -1,15 +1,15 @@
 <?php get_template_part('templates/partials/map-display'); ?>
 
 <main>
-  <div class="container-fluid">
+  <div class="container">
 
-    <div class="row justify-content-lg-between">
-      <div class="col-12 col-xl-3 order-xl-2">
+    <div class="flex flex-col lg:flex-row justify-between gap-6">
+      <div class="w-full lg:w-4/12 lg:order-2">
         <?php get_template_part('templates/partials/group-list-sidebar'); ?>
         <?php get_template_part('templates/partials/group-stats', null, array('view' => 'list')); ?>
       </div>
       
-      <div class="col-12 col-xl-9 order-xl-1">
+      <div class="w-full lg:w-8/12 lg:order-1">
         <?php if(get_query_var('added_note')) { ?>
           <div class="alert top alert-success">
             <?php _e('Your note has been added', 'tofino'); ?>
@@ -21,13 +21,13 @@
         <?php if (get_query_var('hub_name')) :
           $term = get_term_by('slug', get_query_var('hub_name'), 'hub');
           echo '<h2>Hub: ' . $term->name . '</h2>';
-          echo $term->description;
+          echo '<div class="rich-text">' . $term->description . '</div>';
         endif; ?>
-        
+
         <?php if (get_query_var('country')) :
           $term = get_term_by('slug', get_query_var('country'), 'country');
           echo '<h2>Country: ' . $term->name . '</h2>';
-          echo $term->description;
+          echo '<div class="rich-text">' . $term->description . '</div>';
         endif; ?>
         
         <?php if (get_query_var('topic')) :
@@ -39,7 +39,7 @@
 
         <?php while (have_posts()) : the_post(); ?>
           <?php if (!is_user_logged_in() && !empty(get_the_content())) { ?>
-            <div class="panel mt-3">
+            <div class="panel mt-4 rich-text">
               <?php the_content(); ?>
             </div>
           <?php } ?>

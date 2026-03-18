@@ -1,170 +1,201 @@
-// Uses CommonJS, AMD or browser globals to create a jQuery plugin.
-(function (factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['jquery'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // Node/CommonJS
-    module.exports = function(root, jQuery) {
-      if (jQuery === undefined) {
-        if (typeof window !== 'undefined') {
-          jQuery = require('jquery');
+/**
+ * Vanilla JS ajax form handler — replaces the jQuery plugin.
+ * Self-initializes on all forms with class `.ajax-form` or attribute `[data-wp-action]`.
+ */
+function ajaxForm(formEl, options) {
+  var submitActor = null;
+  var submitActors = formEl.querySelectorAll('[type="submit"]');
+
+  var defaults = {
+    responseDiv: '.js-form-result',
+    action: formEl.dataset.wpAction,
+    btnProgressText: 'Wait..',
+    hideFormAfterSucess: true,
+    beforeSerializeData: function() {},
+    beforeRedirect: function() {},
+    afterSuccess: function() {},
+    afterError: function() {}
+  };
+
+  var opts = Object.assign({}, defaults, options);
+
+  // Resolve responseDiv to an element
+  var responseDivEl = (typeof opts.responseDiv === 'string')
+    ? document.querySelector(opts.responseDiv)
+    : opts.responseDiv;
+
+  formEl.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (submitActor === null) {
+      submitActor = submitActors[0] || null;
+    }
+
+    if (formEl.classList.contains('submitting')) {
+      return false;
+    }
+
+    formEl.classList.add('submitting');
+
+    opts.beforeSerializeData();
+
+    var serializedData = new URLSearchParams(new FormData(formEl)).toString();
+    var btnOrgText = submitActor ? submitActor.textContent : '';
+
+    // Disable all inputs
+    formEl.querySelectorAll('input, select, textarea, button').forEach(function(el) {
+      el.disabled = true;
+    });
+
+    if (submitActor) {
+      submitActor.textContent = opts.btnProgressText;
+    }
+
+    var postData = new URLSearchParams();
+    postData.append('action', opts.action);
+    postData.append('data', serializedData);
+    postData.append('nextNonce', tofinoJS.nextNonce);
+
+    fetch(tofinoJS.ajaxUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: postData.toString()
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(response) {
+      formEl.classList.remove('submitting');
+
+      if (response.success === true) {
+        if (response.redirect) {
+          opts.beforeRedirect();
+          window.location = response.redirect;
+          return;
         }
-        else {
-          jQuery = require('jquery')(root);
+
+        if (responseDivEl) {
+          responseDivEl.classList.remove('alert-danger');
+          responseDivEl.classList.add('alert', 'alert-success');
+          responseDivEl.innerHTML = response.message;
         }
-      }
-      factory(jQuery);
-      return jQuery;
-    };
-  } else {
-    // Browser globals
-    factory(jQuery);
-  }
-}(function ($) {
-  $.fn.ajaxForm = function (options) {
-    var $submitActor = null;
-    var $submitActors = $(this).find(':submit'); // All submit buttons in form
 
-    $(this).on('submit', function(e) {
-      e.preventDefault(); // Don't really submit.
-
-      if (null === $submitActor) {
-        // If no actor is explicitly clicked, the browser will
-        // automatically choose the first in source-order
-        // so we do the same here
-        $submitActor = $submitActors[0];
-      }
-
-      if ($(this).hasClass('submitting')) {
-        return false;
-      }
-
-      $(this).addClass('submitting');
-
-      var defaults = { // Defaults
-        responseDiv: '.js-form-result',
-        action: $(this).data('wp-action'), // The PHP function name to call via AJAX
-        btnProgressText: 'Wait..',
-        hideFormAfterSucess: true,
-        beforeSerializeData: function() {},
-        beforeRedirect: function() {},
-        afterSuccess: function() {},
-        afterError: function() {}
-      };
-
-      var opts = $.extend({}, defaults, options);
-
-      opts.responseDiv = $(opts.responseDiv);
-
-      var $form = $(this);
-
-      opts.beforeSerializeData(); // Callback function
-
-      var serializedData  = $(this).serialize(),
-          $btnSubmit      = $submitActor,
-          btnOrgText      = $btnSubmit.text(), // Get original text value
-          btnProgressText = opts.btnProgressText;
-
-      $(this).find(':input').prop('disabled', true); // Set the disabled state
-      $btnSubmit.text(btnProgressText); // Set in progress text
-
-      var request = $.post(
-        tofinoJS.ajaxUrl, {
-          action: opts.action, // Passed to WP for the ajax action
-          data: serializedData,
-          nextNonce: tofinoJS.nextNonce
-        }
-      );
-
-      request.done(function(response) {
-        $form.removeClass('submitting');
-        if (response.success === true) {
-          if (response.redirect) {
-            opts.beforeRedirect(); // Callback function
-            window.location = response.redirect;
-            return false;
+        // Reset fields
+        formEl.querySelectorAll('input, select, textarea').forEach(function(el) {
+          if (el.type !== 'submit' && el.type !== 'button' && el.type !== 'reset') {
+            el.value = '';
           }
+        });
 
-          opts.responseDiv
-            .removeClass('alert-danger')
-            .addClass('alert alert-success')
-            .html(response.message);
+        if (submitActor) submitActor.textContent = btnOrgText;
 
-          $form.find(':input').val(''); // Reset fields.
-          $submitActor.text(btnOrgText); // Set send button text back to default
-
-          if (opts.hideFormAfterSucess === true) {
-            $form.hide(); // Hide form
-          } else {
-            $form.find(':input').prop('disabled', false); // Re-enable fields
-          }
-
-          opts.afterSuccess(); // Callback function
+        if (opts.hideFormAfterSucess === true) {
+          formEl.style.display = 'none';
         } else {
-          opts.responseDiv
-            .addClass('alert alert-danger')
-            .html(response.message);
+          formEl.querySelectorAll('input, select, textarea, button').forEach(function(el) {
+            el.disabled = false;
+          });
+        }
 
-          $form.find(':input').prop('disabled', false); // Re-enable fields
-          $submitActor.text(btnOrgText); // Reset submit btn to org text
+        opts.afterSuccess();
+      } else {
+        if (responseDivEl) {
+          responseDivEl.classList.add('alert', 'alert-danger');
+          responseDivEl.innerHTML = response.message;
+        }
 
-          // Remove any existing failed validation classes
-          $form.find('.form-control-danger').removeClass('form-control-danger');
-          $form.find('.has-danger').removeClass('has-danger');
+        // Re-enable fields
+        formEl.querySelectorAll('input, select, textarea, button').forEach(function(el) {
+          el.disabled = false;
+        });
 
-          $form.find(':input')
-            .not(':input[type=button], :input[type=submit], :input[type=reset], :checkbox') // Select all inputs not buttons not checkbox
-            .addClass('is-valid') // All valid / green. Server only returns invalid fields
-            .each(function() {
-              $(this).closest('.form-group').addClass('has-success');
-            });
+        if (submitActor) submitActor.textContent = btnOrgText;
 
-          $form.find(':checkbox').closest('.checkbox').addClass('has-success');
+        // Remove any existing failed validation classes
+        formEl.querySelectorAll('.form-control-danger').forEach(function(el) {
+          el.classList.remove('form-control-danger');
+        });
+        formEl.querySelectorAll('.has-danger').forEach(function(el) {
+          el.classList.remove('has-danger');
+        });
 
-          if (response.type === 'validation') {
-            var invalidFields = $.parseJSON(response.extra);
-            var msgHTML = '';
+        // Mark all non-button, non-checkbox inputs as valid
+        formEl.querySelectorAll('input, select, textarea').forEach(function(el) {
+          if (el.type !== 'button' && el.type !== 'submit' && el.type !== 'reset' && el.type !== 'checkbox') {
+            el.classList.add('is-valid');
+            var formGroup = el.closest('.form-group');
+            if (formGroup) formGroup.classList.add('has-success');
+          }
+        });
 
-            $.each(invalidFields, function(key, value) {
+        formEl.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
+          var checkboxWrap = el.closest('.checkbox');
+          if (checkboxWrap) checkboxWrap.classList.add('has-success');
+        });
+
+        if (response.type === 'validation') {
+          var invalidFields;
+          try {
+            invalidFields = (typeof response.extra === 'string') ? JSON.parse(response.extra) : response.extra;
+          } catch (e) {
+            invalidFields = {};
+          }
+
+          var msgHTML = '';
+
+          for (var key in invalidFields) {
+            if (invalidFields.hasOwnProperty(key)) {
+              var value = invalidFields[key];
               msgHTML += '<li>' + value + '</li>';
 
-              $form.find('[name=' + key + ']')
-                .removeClass('form-control-success')
-                .removeClass('is-valid') // For checkboxes
-                .addClass('is-invalid');
+              var field = formEl.querySelector('[name=' + key + ']');
+              if (field) {
+                field.classList.remove('form-control-success', 'is-valid');
+                field.classList.add('is-invalid');
 
-              $form.find('[name=' + key + ']')
-                .removeClass('is-valid')
-                .addClass('is-invalid');
-
-              if ($('[name=' + key + ']').is(':checkbox')) {
-                $('[name=' + key + ']')
-                  .closest('.checkbox')
-                  .removeClass('has-success')
-                  .addClass('has-danger');
+                if (field.type === 'checkbox') {
+                  var checkboxWrap = field.closest('.checkbox');
+                  if (checkboxWrap) {
+                    checkboxWrap.classList.remove('has-success');
+                    checkboxWrap.classList.add('has-danger');
+                  }
+                }
               }
-            });
-
-            opts.responseDiv.append('<ul>' + msgHTML + '</ul>');
+            }
           }
 
-          opts.afterError(); // Callback function
+          if (responseDivEl) {
+            responseDivEl.insertAdjacentHTML('beforeend', '<ul>' + msgHTML + '</ul>');
+          }
         }
-      });
 
-      request.fail(function() {
-        opts.responseDiv
-          .addClass('alert alert-danger')
-          .html('An error occured.');
-        $form.find(':input').prop('disabled', false); // Re-enable fields
-        $submitActor.text(btnOrgText); // Reset submit btn
-        $form.removeClass('submitting');
+        opts.afterError();
+      }
+    })
+    .catch(function() {
+      if (responseDivEl) {
+        responseDivEl.classList.add('alert', 'alert-danger');
+        responseDivEl.innerHTML = 'An error occured.';
+      }
+      formEl.querySelectorAll('input, select, textarea, button').forEach(function(el) {
+        el.disabled = false;
       });
+      if (submitActor) submitActor.textContent = btnOrgText;
+      formEl.classList.remove('submitting');
     });
+  });
 
-    $submitActors.click(function() { // Assign button on click
-      $submitActor = $(this);
+  // Track which submit button was clicked
+  submitActors.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      submitActor = this;
     });
-  };
-}));
+  });
+}
+
+// Self-initialize on all matching forms
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.ajax-form, [data-wp-action]').forEach(function(form) {
+    ajaxForm(form);
+  });
+});
+
+export default ajaxForm;

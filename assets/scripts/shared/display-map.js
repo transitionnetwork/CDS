@@ -1,10 +1,19 @@
-var $ = window.jQuery;
 import L from 'leaflet';
-import 'leaflet.markercluster';
-import 'leaflet.locatecontrol';
 import * as GeoSearch from 'leaflet-geosearch';
+import { locate as locateControl } from 'leaflet.locatecontrol';
 
-export default function () {
+// Expose L globally — markercluster UMD wrapper needs window.L
+window.L = L;
+
+var _pluginsLoaded = false;
+async function ensurePlugins() {
+  if (_pluginsLoaded) return;
+  await import('leaflet.markercluster');
+  _pluginsLoaded = true;
+}
+
+export default async function () {
+  await ensurePlugins();
   function getUpdateParams() {
     var url = new URL(window.location.href)
     var params = new URLSearchParams(url.search)
@@ -20,7 +29,7 @@ export default function () {
 
     return params
   }
-  
+
   function initialiseMap() {
     map = L.map('map-iframe', { "tap": false }).setView([0, 0], 3);
 
@@ -29,7 +38,7 @@ export default function () {
       maxZoom: 18,
     }).addTo(map);
 
-    L.control.locate({
+    locateControl({
       locateOptions: {
         maxZoom: 13
       }
@@ -42,6 +51,7 @@ export default function () {
     //new search
     const search = new GeoSearch.GeoSearchControl({
       provider: new GeoSearch.OpenStreetMapProvider(),
+      position: 'topleft',
       marker: {
         icon: L.icon({
           iconUrl: tofinoJS.themeUrl + '/dist/img/icons/marker-icon-red.png',
@@ -100,13 +110,13 @@ export default function () {
 
     for (const i in response.initiatives) {
       if (response.initiatives[i].lat && response.initiatives[i].lng) {
-        
+
         if(response.initiatives[i].type === 'initiatives') {
           marker = L.marker([response.initiatives[i].lat, response.initiatives[i].lng], { icon: initiativeMarkerIcon, opacity: response.initiatives[i].opacity });
-          
+
           marker.bindPopup('<h5>' + response.initiatives[i].title + '</h5><div class="mt-2">Last logged in: ' + response.initiatives[i].age + ' days ago</div><div class="mt-2"><a href="' + response.initiatives[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           clusterMarkers.addLayer(marker);
-          
+
           range.push([response.initiatives[i].lat, response.initiatives[i].lng]);
         }
       }
@@ -131,17 +141,17 @@ export default function () {
 
         if (response.hubs[i].type === 'hubs') {
           marker = L.marker([response.hubs[i].lat, response.hubs[i].lng], { icon: hubMarkerIcon });
-          
+
           marker.bindPopup('<h5>' + response.hubs[i].title + '</h5><div><a href="' + response.hubs[i].permalink + '" target="_blank" class="btn btn-sm btn-primary">View</a></div>');
           hubMarkers.addLayer(marker);
-          
+
           range.push([response.hubs[i].lat, response.hubs[i].lng]);
         }
       }
     }
-    
+
     map.addLayer(hubMarkers);
-    
+
     /////
 
     trainerMarkers = L.markerClusterGroup({
@@ -153,7 +163,7 @@ export default function () {
         });
       }
     });
-    
+
     for (const i in response.trainers) {
       if (response.trainers[i].lat && response.trainers[i].lng) {
 
@@ -179,16 +189,18 @@ export default function () {
     var countInitiatives = Object.keys(response.initiatives).length;
     var countTrainers = Object.keys(response.trainers).length;
     var countHubs = Object.keys(response.hubs).length;
-    // var countTotal = countInitiatives + countHubs;
-    
-    $('.key .initiative .count').html('(' + countInitiatives + ')');
-    $('.key .trainer .count').html('(' + countTrainers + ')');
-    $('.key .hub .count, #filter-type span.hubs').html('(' + countHubs + ')');
 
-    // $('#filter-type option[value="2"]').html('Initiatives (' + countInitiatives + ')')
-    // $('#filter-type option[value="3"]').html('Hubs (' + countHubs + ')')
+    var initiativeCountEl = document.querySelector('.key .initiative .count');
+    if (initiativeCountEl) initiativeCountEl.innerHTML = '(' + countInitiatives + ')';
+
+    var trainerCountEl = document.querySelector('.key .trainer .count');
+    if (trainerCountEl) trainerCountEl.innerHTML = '(' + countTrainers + ')';
+
+    document.querySelectorAll('.key .hub .count, #filter-type span.hubs').forEach(function(el) {
+      el.innerHTML = '(' + countHubs + ')';
+    });
   }
-  
+
   var CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
   function cacheKey(params) {
@@ -219,7 +231,9 @@ export default function () {
   }
 
   function renderResponse(response) {
-    $('#map-no-results').hide();
+    var noResultsEl = document.getElementById('map-no-results');
+    if (noResultsEl) noResultsEl.style.display = 'none';
+
     clusterMarkers = L.markerClusterGroup({ chunkedLoading: true });
     hubMarkers = L.markerClusterGroup({ chunkedLoading: true });
     trainerMarkers = L.markerClusterGroup({ chunkedLoading: true });
@@ -227,7 +241,7 @@ export default function () {
     if (Object.keys(response.initiatives).length > 0 || Object.keys(response.hubs).length > 0 || Object.keys(response.trainers).length > 0) {
       displayMarkers(response);
     } else {
-      $('#map-no-results').show();
+      if (noResultsEl) noResultsEl.style.display = '';
     }
   }
 
@@ -251,189 +265,203 @@ export default function () {
   }
 
   function fetchMarkers(params, callback) {
-    $.ajax({
-      url: tofinoJS.ajaxUrl,
-      type: 'POST',
-      cache: false,
-      data: {
-        action: 'getMarkers',
-        value: {
-          params
-        }
-      },
-      dataType: 'json',
-      success: function (response) {
-        callback(response);
-      },
-      error: function (jqxhr, status, exception) {
-        console.log('JQXHR:', jqxhr);
-        console.log('Status:', status);
-        console.log('Exception:', exception);
+    var formData = new URLSearchParams();
+    formData.append('action', 'getMarkers');
+    // Serialize params object as value[key]=val
+    for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        formData.append('value[params][' + key + ']', params[key]);
       }
+    }
+
+    fetch(tofinoJS.ajaxUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
     })
+    .then(function(res) { return res.json(); })
+    .then(function(response) {
+      callback(response);
+    })
+    .catch(function(err) {
+      console.log('Error:', err);
+    });
   }
 
   function udpateFilterUi(params) {
-    if(params.get('type')) {
-      $('#filter-type select').val(params.get('type'))
-    } else {
-      $('#filter-type select').val('1');
-    }
-    
-    if(params.get('hub_name')) {
-      $('#filter-hub select').val(params.get('hub_name'))
-    } else {
-      $('#filter-hub select').val('');
-    }
-    
-    if(params.get('country')) {
-      $('#filter-country select').val(params.get('country'))
-    } else {
-      $('#filter-country select').val('');
+    var filterTypeSelect = document.querySelector('#filter-type select');
+    if (filterTypeSelect) {
+      filterTypeSelect.value = params.get('type') || '1';
     }
 
-    if(params.get('topic')) {
-      $('#filter-topic select').val(params.get('topic'))
-    } else {
-      $('#filter-topic select').val('');
+    var filterHubSelect = document.querySelector('#filter-hub select');
+    if (filterHubSelect) {
+      filterHubSelect.value = params.get('hub_name') || '';
     }
-    
-    if(params.get('training')) {
-      $('#training-toggle input').prop('checked', true)
-    } else {
-      $('#training-toggle input').prop('checked', false)
+
+    var filterCountrySelect = document.querySelector('#filter-country select');
+    if (filterCountrySelect) {
+      filterCountrySelect.value = params.get('country') || '';
     }
-    
-    if(params.get('show_recent')) {
-      $('#recent-toggle input').prop('checked', true)
-    } else {
-      $('#recent-toggle input').prop('checked', false)
+
+    var filterTopicSelect = document.querySelector('#filter-topic select');
+    if (filterTopicSelect) {
+      filterTopicSelect.value = params.get('topic') || '';
+    }
+
+    var trainingInput = document.querySelector('#training-toggle input');
+    if (trainingInput) {
+      trainingInput.checked = !!params.get('training');
+    }
+
+    var recentInput = document.querySelector('#recent-toggle input');
+    if (recentInput) {
+      recentInput.checked = !!params.get('show_recent');
     }
   }
-  
+
   function processFilter(params) {
     //remove legacy params
     params.delete('hub_id');
-    
+
     //remove multi country to allow normal function of filters
     params.delete('multi_country');
-    
+
     window.history.pushState("object or string", "Title", "?" + params.toString());
-    
+
     if (tofinoJS.isFrontPage) {
       window.location.href = tofinoJS.homeUrl + '/search-groups/?' + params.toString()
     } else if(tofinoJS.postName === 'search-groups') {
       location.reload()
     } else {
       udpateFilterUi(params);
-  
+
       map.removeLayer(clusterMarkers)
       map.removeLayer(hubMarkers)
       map.removeLayer(trainerMarkers)
       getMarkers(getMarkerParams())
     }
   }
-  
+
   function checkForEvents() {
     //hide panel
-    $('#map-iframe button.close').on('click', function () {
-      $('#map-info-panel').hide();
-    })
+    var closeBtn = document.querySelector('#map-iframe button.close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        var panel = document.getElementById('map-info-panel');
+        if (panel) panel.style.display = 'none';
+      });
+    }
 
     //go to my location
-    $('#map-iframe button.my-location').on('click', function () {
-      map.locate({ setView: true, maxZoom: 8 });
-    })
+    var locationBtn = document.querySelector('#map-iframe button.my-location');
+    if (locationBtn) {
+      locationBtn.addEventListener('click', function () {
+        map.locate({ setView: true, maxZoom: 8 });
+      });
+    }
 
-    $('#filter-hub select').on('change', function() {
-      var url = new URL(window.location.href)
-      var params = new URLSearchParams(url.search)
+    var filterHubSelect = document.querySelector('#filter-hub select');
+    if (filterHubSelect) {
+      filterHubSelect.addEventListener('change', function() {
+        var url = new URL(window.location.href)
+        var params = new URLSearchParams(url.search)
 
-      //delete country from url and clear url
-      params.delete('country')
-      
-      //update URL
-      if ($('#filter-hub select').val().length) {
-        params.set('hub_name', $('#filter-hub select').val());
-      } else {
-        params.delete('hub_name');
-      }
+        //delete country from url and clear url
+        params.delete('country')
 
-      processFilter(params);
-    })
+        //update URL
+        if (filterHubSelect.value.length) {
+          params.set('hub_name', filterHubSelect.value);
+        } else {
+          params.delete('hub_name');
+        }
 
-    $('#filter-country select').on('change', function() {
-      var params = getUpdateParams();
+        processFilter(params);
+      });
+    }
 
-      //delete country from url and clear url
-      params.delete('hub_name')
-      
-      //update
-      if ($('#filter-country select').val().length) {
-        params.set('country', $('#filter-country select').val());
-      } else {
-        params.delete('country');
-      }
+    var filterCountrySelect = document.querySelector('#filter-country select');
+    if (filterCountrySelect) {
+      filterCountrySelect.addEventListener('change', function() {
+        var params = getUpdateParams();
 
-      processFilter(params);
-    })
+        //delete country from url and clear url
+        params.delete('hub_name')
 
-    $('#filter-topic select').on('change', function() {
-      var params = getUpdateParams();
+        //update
+        if (filterCountrySelect.value.length) {
+          params.set('country', filterCountrySelect.value);
+        } else {
+          params.delete('country');
+        }
 
-      console.log('change topic')
+        processFilter(params);
+      });
+    }
 
-      //update
-      if ($('#filter-topic select').val().length) {
-        params.set('topic', $('#filter-topic select').val());
-      } else {
-        params.delete('topic');
-      }
+    var filterTopicSelect = document.querySelector('#filter-topic select');
+    if (filterTopicSelect) {
+      filterTopicSelect.addEventListener('change', function() {
+        var params = getUpdateParams();
 
-      processFilter(params);
-    })
+        console.log('change topic')
 
-    $('#filter-type select').on('change', function() {
-      var params = getUpdateParams();
+        //update
+        if (filterTopicSelect.value.length) {
+          params.set('topic', filterTopicSelect.value);
+        } else {
+          params.delete('topic');
+        }
 
-      if ($('#filter-type select').val().length) {
-        params.set('type', $('#filter-type select').val());
-      } else {
-        params.delete('type');
-      }
+        processFilter(params);
+      });
+    }
 
-      processFilter(params)
-    })
-    
-    $('#training-toggle input').on('change', function() {
-      var params = getUpdateParams();
-      
-      if(this.checked) {
-        params.set('training', true)
-        // if(params.get('type') === '2') {
-        //   params.set('type', '1')
-        // }
-      } else {
-        params.delete('training')
-      }
-      
-      processFilter(params)
-    })
-    
-    $('#recent-toggle input').on('change', function() {
-      var params = getUpdateParams();
-      
-      if(this.checked) {
-        params.set('show_recent', true)
-        // if(params.get('type') === '2') {
-        //   params.set('type', '1')
-        // }
-      } else {
-        params.delete('show_recent')
-      }
-      
-      processFilter(params)
-    })
+    var filterTypeSelect = document.querySelector('#filter-type select');
+    if (filterTypeSelect) {
+      filterTypeSelect.addEventListener('change', function() {
+        var params = getUpdateParams();
+
+        if (filterTypeSelect.value.length) {
+          params.set('type', filterTypeSelect.value);
+        } else {
+          params.delete('type');
+        }
+
+        processFilter(params)
+      });
+    }
+
+    var trainingInput = document.querySelector('#training-toggle input');
+    if (trainingInput) {
+      trainingInput.addEventListener('change', function() {
+        var params = getUpdateParams();
+
+        if(this.checked) {
+          params.set('training', true)
+        } else {
+          params.delete('training')
+        }
+
+        processFilter(params)
+      });
+    }
+
+    var recentInput = document.querySelector('#recent-toggle input');
+    if (recentInput) {
+      recentInput.addEventListener('change', function() {
+        var params = getUpdateParams();
+
+        if(this.checked) {
+          params.set('show_recent', true)
+        } else {
+          params.delete('show_recent')
+        }
+
+        processFilter(params)
+      });
+    }
 
     //back button hit
     window.onpopstate = function () {
@@ -445,7 +473,7 @@ export default function () {
 
   //these variables are given global scope
   var map = initialiseMap()
-  var clusterMarkers, hubMarkers, trainerMarkers;  
+  var clusterMarkers, hubMarkers, trainerMarkers;
 
   var params = getMarkerParams()
 
@@ -459,6 +487,6 @@ export default function () {
   }
 
   getMarkers(params)
-  
+
   checkForEvents()
 }

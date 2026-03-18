@@ -1,5 +1,5 @@
 <ul class="button-group">
-  <div class="mb-5">
+  <div class="mb-12">
     <?php get_search_form(); ?>
   </div>
 

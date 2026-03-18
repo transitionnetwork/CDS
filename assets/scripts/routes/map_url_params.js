@@ -1,4 +1,3 @@
-var $ = window.jQuery;
 import displayMap from '../shared/display-map';
 
 export default {
@@ -12,32 +11,29 @@ export default {
     const training = urlParams.get('training');
     const search = urlParams.get('s');
 
-    $.ajax({
-      url: tofinoJS.ajaxUrl,
-      type: 'POST',
-      cache: false,
-      data: {
-        action: 'getMarkers',
-        value: {
-          map_type: map_type,
-          hub_name: hub_name,
-          country: country,
-          training: training,
-          search: search
-        }
-      },
-      dataType: 'json',
-      success: function (response) {
-        console.log(response);
-        $('#map-panel').show();
-        displayMap(response);
-      },
-      error: function (jqxhr, status, exception) {
-        console.log('JQXHR:', jqxhr);
-        console.log('Status:', status);
-        console.log('Exception:', exception);
-      }
+    var formData = new URLSearchParams();
+    formData.append('action', 'getMarkers');
+    if (map_type) formData.append('value[map_type]', map_type);
+    if (hub_name) formData.append('value[hub_name]', hub_name);
+    if (country) formData.append('value[country]', country);
+    if (training) formData.append('value[training]', training);
+    if (search) formData.append('value[search]', search);
+
+    fetch(tofinoJS.ajaxUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
     })
+    .then(function(res) { return res.json(); })
+    .then(function(response) {
+      console.log(response);
+      var mapPanel = document.getElementById('map-panel');
+      if (mapPanel) mapPanel.style.display = '';
+      displayMap(response);
+    })
+    .catch(function(err) {
+      console.log('Error:', err);
+    });
 
   }
 };

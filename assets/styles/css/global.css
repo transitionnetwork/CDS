@@ -1,0 +1,354 @@
+@font-face {
+  font-family: 'Roca Bold';
+  src: url('../../fonts/Roca-Bold.woff2') format('woff2'),
+    url('../../fonts/Roca-Bold.woff') format('woff');
+}
+
+body {
+  @apply font-body bg-brand-white;
+}
+
+/* Bootstrap-style .container — centred, padded, responsive max-width.
+   These specific breakpoint values don't map to Tailwind utilities. */
+.container {
+  @apply w-full mx-auto px-4;
+}
+
+
+/* Restore paragraph margin — Tailwind v4 Preflight sets margin: 0 */
+p {
+  @apply mb-3;
+}
+
+/* Restore basic list styles — Tailwind v4 Preflight strips list-style, padding, margin.
+   Navigation lists (.navbar-nav, .button-group, .btn-list, .links, .key, .page-numbers)
+   already set list-style: none and padding: 0, so they override naturally. */
+ul, ol {
+  @apply pl-8 mb-4;
+}
+
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
+}
+
+/* Rich-text: restores prose styles for WYSIWYG content from the_content(), term descriptions, etc. */
+.rich-text p {
+  @apply mb-3;
+}
+
+.rich-text h2 {
+  @apply text-3xl mt-6 mb-4 font-bold font-header;
+}
+
+.rich-text h3 {
+  @apply text-2xl mt-5 mb-3 font-bold font-header;
+}
+
+.rich-text h4 {
+  @apply text-xl mt-4 mb-2 font-bold font-header;
+}
+
+.rich-text ul,
+.rich-text ol {
+  @apply pl-8 mb-4;
+}
+
+.rich-text ul {
+  @apply list-disc;
+}
+
+.rich-text ol {
+  @apply list-decimal;
+}
+
+.rich-text li {
+  @apply mb-1;
+}
+
+.rich-text blockquote {
+  border-left: 4px solid var(--color-brand-primary);
+  @apply py-2 px-4 my-4 text-gray-500;
+}
+
+.rich-text a {
+  @apply underline;
+}
+
+.rich-text img {
+  @apply max-w-full h-auto;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5 {
+  @apply font-bold font-header;
+}
+
+h1, .h1 {
+  @apply mt-8 mb-4 text-4xl;
+}
+
+h2, .h2 {
+  @apply mt-6 mb-3 text-3xl;
+}
+
+h3, .h3 {
+  @apply mt-4 mb-2 text-2xl;
+}
+
+h4, .h4 {
+  @apply mt-3 mb-1 text-xl;
+}
+
+a:not(.btn) {
+  color: var(--color-brand-primary);
+}
+
+a:not(.btn):hover {
+  color: color-mix(in srgb, var(--color-brand-primary) 80%, #000);
+}
+
+.normal-size {
+  @apply text-base;
+}
+
+.button-svg {
+  @apply align-text-top size-4 mr-1;
+}
+
+.btn svg {
+  @apply align-text-top size-4 mr-1 fill-current;
+}
+
+/* btn-disabled compat (not a daisyUI class) */
+a.btn-disabled,
+span.btn-disabled,
+button.btn-disabled {
+  @apply pointer-events-none;
+}
+
+.bar-info {
+  @apply bg-black text-white w-full py-1 text-sm;
+}
+
+.bar-info .container {
+  @apply flex justify-between;
+}
+
+.bar-info a,
+.bar-info a:hover {
+  @apply text-white underline;
+}
+
+.bar-info .user-details {
+  @apply py-2;
+}
+
+img {
+  @apply max-w-full h-auto;
+}
+
+main {
+  @apply mb-20 mt-8;
+}
+
+.scrollbox {
+  height: 400px;
+  @apply overflow-y-scroll mb-8 shadow-md p-8 bg-white rounded outline-1 outline-gray-300 -outline-offset-1;
+}
+
+/* daisyUI .btn handles: inline-flex, items-center, font-semibold, border-radius (--radius-field),
+   padding, and all color variants. Only keep SVG sizing below. */
+
+.acf-form input[type="submit"],
+input[type="submit"] {
+  @apply btn btn-primary;
+}
+
+/* Tailwind v4 Preflight sets background-color: transparent and strips all
+   form-control styling that Bootstrap provided (border, padding, border-radius). */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+textarea,
+select {
+  @apply bg-white border border-gray-300 rounded-lg px-3 py-2 w-full;
+}
+
+textarea {
+  @apply min-h-24;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+textarea:focus,
+select:focus {
+  @apply outline-none ring-2 ring-primary/30 border-primary;
+}
+
+.button.button-large {
+  @apply btn btn-primary;
+}
+
+form#hub-filter input[type="submit"] {
+  @apply btn btn-primary btn-sm;
+}
+
+form#gdpr input[type="submit"] {
+  @apply btn btn-primary;
+}
+
+form[name="front_end_publish"] label.submit,
+form[name="front_end_delete"] label.submit {
+  @apply btn btn-sm cursor-pointer;
+}
+
+form[name="front_end_publish"] label.submit input[type="submit"],
+form[name="front_end_delete"] label.submit input[type="submit"] {
+  @apply hidden;
+}
+
+form[name="front_end_publish"] label.submit {
+  @apply btn-secondary;
+}
+
+form[name="front_end_delete"] label.submit {
+  @apply btn-error;
+}
+
+.acf-button-group {
+  @apply w-full;
+}
+
+.acf-button-group label {
+  white-space: normal !important;
+  display: flex !important;
+  @apply flex-col content-center justify-center;
+}
+
+/* Sections/panels — daisyUI card with border */
+section,
+.panel {
+  @apply card card-border bg-white p-6 mb-6 shadow-md;
+}
+
+/* First heading inside a panel should have no top margin */
+section > h2:first-of-type,
+section > h3:first-of-type,
+.panel > h2:first-of-type,
+.panel > h3:first-of-type {
+  @apply mt-0;
+}
+
+/* Last child in a panel should have no bottom margin */
+section > *:last-child,
+.panel > *:last-child {
+  @apply mb-0;
+}
+
+section .panel,
+.panel .panel {
+  @apply card card-border bg-white shadow-none;
+}
+
+/* Lighter panel variant — dashed border, no shadow, transparent bg */
+.panel-dash {
+  @apply rounded-2xl p-6 mb-6 border-2 border-dashed border-gray-300;
+}
+
+#message {
+  @apply alert mb-4;
+}
+
+#message.updated {
+  @apply alert-success;
+}
+
+#message p {
+  @apply mb-0;
+}
+
+pre {
+  @apply p-3 mb-4 rounded-lg overflow-x-auto text-sm bg-gray-200 text-red-500 whitespace-pre-wrap break-all;
+}
+
+/* .tag — uses daisyUI badge as base */
+.tag {
+  @apply badge text-white;
+}
+
+.tag.role {
+  @apply bg-purple-600;
+}
+
+.tag.hub {
+  @apply badge-error;
+}
+
+.tag.beta {
+  @apply badge-primary;
+}
+
+.button-group,
+.button-block {
+  @apply my-2 p-0 list-none;
+}
+
+.button-group li,
+.button-block li {
+  @apply mb-2;
+}
+
+.btn-list {
+  @apply list-none m-0 p-0;
+}
+
+.btn-list li {
+  @apply inline mr-2;
+}
+
+.btn-list li:last-of-type {
+  @apply mr-0;
+}
+
+form.publish-delete {
+  @apply my-2;
+}
+
+.total {
+  @apply italic text-gray-500;
+}
+
+#lang-switch a {
+  @apply text-ink-black no-underline;
+}
+
+#lang-switch .trp-language-switcher,
+#lang-switch .trp-ls-shortcode-language {
+  z-index: 600;
+}

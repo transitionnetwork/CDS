@@ -1,0 +1,75 @@
+/* Group card list — replaces old .item-list table */
+.initiative-list .group-card {
+  @apply shadow-sm border-gray-200;
+}
+
+section .group-card {
+  @apply shadow-sm mb-0;
+}
+
+form.filter {
+  @apply flex items-center mb-2;
+}
+
+form.filter input[type="text"] {
+  @apply mr-1 p-1.5;
+}
+
+form.filter .search-wrap {
+  @apply flex items-center;
+}
+
+form.filter label {
+  @apply m-0 mr-1;
+}
+
+@media (max-width: 767px) {
+  form.filter {
+    @apply flex-col items-start;
+  }
+}
+
+ul.account-details label {
+  @apply font-bold m-0 mr-1;
+}
+
+/* Pagination — daisyUI join component.
+   WordPress outputs:
+   <ul class="page-numbers">
+     <li><span class="page-numbers current">1</span></li>
+     <li><a class="page-numbers" href="…">2</a></li>
+     <li><span class="page-numbers dots">…</span></li>
+     <li><a class="next page-numbers" href="…">Next</a></li>
+   </ul> */
+nav.pagination,
+nav.navigation {
+  @apply flex justify-center mt-8;
+}
+
+ul.page-numbers {
+  @apply join list-none p-0 m-0;
+}
+
+ul.page-numbers li {
+  @apply join-item m-0;
+}
+
+ul.page-numbers li a.page-numbers,
+ul.page-numbers li span.page-numbers {
+  @apply btn join-item no-underline;
+  color: var(--color-brand-primary);
+}
+
+ul.page-numbers li span.current {
+  @apply btn-active text-white;
+  background-color: var(--color-brand-primary);
+}
+
+ul.page-numbers li a.page-numbers:hover {
+  @apply text-white;
+  background-color: var(--color-brand-v3);
+}
+
+ul.page-numbers li span.dots {
+  @apply btn-disabled;
+}

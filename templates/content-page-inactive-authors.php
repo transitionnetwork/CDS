@@ -25,7 +25,7 @@ $selected_hubs = get_field('reminder_email_hubs', 'options');
         <p><strong>These settings can be amended on the <a href="<?php echo home_url('wp-admin/admin.php?page=acf-options-general-options'); ?>" target="_blank">General settings screen</a> in the dashboard.</strong></p>
         <p>Below are the groups being currently sent reminder emails by the cron script:</p>
 
-        <?php 
+        <?php
         $args = array(
           'post_type' => 'initiatives',
           'posts_per_page' => -1,
@@ -71,34 +71,32 @@ $selected_hubs = get_field('reminder_email_hubs', 'options');
 
         $posts = get_posts($args); ?>
 
-        <table class="item-list">
-          <tr>
-            <th>initaitive_name</th>
-            <th>hub</th>
-            <th>author_email</th>
-            <th>author_last_logged_in</th>
-            <th>last_mail_date</th>
-          </tr>
+        <div class="flex flex-col gap-4">
           <?php foreach($posts as $post) { ?>
-            <?php setup_postdata( $post ); ?>
-            <tr>
-              <td><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></td>
-              <td><?php echo endpoint_get_taxonomy_terms($post, 'hub'); ?></td>
-              <td><?php echo get_the_author_meta( 'user_email' ); ?></td>
-              <td>
-                <?php $last_login = get_post_meta( get_the_ID(), 'author_last_logged_in', true); ?>
-                <?php echo ($last_login) ? $last_login : 'Never'; ?>
-              </td>
-              <td>
-                <?php $last_mail_date = get_post_meta( get_the_ID(), 'last_mail_date', true); ?>
-                <?php echo ($last_mail_date) ? $last_mail_date : 'Never'; ?>
-              </td>
-            </tr>
+            <?php setup_postdata($post); ?>
+            <div class="card card-border bg-white p-4 shadow-sm">
+              <div class="flex flex-col gap-2">
+                <a href="<?php echo get_the_permalink(); ?>" class="font-bold"><?php echo get_the_title(); ?></a>
+                <div class="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-600">
+                  <div><span class="font-semibold">Hub:</span> <?php echo endpoint_get_taxonomy_terms($post, 'hub'); ?></div>
+                  <div><span class="font-semibold">Author email:</span> <?php echo get_the_author_meta('user_email'); ?></div>
+                  <div>
+                    <span class="font-semibold">Last login:</span>
+                    <?php $last_login_val = get_post_meta(get_the_ID(), 'author_last_logged_in', true); ?>
+                    <?php echo ($last_login_val) ? $last_login_val : 'Never'; ?>
+                  </div>
+                  <div>
+                    <span class="font-semibold">Last email:</span>
+                    <?php $last_mail_date = get_post_meta(get_the_ID(), 'last_mail_date', true); ?>
+                    <?php echo ($last_mail_date) ? $last_mail_date : 'Never'; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
           <?php } ?>
-          <?php wp_reset_postdata(  ); ?>
-        </table>
+          <?php wp_reset_postdata(); ?>
+        </div>
       <?php endwhile; ?>
     </div>
   </main>
 <?php } ?>
-

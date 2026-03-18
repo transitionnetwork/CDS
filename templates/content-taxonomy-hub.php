@@ -7,15 +7,15 @@
 <main>
   <div class="container">
     <?php $post_author = get_the_author_meta('ID'); ?>
-    <div class="row justify-content-between">
-      <div class="col-12 col-lg-7">
+    <div class="flex flex-col lg:flex-row flex-wrap justify-between gap-6">
+      <div class="w-full lg:w-7/12">
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
         
         <?php $status = get_field('status', $term); ?>
         <?php $status_color = get_status_tag($status); ?>
-        <p><span class="btn-<?php echo $status_color; ?> btn-sm"><?php echo $status['label']; ?></span></p>
+        <span class="badge badge-outline badge-<?php echo $status_color; ?>"><?php echo $status['label']; ?></span>
         
-        <div class="mt-4"><?php echo get_field('hub_description', $term); ?></div>
+        <div class="mt-4 rich-text"><?php echo get_field('hub_description', $term); ?></div>
 
         <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, get_the_permalink(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
@@ -49,7 +49,7 @@
         <?php } ?>
       </div>
  
-      <div class="col-12 col-lg-4">
+      <div class="w-full lg:w-4/12">
         <aside>
           <?php get_template_part('templates/partials/group-stats', null, array('view' => 'hub')); ?>
           
@@ -63,12 +63,12 @@
             <?php } ?>
   
             <?php if (get_field('email', $term)) { ?>
-              <h3 class="mt-3">Email</h3>
+              <h3 class="mt-4">Email</h3>
               <a href="mailto:<?php echo get_field('email', $term); ?>"><?php echo get_field('email', $term); ?></a>
             <?php } ?>
   
             <?php if(get_field('website', $term) || get_field('facebook', $term) || get_field('instagram', $term) || get_field('twitter', $term) || get_field('youtube', $term)) { ?>
-              <h3 class="mt-3"><?php _e('Links', 'tofino'); ?></h3>
+              <h3 class="mt-4"><?php _e('Links', 'tofino'); ?></h3>
               <ul class="links">
                 <?php if (get_field('website', $term)) { ?>
                   <li><a href="<?php echo get_field('website', $term); ?>" target="_blank">Web</a></li>
@@ -103,7 +103,7 @@
         </aside>
       </div>
 
-      <div class="col-12" id="hub-filter">
+      <div class="w-full" id="hub-filter">
 
         <h2>Groups</h2>
 

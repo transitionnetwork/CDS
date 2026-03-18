@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <main>
-  <div class="container-fluid">
+  <div class="container">
 
     <div class="row justify-content-lg-between">
       <div class="col-12 col-lg-3 order-lg-2">

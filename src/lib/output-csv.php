@@ -22,4 +22,5 @@ function outputCsv($fileName, $assocDataArray)
     fclose($fp);
   }
   ob_flush();
+  exit;
 }

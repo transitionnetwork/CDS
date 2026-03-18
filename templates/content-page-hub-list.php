@@ -3,7 +3,7 @@
 <?php get_template_part('templates/partials/map-display'); ?>
 
 <main>
-  <div class="container">
+  <div class="container space-y-6">
     <?php while (have_posts()) : the_post(); ?>
       <h1><?php echo \Tofino\Helpers\title(); ?></h1>
       <?php $args = array(
@@ -13,7 +13,7 @@
       ); ?>
       <?php $hubs = get_terms($args); ?>
       <?php if($hubs) { ?>
-        <div class="row">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <?php foreach ($hubs as $hub) { ?> 
             <?php set_query_var('hub', $hub); ?>
             <?php get_template_part('templates/partials/tile-hub'); ?>

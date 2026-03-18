@@ -13,54 +13,47 @@
 <section>
   <h2>Hub Admin</h2>
   <?php if ($hub_ids) { ?>
-    <table class="item-list">
-      <tr>
-        <th>Hub Name</th>
-        <th>Download</th>
-        <th>Edit</th>
-        <?php if(is_user_role(array('super_hub', 'administrator'))) { ?>
-          <th>Users awaiting approval</th>
-        <?php } ?>
-      </tr>
+    <div class="flex flex-col gap-4">
       <?php foreach ($hub_ids as $hub_id) {
         $hub = get_term_by('id', $hub_id, 'hub'); ?>
-        <tr>
-          <td>
-            <a href="<?php echo get_term_link($hub); ?>"><?php echo $hub->name; ?></a>
-          </td>
-          <td>
-            <a class="btn btn-primary btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, get_the_permalink(6105)); ?>"><?php echo svg('cloud-download'); ?>CSV of group data</a>
-          </td>
-          <td>
-            <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, get_the_permalink(5414)); ?>"><?php echo svg('pencil'); ?>Edit</a>
-          </td>
-          
-          <?php $args = array(
-            'meta_key' => 'hub_admin_requested',
-            'meta_value' => $hub_id,
-            'meta_compare' => 'EXISTS'
-          ); ?>
-          <td>
-            <ul>
-              <?php $user_query = new WP_User_Query( $args );
-              if ( ! empty( $user_query->get_results() ) ) {
-                foreach ( $user_query->get_results() as $user ) { ?>
-                  <li>
-                    <?php echo $user->display_name . ' (' . $user->user_email . ')'; ?><br/>
-                    <div class="btn-group">
-                      <form action="" method="post">
-                        <button class="btn btn-sm btn-success" name="confirm_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
-                        <button class="btn btn-sm btn-danger" name="deny_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
-                        <input type="hidden" name="hub_id" value="<?php echo $hub_id; ?>">
-                      </form>
-                  </li>
-                <?php } ?>
-              <?php } ?>
-            </ul>
-          </td>
-        </tr>
+        <div class="card card-border bg-white p-4 shadow-sm">
+          <div class="flex flex-col gap-3">
+            <a href="<?php echo get_term_link($hub); ?>" class="text-lg font-bold"><?php echo $hub->name; ?></a>
+
+            <div class="flex flex-wrap gap-2">
+              <a class="btn btn-primary btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, get_the_permalink(6105)); ?>"><?php echo svg('cloud-download'); ?>CSV of group data</a>
+              <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $hub->term_id, get_the_permalink(5414)); ?>"><?php echo svg('pencil'); ?>Edit</a>
+            </div>
+
+            <?php if(is_user_role(array('super_hub', 'administrator'))) {
+              $args = array(
+                'meta_key' => 'hub_admin_requested',
+                'meta_value' => $hub_id,
+                'meta_compare' => 'EXISTS'
+              );
+              $user_query = new WP_User_Query($args);
+              if (!empty($user_query->get_results())) { ?>
+                <div class="mt-2 pt-3 border-t border-gray-200">
+                  <p class="text-sm font-semibold mb-2"><?php _e('Users awaiting approval:', 'tofino'); ?></p>
+                  <ul class="list-none p-0 m-0">
+                    <?php foreach ($user_query->get_results() as $user) { ?>
+                      <li class="mb-2">
+                        <span class="text-sm"><?php echo $user->display_name . ' (' . $user->user_email . ')'; ?></span>
+                        <form action="" method="post" class="inline-flex gap-1 ml-2">
+                          <button class="btn btn-sm btn-success" name="confirm_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('check'); ?>Confirm</button>
+                          <button class="btn btn-sm btn-error" name="deny_hub_admin" value="<?php echo $user->id; ?>"><?php echo svg('trashcan'); ?>Deny</button>
+                          <input type="hidden" name="hub_id" value="<?php echo $hub_id; ?>">
+                        </form>
+                      </li>
+                    <?php } ?>
+                  </ul>
+                </div>
+              <?php }
+            } ?>
+          </div>
+        </div>
       <?php } ?>
-    </table>
+    </div>
   <?php } ?>
 
 </section>

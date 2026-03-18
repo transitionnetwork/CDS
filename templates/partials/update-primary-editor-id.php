@@ -2,7 +2,7 @@
     <input name="post_id" type="hidden" value="<?php echo $post->ID; ?>">
     <label for="authors">Update primary editor ID</label>
     
-    <div class="d-flex align-items-center">
+    <div class="flex items-center">
       <input type="number" name="update_group_author_id" value="<?php echo $post_author_id; ?>" placeholder="Author ID" min="1">
       <button type="submit" class="btn btn-primary btn-sm">Update</button>
     </div>

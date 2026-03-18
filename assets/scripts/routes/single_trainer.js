@@ -1,6 +1,3 @@
-// We need jQuery
-var $ = window.jQuery;
-
 import singleMap from '../shared/single-map';
 
 export default {
@@ -10,10 +7,16 @@ export default {
     }
 
     //populate trainer email form
-    const name = $('#trainer-name').data('name');
-    const email = $('#trainer-email').data('email');
+    var trainerNameEl = document.getElementById('trainer-name');
+    var trainerEmailEl = document.getElementById('trainer-email');
 
-    $('input[name="trainer-name"]').val(name);
-    $('input[name="trainer-email"]').val(email);
+    var name = trainerNameEl ? trainerNameEl.dataset.name : '';
+    var email = trainerEmailEl ? trainerEmailEl.dataset.email : '';
+
+    var nameInput = document.querySelector('input[name="trainer-name"]');
+    if (nameInput) nameInput.value = name;
+
+    var emailInput = document.querySelector('input[name="trainer-email"]');
+    if (emailInput) emailInput.value = email;
   }
 }

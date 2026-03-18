@@ -1,0 +1,7 @@
+.openid-connect-login-button {
+  @apply text-left;
+}
+
+.openid-connect-login-button .button {
+  @apply btn btn-outline btn-primary;
+}

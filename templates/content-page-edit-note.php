@@ -12,8 +12,8 @@
 		
     <main>
 			<div class="container">
-				<div class="row justify-content-center">	
-					<div class="col-12 col-md-10 col-lg-8">
+				<div class="mx-auto max-w-3xl w-full">
+					<div>
 						<h1><?php echo \Tofino\Helpers\title(); ?></h1>
 						<h4>
 							to <?php echo get_the_title($initiative_id); ?>

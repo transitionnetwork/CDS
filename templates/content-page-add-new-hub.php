@@ -2,14 +2,14 @@
 
 <main>
   <div class="container">
-    <div class="row justify-content-center">	
-      <div class="col-12 col-md-10 col-lg-8">
+    <div class="mx-auto max-w-3xl w-full">
+      <div>
         <?php while (have_posts()) : the_post(); ?>
           <h1><?php echo \Tofino\Helpers\title(); ?></h1>
 
           <?php if(!is_user_logged_in()) { ?>
-            <?php the_content(); ?>
-            
+            <div class="rich-text"><?php the_content(); ?></div>
+
             <?php get_template_part('templates/partials/login-or-register'); ?>
           <?php } else { ?>
             <?php acf_form(array(

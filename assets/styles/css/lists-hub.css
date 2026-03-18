@@ -1,0 +1,44 @@
+/* Ensure cards stretch to fill grid cell height */
+.hub-col,
+.trainer-col {
+  @apply flex flex-col h-full;
+}
+
+.hub-col .hub-item,
+.trainer-col .trainer-item {
+  @apply flex-1;
+}
+
+.hub-item,
+.trainer-item {
+  @apply flex flex-col bg-white overflow-hidden rounded-2xl border border-gray-200 shadow-md outline-1 outline-gray-300 -outline-offset-1;
+}
+
+.hub-item .thumbnail-bg,
+.trainer-item .thumbnail-bg {
+  padding-top: 66%;
+  @apply block bg-cover bg-center;
+}
+
+/* Card content: flex column, gap-3 for consistent spacing between all items */
+.hub-item .content,
+.trainer-item .content {
+  @apply p-5 flex flex-col gap-3 flex-1;
+}
+
+.hub-item .content > *,
+.trainer-item .content > * {
+  @apply m-0;
+}
+
+/* mt-auto pushes the More button to the bottom; gap-3 guarantees minimum space above */
+.hub-item .content > .mt-auto,
+.trainer-item .content > .mt-auto {
+  margin-top: auto;
+}
+
+.hub-item .content h3,
+.trainer-item .content h3 {
+  @apply text-xl font-bold m-0;
+  font-family: var(--font-header);
+}

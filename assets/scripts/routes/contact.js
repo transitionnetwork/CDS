@@ -1,10 +1,12 @@
-// We need jQuery
-var $ = window.jQuery;
+import ajaxForm from '../ajax-form';
 
 export default {
   init() {
-    // JavaScript to be fired on contact page page
-    $('.contact-form').ajaxForm();
+    // JavaScript to be fired on contact page
+    var contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      ajaxForm(contactForm);
+    }
   },
   loaded() {
     // Javascript to be fired on page once fully loaded

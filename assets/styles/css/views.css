@@ -1,0 +1,239 @@
+body.single h1,
+body.tax-hub h1 {
+  @apply mb-4;
+}
+
+body.single h4,
+body.tax-hub h4 {
+  @apply mt-3 mb-1;
+}
+
+body.single label,
+body.tax-hub label {
+  @apply block font-bold mb-0 mt-4;
+}
+
+/* Standardised info rows for single views (group, trainer, hub) */
+.info-row {
+  @apply flex flex-col gap-1 py-3 border-b border-gray-100;
+}
+
+.info-row:last-child {
+  @apply border-b-0;
+}
+
+.info-label {
+  @apply text-sm font-semibold text-gray-500;
+}
+
+.info-value {
+  @apply text-sm;
+}
+
+body.single .leaflet-container,
+body.tax-hub .leaflet-container {
+  @apply rounded;
+}
+
+body.single .meta,
+body.tax-hub .meta {
+  @apply pl-4;
+}
+
+body.single .panel.healthchecks table,
+body.tax-hub .panel.healthchecks table {
+  @apply mb-4;
+}
+
+body.single .panel.group-contact,
+body.tax-hub .panel.group-contact {
+  @apply overflow-hidden;
+}
+
+body.single .panel.grant-status .updated,
+body.tax-hub .panel.grant-status .updated {
+  @apply mt-2;
+}
+
+body.single .panel.grant-status .acf-field,
+body.tax-hub .panel.grant-status .acf-field {
+  @apply p-0 border-0 mt-4;
+}
+
+body.single .panel.grant-status .acf-label,
+body.tax-hub .panel.grant-status .acf-label {
+  @apply hidden;
+}
+
+body.single .links,
+body.tax-hub .links {
+  @apply m-0 p-0 list-none flex mt-2;
+  text-overflow: clip;
+}
+
+body.single .links li,
+body.tax-hub .links li {
+  @apply mr-2;
+}
+
+body.single .links svg,
+body.tax-hub .links svg {
+  @apply size-7;
+}
+
+body.single section,
+body.tax-hub section {
+  @apply my-4;
+}
+
+/* Healthchecks single */
+body.single-healthchecks .header {
+  @apply mb-8;
+}
+
+body.single-healthchecks .header h1 {
+  @apply mt-0;
+}
+
+body.single-healthchecks h3 {
+  @apply mb-4;
+}
+
+body.single-healthchecks label {
+  @apply m-0 py-2 px-0;
+}
+
+/* Initiatives single */
+body.single-initiatives #email-log {
+  max-height: 400px;
+  @apply overflow-y-scroll p-4 border border-gray-300;
+}
+
+/* Single map */
+#single-map {
+  @apply w-full mb-4;
+  height: 300px;
+  background-color: var(--color-sea-blue);
+}
+
+#single-map .leaflet-popup-content {
+  @apply max-w-36;
+}
+
+/* Healthcheck form */
+main.healthcheck-form .header {
+  @apply mb-4;
+}
+
+main.healthcheck-form .header h2 {
+  @apply mb-0;
+}
+
+main.healthcheck-form .header .date {
+  @apply italic;
+}
+
+main.healthcheck-form .steps span {
+  @apply font-bold text-xl;
+}
+
+main.healthcheck-form .step-bar-container {
+  @apply w-full flex mb-4 rounded h-4 bg-gray-50 border border-gray-200;
+}
+
+main.healthcheck-form .step-bar-container .step-bar {
+  background-color: var(--color-brand-primary);
+  @apply rounded;
+}
+
+main.healthcheck-form form.acf-form {
+  @apply mt-8;
+}
+
+main.healthcheck-form .acf-field-group {
+  @apply p-0 mb-8;
+}
+
+main.healthcheck-form .acf-field-group > .acf-label {
+  @apply text-2xl mb-6;
+}
+
+main.healthcheck-form .acf-button-group label.selected {
+  background-color: var(--color-brand-primary);
+  border-color: color-mix(in srgb, var(--color-brand-primary) 80%, #000);
+}
+
+main.healthcheck-form .acf-form-submit {
+  @apply text-center;
+}
+
+main.healthcheck-form .acf-form-submit .acf-button {
+  @apply py-2 px-4 text-xl;
+}
+
+/* Healthcheck data summary */
+body.single-healthchecks .healthcheck-choice,
+.healthcheck-choice {
+  @apply flex justify-between border-b border-gray-200 py-4 px-0;
+}
+
+body.single-healthchecks .healthcheck-choice label,
+.healthcheck-choice label {
+  @apply font-normal;
+}
+
+body.single-healthchecks .healthcheck-choice span,
+.healthcheck-choice span {
+  @apply text-white whitespace-nowrap inline-flex items-center font-semibold text-sm rounded-3xl py-1 px-3;
+}
+
+.healthcheck-choice.choice-1 span {
+  @apply bg-red-600;
+}
+
+.healthcheck-choice.choice-2 span {
+  @apply bg-red-400;
+}
+
+.healthcheck-choice.choice-3 span {
+  @apply bg-yellow-400;
+}
+
+.healthcheck-choice.choice-4 span {
+  @apply bg-green-500;
+}
+
+.healthcheck-choice.choice-5 span {
+  @apply bg-green-600;
+}
+
+/* Healthcheck graphing */
+#healthcheck-bar {
+  @apply mb-4 mt-8;
+}
+
+#healthcheck-bar .ytick tspan {
+  @apply hidden;
+}
+
+#graph-loading-wrapper {
+  @apply relative w-full p-16;
+}
+
+.graph-loading {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  z-index: 500;
+}
+
+#token-login-button {
+  @apply block border-0 bg-transparent;
+}
+
+#token-login-button svg {
+  @apply size-7;
+  color: var(--color-brand-primary);
+}
+
+.autologin-panel {
+  @apply mt-8;
+}

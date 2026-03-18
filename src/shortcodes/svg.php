@@ -41,6 +41,6 @@ function svg($atts) {
     $atr_str .= ' ' . $key . '="' . esc_attr($value) . '"';
   }
 
-  return '<svg' . $atr_str . '>' . (!empty($title) ? '<title>' . $title . '</title>' : '') . '<use xlink:href="' . $theme_config['svg']['sprite_file'] . '#' . $sprite . '" /></svg>';
+  return '<svg fill="currentColor"' . $atr_str . '>' . (!empty($title) ? '<title>' . $title . '</title>' : '') . '<use href="' . $theme_config['svg']['sprite_file'] . '#' . $sprite . '" /></svg>';
 }
 add_shortcode('svg', 'svg');

@@ -1,0 +1,263 @@
+/* Prevent Tailwind Preflight (img { display: block; max-width: 100% }) from breaking Leaflet tiles */
+.leaflet-container img {
+  @apply max-w-none max-h-none;
+}
+
+/* Leaflet tiles — exact px required by the map library */
+.leaflet-container .leaflet-tile {
+  width: 256px;
+  height: 256px;
+}
+
+#map-wrapper {
+  @apply w-full border-0 relative flex flex-col;
+  height: 550px;
+}
+
+#map-iframe {
+  @apply w-full h-full relative;
+  background-color: var(--color-sea-blue);
+}
+
+#map-iframe .leaflet-popup-content a {
+  @apply text-white;
+}
+
+#map-iframe h5 {
+  @apply text-xl;
+}
+
+#map-no-results {
+  @apply absolute text-lg rounded py-2 px-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  z-index: 500;
+  @apply bg-white/80;
+}
+
+#map-info {
+  @apply absolute top-4 right-4;
+  z-index: 500;
+}
+
+#map-info svg.logo {
+  width: 148px;
+  height: 48px;
+  @apply bg-white/80 p-0.5;
+  fill: var(--color-brand-primary);
+}
+
+#map-info-panel {
+  @apply bg-white/80 rounded relative mt-4 p-3 pr-6;
+  background-clip: padding-box;
+}
+
+#map-info-panel button.close {
+  @apply absolute p-0 top-0.5 right-0.5;
+  line-height: 0.5;
+}
+
+#map-info-panel button.close svg {
+  @apply size-4;
+}
+
+#map-info-panel .key {
+  @apply m-0 p-0 list-none flex flex-col text-sm;
+  font-family: var(--font-body);
+}
+
+#map-info-panel .key li {
+  @apply flex items-center;
+}
+
+#map-info-panel .key li + li {
+  @apply mt-2;
+}
+
+#map-info-panel .key img {
+  @apply max-w-5 h-auto mr-2;
+}
+
+#map-info-panel .key a {
+  @apply text-xs ml-1;
+  color: var(--color-brand-primary);
+}
+
+#map-filter {
+  @apply text-sm py-4;
+}
+
+#map-filter .filter-col {
+  @apply flex relative w-full px-2.5;
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+}
+
+@media (max-width: 639px) {
+  #map-filter .filter-col {
+    flex: 0 0 100%;
+    @apply max-w-full;
+  }
+}
+
+#map-filter .filter-item {
+  @apply flex items-center w-full;
+}
+
+#map-filter .filter-item label {
+  @apply m-0 mr-2;
+}
+
+#map-filter .filter-item input[type="checkbox"] {
+  @apply mr-2;
+}
+
+#map-filter .filter-item select {
+  @apply w-full;
+}
+
+@media (max-width: 639px) {
+  #map-filter .filter-col + .filter-col {
+    @apply mt-2;
+  }
+}
+
+/* Marker clusters — specific rgba colours for map visuals, no Tailwind equivalents */
+.marker-cluster div {
+  font-family: var(--font-body);
+  @apply text-white font-bold;
+}
+
+.marker-cluster-large {
+  background-color: rgba(0, 121, 140, 0.75);
+}
+
+.marker-cluster-large div {
+  background-color: #006b7a;
+}
+
+.marker-cluster-medium {
+  background-color: rgba(26, 143, 162, 0.75);
+}
+
+.marker-cluster-medium div {
+  background-color: #00798c;
+}
+
+.marker-cluster-small {
+  background-color: rgba(51, 166, 183, 0.75);
+}
+
+.marker-cluster-small div {
+  background-color: #1a8fa2;
+}
+
+.hub-cluster {
+  background-color: rgba(0, 61, 91, 0.75);
+}
+
+.hub-cluster div {
+  background-color: var(--color-brand-primary);
+}
+
+.trainer-cluster {
+  background-color: rgba(237, 174, 70, 0.75);
+}
+
+.trainer-cluster div {
+  background-color: var(--color-brand-tertiary);
+}
+
+/* Leaflet controls */
+.leaflet-control-geosearch .leaflet-bar-part,
+.leaflet-control-locate .leaflet-bar-part {
+  @apply bg-contain bg-center p-1;
+  background-origin: content-box;
+}
+
+.leaflet-control-geosearch {
+  @apply flex flex-row-reverse bg-white;
+}
+
+.leaflet-control-geosearch .leaflet-bar-part {
+  background-image: url('../../images/icons/search-icon.png');
+}
+
+.leaflet-control-geosearch a.leaflet-bar-part::after,
+.leaflet-control-geosearch a.leaflet-bar-part::before {
+  @apply hidden;
+}
+
+.leaflet-control-geosearch form {
+  @apply hidden;
+}
+
+.leaflet-control-geosearch form input.glass {
+  @apply border-0 p-1.5;
+}
+
+.leaflet-control-geosearch form a.reset {
+  @apply hidden;
+}
+
+.leaflet-control-geosearch form .results.active {
+  @apply cursor-pointer p-1.5;
+}
+
+.leaflet-control-geosearch.active form {
+  @apply flex flex-col;
+}
+
+.leaflet-control-locate .leaflet-bar-part {
+  background-image: url('../../images/icons/location-icon.png');
+}
+
+/* Map filter select — heavily customised with em units for the SVG arrow,
+   appearance: none override. Keep raw where no clean TW utility exists. */
+#map-filter select {
+  @apply block font-bold w-full max-w-full m-0 bg-white text-gray-700 box-border appearance-none;
+  font-family: sans-serif;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  @apply border border-gray-200;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 1.5em;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+
+#map-filter select::-ms-expand {
+  @apply hidden;
+}
+
+#map-filter select:hover {
+  @apply border-gray-300;
+}
+
+#map-filter select:focus {
+  @apply border-gray-200 outline-none text-gray-900;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+}
+
+#map-filter select option {
+  @apply font-normal;
+}
+
+*[dir="rtl"] #map-filter select,
+:root:lang(ar) #map-filter select,
+:root:lang(iw) #map-filter select {
+  background-position: left 0.7em top 50%, 0 0;
+  padding: 0.6em 0.8em 0.5em 1.4em;
+}
+
+#map-filter select:disabled,
+#map-filter select[aria-disabled=true] {
+  color: graytext;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+    linear-gradient(to bottom, #fff 0%, #f8f9fa 100%);
+}
+
+#map-filter select:disabled:hover,
+#map-filter select[aria-disabled=true] {
+  @apply border-gray-200;
+}

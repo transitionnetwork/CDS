@@ -7,11 +7,11 @@ if (get_theme_mod('footer_sticky') === 'enabled') : ?>
 
 <footer>
   <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6">
+    <div class="flex flex-col md:flex-row md:justify-between gap-4">
+      <div>
         &copy <?php echo date('Y'); ?> Transition Network
       </div>
-      <div class="col-12 col-md-6 text-md-right">
+      <div>
         <div id="footer-nav">
           <?php wp_nav_menu( array('theme_location' => 'footer_nav') ); ?>
         </div>
@@ -20,7 +20,6 @@ if (get_theme_mod('footer_sticky') === 'enabled') : ?>
   </div>
 </footer>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <?php wp_footer(); ?>
 
 <?php n\notification('bottom'); ?>

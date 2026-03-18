@@ -20,10 +20,10 @@
 
   <main>
     <form action="<?php echo get_the_permalink(); ?>" method="GET" id="map-filter">
-      <div class="container-fluid">
+      <div class="w-full px-4">
         <div class="panel">
-          <div class="row">
-            <div class="col-12 col-md-3 filter-col filter-item">
+          <div class="flex flex-wrap">
+            <div class="w-full md:w-3/12 filter-col filter-item">
               <label>Last mail event for primary author:</label>
               <select name="last_mail_event" onchange="this.form.submit()">
                 <option value="">Any</option>
@@ -34,7 +34,7 @@
               </select>
             </div>
             <?php if (!is_user_role('hub'))  { ?>
-              <div class="col-12 col-md-3 filter-col filter-item">
+              <div class="w-full md:w-3/12 filter-col filter-item">
                 <?php $hubs = get_terms('hub'); ?>
                 <label>Hub:</label>
                 <select name="hub_name" onchange="this.form.submit()">
@@ -104,7 +104,7 @@
 
   $init_query = new WP_Query($args); ?>
 
-  <div class="container-fluid">
+  <div class="w-full px-4">
     <?php if($selected_last_mail_event) { ?>
       <h2>Last Email: <?php echo ucwords($selected_last_mail_event); ?></h2>
     <?php } else { ?>

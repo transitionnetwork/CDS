@@ -1,4 +1,3 @@
-var $ = window.jQuery;
 import Plotly from 'plotly.js'
 
 export default {
@@ -47,29 +46,26 @@ export default {
     var container = document.getElementById('healthcheck-bar');
 
     if (typeof (container) != 'undefined' && container != null) {
-      $.ajax({
-        url: tofinoJS.ajaxUrl,
-        type: 'POST',
-        cache: false,
-        data: {
-          action: 'getSingleHealthcheckData',
-          value: {
-            submitted: true,
-            post_id: $('body').data('pid')
-          }
-        },
-        dataType: 'json',
-        success: function (response) {
-          console.log(response);
-          $('#graph-loading-wrapper').hide();
-          plotData(response)
-        },
-        error: function (jqxhr, status, exception) {
-          console.log('JQXHR:', jqxhr);
-          console.log('Status:', status);
-          console.log('Exception:', exception);
-        }
+      var formData = new URLSearchParams();
+      formData.append('action', 'getSingleHealthcheckData');
+      formData.append('value[submitted]', 'true');
+      formData.append('value[post_id]', document.body.dataset.pid);
+
+      fetch(tofinoJS.ajaxUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
       })
+      .then(function(res) { return res.json(); })
+      .then(function(response) {
+        console.log(response);
+        var loadingEl = document.getElementById('graph-loading-wrapper');
+        if (loadingEl) loadingEl.style.display = 'none';
+        plotData(response)
+      })
+      .catch(function(err) {
+        console.log('Error:', err);
+      });
     }
 
   }

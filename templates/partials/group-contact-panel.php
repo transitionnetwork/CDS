@@ -21,7 +21,7 @@ foreach($link_fields as $field) {
 
 <div class="panel group-contact">
   <?php if ($email) { ?>
-    <div class="mb-3">
+    <div class="mb-4">
       <h3>Email</h3>
       <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
     </div>
@@ -42,7 +42,7 @@ foreach($link_fields as $field) {
   <?php } ?>
   
   <?php if($additional) { ?>
-    <div class="mt-3">
+    <div class="mt-4">
       <h3><?php _e('More Links', 'tofino'); ?></h3>
       <ul>
         <?php foreach($additional as $item) { ?>
@@ -53,7 +53,7 @@ foreach($link_fields as $field) {
   <?php } ?>
 
   <?php if($reg_number) { ?>
-    <div class="mt-3">
+    <div class="mt-4">
       <h3><?php _e('Registration Number', 'tofino'); ?></h3>
       <div><?php echo $reg_number; ?></div>
     </div>

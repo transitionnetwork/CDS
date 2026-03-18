@@ -1,0 +1,21 @@
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form textarea {
+  @apply w-full p-2 border border-gray-400 rounded-sm;
+}
+
+.wpcf7-form br {
+  @apply hidden;
+}
+
+.wpcf7-form sup {
+  @apply text-red-500;
+}
+
+body.user-role-initiative .wpcf7-form .your-subject {
+  @apply hidden;
+}
+
+.grecaptcha-badge {
+  @apply hidden;
+}

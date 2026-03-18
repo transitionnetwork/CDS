@@ -1,0 +1,50 @@
+.xinc-login {
+  @apply bg-white mt-12 rounded py-12 px-16 shadow-md outline-1 outline-gray-300 -outline-offset-1;
+}
+
+.xinc-login h1 {
+  @apply text-left mt-0;
+}
+
+.xinc-login label {
+  @apply block;
+}
+
+.xinc-login input {
+  @apply py-2 px-4 rounded border border-gray-300;
+}
+
+.xinc-login input[type="text"],
+.xinc-login input[type="password"] {
+  @apply w-full;
+}
+
+.xinc-login input.button {
+  @apply inline-flex items-center font-semibold text-white rounded-3xl py-2.5 px-5;
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+}
+
+.alert {
+  @apply p-4 my-4;
+}
+
+.alert ul {
+  @apply m-0 p-0 list-none;
+}
+
+.alert.top {
+  @apply mt-4 mb-8;
+}
+
+.alert.bottom {
+  @apply mt-8 mb-0;
+}
+
+.recaptcha-container {
+  @apply mb-4;
+}
+
+.alert {
+  @apply rounded;
+}

@@ -10,7 +10,7 @@
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
         
         <?php acf_form_head(); ?>
-        <?php the_content(); ?>
+        <div class="rich-text"><?php the_content(); ?></div>
 
         <?php acf_form(array(
           'post_id'		=> 'new_post',

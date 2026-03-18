@@ -1,27 +1,30 @@
-// We need jQuery
-var $ = window.jQuery;
-
 import singleMap from '../shared/single-map';
 import select2 from '../shared/select2';
 
 export default {
   loaded() {
-    if($('select').length) {
+    if(document.querySelector('select')) {
       select2();
     }
-    
+
     if (document.getElementById('single-map') !== null) {
       singleMap();
     }
 
     //populate group email form
-    const name = $('#group-name').data('name');
-    const email = $('#group-email').data('email');
+    var groupNameEl = document.getElementById('group-name');
+    var groupEmailEl = document.getElementById('group-email');
+
+    var name = groupNameEl ? groupNameEl.dataset.name : '';
+    var email = groupEmailEl ? groupEmailEl.dataset.email : '';
 
     console.log(name);
 
-    $('input[name="group-name"]').val(name);
-    $('[name="group-email"]').val(email);
+    var nameInput = document.querySelector('input[name="group-name"]');
+    if (nameInput) nameInput.value = name;
+
+    var emailInput = document.querySelector('[name="group-email"]');
+    if (emailInput) emailInput.value = email;
 
     document.getElementById('token-login-button').addEventListener('click', () => {
       const text = document.getElementById('token-login-link').innerHTML;

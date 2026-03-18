@@ -5,8 +5,8 @@
 
 if($hub_id && is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && can_edit_hub($hub_id)))) { ?>
     <div class="container">
-      <div class="row justify-content-center">	
-        <div class="col-12 col-md-10 col-lg-8">
+      <div class="mx-auto max-w-3xl w-full">
+        <div>
           <h1>Add Note</h1>
           <?php $term = get_term_by('term_id', $hub_id, 'hub'); ?>
           <h4>

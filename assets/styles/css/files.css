@@ -1,0 +1,23 @@
+.files-row {
+  @apply mb-6;
+}
+
+.file-tile {
+  @apply p-6 rounded border border-gray-200;
+}
+
+.file-tile ul {
+  @apply pl-4 text-sm;
+}
+
+.file-tile ul label {
+  @apply font-bold block m-0;
+}
+
+.file-tile img {
+  @apply w-full;
+}
+
+.file-tile h4 {
+  @apply font-bold text-lg;
+}

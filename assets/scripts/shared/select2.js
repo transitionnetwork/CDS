@@ -1,8 +1,9 @@
-// We need jQuery
-var $ = window.jQuery;
+import TomSelect from 'tom-select';
 
 export default function() {
-  $('select').select2({
-    width: '100%'
+  document.querySelectorAll('select:not(.tomselected)').forEach(function(el) {
+    new TomSelect(el, {
+      allowEmptyOption: true,
+    });
   });
 }
