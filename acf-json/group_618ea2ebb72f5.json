@@ -1,0 +1,166 @@
+{
+    "key": "group_618ea2ebb72f5",
+    "title": "Groups Booleans",
+    "fields": [
+        {
+            "key": "field_618ea2ebb7347",
+            "label": "We have more than two people involved, who live in the community the group represents",
+            "name": "bool_more_than_2",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "allow_null": 1,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "translations": "copy_once",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_618ea2ebb737f",
+            "label": "We have read and agree with the <a href=\"https:\/\/cds.ddev.site\/principles\/\" target=\"_blank\" rel=\"noopener\">Transition Principles<\/a>",
+            "name": "bool_agree_with_principles",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 1,
+            "other_choice": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_618ea2ebb73b7",
+            "label": "We have at least one of; public email address, website contact form or active social media profile added to our profile",
+            "name": "bool_email_available",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "allow_null": 1,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "translations": "copy_once",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_618ea2ebb73ee",
+            "label": "We have read <a href=\"https:\/\/resources.transitionnetwork.org\/resources\/the-essential-guide-to-doing-transition\/\" target=\"_blank\" rel=\"noopener\">The Essential Guide to Doing Transition<\/a>",
+            "name": "bool_essential_guide",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 1,
+            "other_choice": 0,
+            "allow_in_bindings": 1,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_64b54d98c8ef7",
+            "label": "We accept the transitiongroups.org <a href=\"https:\/\/cds.ddev.site\/privacy\/\" target=\"_blank\" rel=\"noopener\">Privacy Policy<\/a>",
+            "name": "privacy_policy",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_618ea2ebb7426",
+            "label": "Hubs",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "In areas where there is a Hub, Transition Network recognises the autonomy of Hubs to set their own inclusion criteria.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "initiatives"
+            }
+        ]
+    ],
+    "menu_order": 7,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": ""
+}

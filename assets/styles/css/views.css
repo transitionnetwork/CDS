@@ -30,6 +30,20 @@ body.tax-hub label {
   @apply text-sm;
 }
 
+/* Sidebar panels — tinted background with top accent, lighter than main panels */
+aside .panel,
+aside section {
+  @apply shadow-sm border-0;
+  background-color: color-mix(in srgb, var(--color-brand-primary) 5%, white);
+  border-top: 3px solid var(--color-brand-primary);
+}
+
+aside .panel h3,
+aside section h3 {
+  @apply text-lg;
+  color: var(--color-brand-primary);
+}
+
 body.single .leaflet-container,
 body.tax-hub .leaflet-container {
   @apply rounded;

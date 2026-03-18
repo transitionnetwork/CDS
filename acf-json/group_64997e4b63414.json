@@ -1,0 +1,317 @@
+{
+    "key": "group_64997e4b63414",
+    "title": "Groups Detail",
+    "fields": [
+        {
+            "key": "field_64997ba7f172c",
+            "label": "Group Detail",
+            "name": "group_detail",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_64997a17f172a",
+                    "label": "Number of people organising and running your group and its projects? (in other words, how many volunteers and active members)",
+                    "name": "number_of_people",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 1,
+                    "max": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_64ef16925b6ba",
+                    "label": "In the last year, roughly how many people attended your events or took part in any activities?",
+                    "name": "number_of_participants",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 0,
+                    "max": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_64ef16d65b6bb",
+                    "label": "Any further information you want to share on these numbers?",
+                    "name": "number_more_info",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_64997a3ef172b",
+                    "label": "When did your group start?",
+                    "name": "date",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_64997bd6f172d",
+                    "label": "Livelihoods: Do you have any paid roles?",
+                    "name": "paid_roles",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "no": "No",
+                        "yes": "Yes"
+                    },
+                    "default_value": "",
+                    "return_format": "label",
+                    "allow_null": 1,
+                    "allow_in_bindings": 1,
+                    "layout": "horizontal"
+                },
+                {
+                    "key": "field_64997c07f172e",
+                    "label": "Legal Structure",
+                    "name": "legal_structure",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "unconstituted": "Unconstituted (a group of individuals)",
+                        "cic": "CIC (community interest company)",
+                        "company": "Company",
+                        "charity": "Charity",
+                        "coop": "Co-op",
+                        "other": "Other"
+                    },
+                    "default_value": "",
+                    "return_format": "label",
+                    "allow_null": 1,
+                    "allow_in_bindings": 1,
+                    "layout": "horizontal"
+                },
+                {
+                    "key": "field_64a80c848afb0",
+                    "label": "Further detail about your legal structure",
+                    "name": "legal_structure_detail",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64997c07f172e",
+                                "operator": "==",
+                                "value": "other"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_64997d56a9aa0",
+                    "label": "How active is your group?",
+                    "name": "active",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "not-active": "Not Active",
+                        "active": "Somewhat Active",
+                        "very-active": "Very Active"
+                    },
+                    "default_value": "",
+                    "return_format": "label",
+                    "allow_null": 1,
+                    "allow_in_bindings": 1,
+                    "layout": "horizontal"
+                },
+                {
+                    "key": "field_64997d90a9aa1",
+                    "label": "Are you working on?",
+                    "name": "live_projects",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "community-garden": "Community Growing",
+                        "other-food-projects": "Other food projects",
+                        "nature": "Nature",
+                        "community-hub": "Community hub or activities",
+                        "festivals": "Festivals, fairs or events",
+                        "art-creativity": "Art \/ creativity",
+                        "community-visioning": "Community visioning \/ imagination work",
+                        "local-networks": "Building local networks",
+                        "local-economy": "Local economy or new economy projects",
+                        "wellbeing": "Wellbeing or Inner Transition",
+                        "social-justice": "Social Justice \/ Just Transition activities",
+                        "youth-education": "Youth or education projects",
+                        "repair-cafe": "Share, Repair or reuse",
+                        "energy-group": "Energy",
+                        "car-club": "Transport",
+                        "communications": "Communications and dissemination",
+                        "other": "Other"
+                    },
+                    "default_value": [],
+                    "return_format": "array",
+                    "allow_custom": 0,
+                    "allow_in_bindings": 1,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Add new choice"
+                },
+                {
+                    "key": "field_64a80c368afaf",
+                    "label": "Any additional information or links about these projects",
+                    "name": "live_projects_detail",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_6904c9cb7231b",
+                    "label": "If you are a formal group please add your registration number",
+                    "name": "registration_number",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Eg a charity or company number if you have one",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "initiatives"
+            }
+        ]
+    ],
+    "menu_order": 5,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": ""
+}

@@ -15,7 +15,7 @@
         <?php $status_color = get_status_tag($status); ?>
         <span class="badge badge-outline badge-<?php echo $status_color; ?>"><?php echo $status['label']; ?></span>
         
-        <div class="mt-4 rich-text"><?php echo get_field('hub_description', $term); ?></div>
+        <div class="panel mt-4 rich-text"><?php echo get_field('hub_description', $term); ?></div>
 
         <?php if(is_user_role(array('super_hub', 'administrator')) || can_edit_hub($term->term_id)) { ?>
           <p><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg('hub_id', $term->term_id, get_the_permalink(5414)); ?>"><?php echo svg('pencil'); ?>Edit Hub</a></p>
@@ -57,7 +57,7 @@
           <?php set_query_var('map', $map); ?>
           <?php get_template_part('templates/partials/single-map'); ?>
           
-          <div class="panel">
+          <div class="panel space-y-3">
             <?php if(get_field('logo', $term)) { ?>
               <img src="<?php echo get_field('logo', $term)['sizes']['large']; ?>">
             <?php } ?>

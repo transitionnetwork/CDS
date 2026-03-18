@@ -54,7 +54,7 @@
           
           <?php get_template_part('templates/partials/group-info-panel'); ?>
           
-          <div class="rich-text">
+          <div class="panel rich-text">
             <?php echo strip_tags(get_field('description', $post), '<p><em><strong><u><ol><ul><li><blockquote>'); ?>
           </div>
 

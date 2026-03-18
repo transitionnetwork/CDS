@@ -77,7 +77,8 @@ $tofino_includes = [
   "src/custom/vive-cron.php",
   "src/custom/mailchimp-api.php",
   "src/xinc-events/events.php",
-  "src/custom/dropbox/dropbox-upload.php"
+  "src/custom/dropbox/dropbox-upload.php",
+  "src/xinc-login/controller.php"
   // "src/dev-machines/export-author-emails-by-hub.php",
 ];
 

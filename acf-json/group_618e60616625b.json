@@ -1,0 +1,937 @@
+{
+    "key": "group_618e60616625b",
+    "title": "Trainer & Speaker Application Fields",
+    "fields": [
+        {
+            "key": "field_618e62aeb7f79",
+            "label": "General Information",
+            "name": "general_information",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_618e62c4b7f7a",
+                    "label": "Your name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e62ceb7f7b",
+                    "label": "Your email adddress",
+                    "name": "email",
+                    "aria-label": "",
+                    "type": "email",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "translations": "copy_once"
+                },
+                {
+                    "key": "field_618e636fb7f7e",
+                    "label": "Your location",
+                    "name": "location",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "field_618ea05c4bbf2"
+                    ],
+                    "display": "group",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0,
+                    "sub_fields": [
+                        {
+                            "center_lat": 51.4548627,
+                            "center_lng": -2.5977516,
+                            "zoom": 13,
+                            "height": 300,
+                            "return_format": "raw",
+                            "allow_map_layers": 1,
+                            "max_markers": 1,
+                            "layers": [
+                                "OpenStreetMap.Mapnik"
+                            ],
+                            "ID": 6956,
+                            "key": "field_618ea05c4bbf2",
+                            "label": "Location & Map",
+                            "name": "map",
+                            "aria-label": "",
+                            "prefix": "acf",
+                            "type": "open_street_map",
+                            "value": null,
+                            "menu_order": 0,
+                            "instructions": "",
+                            "required": 1,
+                            "id": "",
+                            "class": "",
+                            "conditional_logic": 0,
+                            "parent": 6955,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "_name": "map",
+                            "_valid": 1,
+                            "_clone": "field_618e636fb7f7e",
+                            "__key": "field_618ea05c4bbf2",
+                            "__name": "map",
+                            "__label": "Location & Map"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_618e63e0b7f80",
+                    "label": "Your website",
+                    "name": "your_website",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "translations": "copy_once"
+                },
+                {
+                    "key": "field_618e6433b7f81",
+                    "label": "Do you want to be listed as a trainer\/facilitator on the Transition Network website?",
+                    "name": "trainer_confirmation",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "no": "No",
+                        "yes": "Yes"
+                    },
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "default_value": 0,
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "translations": "copy_once",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_618e6471b7f82",
+                    "label": "Your trainer\/facilitator bio",
+                    "name": "trainer_bio",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "250 words max",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e6489b7f83",
+                    "label": "Your high-resolution headshot (for our website)",
+                    "name": "trainer_photo",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "translations": "copy_once"
+                }
+            ]
+        },
+        {
+            "key": "field_618e64a5b7f84",
+            "label": "Criteria for International Recognition",
+            "name": "criteria",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_618e64b3b7f85",
+                    "label": "Have you previously completed a Transition Train the Trainers course?",
+                    "name": "trainer_course",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "no": "No",
+                        "yes": "Yes"
+                    },
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "translations": "copy_once",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_618e64ffb7f86",
+                    "label": "If you have not previously completed a Train the Trainers course, please name an organization or movement aligned with Transition (e.g. Gaia Education, Gaia University, Global Ecovillage Network, Permaculture, 8 Shields, The Work that Reconnects, etc) from which you have received accreditation.",
+                    "name": "organisation_accreditation",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_618e64b3b7f85",
+                                "operator": "==",
+                                "value": "no"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_61a64b8eccc18",
+                    "label": "Please provide the year and location of the training you attended",
+                    "name": "course_details",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_618e64b3b7f85",
+                                "operator": "==",
+                                "value": "yes"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e6576f2579",
+                    "label": "Have you led or co-led at least one Transition-aligned training or learning opportunity in the past two years?",
+                    "name": "led_course",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "no": "No",
+                        "yes": "Yes"
+                    },
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "translations": "copy_once",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_618e72997cf8e",
+                    "label": "Please list topics, locations, and dates here. Three examples are required for those who have not previously completed a Train the Trainers course.",
+                    "name": "led_course_detail",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_618e6576f2579",
+                                "operator": "==",
+                                "value": "yes"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e6597f257a",
+                    "label": "Are you actively involved in Transition:",
+                    "name": "involvement",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "local": "Through a local group, Hub, distributed circle, or Transition Network",
+                        "national": "By participating in a national or international community of practice for trainers\/facilitators of Transition?",
+                        "not_involved": "Not Involved"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "translations": "copy_once",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_618e6611f257b",
+                    "label": "How are you intending to become involved within the next year?",
+                    "name": "involvement_intention",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_618e6597f257a",
+                                "operator": "==",
+                                "value": "not_involved"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e743468c78",
+                    "label": "Please provide details",
+                    "name": "involvement_details",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_618e6597f257a",
+                                "operator": "==",
+                                "value": "national"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e6654f257c",
+                    "label": "Are you committed to a personal development path that supports your ability to experience, cope with, and support others to engage with the huge shifts and changes that are happening for humanity and within local and global communities and ecosystems? Please explain.",
+                    "name": "development_path",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e66871ed94",
+                    "label": "Do you agree to the following additional criteria for Transition trainers\/facilitators?",
+                    "name": "additional_criteria",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_618e66961ed95",
+                            "label": "Are you passionate and clear about the Transition model and principles, and integrate them into your life and their work?",
+                            "name": "q1",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "vertical",
+                            "return_format": "value",
+                            "translations": "copy_once",
+                            "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_618e66d01ed96",
+                            "label": "Are you flexible, self-motivated, collaborative, and positive?",
+                            "name": "q2",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "vertical",
+                            "return_format": "value",
+                            "translations": "copy_once",
+                            "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_618e66d81ed97",
+                            "label": "Are you inclusive of a variety of different viewpoints, cultures, and backgrounds?",
+                            "name": "q3",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "vertical",
+                            "return_format": "value",
+                            "translations": "copy_once",
+                            "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_618e66e51ed98",
+                            "label": "Can you create and run high-quality training programs?",
+                            "name": "q4",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "vertical",
+                            "return_format": "value",
+                            "translations": "copy_once",
+                            "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_618e66f81ed99",
+                            "label": "Can you explain technical concepts in clear and accessible language?",
+                            "name": "q5",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "vertical",
+                            "return_format": "value",
+                            "translations": "copy_once",
+                            "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_618e67051ed9a",
+                            "label": "Can you work with emotional depth and hold participants in a group to safely go beyond their comfort zones?",
+                            "name": "q6",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "vertical",
+                            "return_format": "value",
+                            "translations": "copy_once",
+                            "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_618e67141ed9b",
+                            "label": "Are you willing to work in a cooperative and harmonious way with other trainers\/facilitators and groups throughout the Transition movement?",
+                            "name": "q7",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "vertical",
+                            "return_format": "value",
+                            "translations": "copy_once",
+                            "save_other_choice": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_618e672fa128e",
+            "label": "Additional Information for Your Profile",
+            "name": "additional_information",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_618e6766a128f",
+                    "label": "Which of the following courses and topics related to Transition are you prepared to facilitate as a trainer?",
+                    "name": "trainer_topic",
+                    "aria-label": "",
+                    "type": "taxonomy",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "taxonomy": "trainer_topic",
+                    "field_type": "multi_select",
+                    "allow_null": 0,
+                    "add_term": 1,
+                    "save_terms": 1,
+                    "load_terms": 1,
+                    "return_format": "id",
+                    "translations": "copy_once",
+                    "multiple": 0,
+                    "bidirectional_target": []
+                },
+                {
+                    "key": "field_61a6484aff5f2",
+                    "label": "Additional Details",
+                    "name": "topic_additional_details",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e6790a1290",
+                    "label": "What languages are you able to offer training in?",
+                    "name": "trainer_languages",
+                    "aria-label": "",
+                    "type": "taxonomy",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "taxonomy": "trainer_language",
+                    "field_type": "multi_select",
+                    "allow_null": 0,
+                    "add_term": 1,
+                    "save_terms": 1,
+                    "load_terms": 1,
+                    "return_format": "id",
+                    "translations": "copy_once",
+                    "multiple": 0,
+                    "bidirectional_target": []
+                },
+                {
+                    "key": "field_618e67e4a1292",
+                    "label": "In which countries are you willing to offer in-person training and facilitation?",
+                    "name": "trainer_countries",
+                    "aria-label": "",
+                    "type": "taxonomy",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "taxonomy": "in_person_country",
+                    "add_term": 0,
+                    "save_terms": 1,
+                    "load_terms": 1,
+                    "return_format": "id",
+                    "field_type": "multi_select",
+                    "allow_null": 0,
+                    "allow_in_bindings": 1,
+                    "bidirectional": 0,
+                    "multiple": 0,
+                    "bidirectional_target": []
+                },
+                {
+                    "key": "field_619f669b5cda7",
+                    "label": "and\/or which regions?",
+                    "name": "trainer_regions",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "translations": "translate"
+                }
+            ]
+        },
+        {
+            "key": "field_618e6801a1293",
+            "label": "Community of Practice",
+            "name": "community_of_practice",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_618e6819a1294",
+                    "label": "Would you like to join the international Transition Trainers Community of Practice?",
+                    "name": "community",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "no": "No",
+                        "yes": "Yes"
+                    },
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "translations": "copy_once",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_618e682aa1295",
+                    "label": "If you answered yes to the previous question, what would you like to get out of your participation in the Community of Practice?",
+                    "name": "aims",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_618e6819a1294",
+                                "operator": "==",
+                                "value": "yes"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                },
+                {
+                    "key": "field_618e6859a1296",
+                    "label": "What, if anything, would you like to share with the Community of Practice?",
+                    "name": "share",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "translations": "translate"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "trainers"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "speakers"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": ""
+}

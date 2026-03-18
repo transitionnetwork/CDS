@@ -1,0 +1,450 @@
+{
+    "key": "group_618ea05c4bba4",
+    "title": "Location & Grey List",
+    "fields": [
+        {
+            "center_lat": 51.4548627,
+            "center_lng": -2.5977516,
+            "zoom": 13,
+            "height": 300,
+            "return_format": "raw",
+            "allow_map_layers": 1,
+            "max_markers": 1,
+            "layers": [
+                "OpenStreetMap.Mapnik"
+            ],
+            "key": "field_618ea05c4bbf2",
+            "label": "Location & Map",
+            "name": "map",
+            "aria-label": "",
+            "type": "open_street_map",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_618ea05c4bc2e",
+            "label": "Address",
+            "name": "address_line_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": "acf-field-address_line_1"
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "wpml_cf_preferences": 0
+        },
+        {
+            "key": "field_618ea05c4bc68",
+            "label": "City",
+            "name": "city",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": "acf-field-city"
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_618ea05c4bca2",
+            "label": "Province",
+            "name": "province",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "formatting": "html",
+            "maxlength": ""
+        },
+        {
+            "key": "field_618ea05c4bcdc",
+            "label": "Postal Code",
+            "name": "postal_code",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": "acf-field-postal_code"
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_618ea05c4bd16",
+            "label": "Country",
+            "name": "country",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "country",
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "field_type": "checkbox",
+            "bidirectional": 0,
+            "multiple": 0,
+            "allow_null": 0,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_69052492ff5cd",
+            "label": "Launguage",
+            "name": "language",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "language",
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "field_type": "checkbox",
+            "allow_in_bindings": 1,
+            "bidirectional": 0,
+            "multiple": 0,
+            "allow_null": 0,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_695e763a53af4",
+            "label": "Additional Information (Grey list country)",
+            "name": "gl_additional_info",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "As your group is located in a grey list country, we need to collect the following information from you.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "62"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "106"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "126"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "132"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "134"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "157"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "164"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "166"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "218"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "227"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "251"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "252"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "253"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "257"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_618ea05c4bd16",
+                        "operator": "==contains",
+                        "value": "61"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_695e76ac53af6",
+                    "label": "Date of Birth",
+                    "name": "date_of_birth",
+                    "aria-label": "",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d\/m\/Y",
+                    "return_format": "d\/m\/Y",
+                    "first_day": 1,
+                    "default_to_current_date": 0,
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_695e76d053af7",
+                    "label": "Phone Number (including international code)",
+                    "name": "phone_number",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_695e76ea53af8",
+                    "label": "Photo ID",
+                    "name": "photo_id",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "uploadedTo",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_695e770753af9",
+                    "label": "Postal Letter",
+                    "name": "postal_letter",
+                    "aria-label": "",
+                    "type": "file",
+                    "instructions": "A recent (within 3 months) postal letter (e.g. bank statement, utility bill) which confirms your home address (matching the one provided above)",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "uploadedTo",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "pdf, doc, docx, jpg, jpeg, png, gif",
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_695e773653afa",
+                    "label": "Addiitional person's name",
+                    "name": "addiitional_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_695e775153afb",
+                    "label": "Additional person's email address",
+                    "name": "additional_email",
+                    "aria-label": "",
+                    "type": "email",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "initiatives"
+            }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "hub"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "hub_applications"
+            }
+        ]
+    ],
+    "menu_order": 4,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": ""
+}

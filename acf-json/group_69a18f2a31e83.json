@@ -1,0 +1,72 @@
+{
+    "key": "group_69a18f2a31e83",
+    "title": "Identity Documents",
+    "fields": [
+        {
+            "key": "field_69a18f4f54292",
+            "label": "Photo ID",
+            "name": "identity_photo_id",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "uploadedTo",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_69a18f5454293",
+            "label": "Postal Letter",
+            "name": "identity_postal_letter",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "A recent (within 3 months) postal letter (e.g. bank statement, utility bill) which confirms your home address (matching the one provided above)",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "uploadedTo",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "pdf, doc, docx, jpg, jpeg, png, gif",
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": ""
+}

@@ -10,7 +10,7 @@
   @apply block;
 }
 
-.xinc-login input {
+.xinc-login input:not([type="submit"]):not(.button) {
   @apply py-2 px-4 rounded border border-gray-300;
 }
 
@@ -20,9 +20,21 @@
 }
 
 .xinc-login input.button {
-  @apply inline-flex items-center font-semibold text-white rounded-3xl py-2.5 px-5;
-  background-color: var(--color-brand-primary);
-  border-color: var(--color-brand-primary);
+  @apply btn btn-primary;
+}
+
+/* OpenID Connect button — plugin outputs inline style="text-align: center" so !important needed */
+.xinc-login .openid-connect-login-button {
+  @apply mb-6;
+  text-align: left !important;
+}
+
+.xinc-login .openid-connect-login-button a {
+  @apply btn btn-outline btn-primary;
+
+  &:hover {
+    @apply bg-base-200 border-base-200 shadow-none;
+  }
 }
 
 .alert {
