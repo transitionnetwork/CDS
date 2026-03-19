@@ -2,7 +2,7 @@ html {
   @apply h-full;
 }
 
-body.footer-sticky {
+.drawer-content {
   @apply flex flex-col min-h-screen;
 }
 
