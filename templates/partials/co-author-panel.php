@@ -1,7 +1,7 @@
 <h3>Group Editors</h3>
 
 <p><strong>Please add as many group editors as possible.</strong></p>
-<p>Having multiple editors will ensure we don't lose contract with your group<p>
+<p>Having multiple editors will ensure we don't lose contact with your group<p>
 <p>Editor email addresses <strong>are not displayed publicly</strong></p>
 
 <div class="mt-4">

@@ -270,7 +270,15 @@ section .panel,
 
 /* Lighter panel variant — outline border, no shadow, transparent bg */
 .panel-dash {
-  @apply flex flex-col gap-2 px-4 py-3 mb-6 border border-gray-400;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 px-4 py-3 mb-6 border border-gray-400;
+}
+
+.panel-dash > .info-row {
+  @apply border-b-0;
+}
+
+.panel-dash > :not(.info-row) {
+  @apply col-span-full;
 }
 
 #message {

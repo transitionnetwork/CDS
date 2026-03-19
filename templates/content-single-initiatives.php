@@ -25,6 +25,9 @@
               <?php if(get_post_meta( $post->ID, 'vive', true )) { ?>
                 <a class="badge badge-primary no-underline" href="https://vive.transitiontogether.org.uk/s/transition-together/" target="_blank">Vive</a>
               <?php } ?>
+              <?php if(!is_post_published($post)) { ?>
+                <span class="badge badge-warning gap-1 whitespace-nowrap"><?php echo svg(['sprite' => 'alert', 'class' => 'size-4 shrink-0']); ?> <?php _e('Group is unpublished', 'tofino'); ?></span>
+              <?php } ?>
             </div>
 
             <?php if(is_user_logged_in() && (is_user_role(array('super_hub', 'administrator')) || (is_user_role('hub') && is_post_in_user_hub($initiative_id)))) { ?>
@@ -38,20 +41,6 @@
             <?php } ?>
           </div>
 
-         <?php if(!is_post_published($post)) { ?>
-            <div class="panel">
-              <div class="status">
-                <?php $pending_message = __('Group is unpublished', 'tofino'); ?>
-                <span class="btn btn-sm btn-outline btn-disabled">
-                  <?php echo svg('alert') . $pending_message; ?>
-                </span>
-              </div>
-              
-              <?php get_template_part('templates/buttons/publish-delete', null, array('post_id' => $post->ID)); ?>
-
-            </div>
-          <?php } ?>
-          
           <?php get_template_part('templates/partials/group-info-panel'); ?>
           
           <div class="panel rich-text">
@@ -73,16 +62,20 @@
           <?php } ?>
 
           <?php if(can_write_initiative($post)) { ?>
-            <div class="button-block"><a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-group'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit group', 'tofino'); ?></a></div>
-          
-            <?php if(get_post_status($post) === 'publish') { ?>
-              <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
-              <div class="button-block">
+            <div class="flex flex-wrap gap-2 items-center mb-6">
+              <a class="btn btn-warning btn-sm" href="<?php echo add_query_arg(array('edit_post' => get_the_ID()), '/edit-group'); ?>"><?php echo svg('pencil'); ?><?php _e('Edit group', 'tofino'); ?></a>
+
+              <?php if(!is_post_published($post)) { ?>
+                <?php get_template_part('templates/buttons/publish-delete', null, array('post_id' => $post->ID)); ?>
+              <?php } ?>
+
+              <?php if(get_post_status($post) === 'publish') { ?>
+                <?php $confirm_message = __('Are you sure you want to unpublish this group? You can re-publish it from the Dashboard', 'tofino'); ?>
                 <form action="" method="post">
-                <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-error btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Unpublish group', 'tofino'); ?></button>
+                  <button name="unpublish" value="<?php echo (get_the_ID()); ?>" class="btn btn-error btn-sm" onclick="return confirm('<?php echo $confirm_message; ?>')"><?php echo svg('trashcan'); ?><?php _e('Unpublish group', 'tofino'); ?></button>
                 </form>
-              </div>
-            <?php } ?>
+              <?php } ?>
+            </div>
          <?php } ?>
 
           <?php if (get_field('email')) { ?>

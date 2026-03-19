@@ -8,8 +8,8 @@ body.tax-hub h4 {
   @apply mt-3 mb-1;
 }
 
-body.single label,
-body.tax-hub label {
+body.single form label,
+body.tax-hub form label {
   @apply block font-bold mb-0 mt-4;
 }
 
