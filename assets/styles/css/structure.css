@@ -1,14 +1,17 @@
-html {
+html, body {
   @apply h-full;
 }
 
-.drawer-content {
-  @apply flex flex-col min-h-screen;
+.drawer {
+  @apply min-h-full;
 }
 
-body .wrapper {
-  flex: 1 0 auto;
-  @apply w-full;
+.drawer-content {
+  @apply flex flex-col;
+}
+
+.wrapper {
+  @apply flex-1 w-full;
 }
 
 body.no-fout {
