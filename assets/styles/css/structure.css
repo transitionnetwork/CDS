@@ -6,7 +6,7 @@ body.footer-sticky {
   @apply flex flex-col min-h-screen;
 }
 
-body.footer-sticky .wrapper {
+body .wrapper {
   flex: 1 0 auto;
   @apply w-full;
 }

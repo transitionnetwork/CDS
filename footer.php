@@ -4,7 +4,9 @@ use \Tofino\ThemeOptions\Notifications as n;
 
 </div>
 
-<?php get_template_part('templates/partials/email-signup'); ?>
+<div class="mt-12">
+  <?php get_template_part('templates/partials/email-signup'); ?>
+</div>
 
 <footer>
   <div class="container">
