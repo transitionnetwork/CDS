@@ -28,7 +28,7 @@
       </div>
       <div class="w-full lg:w-9/12">
         <?php if ( have_posts() ) : ?>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <?php while ( have_posts() ) : the_post(); ?>
               <?php get_template_part('templates/partials/trainer-item'); ?>
             <?php endwhile; ?>

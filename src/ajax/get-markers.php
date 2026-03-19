@@ -120,20 +120,23 @@ function ajax_get_hub_markers($params, $cache_expiry) {
   //hub queries second
   if($params['type'] === "1" || $params['type'] === "3") {
 
+    $exclude_hub_ids = array(285);
+
     if(array_key_exists('hub_name', $params)) {
-    
+
       $hub_term = get_term_by('slug', $params['hub_name'], 'hub');
-      $hubs = ($hub_term) ? array($hub_term) : null;
-    
+      $hubs = ($hub_term && !in_array($hub_term->term_id, $exclude_hub_ids)) ? array($hub_term) : null;
+
     } else if(array_key_exists('country', $params)) {
 
       $country_term = get_term_by('slug', $params['country'], 'country');
 
       if($country_term) {
         $country_term_id = $country_term->term_id;
-      
+
         $args = array(
           'hide_empty' => false,
+          'exclude' => $exclude_hub_ids,
           'meta_query' => array(
             array(
               'key' => 'associated_countries',
@@ -142,14 +145,15 @@ function ajax_get_hub_markers($params, $cache_expiry) {
             )
           )
         );
-  
+
         $hubs = get_terms('hub', $args);
       }
     } else {
       $args = array(
-        'hide_empty' => false
+        'hide_empty' => false,
+        'exclude' => $exclude_hub_ids,
       );
-      
+
       $hubs = get_terms('hub', $args);
     }
 
