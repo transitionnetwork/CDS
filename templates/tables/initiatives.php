@@ -11,7 +11,7 @@
   <div class="initiative-list grid gap-4 lg:grid-cols-2">
     <?php while ($init_query->have_posts()) : $init_query->the_post(); ?>
       <?php $post = get_post($post); ?>
-      <div class="group-card card card-border bg-white p-4 shadow-sm">
+      <div class="group-card card card-border bg-white p-4 shadow-sm overflow-hidden">
         <div class="flex flex-col gap-3">
           <?php // Title row ?>
           <div class="flex flex-wrap items-center gap-2">
@@ -23,7 +23,7 @@
           <?php // Live Projects ?>
           <?php $live_projects = get_field('group_detail_live_projects'); ?>
           <?php if($live_projects) { ?>
-            <div class="text-sm text-gray-500"><?php _e('Live Projects', 'tofino'); ?>: <?php
+            <div class="text-sm text-gray-500 line-clamp-2"><?php _e('Live Projects', 'tofino'); ?>: <?php
               $project_labels = [];
               foreach($live_projects as $item) { $project_labels[] = $item['label']; }
               echo implode(', ', $project_labels);

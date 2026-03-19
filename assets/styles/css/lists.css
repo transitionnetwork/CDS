@@ -64,7 +64,7 @@ ul.page-numbers li span.current {
 }
 
 ul.page-numbers li a.page-numbers:hover {
-  @apply text-white bg-brand-v3;
+  @apply text-brand-white bg-brand-v3;
 }
 
 ul.page-numbers li span.dots {
