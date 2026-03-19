@@ -8,7 +8,7 @@
   <label>Add editor</label>
   <form action="<?php the_permalink(); ?>" method="POST">
     <input type="hidden" name="ma_post_id" value="<?php echo $post->ID; ?>">
-    <div class="flex items-center">
+    <div class="flex items-center gap-3">
       <input type="email" name="ma_add_co_author_email" placeholder="email address">
       <button type="submit" class="btn btn-primary btn-sm">Add</button>
     </div>

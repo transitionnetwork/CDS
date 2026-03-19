@@ -1,12 +1,7 @@
 import singleMap from '../shared/single-map';
-import select2 from '../shared/select2';
 
 export default {
   loaded() {
-    if(document.querySelector('select')) {
-      select2();
-    }
-
     if (document.getElementById('single-map') !== null) {
       singleMap();
     }

@@ -51,7 +51,7 @@
  
       <div class="w-full lg:w-4/12">
         <aside>
-          <?php get_template_part('templates/partials/group-stats', null, array('view' => 'hub')); ?>
+          <?php get_template_part('templates/partials/sidebar-group-stats', null, array('view' => 'hub')); ?>
           
           <?php $map = get_field('map', $term); ?>
           <?php set_query_var('map', $map); ?>

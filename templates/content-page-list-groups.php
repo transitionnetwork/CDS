@@ -5,8 +5,9 @@
 
     <div class="flex flex-col lg:flex-row justify-between gap-6">
       <aside class="w-full lg:w-4/12 lg:order-2">
-        <?php get_template_part('templates/partials/group-list-sidebar'); ?>
-        <?php get_template_part('templates/partials/group-stats', null, array('view' => 'list')); ?>
+        <?php get_template_part('templates/partials/sidebar-search'); ?>
+        <?php get_template_part('templates/partials/sidebar-group-stats', null, array('view' => 'list')); ?>
+        <?php get_template_part('templates/partials/sidebar-buttons'); ?>
       </aside>
       
       <div class="w-full lg:w-8/12 lg:order-1">

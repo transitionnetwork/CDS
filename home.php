@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
+<?php // currently not in use; ?>
 <main>
   <div class="flex flex-col lg:flex-row justify-between gap-6">
     <div class="w-full lg:w-8/12">

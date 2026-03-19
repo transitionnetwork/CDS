@@ -5,8 +5,9 @@
 
     <div class="row justify-content-lg-between">
       <div class="col-12 col-lg-3 order-lg-2">
-        <?php get_template_part('templates/partials/group-list-sidebar'); ?>
-        <?php get_template_part('templates/partials/group-stats', null, array('view' => 'list')); ?>
+        <?php get_template_part('templates/partials/sidebar-group-stats', null, array('view' => 'list')); ?>
+        <?php get_template_part('templates/partials/sidebar-buttons'); ?>
+        <?php get_template_part('templates/partials/sidebar-search'); ?>
       </div>
       
       <div class="col-12 col-lg-9 order-lg-1">

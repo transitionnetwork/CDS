@@ -1,5 +1,4 @@
 import displayMap from '../shared/display-map';
-// import select2 from '../shared/select2';
 
 export default {
   loaded() {
@@ -9,6 +8,5 @@ export default {
     displayMap();
   },
   finalize() {
-    // select2();
   }
 };

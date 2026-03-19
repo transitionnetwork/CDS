@@ -41,8 +41,7 @@
 #map-info svg.logo {
   width: 148px;
   height: 48px;
-  @apply bg-white/80 p-0.5;
-  fill: var(--color-brand-primary);
+  @apply bg-white/80 p-0.5 fill-brand-primary;
 }
 
 #map-info-panel {
@@ -77,8 +76,7 @@
 }
 
 #map-info-panel .key a {
-  @apply text-xs ml-1;
-  color: var(--color-brand-primary);
+  @apply text-xs ml-1 text-brand-primary;
 }
 
 #map-filter {
@@ -155,7 +153,7 @@
 }
 
 .hub-cluster div {
-  background-color: var(--color-brand-primary);
+  @apply bg-brand-primary;
 }
 
 .trainer-cluster {
@@ -163,7 +161,7 @@
 }
 
 .trainer-cluster div {
-  background-color: var(--color-brand-tertiary);
+  @apply bg-brand-tertiary;
 }
 
 /* Leaflet controls */

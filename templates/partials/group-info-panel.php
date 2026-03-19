@@ -8,13 +8,6 @@
     </div>
   <?php } ?>
 
-  <?php if(count($hubs) === 1) { ?>
-    <div class="info-row">
-      <span class="info-label"><?php _e('Hub', 'tofino'); ?></span>
-      <a href="<?php echo get_term_link($hubs[0]); ?>" class="badge badge-outline badge-primary no-underline"><?php echo $hubs[0]->name; ?></a>
-    </div>
-  <?php } ?>
-
   <?php $detail = get_field('group_detail'); ?>
   <?php if($detail) { ?>
     <?php
@@ -39,21 +32,21 @@
 
     <?php $more_info = get_field('group_detail_number_more_info'); ?>
     <?php if($more_info) { ?>
-      <div class="mt-3 text-sm text-gray-600"><?php echo $more_info; ?></div>
+      <div class="col-span-full mt-1 text-sm text-gray-600"><?php echo $more_info; ?></div>
     <?php } ?>
 
     <?php $legal_detail = get_field('group_detail_legal_structure_detail'); ?>
     <?php if($legal_detail) { ?>
-      <div class="mt-1 text-sm text-gray-500"><?php echo $legal_detail; ?></div>
+      <div class="col-span-full mt-1 text-sm text-gray-500"><?php echo $legal_detail; ?></div>
     <?php } ?>
 
     <?php $live_projects = get_field('group_detail_live_projects'); ?>
     <?php if($live_projects) { ?>
-      <div class="info-row">
+      <div class="col-span-full pt-2">
         <span class="info-label"><?php _e('Live Projects', 'tofino'); ?></span>
-        <div class="flex flex-wrap gap-1.5">
+        <div class="flex flex-wrap gap-1.5 mt-1">
           <?php foreach($live_projects as $item) { ?>
-            <span class="badge badge-outline badge-info badge-sm"><?php echo $item['label']; ?></span>
+            <span class="badge badge-info badge-sm"><?php echo $item['label']; ?></span>
           <?php } ?>
         </div>
       </div>
@@ -61,7 +54,7 @@
 
     <?php $projects_detail = get_field('group_detail_live_projects_detail'); ?>
     <?php if($projects_detail) { ?>
-      <div class="mt-1 text-sm text-gray-500"><?php echo $projects_detail; ?></div>
+      <div class="col-span-full mt-1 text-sm text-gray-500"><?php echo $projects_detail; ?></div>
     <?php } ?>
 
   <?php } ?>

@@ -1,11 +1,7 @@
 <ul class="button-group">
-  <div class="mb-12">
-    <?php get_search_form(); ?>
-  </div>
-
   <?php if(is_user_logged_in()) { ?>
-    <li><a class="btn btn-outline" href="<?php echo get_the_permalink(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Group', 'tofino'); ?></a></li>
-    <li><a class="btn btn-outline" href="<?php echo get_the_permalink(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a></li>
+    <li><a class="btn btn-outline w-full" href="<?php echo get_the_permalink(13); ?>"><?php echo svg('plus'); ?><?php _e('Add New Group', 'tofino'); ?></a></li>
+    <li><a class="btn btn-outline w-full" href="<?php echo get_the_permalink(6739); ?>"><?php echo svg('plus'); ?><?php _e('Add New Trainer', 'tofino'); ?></a></li>
   <?php } else { ?>
     <li>
       <div class="mb-2">
@@ -21,6 +17,6 @@
     
   <?php if(is_user_logged_in()) { ?>
     <?php $hub_register_url = get_field('hub_signup_link', 'options'); ?>
-    <li><a href="<?php echo ($hub_register_url) ? $hub_register_url : get_the_permalink(6185); ?>"  target="<?php echo ($hub_register_url) ? 'blank' : null; ?>" class="btn  btn-outline"><?php echo svg('plus'); ?><?php _e('Add New Hub', 'tofino'); ?></a></li>
+    <li><a href="<?php echo ($hub_register_url) ? $hub_register_url : get_the_permalink(6185); ?>"  target="<?php echo ($hub_register_url) ? 'blank' : null; ?>" class="btn  btn-outline w-full"><?php echo svg('plus'); ?><?php _e('Add New Hub', 'tofino'); ?></a></li>
   <?php } ?>
 </ul>

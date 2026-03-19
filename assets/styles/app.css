@@ -5,9 +5,6 @@
   themes: false;
 }
 
-/* Tom Select (vanilla Select2 replacement) */
-@import "../../node_modules/tom-select/dist/css/tom-select.css";
-
 /* Leaflet + MarkerCluster base CSS (was in old main.scss) */
 @import "../../node_modules/leaflet/dist/leaflet.css";
 @import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
@@ -85,7 +82,6 @@
 /* Components */
 @import "./css/maps.css";
 @import "./css/files.css";
-@import "./css/search.css";
 @import "./css/events-plugin.css";
 @import "./css/openid-connect.css";
 @import "./css/cf7.css";

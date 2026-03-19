@@ -47,7 +47,7 @@ add_action('admin_head', __NAMESPACE__ . '\\admin_styles');
 /**
  * Main JS script
  *
- * Register and enqueue the main JS. jQuery kept as dependency for Select2.
+ * Register and enqueue the main JS.
  *
  * @since 1.1.0
  * @return void

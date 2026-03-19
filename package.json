@@ -40,7 +40,8 @@
     "browser-sync": "^3.0.4",
     "daisyui": "^5.5.19",
     "tailwindcss": "^4.2.1",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vite-plugin-static-copy": "^3.3.0"
   },
   "dependencies": {
     "headroom.js": "^0.9.4",
@@ -50,7 +51,6 @@
     "leaflet.locatecontrol": "^0.89.0",
     "leaflet.markercluster": "^1.5.0",
     "plotly.js": "^1.58.5",
-    "svg4everybody": "^2.1.4",
-    "tom-select": "^2.5.2"
+    "svg4everybody": "^2.1.4"
   }
 }

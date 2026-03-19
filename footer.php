@@ -1,9 +1,10 @@
 <?php
 use \Tofino\ThemeOptions\Notifications as n;
+?>
 
-if (get_theme_mod('footer_sticky') === 'enabled') : ?>
-  </div>
-<?php endif; ?>
+</div>
+
+<?php get_template_part('templates/partials/email-signup'); ?>
 
 <footer>
   <div class="container">

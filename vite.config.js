@@ -1,10 +1,23 @@
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import path from 'path'
 
 export default defineConfig({
   plugins: [
     tailwindcss(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'assets/images/*',
+          dest: 'img',
+        },
+        {
+          src: 'assets/images/icons/*',
+          dest: 'img/icons',
+        },
+      ],
+    }),
   ],
   build: {
     outDir: 'dist',

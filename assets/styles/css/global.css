@@ -74,8 +74,7 @@ ol {
 }
 
 .rich-text blockquote {
-  border-left: 4px solid var(--color-brand-primary);
-  @apply py-2 px-4 my-4 text-gray-500;
+  @apply border-l-4 border-brand-primary py-2 px-4 my-4 text-gray-500;
 }
 
 .rich-text a {
@@ -111,7 +110,7 @@ h4, .h4 {
 }
 
 a:not(.btn) {
-  color: var(--color-brand-primary);
+  @apply text-brand-primary;
 }
 
 a:not(.btn):hover {

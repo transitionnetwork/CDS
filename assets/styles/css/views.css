@@ -37,15 +37,13 @@ body.tax-hub form label {
 /* Sidebar panels — tinted background with top accent, lighter than main panels */
 aside .panel,
 aside section {
-  @apply shadow-sm border-0;
+  @apply shadow-sm border-0 border-t-3 border-brand-primary;
   background-color: color-mix(in srgb, var(--color-brand-primary) 5%, white);
-  border-top: 3px solid var(--color-brand-primary);
 }
 
 aside .panel h3,
 aside section h3 {
-  @apply text-lg;
-  color: var(--color-brand-primary);
+  @apply text-lg text-brand-primary;
 }
 
 body.single .leaflet-container,
@@ -160,8 +158,7 @@ main.healthcheck-form .step-bar-container {
 }
 
 main.healthcheck-form .step-bar-container .step-bar {
-  background-color: var(--color-brand-primary);
-  @apply rounded;
+  @apply rounded bg-brand-primary;
 }
 
 main.healthcheck-form form.acf-form {
@@ -177,7 +174,7 @@ main.healthcheck-form .acf-field-group > .acf-label {
 }
 
 main.healthcheck-form .acf-button-group label.selected {
-  background-color: var(--color-brand-primary);
+  @apply bg-brand-primary;
   border-color: color-mix(in srgb, var(--color-brand-primary) 80%, #000);
 }
 
@@ -243,8 +240,7 @@ body.single-healthchecks .healthcheck-choice span,
 }
 
 #token-login-button svg {
-  @apply size-7;
-  color: var(--color-brand-primary);
+  @apply size-7 text-brand-primary;
 }
 
 .autologin-panel {

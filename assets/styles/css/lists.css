@@ -56,18 +56,15 @@ ul.page-numbers li {
 
 ul.page-numbers li a.page-numbers,
 ul.page-numbers li span.page-numbers {
-  @apply btn join-item no-underline;
-  color: var(--color-brand-primary);
+  @apply btn join-item no-underline text-brand-primary;
 }
 
 ul.page-numbers li span.current {
-  @apply btn-active text-white;
-  background-color: var(--color-brand-primary);
+  @apply btn-active text-white bg-brand-primary;
 }
 
 ul.page-numbers li a.page-numbers:hover {
-  @apply text-white;
-  background-color: var(--color-brand-v3);
+  @apply text-white bg-brand-v3;
 }
 
 ul.page-numbers li span.dots {
