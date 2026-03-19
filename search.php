@@ -3,14 +3,14 @@
 <main>
   <div class="container">
 
-    <div class="row justify-content-lg-between">
-      <div class="col-12 col-lg-3 order-lg-2">
+    <div class="flex flex-col lg:flex-row justify-between gap-6">
+      <aside class="w-full lg:w-3/12 lg:order-2">
+        <?php get_template_part('templates/partials/sidebar-search'); ?>
         <?php get_template_part('templates/partials/sidebar-group-stats', null, array('view' => 'list')); ?>
         <?php get_template_part('templates/partials/sidebar-buttons'); ?>
-        <?php get_template_part('templates/partials/sidebar-search'); ?>
-      </div>
+      </aside>
       
-      <div class="col-12 col-lg-9 order-lg-1">
+      <div class="w-full lg:w-9/12 lg:order-1">
 
     
         <h1><?php echo \Tofino\Helpers\title(); ?></h1>
