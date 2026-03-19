@@ -1,5 +1,9 @@
-html, body {
+html {
   @apply h-full;
+}
+
+body {
+  @apply min-h-full;
 }
 
 .drawer {
