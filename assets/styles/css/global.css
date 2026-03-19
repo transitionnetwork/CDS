@@ -118,14 +118,6 @@ a:not(.btn):hover {
   color: color-mix(in srgb, var(--color-brand-primary) 80%, #000);
 }
 
-.normal-size {
-  @apply text-base;
-}
-
-.button-svg {
-  @apply align-text-top size-4 mr-1;
-}
-
 .btn svg {
   @apply align-text-top size-4 mr-1 fill-current;
 }
@@ -338,10 +330,6 @@ pre {
 
 form.publish-delete {
   @apply my-2;
-}
-
-.total {
-  @apply italic text-gray-500;
 }
 
 #lang-switch a {

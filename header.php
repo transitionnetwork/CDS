@@ -61,41 +61,48 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
   </div>
 </div>
 
-<nav class="navbar navbar-expand-lg <?php echo m\menu_headroom(); ?> <?php echo m\menu_sticky(); ?> <?php echo m\menu_position(); ?>">
-  <div class="container">
-    <div class="shrink-0 flex items-center mr-6 py-2">
-      <a href="<?php echo home_url(); ?>">
-        <img src="<?php echo get_template_directory_uri() . '/dist/img/tn-logo.png'; ?>" class="w-44 h-auto" alt="Transition Network International Logo" title="Transition Network International Logo">
-      </a>
-    </div>
+<div class="drawer drawer-end">
+  <input id="mobile-nav-drawer" type="checkbox" class="drawer-toggle" />
 
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="bar-wrapper">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </span>
-      <span class="sr-only"><?php _e('Toggle Navigation Button', 'tofino'); ?></span>
-    </button>
-    <div class="collapse navbar-collapse" id="main-menu">
-      <?php
-      if (has_nav_menu('primary_nav')) :
-        wp_nav_menu([
-          'menu'            => 'nav_menu',
-          'theme_location'  => 'primary_nav',
-          'depth'           => 2,
-          'container'       => '',
-          'container_class' => '',
-          'container_id'    => '',
-          'menu_class'      => 'navbar-nav',
-          'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-          'walker'          => new Tofino\Nav\NavWalker()
-        ]);
-      endif; ?>
-    </div>
-  </div>
-</nav>
+  <div class="drawer-content">
+    <!-- Navbar -->
+    <nav class="navbar bg-base-200 <?php echo m\menu_headroom(); ?> <?php echo m\menu_sticky(); ?> <?php echo m\menu_position(); ?>">
+      <div class="container">
+        <div class="navbar-start">
+          <a href="<?php echo home_url(); ?>">
+            <img src="<?php echo get_template_directory_uri() . '/dist/img/tn-logo.png'; ?>" class="w-44 h-auto" alt="Transition Network International Logo" title="Transition Network International Logo">
+          </a>
+        </div>
 
-<?php if (get_theme_mod('footer_sticky') === 'enabled') : ?>
-  <div class="wrapper">
-<?php endif; ?>
+        <div class="navbar-end">
+          <!-- Desktop menu -->
+          <div class="hidden lg:block" id="main-menu">
+            <?php
+            if (has_nav_menu('primary_nav')) :
+              wp_nav_menu([
+                'menu'            => 'nav_menu',
+                'theme_location'  => 'primary_nav',
+                'depth'           => 2,
+                'container'       => '',
+                'container_class' => '',
+                'container_id'    => '',
+                'menu_class'      => 'navbar-nav',
+                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                'walker'          => new Tofino\Nav\NavWalker()
+              ]);
+            endif; ?>
+          </div>
+
+          <!-- Mobile hamburger -->
+          <label for="mobile-nav-drawer" aria-label="<?php _e('Toggle navigation', 'tofino'); ?>" class="btn btn-ghost btn-circle lg:hidden swap swap-rotate size-12">
+            <input type="checkbox" class="mobile-nav-sync" />
+            <?php echo svg(['sprite' => 'menu', 'class' => 'swap-off size-8']); ?>
+            <?php echo svg(['sprite' => 'x', 'class' => 'swap-on size-8']); ?>
+          </label>
+        </div>
+      </div>
+    </nav>
+
+    <?php if (get_theme_mod('footer_sticky') === 'enabled') : ?>
+      <div class="wrapper">
+    <?php endif; ?>

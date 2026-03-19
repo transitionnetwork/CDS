@@ -16,6 +16,7 @@ body.user-role-initiative .wpcf7-form .your-subject {
   @apply hidden;
 }
 
+/* Hides the floating reCAPTCHA v3 badge Google injects into the DOM */
 .grecaptcha-badge {
   @apply hidden;
 }

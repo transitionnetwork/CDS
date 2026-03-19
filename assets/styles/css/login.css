@@ -37,26 +37,14 @@
   }
 }
 
-.alert {
-  @apply p-4 my-4;
+.xinc-login .alert {
+  @apply p-4 my-4 rounded;
 }
 
-.alert ul {
+.xinc-login .alert ul {
   @apply m-0 p-0 list-none;
-}
-
-.alert.top {
-  @apply mt-4 mb-8;
-}
-
-.alert.bottom {
-  @apply mt-8 mb-0;
 }
 
 .recaptcha-container {
   @apply mb-4;
-}
-
-.alert {
-  @apply rounded;
 }

@@ -38,3 +38,17 @@
 .alert a {
   @apply underline;
 }
+
+/* Page-level flash messages (success/error banners at top of content) */
+.alert.top {
+  @apply rounded p-4 mt-4 mb-8;
+}
+
+.alert.bottom {
+  @apply rounded p-4 mt-8 mb-0;
+}
+
+.alert.top ul,
+.alert.bottom ul {
+  @apply m-0 p-0 list-none;
+}

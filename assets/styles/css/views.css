@@ -238,11 +238,6 @@ body.single-healthchecks .healthcheck-choice span,
   @apply relative w-full p-16;
 }
 
-.graph-loading {
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-  z-index: 500;
-}
-
 #token-login-button {
   @apply block border-0 bg-transparent;
 }

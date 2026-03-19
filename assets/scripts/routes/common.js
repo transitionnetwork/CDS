@@ -42,6 +42,15 @@ export default {
     }
 
     // CSS position: sticky works in all modern browsers — stickyfill removed
+
+    // Sync swap icon checkbox with drawer toggle checkbox
+    var drawerToggle = document.getElementById('mobile-nav-drawer');
+    var swapCheckbox = document.querySelector('.mobile-nav-sync');
+    if (drawerToggle && swapCheckbox) {
+      drawerToggle.addEventListener('change', function() {
+        swapCheckbox.checked = drawerToggle.checked;
+      });
+    }
   },
   finalize() {
     // JavaScript to be fired on all pages, after page specific JS is fired

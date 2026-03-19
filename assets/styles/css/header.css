@@ -1,7 +1,3 @@
-.navbar {
-  @apply px-4 py-1;
-}
-
 #main-menu {
   @apply justify-end;
 }
