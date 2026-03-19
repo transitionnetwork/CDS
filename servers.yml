@@ -3,7 +3,7 @@
   stage: production
   port: 222
   deploy_path: ~/public_html/wp-content/themes
-  branch: main
+  branch: master
   api_key: #
 
 stage.xinc.digital:

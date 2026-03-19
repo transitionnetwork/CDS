@@ -109,11 +109,11 @@ h4, .h4 {
   @apply mt-3 mb-1 text-xl;
 }
 
-a:not(.btn):not(.badge) {
+.wrapper a:not(.btn):not(.badge) {
   @apply text-brand-primary;
 }
 
-a:not(.btn):not(.badge):hover {
+.wrapper a:not(.btn):not(.badge):hover {
   color: color-mix(in srgb, var(--color-brand-primary) 80%, #000);
 }
 
@@ -138,7 +138,7 @@ button.btn-disabled {
 
 .bar-info a,
 .bar-info a:hover {
-  @apply text-white underline;
+  @apply text-brand-white underline;
 }
 
 img {
