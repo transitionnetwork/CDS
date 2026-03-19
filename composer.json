@@ -28,10 +28,6 @@
     "respect/validation": "^1.1",
     "mailchimp/marketing": "^3.0"
   },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "2.6.2",
-    "phpmd/phpmd" : "2.4.4"
-  },
   "autoload": {
     "psr-4": { "Tofino\\": "src/lib/" }
   },
