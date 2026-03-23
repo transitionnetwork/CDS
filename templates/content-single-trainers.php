@@ -75,7 +75,7 @@
 
           <?php foreach($field_names as $field_name) {
             if(get_field($field_name)) { ?>
-            <div class="panel mt-6">
+            <div class="panel mt-6 rich-text">
               <h3><?php echo get_field_object($field_name)['label']; ?></h3>
               <div class="mt-2">
                 <?php echo get_field($field_name); ?>

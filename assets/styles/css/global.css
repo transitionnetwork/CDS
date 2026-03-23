@@ -85,6 +85,10 @@ ol {
   @apply max-w-full h-auto;
 }
 
+.panel.rich-text {
+  @apply border-0 border-t-2 border-primary;
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3,

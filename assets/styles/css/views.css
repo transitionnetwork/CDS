@@ -37,7 +37,7 @@ body.tax-hub form label {
 /* Sidebar panels — tinted background with top accent, lighter than main panels */
 aside .panel,
 aside section {
-  @apply shadow-sm border-0 border-t-2 border-brand-primary bg-white/60;
+  @apply shadow-sm border-0 border-t-2 border-secondary bg-white/60;
 }
 
 aside .panel h3,
