@@ -17,20 +17,12 @@ use \Tofino\ThemeOptions\Notifications as n; ?>
 
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="b+sXmeHi26Fyp3pKXV0AFQ" async></script>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-934395512"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'AW-934395512');
-  </script>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php wp_head(); ?>
+
+  <?php get_template_part('templates/header/google-ads-conversion'); ?>
 </head>
 
 <?php if ( function_exists('icl_object_id') && ICL_LANGUAGE_CODE != 'en') {
