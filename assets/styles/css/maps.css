@@ -79,21 +79,9 @@
   @apply text-xs ml-1 text-brand-primary;
 }
 
-#map-filter {
-  @apply text-sm py-4;
-}
 
 #map-filter .filter-col {
-  @apply flex relative w-full px-2.5;
-  flex: 0 0 16.666667%;
-  max-width: 16.666667%;
-}
-
-@media (max-width: 639px) {
-  #map-filter .filter-col {
-    flex: 0 0 100%;
-    @apply max-w-full;
-  }
+  @apply flex w-full;
 }
 
 #map-filter .filter-item {
@@ -112,16 +100,10 @@
   @apply w-full;
 }
 
-@media (max-width: 639px) {
-  #map-filter .filter-col + .filter-col {
-    @apply mt-2;
-  }
-}
 
 /* Marker clusters — specific rgba colours for map visuals, no Tailwind equivalents */
 .marker-cluster div {
-  font-family: var(--font-body);
-  @apply text-white font-bold;
+  @apply text-white font-bold font-body;
 }
 
 .marker-cluster-large {

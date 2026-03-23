@@ -1,6 +1,6 @@
-<div id="map-filter">
+<div id="map-filter" class="text-sm py-4">
   <div class="w-full px-4">
-    <div class="flex flex-wrap map-filter-row">
+    <div class="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-6">
       <div class="filter-col">
         <div id="filter-type" class="filter-item">
           <label for="type_name"><?php _e('Show', 'tofino'); ?></label>

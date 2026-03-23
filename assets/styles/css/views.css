@@ -246,3 +246,7 @@ body.single-healthchecks .healthcheck-choice span,
 .autologin-panel {
   @apply mt-8;
 }
+
+.facetwp-facet {
+  @apply mb-2!;
+}

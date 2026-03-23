@@ -87,3 +87,8 @@
 @import "./css/cf7.css";
 @import "./css/forms.css";
 @import "./css/xinc-events.css";
+
+/* FacetWP checkbox spacing inside collapse panels */
+.facetwp-checkbox {
+  @apply py-0.5 text-sm;
+}
