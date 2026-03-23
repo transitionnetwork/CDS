@@ -47,6 +47,65 @@
         <?php if(is_user_logged_in() && (is_user_role('administrator') || is_user_role('super_hub'))) { ?>
           <?php get_template_part('templates/partials/hub-contact-form'); ?>
         <?php } ?>
+
+        <div class="w-full" id="hub-filter">
+
+          <h2>Groups</h2>
+
+          <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
+            <p>
+              <a href="<?php echo add_query_arg('sort_by', 'created'); ?>" class="btn btn-primary">
+                Order by date created
+              </a>
+            </p>
+          <?php } ?>
+          
+          <?php $acf_field = get_field_object('field_64997d90a9aa1', false); ?>
+          <?php $tags = $acf_field['choices']; ?>
+          
+          <label>Filter by Live Projects</label>
+          <?php $tag_selected = get_query_var('topic'); ?>
+          <form action="#hub-filter" method="GET" class="mt-2 mb-4">
+            <select name="topic" id="topic-select" onchange="this.form.submit()">
+              <option value="">Any</a>
+              <?php foreach($tags as $value => $label) { ?>
+                <?php $selected = ($tag_selected === $value) ? 'selected' : ''; ?>
+                <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $label; ?></option>
+              <?php } ?>
+            </select>
+          </form>
+          
+          <?php $args = array(
+            'post_type' => 'initiatives',
+            'fields' => 'ids',
+            'posts_per_page' => -1,
+            'tax_query' => array(
+              'AND',
+              array(
+                'taxonomy' => 'hub',
+                'field' => 'term_id',
+                'terms' => $term->term_id
+              )
+            )
+          ); 
+
+          if(get_query_var('topic')) {
+            $args['meta_query'][] = array('key' => 'group_detail_live_projects', 'compare' => 'LIKE', 'value' => get_query_var('topic'));
+          }
+
+          if(get_query_var('sort_by') === 'created') {
+            $args['orderby'] = 'post_date';
+            $args['order'] = 'ASC';
+          }
+
+          $init_query = new WP_Query($args);
+          set_query_var('init_query', $init_query);
+          get_template_part('templates/tables/initiatives');
+
+          ?>
+        </div>
+
+
       </div>
  
       <div class="w-full lg:w-4/12">
@@ -101,63 +160,6 @@
             </section>
           <?php } ?>
         </aside>
-      </div>
-
-      <div class="w-full" id="hub-filter">
-
-        <h2>Groups</h2>
-
-        <?php if (is_user_role(array('administrator', 'super_hub', 'hub'))) { ?>
-          <p>
-            <a href="<?php echo add_query_arg('sort_by', 'created'); ?>" class="btn btn-primary">
-              Order by date created
-            </a>
-          </p>
-        <?php } ?>
-        
-        <?php $acf_field = get_field_object('field_64997d90a9aa1', false); ?>
-        <?php $tags = $acf_field['choices']; ?>
-        
-        <label>Filter by Live Projects</label>
-        <?php $tag_selected = get_query_var('topic'); ?>
-        <form action="#hub-filter" method="GET" class="mt-2 mb-4">
-          <select name="topic" id="topic-select" onchange="this.form.submit()">
-            <option value="">Any</a>
-            <?php foreach($tags as $value => $label) { ?>
-              <?php $selected = ($tag_selected === $value) ? 'selected' : ''; ?>
-              <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $label; ?></option>
-            <?php } ?>
-          </select>
-        </form>
-        
-        <?php $args = array(
-          'post_type' => 'initiatives',
-          'fields' => 'ids',
-          'posts_per_page' => -1,
-          'tax_query' => array(
-            'AND',
-            array(
-              'taxonomy' => 'hub',
-              'field' => 'term_id',
-              'terms' => $term->term_id
-            )
-          )
-        ); 
-
-        if(get_query_var('topic')) {
-          $args['meta_query'][] = array('key' => 'group_detail_live_projects', 'compare' => 'LIKE', 'value' => get_query_var('topic'));
-        }
-
-        if(get_query_var('sort_by') === 'created') {
-          $args['orderby'] = 'post_date';
-          $args['order'] = 'ASC';
-        }
-
-        $init_query = new WP_Query($args);
-        set_query_var('init_query', $init_query);
-        get_template_part('templates/tables/initiatives');
-
-        ?>
       </div>
     </div>
   </div>
