@@ -13,4 +13,29 @@
       </div>
     </div>
   </div>
+
+  <script>
+  (function() {
+    var signupRoot = document.querySelector('.gh-signup-root');
+    if (!signupRoot) return;
+    var previousHeight = 0;
+    var conversionFired = false;
+  
+    var observer = new ResizeObserver(function() {
+      if (conversionFired) return;
+      var iframe = signupRoot.querySelector('iframe');
+      if (!iframe) return;
+      var newHeight = iframe.offsetHeight;
+      if (newHeight > 80 && previousHeight <= 80) {
+        conversionFired = true;
+        gtag('event', 'conversion', {
+          'send_to': 'AW-934395512/cC-CCM7UhI4cEPj8xr0D'
+        });
+      }
+      previousHeight = newHeight;
+    });
+    observer.observe(signupRoot);
+  })();
+  </script>
 <?php } ?>
+
