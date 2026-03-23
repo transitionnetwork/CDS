@@ -245,10 +245,21 @@ export default async function () {
     }
   }
 
+  var mapLoadingEl = document.getElementById('map-loading');
+
+  function showLoading() {
+    if (mapLoadingEl) mapLoadingEl.style.display = '';
+  }
+
+  function hideLoading() {
+    if (mapLoadingEl) mapLoadingEl.style.display = 'none';
+  }
+
   function getMarkers(params) {
     var cached = getCached(params);
 
     if (cached) {
+      hideLoading();
       renderResponse(cached);
 
       // revalidate in background
@@ -258,9 +269,11 @@ export default async function () {
       return;
     }
 
+    showLoading();
     fetchMarkers(params, function (response) {
       setCache(params, response);
       renderResponse(response);
+      hideLoading();
     });
   }
 
@@ -285,6 +298,7 @@ export default async function () {
     })
     .catch(function(err) {
       console.log('Error:', err);
+      hideLoading();
     });
   }
 
