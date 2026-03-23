@@ -16,7 +16,7 @@
     <div class="container">
       <?php $post_author = get_the_author_meta('ID'); ?>
       <div class="flex flex-col lg:flex-row justify-between gap-6">
-        <div class="w-full lg:w-7/12">
+        <div class="w-full lg:w-8/12 xl:w-6/12">
           <div class="mb-6">
             <h1 class="mb-2"><?php echo \Tofino\Helpers\title(); ?></h1>
 
