@@ -15,24 +15,32 @@
   </div>
 
   <script>
-  (function() {
-    var signupRoot = document.querySelector('.gh-signup-root');
-    if (!signupRoot) return;
-    var previousHeight = 0;
-    var conversionFired = false;
-    var observer = new ResizeObserver(function() {
-      if (conversionFired) return;
-      var iframe = signupRoot.querySelector('iframe');
-      if (!iframe) return;
-      var newHeight = iframe.offsetHeight;
-      if (newHeight > 50 && previousHeight <= 50) {
-        conversionFired = true;
-        gtag('event', 'conversion', {'send_to': 'AW-934395512/cC-CCM7UhI4cEPj8xr0D'});
+    (function() {
+      var conversionFired = false;
+      function attachObserver() {
+        var signupRoot = document.querySelector('.gh-signup-root');
+        if (!signupRoot) return;
+        var iframe = signupRoot.querySelector('iframe');
+        if (!iframe) return;
+        var doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (!doc || !doc.body) return;
+        var observer = new MutationObserver(function() {
+          if (conversionFired) return;
+          var btn = doc.querySelector('button');
+          if (btn && btn.innerText && btn.innerText.toLowerCase().includes('sent')) {
+            conversionFired = true;
+            observer.disconnect();
+            gtag('event', 'conversion', {'send_to': 'AW-934395512/cC-CCM7UhI4cEPj8xr0D'});
+          }
+        });
+        observer.observe(doc.body, { childList: true, subtree: true, characterData: true });
       }
-      previousHeight = newHeight;
-    });
-    observer.observe(signupRoot);
-  })();
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', attachObserver);
+      } else {
+        attachObserver();
+      }
+    })();
   </script>
 <?php } ?>
 
