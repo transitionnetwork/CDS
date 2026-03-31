@@ -14,33 +14,24 @@
     </div>
   </div>
 
-  <script>
-    (function() {
-      var conversionFired = false;
-      function attachObserver() {
-        var signupRoot = document.querySelector('.gh-signup-root');
-        if (!signupRoot) return;
-        var iframe = signupRoot.querySelector('iframe');
-        if (!iframe) return;
-        var doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (!doc || !doc.body) return;
-        var observer = new MutationObserver(function() {
-          if (conversionFired) return;
-          var btn = doc.querySelector('button');
-          if (btn && btn.innerText && btn.innerText.toLowerCase().includes('sent')) {
-            conversionFired = true;
-            observer.disconnect();
-            gtag('event', 'conversion', {'send_to': 'AW-934395512/cC-CCM7UhI4cEPj8xr0D'});
-          }
-        });
-        observer.observe(doc.body, { childList: true, subtree: true, characterData: true });
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', attachObserver);
-      } else {
-        attachObserver();
-      }
-    })();
-  </script>
+<script>
+(function() {
+  var conversionFired = false;
+  var interval = setInterval(function() {
+    if (conversionFired) { clearInterval(interval); return; }
+    var iframe = document.querySelector('.gh-signup-root iframe');
+    if (!iframe) return;
+    var doc = iframe.contentDocument || iframe.contentWindow.document;
+    if (!doc) return;
+    var btn = doc.querySelector('button');
+    if (btn && btn.innerText && btn.innerText.toLowerCase().includes('sent')) {
+      conversionFired = true;
+      clearInterval(interval);
+      gtag('event', 'conversion', {'send_to': 'AW-934395512/cC-CCM7UhI4cEPj8xr0D'});
+    }
+  }, 500);
+  setTimeout(function() { clearInterval(interval); }, 300000);
+})();
+</script>
 <?php } ?>
 
