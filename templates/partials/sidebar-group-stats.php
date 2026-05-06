@@ -7,9 +7,13 @@ $data = get_group_totals($args);
     <p>Groups are active in <strong><?php echo $data['total_countries']; ?> countries</strong></p>
   <?php } ?>
   
-  <p>
-    <strong><?php echo $data['total_active_groups']; ?></strong> out of <strong><?php echo $data['total_groups']; ?></strong> groups are recently active on this site (<strong><?php echo round($data['total_active_groups'] / $data['total_groups'] * 100, 1); ?></strong>%</strong>).
-  </p>
+  <?php if($data['total_groups'] > 0) { ?>
+    <p>
+      <strong><?php echo $data['total_active_groups']; ?></strong> out of <strong><?php echo $data['total_groups']; ?></strong> groups are recently active on this site (<strong><?php echo round($data['total_active_groups'] / $data['total_groups'] * 100, 1); ?></strong>%</strong>).
+    </p>
+  <?php } else { ?>
+    <p>No groups yet.</p>
+  <?php } ?>
   <?php if($data['total_people']) { ?>
     <p>
       More than <strong><?php echo $data['total_people']; ?></strong> people are participating in Transition organisation.
@@ -27,7 +31,7 @@ $data = get_group_totals($args);
       <label>Group projects include:</label>
       <ul>
         <?php foreach($projects as $project) { ?>
-          <?php if($project['number_of_projects'] > 0) { ?>
+          <?php if($project['number_of_projects'] > 0 && $data['total_projects'] > 0) { ?>
             <li><?php echo $project['name']; ?>: <strong><?php echo $project['number_of_projects']; ?></strong> (<?php echo round($project['number_of_projects'] / $data['total_projects'] * 100); ?>%)</li>
           <?php } ?>
         <?php } ?>
