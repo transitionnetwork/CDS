@@ -3,6 +3,8 @@ namespace Deployer;
 
 require 'recipe/common.php';
 
+
+set('keep_releases', 4);
 // Start editable
 
 set('repository', 'git@github.com:transitionnetwork/CDS.git');
