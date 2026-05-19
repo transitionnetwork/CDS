@@ -14,7 +14,7 @@ set('ssh_multiplexing', true);
 
 // Do not modify anything under this line unless you know what you're doing
 
-inventory('servers.yml');
+import('hosts.yml');
 
 task('deploy:gulp', function() {
   $do_gulp = askConfirmation('Run Gulp?', false);
@@ -31,17 +31,24 @@ task('deploy:theme_composer', function() {
   run('~/composer.phar install');
 })->desc('Remote composer install');
 
-task('setup', [
-  'deploy:prepare',
-])->desc('Inital deployment setup');
+task('deploy:cache_flush', function () {
+  run('wp --path=public_html cache flush || true');
+  run('wp --path=public_html litespeed-purge all || true');
+})->desc('Flush WP object cache and LiteSpeed page cache');
 
 task('deploy', [
+  'deploy:setup',
+  'deploy:lock',
   'deploy:gulp',
   'deploy:release',
   'deploy:update_code',
   'deploy:upload_dist',
   'deploy:theme_composer',
   'deploy:symlink',
-  'cleanup'
+  'deploy:cache_flush',
+  'deploy:unlock',
+  'deploy:cleanup',
 ])->desc('Executing Deploy task');
 
+
+after('deploy:failed', 'deploy:unlock');
