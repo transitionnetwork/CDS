@@ -18,9 +18,9 @@ set('ssh_multiplexing', true);
 
 import('hosts.yml');
 
-task('deploy:gulp', function() {
-  $do_gulp = askConfirmation('Run Gulp?', false);
-  if( $do_gulp ) { runLocally('gulp --production'); }
+task('deploy:build', function() {
+  $do_build = askConfirmation('Run build?', false);
+  if( $do_build ) { runLocally('npm run build'); }
 })->desc('Create dist folder');
 
 task('deploy:upload_dist', function() {
@@ -41,7 +41,7 @@ task('deploy:cache_flush', function () {
 task('deploy', [
   'deploy:setup',
   'deploy:lock',
-  'deploy:gulp',
+  'deploy:build',
   'deploy:release',
   'deploy:update_code',
   'deploy:upload_dist',

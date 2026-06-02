@@ -18,7 +18,7 @@ function custom_email_autologin_reminder_email($post_id) {
     add_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY . '_created', date('Y-m-d H:i:s'), true);
   }
   
-  $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin';
+  $link = home_url('/account/?autologin_code=' . get_user_meta($user_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin');
   
   $to = array(
     get_the_author_meta('user_email', $post->post_author)
@@ -43,6 +43,8 @@ function custom_email_autologin_reminder_email($post_id) {
   $subject = str_replace('#post_name#', get_the_title($post_id), $subject);
   $body = str_replace('#post_name#', get_the_title($post_id), $body);
   $body = str_replace('#login_link#', $link, $body);
+
+  echo $body;
 
   if (get_environment() === 'production') {
     //dont send cron mail in dev environments

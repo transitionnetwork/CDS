@@ -8,7 +8,7 @@
     <?php if (is_user_role(array('administrator') && get_user_meta($post_author_id, PKG_AUTOLOGIN_USER_META_KEY))) { ?>
       <h3>Autologin link</h3>
       <?php
-      $link = 'https://' . $_SERVER['SERVER_NAME'] . '/account/?autologin_code=' . get_user_meta($post_author_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin';
+      $link = home_url('/account/?autologin_code=' . get_user_meta($post_author_id, PKG_AUTOLOGIN_USER_META_KEY, true) . '#nav-initiative-admin');
       ?>
       <span id="token-login-link"><?php echo $link; ?></span>
       <button id="token-login-button" alt="copy link"><?php echo svg('copy'); ?></button>
