@@ -86,23 +86,14 @@ add_filter( 'terms_clauses', 'df_terms_clauses', 10, 3 );
 
 
 function is_group_in_greylist($post_id) {
-  $gl_field_object = acf_get_field( 'gl_additional_info' );
-  $conditional_logic = $gl_field_object['conditional_logic'];
+  // Greylist countries are managed on the Site Options page (Greylist > Greylist Countries).
+  $greylist_countries = get_field('greylist_greylist_countries', 'options') ?: array();
+  $greylist_countries = array_map('intval', $greylist_countries);
 
-  $greylist_countries = array();
-  foreach($conditional_logic as $logic_group) {
-    foreach($logic_group as $logic) {
-      if($logic['field'] == 'field_618ea05c4bd16') { //   field_643d3f4e1f5b2 is gl_greylist
-        $greylist_countries[] = (int)$logic['value'];
-      }
-    }
-  }
+  $group_countries = get_the_terms($post_id, 'country') ?: array();
 
-  $group_countries = get_the_terms( $post_id, 'country' );
-  
   foreach($group_countries as $country) {
-    $group_country_terms[] = $country->term_id;
-    if(in_array($country->term_id, $greylist_countries)) {
+    if(in_array($country->term_id, $greylist_countries, true)) {
       return true;
     }
   }

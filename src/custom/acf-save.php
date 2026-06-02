@@ -45,6 +45,11 @@ function acf_custom_save($post_id) {
         $image_id = get_field('gl_additional_info_postal_letter', $post_id)['id'];
         xinc_dropbox_upload($image_id);
       }
+
+      // Record that greylist info has been supplied. The uploads are offloaded to
+      // Dropbox and deleted from WP, so this flag is the only reliable signal of
+      // completion (see is_group_in_greylist() / the edit-group prepare_field hook).
+      update_post_meta($post_id, 'greylist_info_provided', current_time('mysql'));
     }
   }
 

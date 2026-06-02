@@ -55,6 +55,7 @@ $tofino_includes = [
   "src/ajax/file-requests.php",
   "src/custom/admin-tables.php",
   "src/custom/acf-save.php",
+  "src/custom/acf-fields.php",
   "src/custom/helpers.php",
   "src/custom/rank-math.php",
   "src/custom/register-types-tax.php",
@@ -202,34 +203,6 @@ function wpse132196_redirect_after_trashing($post_id) {
 add_action('trashed_post', 'wpse132196_redirect_after_trashing', 10);
 
 
-//Change label of Content Editor in acf_form()
-function prepare_post_content($field)
-{
-  $field['label'] = "Description";
-  return $field;
-}
-add_filter('acf/prepare_field/name=_post_content', 'prepare_post_content');
-
-// Hide the greylist field on front-end group edit screen
-add_filter('acf/prepare_field', 'my_acf_prepare_field', 10, 1);
-function my_acf_prepare_field($field) {
-  if ( ! is_admin() && $field['key'] == 'field_695e763a53af4' && is_page('edit-group')) {
-    return false;
-  }
-  return $field;
-}
-
-function change_post_content_type( $field ) { 
-  //disable wysiwyg fancies
-  if($field['type'] == 'wysiwyg') { 
-    $field['tabs'] = 'visual';
-    $field['toolbar'] = 'basic';
-    $field['media_upload'] = 0; 
-  } 
-return $field; }
-add_filter( 'acf/get_valid_field', 'change_post_content_type'); 
-
-
 //Logout link with nonce
 function add_logout_link($nav, $args)
 {
@@ -344,16 +317,6 @@ function wpse23007_redirect()
   }
 }
 add_action('init', 'wpse23007_redirect');
-
-// set default hub value to no-hub when adding initiative
-function set_tax_default($field) {
-  global $post;
-  if($post && $post->post_name == 'add-new-group') {
-    $field['value'] = 285;
-  }
-  return $field;
-}
-add_filter('acf/load_field/key=field_5c473dfca1fd3', 'set_tax_default');
 
 function process_post_requests() {
   if ('POST' == $_SERVER['REQUEST_METHOD']) {
