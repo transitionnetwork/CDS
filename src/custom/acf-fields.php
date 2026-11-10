@@ -55,6 +55,16 @@ function my_acf_prepare_field($field) {
   return $field;
 }
 
+// ACF OpenStreetMap Field 1.6+ dropped some providers (Stamen, HERE) from its
+// list, but their saved settings in acf_osm_providers / acf_osm_provider_tokens
+// get merged back in as url-less "ghost" providers, which crash the map editor JS.
+// See https://github.com/mcguffin/acf-openstreetmap-field/issues/133
+add_filter('acf_osm_leaflet_providers', function($providers) {
+  return array_filter($providers, function($provider) {
+    return is_array($provider) && ! empty($provider['url']);
+  });
+});
+
 // Drive the greylist field's show/hide from the stored Greylist Countries
 // (Site Options > Greylist), so it stays in sync with is_group_in_greylist().
 add_filter('acf/load_field/key=field_695e763a53af4', 'load_greylist_conditional_logic');
